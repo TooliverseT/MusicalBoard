@@ -4,12 +4,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MusicalMind - pitch-plot</title>
+  <title>MusicalBoard - pitch-plot</title>
   <meta name="route" content="pitch-plot">
   
 <script type="module">
-import init, * as bindings from '/MusicalMind/musical-mind-7fa114fd59f98125.js';
-const wasm = await init({ module_or_path: '/MusicalMind/musical-mind-7fa114fd59f98125_bg.wasm' });
+import init, * as bindings from '/musical-mind-bc5be5b21e09369.js';
+const wasm = await init({ module_or_path: '/musical-mind-bc5be5b21e09369_bg.wasm' });
 
 
 window.wasmBindings = bindings;
@@ -22,13 +22,13 @@ dispatchEvent(new CustomEvent("TrunkApplicationStarted", {detail: {wasm}}));
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;700&family=Nunito:wght@400;700&family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
   
-  <link rel="stylesheet" href="/MusicalMind/index-70070981d963584c.css" integrity="sha384-5GxJl5DH9Kn14raKCgOC5OIUjb08eeGtHMS7dPlNb3WGlG+tteXAU7/Ov6qNODpm"/>
+  <link rel="stylesheet" href="/index-70070981d963584c.css" integrity="sha384-5GxJl5DH9Kn14raKCgOC5OIUjb08eeGtHMS7dPlNb3WGlG+tteXAU7/Ov6qNODpm"/>
   <!-- static 폴더의 파일들을 빌드에 포함 -->
   
   
   
 
-  <link rel="icon" href="/MusicalMind/favicon-f5b0a6244ae522b3.ico" integrity="sha384-vk49OdTw2Y8zo0VMA6kTstQmT2np58P5DtAxu+vhE/ZpXGg425GXffy0ht6NE+i9"/>
+  <link rel="icon" href="/favicon-f5b0a6244ae522b3.ico" integrity="sha384-vk49OdTw2Y8zo0VMA6kTstQmT2np58P5DtAxu+vhE/ZpXGg425GXffy0ht6NE+i9"/>
 
   <script>
     (function() {
@@ -39,7 +39,7 @@ dispatchEvent(new CustomEvent("TrunkApplicationStarted", {detail: {wasm}}));
         }
     })();
   </script>
-<link rel="modulepreload" href="/MusicalMind/musical-mind-7fa114fd59f98125.js" crossorigin="anonymous" integrity="sha384-K03nNt3bNleSp42oK77OfuHjMdbTrt5uqzZdiD3fcb2TYUXmvnCnLVKmP16W4mEv"><link rel="preload" href="/MusicalMind/musical-mind-7fa114fd59f98125_bg.wasm" crossorigin="anonymous" integrity="sha384-LzfUYZ3QGNxAmZeV6mnT77qZIzpcqKy+NMHUEtfoA73sqdOXddcXd7KrOGRhyOTb" as="fetch" type="application/wasm"></head>
+<link rel="modulepreload" href="/musical-mind-bc5be5b21e09369.js" crossorigin="anonymous" integrity="sha384-K03nNt3bNleSp42oK77OfuHjMdbTrt5uqzZdiD3fcb2TYUXmvnCnLVKmP16W4mEv"><link rel="preload" href="/musical-mind-bc5be5b21e09369_bg.wasm" crossorigin="anonymous" integrity="sha384-PJCr/zAJ4X3+aMnbL2nViZSzZv/Hwnrt3gRaw8e0+a8ei/buxWefnvNv+H/2Z4KC" as="fetch" type="application/wasm"></head>
 <body>
  
   <div id="app"></div>
