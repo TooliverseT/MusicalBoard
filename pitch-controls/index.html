@@ -8,8 +8,8 @@
   <meta name="route" content="pitch-controls">
   
 <script type="module">
-import init, * as bindings from '/musical-mind-bc5be5b21e09369.js';
-const wasm = await init({ module_or_path: '/musical-mind-bc5be5b21e09369_bg.wasm' });
+import init, * as bindings from '/musical-mind-a49c3ae0b7bc5991.js';
+const wasm = await init({ module_or_path: '/musical-mind-a49c3ae0b7bc5991_bg.wasm' });
 
 
 window.wasmBindings = bindings;
@@ -39,7 +39,7 @@ dispatchEvent(new CustomEvent("TrunkApplicationStarted", {detail: {wasm}}));
         }
     })();
   </script>
-<link rel="modulepreload" href="/musical-mind-bc5be5b21e09369.js" crossorigin="anonymous" integrity="sha384-K03nNt3bNleSp42oK77OfuHjMdbTrt5uqzZdiD3fcb2TYUXmvnCnLVKmP16W4mEv"><link rel="preload" href="/musical-mind-bc5be5b21e09369_bg.wasm" crossorigin="anonymous" integrity="sha384-PJCr/zAJ4X3+aMnbL2nViZSzZv/Hwnrt3gRaw8e0+a8ei/buxWefnvNv+H/2Z4KC" as="fetch" type="application/wasm"></head>
+<link rel="modulepreload" href="/musical-mind-a49c3ae0b7bc5991.js" crossorigin="anonymous" integrity="sha384-B47NxUlAJjcrDMAF6M7n9/UNvHNJRT7oxXK0pcKheZ8fmCnWo1sWqpJiMum3diQE"><link rel="preload" href="/musical-mind-a49c3ae0b7bc5991_bg.wasm" crossorigin="anonymous" integrity="sha384-glmlhqEBXH1fCVmiXHK50xA+zweuXLZ9jEnz0WshxQmVYf+2oQidoLxyhQrBnfBS" as="fetch" type="application/wasm"></head>
 <body>
  
   <div id="app"></div>
