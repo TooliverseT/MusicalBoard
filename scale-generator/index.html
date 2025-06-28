@@ -3,13 +3,17 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="theme-color" content="#000000">
   <title>MusicalBoard - scale-generator</title>
   <meta name="route" content="scale-generator">
   
 <script type="module">
-import init, * as bindings from '/musical-mind-70d80d340300eebb.js';
-const wasm = await init({ module_or_path: '/musical-mind-70d80d340300eebb_bg.wasm' });
+import init, * as bindings from '/musical-mind-bd7765282f1255f0.js';
+const wasm = await init({ module_or_path: '/musical-mind-bd7765282f1255f0_bg.wasm' });
 
 
 window.wasmBindings = bindings;
@@ -39,7 +43,31 @@ dispatchEvent(new CustomEvent("TrunkApplicationStarted", {detail: {wasm}}));
         }
     })();
   </script>
-<link rel="modulepreload" href="/musical-mind-70d80d340300eebb.js" crossorigin="anonymous" integrity="sha384-vcyeHShiemcUgI40CPWojysKF6iEWRfO0WZy6PiexbiXjMgoKa1GShBb9XW81afo"><link rel="preload" href="/musical-mind-70d80d340300eebb_bg.wasm" crossorigin="anonymous" integrity="sha384-7m9GV2cmvDLjoTj68BaxAjHBZDtD0sT12a0t7/WsiVgBVwFKgNt4RMzd9CYZxfot" as="fetch" type="application/wasm"></head>
+  
+  <style>
+    /* 모바일 터치 최적화 */
+    * {
+      -webkit-tap-highlight-color: transparent;
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+    
+    html, body {
+      touch-action: manipulation;
+      overflow-x: hidden;
+      -webkit-overflow-scrolling: touch;
+    }
+    
+    /* 버튼과 인터랙티브 요소들 */
+    button, .piano-key, .metronome-button {
+      touch-action: manipulation;
+      -webkit-tap-highlight-color: rgba(0,0,0,0.1);
+    }
+  </style>
+<link rel="modulepreload" href="/musical-mind-bd7765282f1255f0.js" crossorigin="anonymous" integrity="sha384-OGzWtLtGEv8VWwnQ0rgEkTI62ge2LGDD3mEAkhh0HgbtM3ESFa6Jt4QWhZ7l0tp5"><link rel="preload" href="/musical-mind-bd7765282f1255f0_bg.wasm" crossorigin="anonymous" integrity="sha384-t0brIZSzyVu12JbDPXkzoX7OMOkMPuFwMUvy19qYTL21l7kehAY/fuc1bu+J2JD9" as="fetch" type="application/wasm"></head>
 <body>
  
   <div id="app"></div>
