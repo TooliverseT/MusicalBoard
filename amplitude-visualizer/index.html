@@ -3,13 +3,17 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="theme-color" content="#000000">
   <title>MusicalBoard - amplitude-visualizer</title>
   <meta name="route" content="amplitude-visualizer">
   
 <script type="module">
-import init, * as bindings from '/musical-mind-3e2b8eecc9e7f851.js';
-const wasm = await init({ module_or_path: '/musical-mind-3e2b8eecc9e7f851_bg.wasm' });
+import init, * as bindings from '/musical-mind-5ad57444a2eb085e.js';
+const wasm = await init({ module_or_path: '/musical-mind-5ad57444a2eb085e_bg.wasm' });
 
 
 window.wasmBindings = bindings;
@@ -22,7 +26,7 @@ dispatchEvent(new CustomEvent("TrunkApplicationStarted", {detail: {wasm}}));
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;700&family=Nunito:wght@400;700&family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
   
-  <link rel="stylesheet" href="/index-24784d8beebd2e7e.css" integrity="sha384-1Oxq1uzpW6PA/H9QeBIGglh9Uh8vZjaiaL2Fju0reUZKgKamX1ghX4J/INg76rQo"/>
+  <link rel="stylesheet" href="/index-b0e05c29778ca4e7.css" integrity="sha384-fWZgw1Ye1sCFhI89YfXkVni+P0GXKDro3x+ILI2G5hLvtUa3/4oMETg0qOQBg8ti"/>
   <!-- static 폴더의 파일들을 빌드에 포함 -->
   
   
@@ -39,7 +43,31 @@ dispatchEvent(new CustomEvent("TrunkApplicationStarted", {detail: {wasm}}));
         }
     })();
   </script>
-<link rel="modulepreload" href="/musical-mind-3e2b8eecc9e7f851.js" crossorigin="anonymous" integrity="sha384-An6LD94Hv5vviItlvx7LsYj7aqNUmFdDaOJsfTQtyqmBaf60A5R+ZVo1HdlJhEBr"><link rel="preload" href="/musical-mind-3e2b8eecc9e7f851_bg.wasm" crossorigin="anonymous" integrity="sha384-NeBKHl/9VpviwLkRCyHT/f/KFrjHTH6s1m8S8cccxrFHv/38PZSeHKzEppkUKZ+z" as="fetch" type="application/wasm"></head>
+  
+  <style>
+    /* 모바일 터치 최적화 */
+    * {
+      -webkit-tap-highlight-color: transparent;
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+    
+    html, body {
+      touch-action: manipulation;
+      overflow-x: hidden;
+      -webkit-overflow-scrolling: touch;
+    }
+    
+    /* 버튼과 인터랙티브 요소들 */
+    button, .piano-key, .metronome-button {
+      touch-action: manipulation;
+      -webkit-tap-highlight-color: rgba(0,0,0,0.1);
+    }
+  </style>
+<link rel="modulepreload" href="/musical-mind-5ad57444a2eb085e.js" crossorigin="anonymous" integrity="sha384-raLULXsWPVL9BMxG/PwlCU4ratNpUdIp1hG3TBT/kisKMcaIHhgb37J1FZpN3qoQ"><link rel="preload" href="/musical-mind-5ad57444a2eb085e_bg.wasm" crossorigin="anonymous" integrity="sha384-LAAKa3dXYRHnMietrsM9TrpOdpo9T+aQ/CHDSuKEAPvE56J2RZNXwNRiyjcCu4sa" as="fetch" type="application/wasm"></head>
 <body>
  
   <div id="app"></div>
