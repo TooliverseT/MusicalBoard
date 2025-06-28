@@ -12,8 +12,8 @@
   <meta name="route" content="piano-keyboard">
   
 <script type="module">
-import init, * as bindings from '/musical-mind-961aed5489f7daf6.js';
-const wasm = await init({ module_or_path: '/musical-mind-961aed5489f7daf6_bg.wasm' });
+import init, * as bindings from '/musical-mind-b16476f77d83d90e.js';
+const wasm = await init({ module_or_path: '/musical-mind-b16476f77d83d90e_bg.wasm' });
 
 
 window.wasmBindings = bindings;
@@ -67,7 +67,7 @@ dispatchEvent(new CustomEvent("TrunkApplicationStarted", {detail: {wasm}}));
       -webkit-tap-highlight-color: rgba(0,0,0,0.1);
     }
   </style>
-<link rel="modulepreload" href="/musical-mind-961aed5489f7daf6.js" crossorigin="anonymous" integrity="sha384-qVxo8ibBTU3vdz7dTaKb/m0AflfuCnAnu8rE/OFmpvLGi0hwCx59nosXDzuY+H1b"><link rel="preload" href="/musical-mind-961aed5489f7daf6_bg.wasm" crossorigin="anonymous" integrity="sha384-BAACA/NvoUrJ0Acc9b7efiyikGmcWjjo+5p0F7tQwbfsP7KhEeXuoLzIqfGD2T1m" as="fetch" type="application/wasm"></head>
+<link rel="modulepreload" href="/musical-mind-b16476f77d83d90e.js" crossorigin="anonymous" integrity="sha384-G2IdPu60ojCNniMPf30TZ0dzoy80mPPwhWshZSQlora+5QMNYejT8JR3Ukhx/Bpk"><link rel="preload" href="/musical-mind-b16476f77d83d90e_bg.wasm" crossorigin="anonymous" integrity="sha384-DG2pA5JksziejId9s82Ky4iqtp+PmGPUMyqG4X3XjTM7fXYPiM4bbWZfZaEkJl13" as="fetch" type="application/wasm"></head>
 <body>
  
   <div id="app"></div>
