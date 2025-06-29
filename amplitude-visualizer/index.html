@@ -12,8 +12,8 @@
   <meta name="route" content="amplitude-visualizer">
   
 <script type="module">
-import init, * as bindings from '/musical-mind-92381b9cd32efb23.js';
-const wasm = await init({ module_or_path: '/musical-mind-92381b9cd32efb23_bg.wasm' });
+import init, * as bindings from '/musical-mind-fde780d733b82a08.js';
+const wasm = await init({ module_or_path: '/musical-mind-fde780d733b82a08_bg.wasm' });
 
 
 window.wasmBindings = bindings;
@@ -67,7 +67,7 @@ dispatchEvent(new CustomEvent("TrunkApplicationStarted", {detail: {wasm}}));
       -webkit-tap-highlight-color: rgba(0,0,0,0.1);
     }
   </style>
-<link rel="modulepreload" href="/musical-mind-92381b9cd32efb23.js" crossorigin="anonymous" integrity="sha384-yZm6Ssn3Cgp6f55Z9zVkXJJ0vQjcX2G4BXl8FgyE+usB5WX6cjpIsC38uhZAhTSK"><link rel="preload" href="/musical-mind-92381b9cd32efb23_bg.wasm" crossorigin="anonymous" integrity="sha384-sIswFa7f1WcrWg0opnx8XyYeSGWu56y/RUYn9Wv0gE7yvln8tQuL7bXAc+UuNLDv" as="fetch" type="application/wasm"></head>
+<link rel="modulepreload" href="/musical-mind-fde780d733b82a08.js" crossorigin="anonymous" integrity="sha384-QZDex8f5FGlDvwPK+HY//UWIoynBsbgn2SkyJQS25T4CcpGbEDtEQjJTP++VrtER"><link rel="preload" href="/musical-mind-fde780d733b82a08_bg.wasm" crossorigin="anonymous" integrity="sha384-qS/x1unV4rwY9lPUojHoXROhiR9TjR5qY4yZlODydAkmzePVrOa8ukMUcjjNERJv" as="fetch" type="application/wasm"></head>
 <body>
  
   <div id="app"></div>
