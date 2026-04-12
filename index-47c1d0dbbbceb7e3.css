@@ -472,6 +472,114 @@ body {
   flex-direction: column;
 }
 
+/* Home dashboard: `<details>` keeps full copy in DOM for crawlers; users see a compact summary. */
+details.seo-home-intro {
+  background-color: #1a1f2e;
+  border: 1px solid #2a2f3e;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+details.seo-home-intro summary.seo-home-intro-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 20px;
+  cursor: pointer;
+  list-style: none;
+  user-select: none;
+  font-size: 0.95rem;
+  color: #e2e6ef;
+}
+details.seo-home-intro summary.seo-home-intro-summary::-webkit-details-marker {
+  display: none;
+}
+details.seo-home-intro summary.seo-home-intro-summary::marker {
+  display: none;
+}
+details.seo-home-intro summary.seo-home-intro-summary .seo-home-summary-text {
+  font-weight: 600;
+  color: #ffffff;
+}
+details.seo-home-intro summary.seo-home-intro-summary .seo-home-summary-chevron {
+  flex-shrink: 0;
+  font-size: 0.65rem;
+  color: #8b9cff;
+  line-height: 1;
+  transition: transform 0.2s ease;
+}
+details.seo-home-intro summary.seo-home-intro-summary:hover {
+  background-color: rgba(255, 255, 255, 0.03);
+}
+details.seo-home-intro[open] summary.seo-home-intro-summary {
+  border-bottom: 1px solid #2a2f3e;
+}
+details.seo-home-intro[open] summary.seo-home-intro-summary .seo-home-summary-chevron {
+  transform: rotate(180deg);
+}
+details.seo-home-intro .seo-home-intro-body {
+  padding: 16px 20px 20px;
+}
+details.seo-home-intro h2 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin: 0 0 12px 0;
+  line-height: 1.35;
+}
+details.seo-home-intro .seo-home-subheading {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #e2e6ef;
+  margin: 20px 0 10px 0;
+}
+details.seo-home-intro .seo-home-lead {
+  color: #b8c0d4;
+  line-height: 1.6;
+  margin: 0;
+  font-size: 0.95rem;
+}
+details.seo-home-intro .seo-home-tool-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 12px 20px;
+}
+details.seo-home-intro .seo-home-tool-links li {
+  color: #9aa3b8;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin: 0;
+}
+details.seo-home-intro .seo-home-tool-links a {
+  color: #8b9cff;
+  font-weight: 500;
+  text-decoration: none;
+}
+details.seo-home-intro .seo-home-tool-links a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  details.seo-home-intro {
+    margin-bottom: 16px;
+  }
+  details.seo-home-intro summary.seo-home-intro-summary {
+    padding: 12px 16px;
+    flex-wrap: wrap;
+  }
+  details.seo-home-intro .seo-home-intro-body {
+    padding: 12px 16px 16px;
+  }
+  details.seo-home-intro .seo-home-tool-links {
+    grid-template-columns: 1fr;
+  }
+}
 /* 반응형 디자인 */
 @media (max-width: 1024px) {
   .sidebar {
