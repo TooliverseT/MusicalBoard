@@ -243,6 +243,7 @@ body {
   display: grid;
   grid-template-columns: 180px 20fr;
   width: 100%;
+  align-items: center; /* 좌·우 헤더 영역 세로 가운데 정렬 */
 }
 
 .header-left {
@@ -256,39 +257,55 @@ body {
 
 .mobile-menu-btn {
   display: none;
+  box-sizing: border-box;
+  -webkit-appearance: none;
+  appearance: none;
   background: none;
   border: none;
   cursor: pointer;
-  padding: 8px;
-  margin-right: 16px;
-  border-radius: 6px;
-  transition: background-color 0.2s ease;
+  padding: 0;
+  margin: 0;
+  /* mobile-controls-btn 과 동일한 헤더 아이콘 버튼 크기 */
+  width: 48px;
+  height: 48px;
+  min-width: 48px;
+  min-height: 48px;
+  border-radius: 8px;
   flex-shrink: 0; /* 버튼은 축소되지 않도록 */
+  /* 모바일 터치: 300ms 지연 완화, 탭 시 회색/하이라이트 제거 */
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  user-select: none;
+  -webkit-user-select: none;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff; /* MenuIcon stroke currentColor */
+  /* 터치 후 남는 포커스 링 최소화(키보드는 :focus-visible 유지) */
+  /* ControllerIcon 과 동일: 24 뷰박스를 28px 로 표시 (mobile-controls-btn svg 와 통일) */
+}
+.mobile-menu-btn:focus:not(:focus-visible) {
+  outline: none;
+}
+.mobile-menu-btn:focus-visible {
+  outline: 2px solid rgba(138, 180, 248, 0.7);
+  outline-offset: 3px;
 }
 .mobile-menu-btn:hover {
-  background-color: rgba(255, 255, 255, 0.1);
+  background: none;
+  box-shadow: none;
+  transform: none;
 }
-.mobile-menu-btn .hamburger {
+.mobile-menu-btn .menu-icon-svg {
+  pointer-events: none;
   display: block;
-  width: 20px;
-  height: 2px;
-  background-color: #ffffff;
-  position: relative;
-  transition: all 0.3s ease;
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
 }
-.mobile-menu-btn .hamburger::before, .mobile-menu-btn .hamburger::after {
-  content: "";
-  position: absolute;
-  width: 20px;
-  height: 2px;
-  background-color: #ffffff;
-  transition: all 0.3s ease;
-}
-.mobile-menu-btn .hamburger::before {
-  top: -6px;
-}
-.mobile-menu-btn .hamburger::after {
-  top: 6px;
+.mobile-menu-btn .menu-bar {
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  transform-origin: 12px 12px;
 }
 
 .page-title {
@@ -349,7 +366,9 @@ body {
 .header-right {
   display: flex;
   align-items: center;
+  justify-content: flex-end; /* 컨트롤·모바일 버튼을 헤더 오른쪽 끝으로 */
   gap: 12px;
+  width: 100%;
   min-width: 0; /* flex 아이템이 축소될 수 있도록 */
   flex-shrink: 0; /* 오른쪽 영역은 축소되지 않도록 */
 }
@@ -619,7 +638,7 @@ details.seo-home-intro .seo-home-tool-links a:hover {
     left: 0; /* 모바일에서는 사이드바 너비 고려하지 않음 */
   }
   .mobile-menu-btn {
-    display: block;
+    display: inline-flex;
   }
   .top-header {
     padding: 5px 12px; /* 패딩 약간 줄이기 */
@@ -719,11 +738,6 @@ details.seo-home-intro .seo-home-tool-links a:hover {
     width: 28px;
     height: 28px;
   }
-  /* 모바일 메뉴 버튼 패딩 조정 */
-  .mobile-menu-btn {
-    padding: 6px;
-    margin-right: 8px;
-  }
 }
 @media (max-width: 360px) {
   .top-header {
@@ -747,10 +761,6 @@ details.seo-home-intro .seo-home-tool-links a:hover {
     width: 24px;
     height: 24px;
   }
-  .mobile-menu-btn {
-    padding: 4px;
-    margin-right: 4px;
-  }
 }
 .mobile-overlay {
   position: fixed;
@@ -769,16 +779,17 @@ details.seo-home-intro .seo-home-tool-links a:hover {
 .app-layout.mobile-menu-open .mobile-overlay {
   display: block;
 }
-.app-layout.mobile-menu-open .mobile-menu-btn .hamburger {
-  background-color: transparent;
+.app-layout.mobile-menu-open .mobile-menu-btn {
+  /* 트랙 y=6 / 12 / 18 → 중앙 12 로 맞추기 위해 ±6 */
 }
-.app-layout.mobile-menu-open .mobile-menu-btn .hamburger::before {
-  transform: rotate(45deg);
-  top: 0;
+.app-layout.mobile-menu-open .mobile-menu-btn .menu-bar--mid {
+  opacity: 0;
 }
-.app-layout.mobile-menu-open .mobile-menu-btn .hamburger::after {
-  transform: rotate(-45deg);
-  top: 0;
+.app-layout.mobile-menu-open .mobile-menu-btn .menu-bar--top {
+  transform: translateY(6px) rotate(45deg);
+}
+.app-layout.mobile-menu-open .mobile-menu-btn .menu-bar--bot {
+  transform: translateY(-6px) rotate(-45deg);
 }
 
 /* 기존 스타일 유지 */
@@ -3459,80 +3470,55 @@ input[type=number] {
   transform: scale(1.1);
 }
 
-/* 모바일 컨트롤 사이드바 스타일 */
+/* 모바일 컨트롤 사이드바 스타일 — 헤더 .header-right 안에서 메뉴 버튼과 같은 줄·세로 정렬 */
 .mobile-controls-btn {
   display: none;
+  box-sizing: border-box;
+  position: relative;
+  -webkit-appearance: none;
+  appearance: none;
   background: none;
   border: none;
-  color: #8b92a5;
+  /* 햄버거(#fff)와 동일한 대비로 보이도록 (이전 회색은 같은 px도 더 작아 보임) */
+  color: #ffffff;
   cursor: pointer;
-  padding: 8px;
-  border-radius: 6px;
-  transition: all 0.2s ease;
-  position: fixed;
-  top: 0px;
-  right: 20px;
-  z-index: 1000;
+  padding: 0;
+  margin: 0;
+  /* mobile-menu-btn 과 동일한 헤더 아이콘 버튼 크기 */
+  width: 48px;
+  height: 48px;
+  min-width: 48px;
+  min-height: 48px;
+  border-radius: 8px;
   flex-shrink: 0;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  user-select: none;
+  -webkit-user-select: none;
+  align-items: center;
+  justify-content: center;
+}
+.mobile-controls-btn:focus:not(:focus-visible) {
+  outline: none;
+}
+.mobile-controls-btn:focus-visible {
+  outline: 2px solid rgba(138, 180, 248, 0.7);
+  outline-offset: 3px;
 }
 .mobile-controls-btn:hover {
-  background-color: rgba(255, 255, 255, 0.1);
+  background: none;
+  box-shadow: none;
+  transform: none;
   color: #ffffff;
-}
-.mobile-controls-btn .hamburger {
-  display: block;
-  width: 20px;
-  height: 2px;
-  background-color: #ffffff;
-  position: relative;
-  transition: all 0.3s ease;
-}
-.mobile-controls-btn .hamburger::before, .mobile-controls-btn .hamburger::after {
-  content: "";
-  position: absolute;
-  width: 20px;
-  height: 2px;
-  background-color: #ffffff;
-  transition: all 0.3s ease;
-}
-.mobile-controls-btn .hamburger::before {
-  top: -6px;
-}
-.mobile-controls-btn .hamburger::after {
-  top: 6px;
-}
-
-.mobile-controls-btn::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.mobile-controls-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-  color: #ffffff;
-  border-color: #4a4f5e;
-}
-
-.mobile-controls-btn:hover::before {
-  opacity: 1;
 }
 
 .mobile-controls-btn svg {
-  width: 30px;
-  height: 30px;
-  transition: all 0.3s ease;
-}
-
-.mobile-controls-btn:hover svg {
-  transform: scale(1.1);
+  display: block;
+  /* 햄버거(18×12px 부근)와 비슷한 점유 면적으로 보이도록 메뉴보다 한 단계 키움 */
+  width: 28px;
+  height: 28px;
+  pointer-events: none;
 }
 
 /* 모바일 컨트롤 오버레이 */
@@ -3650,9 +3636,9 @@ input[type=number] {
 
 /* 768px 이하에서 모바일 컨트롤 활성화 */
 @media (max-width: 768px) {
-  /* 모바일 컨트롤 버튼 표시 */
+  /* 모바일 컨트롤 버튼 표시 (헤더 오른쪽 플렉스 흐름, 메뉴 버튼과 세로 정렬) */
   .mobile-controls-btn {
-    display: block;
+    display: inline-flex;
   }
   /* 기존 피치 컨트롤 숨김 */
   .pitch-controls-container {
