@@ -1276,6 +1276,30 @@ canvas {
   color: #667eea;
 }
 
+.description h4 {
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 600;
+  margin: 22px 0 10px 0;
+}
+
+.description h4:first-of-type {
+  margin-top: 8px;
+}
+
+.description ul.text-bullets {
+  list-style: disc;
+  padding-left: 1.35rem;
+  margin: 0 0 16px 0;
+}
+
+.description ul.text-bullets li {
+  display: list-item;
+  align-items: flex-start;
+  padding: 4px 0;
+  margin-bottom: 6px;
+}
+
 /* 탭 스타일 */
 .tabs {
   display: flex;
