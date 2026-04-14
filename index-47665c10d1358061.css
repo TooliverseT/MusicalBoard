@@ -225,8 +225,8 @@ body {
 
 .top-header-container {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-start;
+  align-items: stretch;
   position: fixed; /* 고정 위치 */
   top: 0; /* 상단에 고정 */
   left: 240px; /* 사이드바 너비만큼 왼쪽 여백 */
@@ -236,23 +236,29 @@ body {
   border-bottom: 1px solid #2a2f3e; /* 하단 테두리 */
 }
 
-/* 상단 헤더 스타일 */
+/* 상단 헤더 스타일 — 한 줄: 왼쪽(제목, 좁으면 말줄임) + 오른쪽(컨트롤) */
 .top-header {
   background-color: #1a1f2e;
   padding: 11px 24px;
-  display: grid;
-  grid-template-columns: 180px 20fr;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 12px;
   width: 100%;
-  align-items: center; /* 좌·우 헤더 영역 세로 가운데 정렬 */
+  min-width: 0;
 }
 
 .header-left {
   display: flex;
   align-items: center;
+  justify-content: flex-start;
   gap: 16px;
-  min-width: 0; /* flex 아이템이 축소될 수 있도록 */
-  flex-shrink: 0; /* 왼쪽 영역은 축소되지 않도록 */
+  min-width: 0;
+  flex: 1 1 0%;
+  max-width: 570px;
   padding: 9px 0px;
+  overflow: hidden;
 }
 
 .mobile-menu-btn {
@@ -313,10 +319,12 @@ body {
   font-weight: 600;
   color: #ffffff;
   margin: 0;
-  white-space: nowrap; /* 제목이 줄바꿈되지 않도록 */
-  flex-shrink: 1; /* 필요시 축소 가능 */
-  overflow: hidden; /* 넘치는 텍스트 숨김 */
-  text-overflow: ellipsis; /* 말줄임표 표시 */
+  min-width: 0;
+  flex: 1 1 auto;
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .header-center {
@@ -366,11 +374,11 @@ body {
 .header-right {
   display: flex;
   align-items: center;
-  justify-content: flex-end; /* 컨트롤·모바일 버튼을 헤더 오른쪽 끝으로 */
+  justify-content: flex-end;
   gap: 12px;
-  width: 100%;
-  min-width: 0; /* flex 아이템이 축소될 수 있도록 */
-  flex-shrink: 0; /* 오른쪽 영역은 축소되지 않도록 */
+  flex: 0 0 auto;
+  min-width: 0;
+  margin-left: auto;
 }
 
 .header-btn {
@@ -655,9 +663,12 @@ details.seo-home-intro .seo-home-tool-links a:hover {
   .header-left {
     gap: 12px; /* 간격 줄이기 */
   }
-  /* 1024px 이하에서 페이지 제목 숨기기 */
+  /* 좁은 화면에서도 제목 표시 — 긴 제목은 ellipsis (오른쪽 컨트롤 영역 확보) */
   .page-title {
-    display: none;
+    font-size: 14px;
+  }
+  .header-left {
+    max-width: min(570px, 100% - 220px);
   }
   .header-center {
     max-width: 300px;
@@ -678,10 +689,11 @@ details.seo-home-intro .seo-home-tool-links a:hover {
     padding: 5px 12px;
   }
   .header-left {
-    gap: 8px; /* 간격 더 줄이기 */
+    gap: 8px;
+    max-width: min(570px, 100% - 140px);
   }
   .header-right {
-    gap: 8px; /* 간격 더 줄이기 */
+    gap: 8px;
   }
   .content-area {
     padding: 16px;
@@ -708,9 +720,8 @@ details.seo-home-intro .seo-home-tool-links a:hover {
     padding: 20px;
     min-height: 220px;
   }
-  /* 768px 이하에서 페이지 제목 숨기기 */
   .page-title {
-    display: none;
+    font-size: 13px;
   }
   /* 검색창도 숨기기 */
   .header-center {
@@ -1168,32 +1179,64 @@ canvas {
   overflow: visible;
 }
 
-.detail-page h2 {
-  text-align: center;
-  margin-bottom: 20px;
-  color: #d5d1a7;
-  font-size: 1.8rem;
-  font-weight: 500;
+/* SEO 인트로: 헤더 H1 아래를 한 블록으로 묶어 도구 영역과 시각적으로 분리 */
+.detail-seo-bundle {
+  margin-top: 2px;
+  margin-bottom: 28px;
+  padding: 1.35rem 1.4rem 1.2rem;
+  background: linear-gradient(165deg, rgba(102, 126, 234, 0.09) 0%, rgba(20, 25, 36, 0.97) 42%, #121722 100%);
+  border: 1px solid rgba(102, 126, 234, 0.22);
+  border-radius: 12px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 
-.detail-page .detail-seo-lead {
-  margin: 0 auto 1.25rem;
-  max-width: 52rem;
-  color: #c8c4b0;
-  line-height: 1.65;
-  font-size: 1rem;
-  text-align: center;
+.detail-seo-bundle .detail-seo-lead {
+  margin: 0 0 1.1rem;
+  padding-bottom: 1.15rem;
+  border-bottom: 1px solid rgba(102, 126, 234, 0.18);
+  max-width: none;
+  color: #dce1ec;
+  line-height: 1.72;
+  font-size: 0.98rem;
+  text-align: left;
 }
 
-.detail-page .detail-seo-h2-follow {
-  margin: -8px auto 1.35rem;
-  max-width: 48rem;
-  color: #aeb6c8;
-  line-height: 1.55;
-  font-size: 0.95rem;
-  text-align: center;
+.detail-seo-bundle h2 {
+  text-align: left;
+  margin: 1.15rem 0 0.45rem;
+  color: #e8ecf4;
+  font-size: 1.125rem;
+  font-weight: 600;
+  letter-spacing: -0.015em;
 }
 
+.detail-seo-bundle .detail-seo-lead + h2 {
+  margin-top: 0;
+}
+
+.detail-seo-bundle .detail-seo-h2-follow {
+  margin: 0 0 1rem;
+  max-width: none;
+  color: #9aa3b8;
+  line-height: 1.58;
+  font-size: 0.9rem;
+  text-align: left;
+}
+
+.detail-seo-bundle .detail-seo-h2-follow:last-child {
+  margin-bottom: 0;
+}
+
+@media (max-width: 640px) {
+  .detail-seo-bundle {
+    padding: 1.05rem 1rem;
+    margin-bottom: 22px;
+    border-radius: 10px;
+  }
+  .detail-seo-bundle h2 {
+    font-size: 1.05rem;
+  }
+}
 .detail-page h3 {
   color: #667eea;
   margin-top: 20px;
@@ -1213,7 +1256,7 @@ canvas {
 
 /* 뒤로가기 링크 스타일 */
 .back-link {
-  margin-bottom: 5px;
+  margin-bottom: 18px;
 }
 
 .back-link a {
@@ -3363,21 +3406,6 @@ input[type=number] {
   .activity-card {
     padding: 20px;
     min-height: 220px;
-  }
-  /* 768px 이하에서 페이지 제목 숨기기 */
-  .page-title {
-    display: none;
-  }
-  /* 검색창도 숨기기 */
-  .header-center {
-    display: none;
-  }
-  /* 피치 컨트롤은 계속 표시 */
-  .pitch-controls-container {
-    display: flex;
-    margin-left: 8px;
-    padding-left: 8px;
-    border-left: 1px solid #2a2f3e;
   }
 }
 @media (max-width: 540px) {
