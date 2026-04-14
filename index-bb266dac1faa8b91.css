@@ -581,8 +581,17 @@ details.seo-home-intro .seo-home-subheading {
 details.seo-home-intro .seo-home-lead {
   color: #b8c0d4;
   line-height: 1.6;
-  margin: 0;
+  margin: 0 0 18px 0;
   font-size: 0.95rem;
+}
+details.seo-home-intro .seo-home-section-lead {
+  color: #b8c0d4;
+  line-height: 1.6;
+  margin: 0 0 16px 0;
+  font-size: 0.95rem;
+}
+details.seo-home-intro h2 + .seo-home-section-lead {
+  margin-top: 0;
 }
 details.seo-home-intro .seo-home-tool-links {
   list-style: none;
@@ -1165,6 +1174,24 @@ canvas {
   color: #d5d1a7;
   font-size: 1.8rem;
   font-weight: 500;
+}
+
+.detail-page .detail-seo-lead {
+  margin: 0 auto 1.25rem;
+  max-width: 52rem;
+  color: #c8c4b0;
+  line-height: 1.65;
+  font-size: 1rem;
+  text-align: center;
+}
+
+.detail-page .detail-seo-h2-follow {
+  margin: -8px auto 1.35rem;
+  max-width: 48rem;
+  color: #aeb6c8;
+  line-height: 1.55;
+  font-size: 0.95rem;
+  text-align: center;
 }
 
 .detail-page h3 {
