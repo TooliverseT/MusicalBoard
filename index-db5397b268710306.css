@@ -1700,6 +1700,55 @@ canvas {
   margin-bottom: 6px;
 }
 
+/* 상세 페이지: 단축키·매핑 표 (피아노 등) */
+.description table.doc-key-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 12px 0 22px;
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  font-size: 14px;
+  color: #dce1ec;
+  line-height: 1.45;
+}
+
+.description table.doc-key-table caption {
+  caption-side: top;
+  text-align: left;
+  font-weight: 600;
+  color: #f0f2f8;
+  padding: 0 0 8px 0;
+  font-size: 15px;
+}
+
+.description table.doc-key-table th,
+.description table.doc-key-table td {
+  border: 1px solid #343b4d;
+  padding: 10px 12px;
+  vertical-align: top;
+  text-align: left;
+}
+
+.description table.doc-key-table thead th {
+  background: rgba(49, 56, 72, 0.65);
+  color: #f0f2f8;
+  font-weight: 600;
+}
+
+.description table.doc-key-table tbody tr:nth-child(even) td {
+  background: rgba(0, 0, 0, 0.12);
+}
+
+.description table.doc-key-table kbd {
+  display: inline-block;
+  padding: 2px 7px;
+  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid #4a5568;
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 0.86em;
+  color: #e8ecf4;
+}
+
 /* 탭 스타일 */
 .tabs {
   display: flex;
