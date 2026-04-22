@@ -1,37 +1,75 @@
-<!-- 404.html -->
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Page Redirect</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MusicalBoard — Redirecting…</title>
+    <style>
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: system-ui, -apple-system, sans-serif;
+            color: #e4e7ec;
+            background: linear-gradient(135deg, #0f1419 0%, #1a1f2e 50%, #242a42 100%);
+        }
+        .box {
+            text-align: center;
+            padding: 2rem 1.5rem;
+            max-width: 22rem;
+        }
+        .box h1 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin: 0 0 0.5rem;
+            color: #f0f2f8;
+        }
+        .box p {
+            margin: 0 0 1.25rem;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            color: #9aa3b8;
+        }
+        .box a {
+            display: inline-block;
+            padding: 0.65rem 1.25rem;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-decoration: none;
+            color: #fff;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+    </style>
     <script>
         (function() {
             const validRoutes = ['/', '/pitch-controls/', '/pitch-plot/', '/amplitude-visualizer/', '/metronome/', '/scale-generator/', '/piano-keyboard/', '/about/', '/privacy/', '/terms/', '/contact/'];
-            
-
             const segment = window.location.pathname;
-            
+
             function createMetaTag(path) {
                 const meta = document.createElement('meta');
                 meta.setAttribute('http-equiv', 'refresh');
                 meta.setAttribute('content', `0; url=${path}`);
                 document.getElementsByTagName('head')[0].appendChild(meta);
             }
-            
+
             if (validRoutes.includes(segment)) {
                 createMetaTag(segment);
             } else {
                 createMetaTag('/');
             }
-            
-            // 현재 URL을 세션 스토리지에 저장 (클라이언트 사이드 라우팅용)
+
             sessionStorage.redirect = window.location.href;
         })();
     </script>
 </head>
 <body>
-    <h1>404 - Page Not Found</h1>
-    <p>The page you're looking for doesn't exist.</p>
-    <a href="/">Go to Home</a>
+    <div class="box">
+        <h1>Opening MusicalBoard…</h1>
+        <p>If you are not redirected automatically, use the link below.</p>
+        <a href="/">Back to MusicalBoard</a>
+    </div>
 </body>
 </html>
