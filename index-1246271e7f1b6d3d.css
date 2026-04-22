@@ -1699,7 +1699,8 @@ a.not-found-primary:hover {
   width: 100%;
 }
 
-.analyzer-container.piano-full-width > * {
+.analyzer-container.piano-full-width > *,
+.analyzer-container.scale-generator-full-width > * {
   max-width: unset;
 }
 
@@ -1967,60 +1968,116 @@ a.not-found-primary:hover {
     min-width: 35px;
   }
 }
-/* 메트로놈 컴포넌트 스타일 */
+/* 메트로놈 — 대시보드 카드 톤에 맞춤, 표시 영역 aspect-ratio 30/9 유지 */
 .metronome-container {
   display: flex;
   flex-direction: column;
-  background-color: #1a1f2e;
-  color: white;
-  border-radius: 2px;
-  overflow: hidden;
   height: 100%;
   width: 100%;
-  font-family: "JetBrains Mono", ui-monospace, monospace;
+  overflow: hidden;
+  box-sizing: border-box;
+  font-family: "Quicksand", system-ui, -apple-system, sans-serif;
+  color: #e4e7ec;
+  background: linear-gradient(165deg, rgba(26, 31, 46, 0.98) 0%, #151a28 55%, #121722 100%);
+  border: 1px solid #2a2f3e;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.04);
 }
 
 .metronome-compact-layout {
   display: flex;
   flex-direction: column;
   height: 100%;
-  padding: 10px;
+  min-height: 0;
+  padding: clamp(8px, 1.1vw, 12px);
+  gap: 6px;
 }
 
 .metronome-controls-top {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-shrink: 0;
 }
 
-.bpm-control-compact {
+.metronome-container .bpm-control-compact {
   display: flex;
   align-items: center;
-  gap: 10px;
+  justify-content: center;
+  gap: clamp(6px, 1vw, 10px);
+  width: 100%;
+  max-width: 100%;
+}
+
+.metronome-container .bpm-buttons {
+  display: flex;
+  flex-direction: row;
+  gap: 3px;
+  flex-shrink: 0;
 }
 
 .metronome-bpm-btn {
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  color: white;
-  min-width: 24px;
-  height: 24px;
-  border-radius: 3px;
+  box-sizing: border-box;
+  min-width: 28px;
+  height: 28px;
+  padding: 0 4px;
+  font-family: "Quicksand", system-ui, -apple-system, sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #f0f2f8;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(102, 126, 234, 0.22);
+  border-radius: 6px;
   cursor: pointer;
-  transition: all 0.2s;
-  padding: 0;
-  font-size: 0.8rem;
+  transition: background 0.18s ease, border-color 0.18s ease, transform 0.15s ease;
+}
+.metronome-bpm-btn:hover:not(:disabled) {
+  background: rgba(102, 126, 234, 0.14);
+  border-color: rgba(102, 126, 234, 0.45);
+}
+.metronome-bpm-btn:active:not(:disabled) {
+  transform: scale(0.96);
+}
+.metronome-bpm-btn:focus-visible {
+  outline: 2px solid rgba(138, 180, 248, 0.75);
+  outline-offset: 2px;
 }
 
 .metronome-bpm-btn:disabled {
-  opacity: 0.5;
+  opacity: 0.38;
   cursor: not-allowed;
 }
 
-.bpm-display-compact {
+.metronome-container .bpm-display-compact {
   display: flex;
   align-items: center;
-  font-size: 16px;
+  justify-content: center;
+  flex: 1;
+  min-width: 0;
+}
+
+.metronome-container .bpm-tap-area {
+  flex: 1;
+  text-align: center;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 4px 10px;
+  margin: 0 2px;
+  border-radius: 10px;
+  border: 1px solid rgba(102, 126, 234, 0.22);
+  background: linear-gradient(180deg, rgba(102, 126, 234, 0.1) 0%, rgba(18, 23, 34, 0.55) 100%);
+  transition: border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+}
+.metronome-container .bpm-tap-area:hover {
+  border-color: rgba(102, 126, 234, 0.45);
+  box-shadow: 0 0 0 1px rgba(102, 126, 234, 0.12);
 }
 
 .note-icon {
@@ -2032,88 +2089,38 @@ a.not-found-primary:hover {
   margin: 0 5px;
 }
 
-.bpm-value-input {
-  width: 70px;
+.metronome-container .bpm-value-input {
+  width: clamp(52px, 22%, 88px);
+  min-width: 0;
+  padding: 0;
   background: transparent;
   border: none;
-  color: white;
-  font-size: 28px;
-  font-weight: bold;
+  color: #f0f2f8;
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: clamp(1.1rem, 2.4vw, 1.35rem);
+  font-weight: 700;
   text-align: center;
-  font-family: inherit;
+  line-height: 1.2;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  pointer-events: auto;
 }
 
-.bpm-value-input:focus {
+.metronome-container .bpm-value-input:focus {
   outline: none;
 }
 
-.bpm-label {
-  margin-left: 5px;
-  font-size: 0.85rem;
+.metronome-container .bpm-label {
+  flex-shrink: 0;
+  font-family: "Quicksand", system-ui, -apple-system, sans-serif;
+  font-size: 0.8rem;
   font-weight: 600;
-  color: #667eea;
-}
-
-.sound-toggle {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  border: none;
-  background-color: #667eea;
-  color: #ffffff;
-  font-size: 14px;
+  letter-spacing: 0.04em;
+  color: #a8b4ff;
   cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.2s;
-  padding: unset;
-}
-.sound-toggle svg {
-  width: 14px;
-  height: 14px;
-  fill: currentColor;
-}
-
-.sound-toggle:hover {
-  background-color: #5a6fd8;
-  box-shadow: 0 0 10px rgba(102, 126, 234, 0.5);
-}
-
-.sound-toggle.sound-off {
-  background-color: #666;
-}
-.sound-toggle.sound-off:hover {
-  background-color: #555;
-  box-shadow: 0 0 10px rgba(102, 102, 102, 0.5);
-}
-
-/* Accent 버튼 스타일 추가 */
-.play-btn.accent {
-  background-color: #667eea;
-}
-.play-btn.accent svg {
-  width: 14px;
-  height: 14px;
-  fill: currentColor;
-}
-
-.play-btn.accent:hover {
-  background-color: #5a6fd8;
-  box-shadow: 0 0 10px rgba(102, 126, 234, 0.5);
-}
-
-.play-btn.no-accent {
-  background-color: #666;
-}
-.play-btn.no-accent svg {
-  width: 14px;
-  height: 14px;
-  fill: currentColor;
-}
-.play-btn.no-accent:hover {
-  background-color: #555;
-  box-shadow: 0 0 10px rgba(102, 102, 102, 0.5);
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 .metronome-display-compact {
@@ -2123,99 +2130,176 @@ a.not-found-primary:hover {
   align-items: center;
   position: relative;
   width: 100%;
-  /* 16:9 비율 유지를 위한 aspect-ratio 사용 */
+  min-height: 0;
   aspect-ratio: 30/9;
+  border-radius: 8px;
+  border: 1px solid rgba(42, 47, 62, 0.9);
+  background: #0b0f16;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
 }
 .metronome-display-compact canvas {
-  width: 100% !important;
-  height: 100% !important;
+  width: 100%;
+  height: 100%;
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
-  border-radius: 4px;
+  border-radius: 6px;
   background-color: #0f1419;
+  display: block;
 }
 
 .metronome-controls-bottom {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 6px;
+  flex-shrink: 0;
 }
 
 .metronome-settings-compact {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr minmax(96px, 0.85fr) 1fr;
   align-items: center;
+  gap: clamp(6px, 1vw, 10px);
+  width: 100%;
+}
+
+.time-signature-controls,
+.note-unit-controls {
+  width: 100%;
+  min-width: 0;
+}
+
+.metronome-transport {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  flex-shrink: 0;
+}
+
+.metronome-ctrl-btn {
+  box-sizing: border-box;
+  width: 32px;
+  height: 32px;
+  margin: 0;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  color: #ffffff;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 0.15s ease, filter 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+.metronome-ctrl-btn svg {
+  width: 15px;
+  height: 15px;
+  fill: currentColor;
+  flex-shrink: 0;
+}
+.metronome-ctrl-btn:active:not(:disabled) {
+  transform: scale(0.95);
+}
+.metronome-ctrl-btn:focus-visible {
+  outline: 2px solid rgba(138, 180, 248, 0.85);
+  outline-offset: 2px;
+}
+.metronome-ctrl-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.metronome-ctrl-btn--play,
+.metronome-ctrl-btn--sound-on,
+.metronome-ctrl-btn--accent-on {
+  background: linear-gradient(135deg, #667eea 0%, #5a6fd8 100%);
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.22);
+}
+.metronome-ctrl-btn--play:hover:not(:disabled),
+.metronome-ctrl-btn--sound-on:hover:not(:disabled),
+.metronome-ctrl-btn--accent-on:hover:not(:disabled) {
+  filter: brightness(1.06);
+  box-shadow: 0 3px 10px rgba(102, 126, 234, 0.3);
+}
+
+.metronome-ctrl-btn--play svg {
+  margin-left: 2px;
+}
+
+.metronome-ctrl-btn--stop {
+  background: linear-gradient(135deg, #f5576c 0%, #e04e5f 100%);
+  box-shadow: 0 2px 8px rgba(245, 87, 108, 0.22);
+}
+.metronome-ctrl-btn--stop:hover:not(:disabled) {
+  filter: brightness(1.05);
+  box-shadow: 0 3px 10px rgba(245, 87, 108, 0.3);
+}
+
+.metronome-ctrl-btn--sound-off,
+.metronome-ctrl-btn--accent-off {
+  background: #3a3f4e;
+  color: #e4e7ec;
+  box-shadow: none;
+}
+.metronome-ctrl-btn--sound-off:hover:not(:disabled),
+.metronome-ctrl-btn--accent-off:hover:not(:disabled) {
+  background: #4a5060;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* 홈 대시보드 1×1 메트로놈 타일: 좁은 폭에 맞춰 컨트롤만 축소 */
+#metronome.dashboard-item .metronome-transport {
+  gap: 3px;
+}
+#metronome.dashboard-item .metronome-ctrl-btn {
+  width: 26px;
+  height: 26px;
+}
+#metronome.dashboard-item .metronome-ctrl-btn svg {
+  width: 12px;
+  height: 12px;
+}
+#metronome.dashboard-item .metronome-ctrl-btn--play svg {
+  margin-left: 1px;
 }
 
 .time-signature-controls select,
 .note-unit-controls select {
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  color: white;
-  padding: 4px 6px;
-  border-radius: 3px;
+  width: 100%;
+  box-sizing: border-box;
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: #e4e7ec;
+  background: rgba(15, 20, 30, 0.65);
+  border: 1px solid #2a2f3e;
+  padding: 6px 8px;
+  border-radius: 8px;
   outline: none;
   cursor: pointer;
-  flex: 1;
-  transition: border-color 0.3s;
-  font-size: 0.8rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 .time-signature-controls select:hover,
 .note-unit-controls select:hover {
-  border-color: rgba(102, 126, 234, 0.7);
+  border-color: rgba(102, 126, 234, 0.45);
 }
 .time-signature-controls select:focus,
 .note-unit-controls select:focus {
   border-color: #667eea;
-  box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.3);
+  box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.28);
+}
+.time-signature-controls select:focus-visible,
+.note-unit-controls select:focus-visible {
+  outline: none;
 }
 .time-signature-controls select option,
 .note-unit-controls select option {
-  background-color: #1a1a2e;
-}
-
-.time-signature-controls select:focus,
-.note-unit-controls select:focus {
-  outline: 2px solid #9EF5CF;
-}
-
-.play-btn {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  border: none;
-  background-color: #667eea;
-  color: #ffffff;
-  font-size: 18px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.2s;
-  padding: unset;
-}
-.play-btn svg {
-  width: 14px;
-  height: 14px;
-  fill: currentColor;
-}
-
-.play-btn:hover {
-  background-color: #5a6fd8;
-  box-shadow: 0 0 10px rgba(102, 126, 234, 0.5);
-}
-
-.play-btn.play {
-  padding-left: 2px;
-}
-
-.play-btn.stop {
-  background-color: #f5576c;
-}
-.play-btn.stop:hover {
-  background-color: #e04e5f;
-  box-shadow: 0 0 10px rgba(245, 87, 108, 0.5);
+  background-color: #1a1f2e;
+  color: #e4e7ec;
 }
 
 .tempo-indicator-compact {
@@ -2223,10 +2307,9 @@ a.not-found-primary:hover {
   margin-top: 5px;
   font-size: 14px;
   font-style: italic;
-  color: #667eea;
+  color: #a8b4ff;
 }
 
-/* 모바일 대응 */
 @media (max-width: 768px) {
   .metronome-controls {
     flex-direction: column;
@@ -2236,49 +2319,48 @@ a.not-found-primary:hover {
     width: 80%;
   }
   .metronome-display-compact {
-    /* 모바일에서도 16:9 비율 유지 */
     aspect-ratio: 30/9;
   }
   .metronome-display-compact canvas {
-    width: 100% !important;
-    height: 100% !important;
+    width: 100%;
+    height: 100%;
   }
   .metronome-compact-layout {
     padding: 8px;
+    gap: 5px;
   }
-  .bpm-value-input {
-    font-size: 24px;
-    width: 60px;
+  .metronome-container .bpm-value-input {
+    font-size: 1.05rem;
+    width: clamp(48px, 26%, 72px);
   }
-  .bpm-label {
-    font-size: 0.75rem;
+  .metronome-container .bpm-label {
+    font-size: 0.72rem;
   }
   .metronome-bpm-btn {
-    min-width: 20px;
-    height: 20px;
-    font-size: 0.7rem;
+    min-width: 24px;
+    height: 24px;
+    font-size: 0.68rem;
+    padding: 0 2px;
   }
-  .play-btn {
-    width: 26px;
-    height: 26px;
-    font-size: 16px;
+  .metronome-ctrl-btn {
+    width: 32px;
+    height: 32px;
   }
-  .play-btn svg {
-    width: 12px;
-    height: 12px;
+  .metronome-ctrl-btn svg {
+    width: 14px;
+    height: 14px;
   }
-  .sound-toggle {
-    width: 26px;
-    height: 26px;
-    font-size: 14px;
-  }
-  .sound-toggle svg {
-    width: 12px;
-    height: 12px;
+  .metronome-ctrl-btn--play svg {
+    margin-left: 1px;
   }
   .time-signature-controls select,
   .note-unit-controls select {
-    font-size: 0.6rem;
+    font-size: 0.62rem;
+    padding: 5px 6px;
+  }
+  .metronome-settings-compact {
+    gap: 6px;
+    grid-template-columns: 1fr minmax(88px, 0.82fr) 1fr;
   }
 }
 /* Chrome, Safari, Edge, Opera */
@@ -2293,532 +2375,462 @@ input[type=number] {
   -moz-appearance: textfield;
 }
 
-/* 스케일 제너레이터 스타일 */
+/* 스케일 제너레이터 — 메트로놈과 동일한 보라 계열 카드 톤 */
+/* 대시보드·디테일 동일 레이아웃 비율(상단 3열 그리드, 칩 auto-fit 등). 가로는 부모 100% 로 채움. */
 .scale-generator {
+  --sg-accent: #667eea;
+  --sg-accent-soft: rgba(102, 126, 234, 0.22);
+  --sg-panel-bg: rgba(10, 14, 25, 0.55);
+  --sg-panel-border: rgba(42, 47, 62, 0.85);
+  --sg-text: #e4e7ec;
+  --sg-muted: #a8b4ff;
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  gap: 6px;
-  background-color: #1a1f2e;
-  border-radius: 4px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  height: 100%;
+  width: 100%;
+  margin: 0;
   overflow: hidden;
-  aspect-ratio: 16/9;
-}
-.scale-generator .playback-btn {
-  font-size: 12px;
-  padding: 4px 8px;
-  width: 80px;
-}
-.scale-generator .generator-section {
-  background-color: #1a1f2e;
-  border-radius: 4px;
-  padding: 8px;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-}
-.scale-generator .generator-layout {
-  display: flex;
-  flex: 1;
-  gap: 8px;
-  margin-bottom: 8px;
-  min-height: 0;
-  max-height: 100%;
-}
-.scale-generator .left-column {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  min-width: 0;
-}
-.scale-generator .right-column {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  min-width: 0;
-  min-height: 0;
-  max-height: 100%;
-  overflow: hidden;
-}
-.scale-generator .intervals-container {
-  background-color: rgba(0, 0, 0, 0.15);
-  border-radius: 4px;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-}
-.scale-generator .scale-intervals-container {
-  flex: 1;
-  min-height: 0;
-  max-height: 100%;
-  overflow: hidden;
-}
-.scale-generator .intervals-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 5px 8px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  flex-shrink: 0;
-}
-.scale-generator .interval-buttons {
-  display: flex;
-  gap: 6px;
-  align-items: center;
-}
-.scale-generator .intervals-title {
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: #667eea;
-}
-.scale-generator .clear-intervals {
-  background-color: rgba(244, 67, 54, 0.3);
-  color: white;
-  border: 1px dashed rgba(244, 67, 54, 0.7);
-  padding: 2px 8px;
-  border-radius: 3px;
-  font-size: 0.75rem;
-  cursor: pointer;
-  transition: all 0.3s;
-}
-.scale-generator .clear-intervals:hover {
-  background-color: rgba(244, 67, 54, 0.5);
-  transform: translateY(-1px);
-}
-.scale-generator .intervals-scroll {
-  flex: 1;
-  overflow-y: auto;
-  padding: 6px;
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  min-height: 0;
-  max-height: 100%;
-  height: 100%;
-}
-.scale-generator .intervals-scroll::-webkit-scrollbar {
-  width: 4px;
-}
-.scale-generator .intervals-scroll::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
-}
-.scale-generator .intervals-scroll::-webkit-scrollbar-thumb {
-  background: rgba(102, 126, 234, 0.5);
-  border-radius: 10px;
-}
-.scale-generator .intervals-scroll::-webkit-scrollbar-thumb:hover {
-  background: rgba(102, 126, 234, 0.7);
-}
-.scale-generator .bottom-controls {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-.scale-generator .note-settings {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-.scale-generator .note-settings .note-settings-row {
-  display: flex;
-  gap: 8px;
-}
-.scale-generator .note-settings .note-setting-group {
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-  flex: 1;
-}
-.scale-generator .note-settings .note-setting-group .note-setting-label {
-  font-weight: 500;
-  color: #667eea;
-  font-size: 0.8rem;
-}
-.scale-generator .note-settings .note-setting-group .note-setting-controls {
-  display: flex;
-  gap: 4px;
-}
-.scale-generator .note-settings .note-setting-group .note-setting-controls select {
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  color: white;
-  padding: 4px 6px;
-  border-radius: 3px;
-  outline: none;
-  cursor: pointer;
-  flex: 1;
-  transition: border-color 0.3s;
-  font-size: 0.8rem;
-}
-.scale-generator .note-settings .note-setting-group .note-setting-controls select:hover {
-  border-color: rgba(102, 126, 234, 0.7);
-}
-.scale-generator .note-settings .note-setting-group .note-setting-controls select:focus {
-  border-color: #667eea;
-  box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.3);
-}
-.scale-generator .note-settings .note-setting-group .note-setting-controls select option {
-  background-color: #1a1a2e;
-}
-.scale-generator .direction-settings {
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-}
-.scale-generator .direction-settings .direction-label {
-  font-weight: 500;
-  color: #667eea;
-  font-size: 0.8rem;
-}
-.scale-generator .direction-settings .radio-group {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
-  gap: 5px;
-}
-.scale-generator .direction-settings .radio-group div {
-  position: relative;
-}
-.scale-generator .direction-settings .radio-group input[type=radio] {
-  position: absolute;
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-.scale-generator .direction-settings .radio-group label {
-  display: inline-block;
-  padding: 4px 6px;
-  background-color: #2c4550;
-  border-radius: 3px;
-  transition: all 0.2s;
-  cursor: pointer;
-  font-size: 0.75rem;
-}
-.scale-generator .direction-settings .radio-group label:hover {
-  background-color: #375a66;
-}
-.scale-generator .direction-settings .radio-group input[type=radio]:checked + label {
-  background-color: #667eea;
-  color: #ffffff;
-}
-.scale-generator .direction-settings .radio-group input[type=radio]:focus + label {
-  outline: 2px solid #667eea;
-  outline-offset: 1px;
-}
-.scale-generator .bpm-controls {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  background: rgba(0, 0, 0, 0.2);
-  padding: 6px 8px;
-  border-radius: 4px;
-}
-.scale-generator .bpm-controls .bpm-value-display {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 4px;
-}
-.scale-generator .bpm-controls .bpm-value-display .bpm-label {
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: #667eea;
-}
-.scale-generator .bpm-controls .bpm-value-display .bpm-value {
-  font-size: 1.2rem;
-  font-weight: 700;
-  color: #d5d1a7;
-  min-width: 40px;
-  text-align: center;
-}
-.scale-generator .bpm-controls .bpm-buttons {
-  display: flex;
-  gap: 4px;
-}
-.scale-generator .bpm-controls .bpm-buttons.left {
-  margin-right: 4px;
-}
-.scale-generator .bpm-controls .bpm-buttons.right {
-  margin-left: 4px;
-}
-.scale-generator .bpm-controls .bpm-buttons button {
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  color: white;
-  min-width: 24px;
-  height: 24px;
-  border-radius: 3px;
-  cursor: pointer;
-  transition: all 0.2s;
-  padding: 0;
-  font-size: 0.8rem;
-}
-.scale-generator .bpm-controls .bpm-buttons button:hover:not(:disabled) {
-  background: rgba(102, 126, 234, 0.2);
-  border-color: rgba(102, 126, 234, 0.5);
-}
-.scale-generator .bpm-controls .bpm-buttons button:active:not(:disabled) {
-  transform: scale(0.97);
-}
-.scale-generator .bpm-controls .bpm-buttons button:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-.scale-generator .playback-controls {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-.scale-generator .current-note-display {
-  background-color: rgba(0, 0, 0, 0.2);
-  border-radius: 4px;
-  padding: 6px;
-  margin-bottom: 0;
-  display: flex;
-  gap: 10px;
-}
-.scale-generator .current-note-display .note-display-item {
-  display: flex;
-  align-items: center;
-  flex: 1;
-}
-.scale-generator .current-note-display .note-display-item .note-label {
-  color: #667eea;
-  margin-right: 5px;
-  font-size: 0.75rem;
-  min-width: 65px;
-}
-.scale-generator .current-note-display .note-display-item .note-value {
-  font-weight: 600;
-  font-size: 0.9rem;
-  color: white;
-}
-.scale-generator .current-note-display .note-display-item .note-value.note-waiting {
-  opacity: 0.6;
-  font-weight: normal;
-  font-style: italic;
-  font-size: 0.8rem;
-}
-.scale-generator .interval-item {
-  display: flex;
-  align-items: center;
-  background: rgba(0, 0, 0, 0.2);
-  padding: 4px 6px;
-  border-radius: 4px;
-  gap: 5px;
-}
-.scale-generator .interval-item .interval-index {
-  font-size: 0.7rem;
-  opacity: 0.8;
-  min-width: 20px;
-}
-.scale-generator .interval-item .interval-select {
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  color: white;
-  padding: 2px 5px;
-  border-radius: 3px;
-  outline: none;
-  cursor: pointer;
-  transition: border-color 0.3s;
-  font-size: 0.75rem;
-  flex: 1;
-}
-.scale-generator .interval-item .interval-select:hover:not(:disabled) {
-  border-color: rgba(102, 126, 234, 0.7);
-}
-.scale-generator .interval-item .interval-select:focus {
-  border-color: #667eea;
-  box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.3);
-}
-.scale-generator .interval-item .interval-select:disabled {
-  opacity: 0.7;
-  cursor: not-allowed;
-}
-.scale-generator .interval-item .interval-select option {
-  background-color: #1a1a2e;
-}
-.scale-generator .interval-item .remove-interval {
-  background-color: rgba(244, 67, 54, 0.7);
-  color: white;
-  border: none;
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  font-size: 11px;
-  transition: background-color 0.3s;
-  padding: 0;
-}
-.scale-generator .interval-item .remove-interval:hover {
-  background-color: rgb(244, 67, 54);
-}
-.scale-generator .interval-item .placeholder-button {
-  width: 18px;
-  height: 18px;
-}
-.scale-generator .add-interval {
-  background-color: rgba(102, 126, 234, 0.3);
-  color: white;
-  border: 1px dashed rgba(102, 126, 234, 0.7);
-  width: 22px;
-  height: 22px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  font-size: 13px;
-  transition: all 0.3s;
-  padding: 0;
-}
-.scale-generator .add-interval:hover {
-  background-color: rgba(102, 126, 234, 0.5);
-  transform: scale(1.05);
-}
-.scale-generator .play-button {
-  background-color: #667eea;
-  color: white;
-  border: none;
-  padding: 5px 12px;
-  font-size: 0.85rem;
-  border-radius: 3px;
-  cursor: pointer;
-  transition: background-color 0.3s, transform 0.1s;
-  font-weight: 600;
-  min-width: 80px;
-}
-.scale-generator .play-button:active {
-  transform: scale(0.98);
-}
-.scale-generator .play-button.playing {
-  background-color: #667eea;
-  border-left: 3px solid #8b9aff;
-  box-shadow: 0 0 8px rgba(102, 126, 234, 0.6);
-}
-.scale-generator .button-group {
-  display: flex;
-  justify-content: center;
-  margin-top: 6px;
-  margin-bottom: 0;
+  padding: clamp(8px, 1vw, 14px);
+  gap: clamp(6px, 1vw, 10px);
+  color: var(--sg-text);
+  font-family: "Quicksand", system-ui, -apple-system, sans-serif;
+  background: linear-gradient(165deg, rgba(26, 31, 46, 0.98) 0%, #151a28 55%, #121722 100%);
+  border: 1px solid #2a2f3e;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.04);
 }
 
-/* 모바일 반응형 스타일 */
+/* 대시보드 컨텍스트: 부모 타일의 aspect-ratio 를 그대로 채움 */
+.dashboard-item .scale-generator {
+  height: 100%;
+}
+
+.sg-main {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(6px, 1vw, 10px);
+  min-height: 0;
+  min-width: 0;
+}
+
+/* 대시보드에서는 세로 공간을 끝까지 채워 인터벌 패널이 빈 공간을 흡수하게 함 */
+.dashboard-item .sg-main {
+  height: 100%;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+}
+
+.sg-row-top {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr) minmax(0, 0.9fr);
+  gap: clamp(6px, 0.8vw, 10px);
+  min-width: 0;
+}
+
+.sg-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 6px 8px;
+  min-width: 0;
+  min-height: 0;
+  background: var(--sg-panel-bg);
+  border: 1px solid var(--sg-panel-border);
+  border-radius: 8px;
+}
+
+.sg-panel-label {
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--sg-accent);
+}
+
+.sg-range-row {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  min-width: 0;
+}
+
+.sg-range-arrow {
+  flex-shrink: 0;
+  padding: 0 2px;
+  font-weight: 700;
+  color: var(--sg-muted);
+}
+
+.sg-select {
+  flex: 1;
+  min-width: 0;
+  padding: 4px 6px;
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--sg-text);
+  background: rgba(15, 20, 30, 0.65);
+  border: 1px solid #2a2f3e;
+  border-radius: 6px;
+  outline: none;
+  cursor: pointer;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease;
+}
+.sg-select:hover {
+  border-color: rgba(102, 126, 234, 0.45);
+}
+.sg-select:focus {
+  border-color: var(--sg-accent);
+  box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.28);
+}
+.sg-select option {
+  background-color: #1a1f2e;
+  color: var(--sg-text);
+}
+
+.sg-select-note {
+  flex: 1.1 1 auto;
+  min-width: 44px;
+}
+
+.sg-select-octave {
+  flex: 0.7 1 auto;
+  min-width: 40px;
+}
+
+.sg-seg {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 4px;
+}
+
+.sg-seg-btn {
+  box-sizing: border-box;
+  padding: 5px 4px;
+  font-family: "Quicksand", system-ui, -apple-system, sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #d0d5e6;
+  background: rgba(15, 20, 30, 0.65);
+  border: 1px solid #2a2f3e;
+  border-radius: 6px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.18s ease, border-color 0.18s ease, color 0.18s ease, box-shadow 0.18s ease;
+}
+.sg-seg-btn:hover:not(:disabled) {
+  border-color: rgba(102, 126, 234, 0.45);
+  color: var(--sg-text);
+}
+.sg-seg-btn:focus-visible {
+  outline: 2px solid rgba(138, 180, 248, 0.85);
+  outline-offset: 2px;
+}
+.sg-seg-btn.is-on {
+  color: #ffffff;
+  background: linear-gradient(135deg, #667eea 0%, #5a6fd8 100%);
+  border-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 2px 6px rgba(102, 126, 234, 0.25);
+}
+
+.sg-dir-icon {
+  width: 18px;
+  height: 18px;
+  display: block;
+  pointer-events: none;
+}
+
+.sg-tempo-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+}
+
+.sg-bpm-input {
+  flex: 1;
+  min-width: 0;
+  padding: 4px 6px;
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #f0f2f8;
+  text-align: center;
+  background: rgba(15, 20, 30, 0.65);
+  border: 1px solid #2a2f3e;
+  border-radius: 6px;
+  outline: none;
+  -moz-appearance: textfield;
+}
+.sg-bpm-input::-webkit-outer-spin-button, .sg-bpm-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.sg-bpm-input:hover {
+  border-color: rgba(102, 126, 234, 0.45);
+}
+.sg-bpm-input:focus {
+  border-color: var(--sg-accent);
+  box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.28);
+}
+
+.sg-bpm-label {
+  flex-shrink: 0;
+  font-family: "Quicksand", system-ui, -apple-system, sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--sg-muted);
+}
+
+.sg-intervals {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-height: 0;
+}
+
+/* 대시보드에서는 인터벌 패널이 남은 세로 공간을 흡수 */
+.dashboard-item .sg-intervals {
+  flex: 1 1 auto;
+}
+
+.sg-intervals-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.sg-intervals-actions {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  min-width: 0;
+}
+
+.sg-preset-select {
+  flex: 0 1 auto;
+  min-width: 110px;
+  max-width: 170px;
+}
+
+.sg-btn-ghost {
+  padding: 3px 8px;
+  font-family: "Quicksand", system-ui, -apple-system, sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #ff8a95;
+  background: rgba(244, 67, 54, 0.12);
+  border: 1px solid rgba(244, 67, 54, 0.35);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+}
+.sg-btn-ghost:hover {
+  color: #ff9ba5;
+  background: rgba(244, 67, 54, 0.2);
+  border-color: rgba(244, 67, 54, 0.55);
+}
+.sg-btn-ghost:focus-visible {
+  outline: 2px solid rgba(245, 140, 150, 0.7);
+  outline-offset: 2px;
+}
+
+/* 인터벌 칩 auto-fit 그리드 — 넓은 화면에서는 한 줄에 가깝게, 좁으면 여러 줄로 접힘 */
+.sg-chips {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(44px, 1fr));
+  gap: 4px;
+  min-height: 0;
+  min-width: 0;
+  flex: 0 0 auto;
+  align-content: center;
+  padding: 2px;
+}
+
+/* 대시보드: 인터벌 패널이 1fr 로 늘어날 때 칩도 사용 가능 공간 안쪽에 정렬 */
+.dashboard-item .sg-chips {
+  flex: 1 1 auto;
+}
+
+.sg-chip {
+  box-sizing: border-box;
+  min-width: 0;
+  width: 100%;
+  padding: 4px 6px;
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #c5ccdc;
+  background: rgba(15, 20, 30, 0.65);
+  border: 1px solid #2a2f3e;
+  border-radius: 999px;
+  cursor: pointer;
+  user-select: none;
+  text-align: center;
+  -webkit-tap-highlight-color: transparent;
+  transition: background 0.18s ease, border-color 0.18s ease, color 0.18s ease, transform 0.14s ease, box-shadow 0.18s ease;
+  /* 현재 재생중인 인터벌 — 밝은 테두리 + 글로우로 강조 */
+}
+.sg-chip:hover:not(:disabled) {
+  color: var(--sg-text);
+  border-color: rgba(102, 126, 234, 0.5);
+}
+.sg-chip:active:not(:disabled) {
+  transform: scale(0.96);
+}
+.sg-chip:focus-visible {
+  outline: 2px solid rgba(138, 180, 248, 0.8);
+  outline-offset: 2px;
+}
+.sg-chip.is-on {
+  color: #ffffff;
+  background: linear-gradient(135deg, #667eea 0%, #5a6fd8 100%);
+  border-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 2px 6px rgba(102, 126, 234, 0.22);
+}
+.sg-chip.is-root {
+  color: #ffffff;
+  background: linear-gradient(135deg, #8b9aff 0%, #667eea 100%);
+  border-color: rgba(255, 255, 255, 0.14);
+  cursor: default;
+}
+.sg-chip.is-current {
+  color: #ffffff;
+  background: linear-gradient(135deg, #a8b4ff 0%, #7a8bff 100%);
+  border-color: #ffffff;
+  box-shadow: 0 0 0 2px rgba(168, 180, 255, 0.85), 0 0 14px rgba(168, 180, 255, 0.55);
+  transform: scale(1.04);
+}
+.sg-chip:disabled {
+  opacity: 1;
+}
+
+.sg-row-bottom {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 8px;
+  align-items: stretch;
+}
+
+.sg-status {
+  display: flex;
+  gap: 10px;
+  padding: 6px 10px;
+  min-width: 0;
+  overflow: hidden;
+  background: var(--sg-panel-bg);
+  border: 1px solid var(--sg-panel-border);
+  border-radius: 8px;
+}
+
+.sg-status-item {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+}
+
+.sg-status-label {
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--sg-muted);
+}
+
+.sg-status-value {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #f0f2f8;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.sg-status-value.is-waiting {
+  color: #6b7283;
+  font-style: italic;
+  font-weight: 500;
+}
+
+.sg-play-btn {
+  box-sizing: border-box;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  color: #ffffff;
+  background: linear-gradient(135deg, #667eea 0%, #5a6fd8 100%);
+  border: none;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+  flex-shrink: 0;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.25);
+  transition: transform 0.15s ease, filter 0.18s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+.sg-play-btn svg {
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
+}
+.sg-play-btn:hover:not(:disabled) {
+  filter: brightness(1.06);
+  box-shadow: 0 3px 10px rgba(102, 126, 234, 0.35);
+}
+.sg-play-btn:active:not(:disabled) {
+  transform: scale(0.95);
+}
+.sg-play-btn:focus-visible {
+  outline: 2px solid rgba(138, 180, 248, 0.85);
+  outline-offset: 2px;
+}
+.sg-play-btn.is-playing {
+  background: linear-gradient(135deg, #f5576c 0%, #e04e5f 100%);
+  box-shadow: 0 2px 8px rgba(245, 87, 108, 0.28);
+}
+
 @media (max-width: 768px) {
-  .scale-generator .left-column, .scale-generator .right-column {
-    width: 100%;
+  .scale-generator {
+    padding: 10px;
   }
-  .scale-generator .note-settings-row {
-    flex-direction: column;
+  .sg-row-top {
+    grid-template-columns: minmax(0, 1fr);
   }
-  .scale-generator .playback-btn {
-    font-size: 12px;
-    padding: 4px 8px;
+  .sg-seg-btn {
+    padding: 8px 4px;
   }
-  .scale-generator .note-settings .note-settings-row .note-setting-group .note-setting-label {
-    font-weight: unset;
-    font-size: 0.7rem;
+  .sg-dir-icon {
+    width: 20px;
+    height: 20px;
   }
-  .scale-generator .note-settings .note-settings-row .note-setting-group .note-setting-controls {
-    gap: 2px;
+  .sg-chips {
+    grid-template-columns: repeat(auto-fit, minmax(48px, 1fr));
+    gap: 6px;
   }
-  .scale-generator .note-settings .note-settings-row .note-setting-group .note-setting-controls select {
-    padding: 2px 3px;
-    font-size: 0.6rem;
+  .sg-chip {
+    font-size: 0.82rem;
+    padding: 6px 10px;
   }
-  .scale-generator .direction-settings {
-    font-weight: unset;
+  .sg-row-bottom {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 6px;
   }
-  .scale-generator .direction-settings .direction-label {
-    font-weight: unset;
-    font-size: 0.7rem;
+  .sg-play-btn {
+    width: 44px;
+    height: 44px;
+    justify-self: center;
   }
-  .scale-generator .direction-settings .radio-group {
-    flex-direction: unset;
-    gap: 5px;
-  }
-  .scale-generator .direction-settings .radio-group label {
-    font-size: 0.55rem;
-  }
-  .scale-generator .clear-intervals {
-    padding: 1px 4px;
-    font-size: 0.7rem;
-  }
-  .scale-generator .interval-item {
-    display: flex;
-    align-items: center;
-    background: rgba(0, 0, 0, 0.2);
-    padding: 4px 6px;
-    border-radius: 4px;
-    gap: 5px;
-  }
-  .scale-generator .interval-item .interval-index {
-    font-size: 0.6rem;
-    opacity: 0.8;
-    min-width: 20px;
-  }
-  .scale-generator .interval-item .interval-select {
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    color: white;
-    padding: 2px 5px;
-    border-radius: 3px;
-    outline: none;
-    cursor: pointer;
-    transition: border-color 0.3s;
-    font-size: 0.6rem;
-    flex: 1;
-  }
-  .scale-generator .interval-item .interval-select:hover:not(:disabled) {
-    border-color: rgba(102, 126, 234, 0.7);
-  }
-  .scale-generator .interval-item .interval-select:focus {
-    border-color: #667eea;
-    box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.3);
-  }
-  .scale-generator .interval-item .interval-select:disabled {
-    opacity: 0.7;
-    cursor: not-allowed;
-  }
-  .scale-generator .interval-item .interval-select option {
-    background-color: #1a1a2e;
-  }
-  .scale-generator .interval-item .remove-interval {
-    background-color: rgba(244, 67, 54, 0.7);
-    color: white;
-    border: none;
+  .sg-play-btn svg {
     width: 18px;
     height: 18px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    font-size: 11px;
-    transition: background-color 0.3s;
-    padding: 0;
-  }
-  .scale-generator .interval-item .remove-interval:hover {
-    background-color: rgb(244, 67, 54);
-  }
-  .scale-generator .interval-item .placeholder-button {
-    width: 18px;
-    height: 18px;
-  }
-  .scale-generator .intervals-scroll {
-    gap: 0px;
-  }
-  .scale-intervals-container .intervals-title {
-    font-size: 0.7rem;
-    font-weight: unset;
   }
 }
 /* 피아노 키보드 스타일 */
