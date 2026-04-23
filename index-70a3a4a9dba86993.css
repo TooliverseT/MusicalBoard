@@ -66,9 +66,19 @@ body {
 
 /* Sidebar 상단 줄 & 메인 top-header 동일 높이. 모바일(48px 메뉴 버튼 + 여백)을 기준으로 통일. */
 :root {
+  /* `.top-header` 본문 한 줄(건만) */
   --app-header-height: 58px;
-  /* 고정 top bar(본문): inner 높이 + 하단 border */
+  /*
+   * 고정 `top-header-container` 띠 전체(= .top-header min-height + 그 아래 1px border).
+   * `main.main-content`의 `padding-top`과 동일 — 뷰포트 0~이 값이 고정 내비가 차지하는 영역.
+   */
   --app-header-offset: calc(var(--app-header-height) + 1px);
+  /* 본문 `.content-area`의 위/아래 padding 합(기본 24+24). 모바일은 768 이하에서 16+16으로 덮어씀 */
+  --app-content-pad-y-sum: 48px;
+  /* 사이드바 — main / top-header `margin-left`·`left`와 동일하게 유지 */
+  --sidebar-width: 244px;
+  /* 접힘 시 아이콘 레일(데스크톱만) */
+  --sidebar-rail: 60px;
 }
 
 /* 전역 스크롤바 스타일 - 항상 표시 */
@@ -110,7 +120,7 @@ body {
 
 /* 사이드바 스타일 */
 .sidebar {
-  width: 244px;
+  width: var(--sidebar-width);
   background-color: #1a1f2e;
   display: flex;
   flex-direction: column;
@@ -119,24 +129,115 @@ body {
   top: 0;
   height: 100vh;
   z-index: 1000;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, width 0.25s ease;
   border-right: 1px solid #2a2f3e;
   font-family: "Quicksand", system-ui, -apple-system, sans-serif;
+  box-sizing: border-box;
 }
 
 .sidebar-header {
   display: flex;
   align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
   min-height: var(--app-header-height);
-  padding: 0 20px;
+  padding: 0 10px 0 14px;
   border-bottom: 1px solid #2a2f3e;
   box-sizing: border-box;
 }
 
+/* 데스크톱: 사이드바 접기(아이콘만) */
+@media (min-width: 1025px) {
+  .app-layout.sidebar-collapsed .sidebar {
+    width: var(--sidebar-rail);
+  }
+  .app-layout.sidebar-collapsed .main-content {
+    margin-left: var(--sidebar-rail);
+  }
+  .app-layout.sidebar-collapsed .top-header-container {
+    left: var(--sidebar-rail);
+  }
+  .app-layout.sidebar-collapsed .sidebar .logo-text,
+  .app-layout.sidebar-collapsed .sidebar .nav-text {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+  .app-layout.sidebar-collapsed .sidebar .logo {
+    justify-content: center;
+    flex: 1;
+    min-width: 0;
+  }
+  .app-layout.sidebar-collapsed .sidebar .nav-item {
+    justify-content: center;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  .app-layout.sidebar-collapsed .sidebar .sidebar-footer-legal {
+    display: none; /* 아이콘 레일에서는 푸터 링크 생략 — 펼치면 표시 */
+  }
+  .app-layout.sidebar-collapsed .sidebar-edge-toggle {
+    left: var(--sidebar-rail);
+  }
+}
+/* 사이드바 오른쪽(본문 쪽) 접기: 하단·푸터·법적 링크와 같은 대역, 패널 밖(본문 영역에 걸침) */
+.sidebar-edge-toggle {
+  -webkit-appearance: none;
+  appearance: none;
+  position: fixed;
+  z-index: 1001;
+  left: var(--sidebar-width);
+  bottom: 28px; /* .sidebar-footer-legal 하단과 비슷한 수직 */
+  min-width: 40px;
+  height: 40px;
+  padding: 0 8px 0 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #2a2f3e;
+  border-left: none; /* 사이드바 직선과 이어짐 */
+  border-radius: 0 8px 8px 0;
+  background: #1e2433;
+  color: #b3bce0;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+  transition: left 0.25s ease, background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+.sidebar-edge-toggle:hover {
+  background: #252a3a;
+  color: #e4e7ec;
+}
+.sidebar-edge-toggle:focus:not(:focus-visible) {
+  outline: none;
+}
+.sidebar-edge-toggle:focus-visible {
+  outline: 2px solid rgba(138, 180, 248, 0.7);
+  outline-offset: 2px;
+}
+
+.sidebar-edge-toggle-glyph {
+  font-size: 18px;
+  line-height: 1;
+  user-select: none;
+}
+
+/* 모바일(오버레이 사이드바)에서는 이 토글 숨김 */
+@media (max-width: 1024px) {
+  .sidebar-edge-toggle {
+    display: none;
+  }
+}
 .logo {
   display: flex;
   align-items: center;
   gap: 12px;
+  min-width: 0;
   text-decoration: none;
   color: inherit;
   cursor: pointer;
@@ -154,6 +255,12 @@ body {
   font-weight: 600;
   color: #ffffff;
   letter-spacing: -0.02em;
+  min-width: 0;
+  flex: 1 1 0;
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .sidebar-nav {
@@ -165,14 +272,16 @@ body {
 .nav-item {
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 12px 20px;
+  gap: 10px;
+  min-height: 48px; /* 아이콘·한 줄 라벨 기준 — 줄바꿈으로 높이가 들쭉날쭉해지지 않게 */
+  padding: 8px 14px;
   color: #8b92a5;
   text-decoration: none;
-  transition: all 0.2s ease;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
   border-left: 3px solid transparent;
   margin: 2px 0;
   cursor: pointer;
+  box-sizing: border-box;
 }
 
 .nav-item:hover {
@@ -204,8 +313,13 @@ body {
 }
 
 .nav-text {
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 800;
+  min-width: 0;
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .sidebar-footer {
@@ -214,18 +328,28 @@ body {
 }
 
 .sidebar-footer-legal {
-  padding: 12px 16px 20px;
+  padding: 12px 12px 20px;
   border-top: 1px solid #2a2f3e;
   display: flex;
-  flex-wrap: wrap;
-  gap: 8px 12px;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-between;
+  column-gap: 4px;
   font-size: 12px;
-  line-height: 1.4;
+  line-height: 1.3;
+  box-sizing: border-box;
+  min-width: 0;
 }
 
 .sidebar-legal-link {
   color: #8b92a5;
   text-decoration: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+  flex: 1 1 0;
+  text-align: center;
 }
 
 .sidebar-legal-link:hover {
@@ -387,10 +511,166 @@ article.musicalboard-prose strong {
 .main-content {
   flex: 1;
   min-width: 0; /* flex 자식이 뷰포트보다 좁아질 수 있게 — 좁은 화면에서 본문이 잘리지 않도록 */
-  margin-left: 240px;
+  margin-left: var(--sidebar-width);
   display: flex;
   flex-direction: column;
   padding-top: var(--app-header-offset);
+  transition: margin-left 0.25s ease;
+}
+
+/* Fullscreen API: `#app-main-content` — top-header + 본문이 함께 표시. 사이드바는 대상 밖. */
+.main-content:fullscreen,
+.main-content:-webkit-full-screen {
+  width: 100%;
+  min-height: 100%;
+  height: 100%;
+  margin-left: 0;
+  background-color: #0f1419;
+  box-sizing: border-box;
+}
+
+.main-content:fullscreen .top-header-container,
+.main-content:-webkit-full-screen .top-header-container {
+  left: 0;
+  right: 0;
+}
+
+.main-content:fullscreen > main.content-area,
+.main-content:-webkit-full-screen > main.content-area {
+  flex: 1 1 0;
+  min-height: 0;
+  min-width: 0 !important;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 홈: app-container → 대시보드가 남는 세로 공간 사용 */
+.main-content:fullscreen .content-area > .app-container,
+.main-content:-webkit-full-screen .content-area > .app-container {
+  flex: 1 1 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 상세(툴) 풀스크린: .detail-page 박스 제거 — main.content-area의 flex 자식이 .content.full-width(→ analyzer)가 됨 */
+.main-content:fullscreen .content-area > .detail-page,
+.main-content:-webkit-full-screen .content-area > .detail-page {
+  display: contents;
+}
+
+/* 상세 풀스크린: 대시보드와 같이 본문 box에 16px 패딩 + min-width 해제 */
+.main-content:fullscreen .content-area:has(> .detail-page),
+.main-content:-webkit-full-screen .content-area:has(> .detail-page) {
+  padding: 16px;
+  min-width: 0 !important;
+  overflow: hidden;
+}
+
+/* 상세 풀스크린: 1024px cap·가운데 정렬·세로 마진 제거 — 피치가 헤더 아래 가로·세로 전부 사용 */
+.main-content:fullscreen .content-area:has(> .detail-page) .analyzer-container,
+.main-content:-webkit-full-screen .content-area:has(> .detail-page) .analyzer-container {
+  margin: 0;
+  flex: 1 1 0;
+  min-height: 0;
+  min-width: 0;
+  width: 100%;
+  max-width: none;
+  align-items: stretch;
+  justify-content: flex-start;
+  align-self: stretch;
+}
+
+.main-content:fullscreen .content-area:has(> .detail-page) .analyzer-container > .pitch-analyzer-direct,
+.main-content:-webkit-full-screen .content-area:has(> .detail-page) .analyzer-container > .pitch-analyzer-direct {
+  max-width: none;
+  width: 100%;
+  min-height: 0;
+  flex: 1 1 0;
+  align-self: stretch;
+  height: auto; /* flex 자식이 부모 세로를 채움 */
+  display: flex;
+  flex-direction: column;
+}
+
+/* 피치 루트가 .pitch-analyzer-direct의 유일(직계) 콘텐츠 블록일 때 남는 세로를 모두 씀 */
+.main-content:fullscreen .content-area:has(> .detail-page) .pitch-analyzer-direct > *,
+.main-content:-webkit-full-screen .content-area:has(> .detail-page) .pitch-analyzer-direct > * {
+  flex: 1 1 0;
+  min-height: 0;
+  min-width: 0;
+  width: 100%;
+}
+
+/* 홈 SEO/인트로는 풀스크린에서 숨김 — 피치 카드만 */
+.main-content:fullscreen .seo-home-above-dashboard,
+.main-content:-webkit-full-screen .seo-home-above-dashboard {
+  display: none !important;
+}
+
+.main-content:fullscreen .content-area .app-container > .dashboard,
+.main-content:-webkit-full-screen .content-area .app-container > .dashboard {
+  flex: 1 1 0;
+  min-height: 0;
+  display: flex !important;
+  flex-direction: column;
+}
+
+/* 대시보드에서 피치 외 카드 숨김 */
+.main-content:fullscreen .dashboard .dashboard-item:not(#pitch-plot),
+.main-content:-webkit-full-screen .dashboard .dashboard-item:not(#pitch-plot),
+.main-content:fullscreen div[style*="--dashboard-columns"] .dashboard-item:not(#pitch-plot),
+.main-content:-webkit-full-screen div[style*="--dashboard-columns"] .dashboard-item:not(#pitch-plot) {
+  display: none !important;
+}
+
+.main-content:fullscreen .content-area .dashboard #pitch-plot.dashboard-item,
+.main-content:-webkit-full-screen .content-area .dashboard #pitch-plot.dashboard-item,
+.main-content:fullscreen div[style*="--dashboard-columns"] #pitch-plot.dashboard-item,
+.main-content:-webkit-full-screen div[style*="--dashboard-columns"] #pitch-plot.dashboard-item {
+  flex: 1 1 0;
+  min-height: 0;
+  width: 100% !important;
+  max-width: none !important;
+  height: 100% !important;
+  max-height: none !important;
+}
+
+/* 상세 페이지: SEO/설명 숨기고 분석 영역만 */
+.main-content:fullscreen .detail-page .detail-seo-bundle,
+.main-content:-webkit-full-screen .detail-page .detail-seo-bundle,
+.main-content:fullscreen .detail-page .description,
+.main-content:-webkit-full-screen .detail-page .description {
+  display: none !important;
+}
+
+.main-content:fullscreen .detail-page .content.full-width,
+.main-content:-webkit-full-screen .detail-page .content.full-width {
+  flex: 1 1 0;
+  min-height: 0;
+  min-width: 0;
+  width: 100%;
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-content:fullscreen .detail-page .analyzer-container,
+.main-content:-webkit-full-screen .detail-page .analyzer-container {
+  flex: 1 1 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-content:fullscreen .pitch-analyzer-direct,
+.main-content:-webkit-full-screen .pitch-analyzer-direct {
+  flex: 1 1 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .top-header-container {
@@ -399,7 +679,7 @@ article.musicalboard-prose strong {
   align-items: stretch;
   position: fixed; /* 고정 위치 */
   top: 0; /* 상단에 고정 */
-  left: 240px; /* 사이드바 너비만큼 왼쪽 여백 */
+  left: var(--sidebar-width); /* 사이드바 너비만큼 왼쪽 여백 */
   right: 0; /* 오른쪽 끝까지 */
   z-index: 999; /* 다른 요소들 위에 표시 */
   background-color: #1a1f2e; /* 배경색 추가 */
@@ -407,6 +687,7 @@ article.musicalboard-prose strong {
   box-sizing: border-box;
   min-height: var(--app-header-offset);
   font-family: "Quicksand", system-ui, -apple-system, sans-serif;
+  transition: left 0.25s ease;
 }
 
 /* 상단 헤더 스타일 — 한 줄: 왼쪽(제목, 좁으면 말줄임) + 오른쪽(컨트롤) */
@@ -431,7 +712,8 @@ article.musicalboard-prose strong {
   gap: 16px;
   min-width: 0;
   flex: 1 1 0%;
-  max-width: 570px;
+  /* 사이드바를 줄인 만큼 제목·경로에 더 넓은 가로 공간 */
+  max-width: min(720px, 52vw);
   padding: 0;
   overflow: hidden;
 }
@@ -605,7 +887,7 @@ article.musicalboard-prose strong {
 /* 컨텐츠 영역 */
 .content-area {
   flex: 1;
-  padding: 24px;
+  padding: 16px;
   background-color: #0f1419;
   overflow-x: auto;
   overflow-y: auto;
@@ -647,9 +929,11 @@ article.musicalboard-prose strong {
   grid-template-columns: repeat(var(--dashboard-columns, 3), 1fr);
   gap: 14px;
   align-content: start;
-  /* 대시보드 최소 너비 고정 */
+  /* 대시보드 최소 너비 고정 — 1024px 이하에서 미디어쿼리로 min-width 해제 */
   min-width: 1160px;
+  max-width: 100%;
   width: 100%;
+  box-sizing: border-box;
 }
 
 /* 반응형 대시보드 컬럼 오버라이드 */
@@ -668,8 +952,30 @@ article.musicalboard-prose strong {
     grid-column: 1/-1 !important;
     grid-row: auto !important;
     width: 100% !important;
-    max-width: none !important;
-    min-width: 750px !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box;
+  }
+  /*
+   * 홈 대시보드 Pitch 카드:
+   * - 뷰 − 고정 top-header(= --app-header-offset) − .content-area 위·아래 padding
+   * - `.pitch-plot-panel`(설정)은 카드 **안**에서 이미 자리 잡으므로 여기서 다시 빼지 않음(JS가 패널 높이 측정해 캔버스에 반영)
+   * - height transition 없음: 창 리사이즈 시 캔버스가 한 번에 맞게
+   */
+  .content-area .dashboard #pitch-plot.dashboard-item,
+  div[style*="--dashboard-columns"] #pitch-plot.dashboard-item {
+    aspect-ratio: auto !important;
+    height: calc(100dvh - var(--app-header-offset) - var(--app-content-pad-y-sum, 48px));
+    max-height: calc(100dvh - var(--app-header-offset) - var(--app-content-pad-y-sum, 48px));
+    min-height: 0;
+    overflow: hidden;
+    transition: none;
+  }
+  .content-area .dashboard #pitch-plot .dashboard-item-content,
+  div[style*="--dashboard-columns"] #pitch-plot .dashboard-item-content {
+    min-height: 0;
+    flex: 1 1 auto;
+    overflow: hidden; /* 내부 y 스크롤 제거 — 캔버스가 남은 높이에 맞춤 */
   }
 }
 @media (max-width: 768px) {
@@ -686,8 +992,9 @@ article.musicalboard-prose strong {
     grid-column: 1/-1 !important;
     grid-row: auto !important;
     width: 100% !important;
-    max-width: none !important;
-    min-width: 750px !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box;
   }
 }
 .dashboard-item {
@@ -695,7 +1002,8 @@ article.musicalboard-prose strong {
   border-radius: 12px;
   border: 1px solid #2a2f3e;
   overflow: hidden;
-  transition: all 0.3s ease;
+  /* `all`이면 height도 보간됨 — #pitch-plot 등은 위에서 덮어씀 */
+  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s, opacity 0.2s;
   position: relative;
 }
 
@@ -946,12 +1254,40 @@ details.seo-home-intro .seo-home-tool-links a:hover {
   .app-layout.mobile-menu-open .sidebar {
     transform: translateX(0);
   }
+  .app-layout {
+    min-width: 0;
+    max-width: 100%;
+    overflow-x: hidden;
+    width: 100%;
+    box-sizing: border-box;
+  }
   .main-content {
     margin-left: 0;
     padding-top: var(--app-header-offset);
+    min-width: 0;
+    max-width: 100%;
+    overflow-x: hidden;
+    box-sizing: border-box;
+  }
+  /* Home 포함: 본문이 뷰포트보다 넓게 강제되지 않게 (기본 1600px min-width 제거) */
+  .content-area {
+    min-width: 0 !important;
+    max-width: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    overflow-x: hidden;
+  }
+  .app-container {
+    min-width: 0;
+    max-width: 100%;
+    width: 100%;
+    box-sizing: border-box;
   }
   .top-header-container {
     left: 0; /* 모바일에서는 사이드바 너비 고려하지 않음 */
+    right: 0;
+    max-width: 100%;
+    box-sizing: border-box;
   }
   .mobile-menu-btn {
     display: inline-flex;
@@ -967,7 +1303,7 @@ details.seo-home-intro .seo-home-tool-links a:hover {
     font-size: 14px;
   }
   .header-left {
-    max-width: min(570px, 100% - 220px);
+    max-width: min(720px, 100% - 200px);
   }
   .header-center {
     max-width: 300px;
@@ -989,13 +1325,17 @@ details.seo-home-intro .seo-home-tool-links a:hover {
   }
   .header-left {
     gap: 8px;
-    max-width: min(570px, 100% - 140px);
+    max-width: min(720px, 100% - 140px);
   }
   .header-right {
     gap: 8px;
   }
   .content-area {
     padding: 16px;
+  }
+  :root {
+    /* 위 `.content-area` 세로 16+16px — #pitch-plot `calc(…- …- var(--app-content-pad-y-sum))`에 사용 */
+    --app-content-pad-y-sum: 32px;
   }
   .dashboard-overview {
     min-width: auto; /* 최소 너비 제한 해제 */
@@ -1188,9 +1528,10 @@ button.active {
   grid-template-columns: repeat(var(--dashboard-columns, 3), 1fr);
   gap: 14px;
   align-content: start;
-  /* 대시보드 최소 너비 고정 */
   min-width: 1160px;
+  max-width: 100%;
   width: 100%;
+  box-sizing: border-box;
 }
 
 .dashboard-item {
@@ -1207,6 +1548,12 @@ button.active {
   /* 가로세로 비율 유지를 위한 스타일 */
   aspect-ratio: var(--item-aspect-ratio, 16/9);
   min-height: 0;
+}
+
+/* 피아노 타일은 컨트롤 패널 + 건반이 잘리지 않도록 콘텐츠 기반 높이를 사용 */
+#piano-keyboard.dashboard-item {
+  aspect-ratio: auto;
+  height: auto;
 }
 
 /* 대시보드 아이템 헤더 스타일 */
@@ -1243,12 +1590,370 @@ button.active {
   flex-direction: column;
 }
 
-/* 피치 카드: 설정줄+캔버스가 타일 높이를 넘으면 스크롤(레이아웃은 pitch_plot에서 부모 높이에 맞춤) */
+/* 피치 카드: 세로 스크롤 없음(레이아웃·캔버스 크기가 맞음) */
 #pitch-plot .dashboard-item-content {
   overflow-x: hidden;
-  overflow-y: auto;
+  overflow-y: hidden;
 }
 
+/* 창 리사이즈 시 width/height가 CSS transition에 걸리지 않도록(캔버스가 늦게 따라가는 느낌 방지) */
+#pitch-plot.dashboard-item,
+#pitch-plot .dashboard-item-content,
+#pitch-plot .pitch-plot-fullscreen-host,
+#pitch-plot .pitch-plot-root,
+#pitch-plot canvas.pitch-plot-canvas {
+  transition: none !important;
+}
+
+/* Pitch plot — 컨트롤 패널(대시보드/상세 공통 class) */
+.pitch-plot-root {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-width: 0;
+  min-height: 0;
+  flex: 1;
+  height: 100%;
+  align-self: stretch;
+  gap: 10px;
+  background-color: #0f1419;
+}
+
+.pitch-plot-panel {
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  background: #121a22;
+  border: 1px solid #2c3342;
+  border-radius: 0;
+  padding: 0;
+  margin: 0 0 2px 0;
+  flex: 0 0 auto;
+}
+
+/* 4블록: 셀 사이 실선 — 기본(가장 좁음) 1열4행, 601+ 2×2, 1025+ 1행4열 */
+.pitch-plot-control-rows {
+  --ppr-divider: 1px solid #2a3444;
+  display: grid;
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  font-size: 13px;
+  color: #a8b0c4;
+  column-gap: 0;
+  row-gap: 0;
+  align-items: stretch;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-areas: "ppr-y" "ppr-flags" "ppr-sens" "ppr-fs";
+}
+
+.pitch-plot-group {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 8px;
+  min-width: 0;
+  box-sizing: border-box;
+  justify-content: center; /* 그리드 셀 안에서 콘텐츠 가로 중앙 */
+}
+
+.ppr-y,
+.pitch-plot-flags,
+.pitch-plot-sens,
+.pitch-plot-fs-wrap {
+  box-sizing: border-box;
+  min-width: 0;
+  padding: 6px 10px;
+}
+
+.ppr-y {
+  grid-area: ppr-y;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 8px;
+  justify-content: center;
+  border-bottom: var(--ppr-divider);
+}
+
+.pitch-plot-flags {
+  grid-area: ppr-flags;
+  border-bottom: var(--ppr-divider);
+}
+
+.pitch-plot-sens {
+  grid-area: ppr-sens;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 8px;
+  justify-content: center;
+  border-bottom: var(--ppr-divider);
+}
+
+.pitch-plot-fs-wrap {
+  grid-area: ppr-fs;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+  padding: 0;
+}
+
+.pitch-plot-sens .pitch-plot-sens-range {
+  flex: 1 1 120px;
+  min-width: 0;
+  max-width: 100%;
+  height: 7px;
+  accent-color: #7b68ee;
+  cursor: pointer;
+}
+
+.pitch-plot-sens .pitch-plot-sens-value {
+  font-family: "JetBrains Mono", monospace;
+  color: #c8d0e0;
+  min-width: 3.2rem;
+  flex-shrink: 0;
+}
+
+.pitch-plot-select {
+  font-family: "JetBrains Mono", monospace;
+  background: #0f1419;
+  color: #d0d8e8;
+  border: 1px solid #343b4d;
+  border-radius: 4px;
+  padding: 3px 8px;
+  font-size: 12px;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.pitch-plot-tag {
+  flex-shrink: 0;
+  white-space: nowrap;
+  color: #7d8699;
+  font-size: 12px;
+}
+
+.pitch-plot-flags .pitch-plot-check {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  user-select: none;
+  flex-shrink: 0;
+  white-space: nowrap;
+  min-width: 0;
+}
+
+/* 본문이 브라우저 풀스크린(`#app-main-content`)일 때 피치 스택이 남는 높이를 채움 */
+.main-content:fullscreen .pitch-plot-fullscreen-host,
+.main-content:-webkit-full-screen .pitch-plot-fullscreen-host {
+  flex: 1 1 0;
+  min-height: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.main-content:fullscreen .pitch-plot-root,
+.main-content:-webkit-full-screen .pitch-plot-root {
+  flex: 1 1 0;
+  min-height: 0;
+  height: 100%;
+}
+
+.pitch-plot-fullscreen-host {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  min-width: 0;
+  flex: 1;
+  height: 100%;
+  width: 100%;
+  background-color: #0f1419;
+}
+
+/* Scale Generator `.sg-seg-btn` / `.is-on` 과 동일 톤(방향 토글 활성 = 보라 그라데이션) */
+.pitch-plot-fs-btn {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 2.5rem;
+  flex: 1 1 auto;
+  align-self: stretch;
+  padding: 5px 8px;
+  font-family: "Quicksand", system-ui, -apple-system, sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #d0d5e6;
+  background: rgba(15, 20, 30, 0.65);
+  border: 1px solid #2a2f3e;
+  border-radius: 6px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.18s ease, border-color 0.18s ease, color 0.18s ease, box-shadow 0.18s ease;
+}
+.pitch-plot-fs-btn:hover:not(:disabled) {
+  border-color: rgba(102, 126, 234, 0.45);
+  color: #e4e7ec;
+}
+.pitch-plot-fs-btn:focus-visible {
+  outline: 2px solid rgba(138, 180, 248, 0.85);
+  outline-offset: 2px;
+}
+.pitch-plot-fs-btn.is-on {
+  color: #ffffff;
+  background: linear-gradient(135deg, #667eea 0%, #5a6fd8 100%);
+  border-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 2px 6px rgba(102, 126, 234, 0.25);
+}
+.pitch-plot-fs-btn.is-on:hover:not(:disabled) {
+  border-color: rgba(255, 255, 255, 0.14);
+  color: #ffffff;
+}
+
+.pitch-plot-canvas {
+  /* CSS가 레이아웃을 주도: 부모 `.pitch-plot-root` 의 남는 공간을 flex:1로 바로 채움.
+     인라인 `width/height(px)` 를 쓰던 구조에서는 Rust 측정→Yew state→DOM 반영 왕복이 있어
+     창 높이 변경 시 한 프레임씩 지연/계단으로 보였다. 여기서 CSS 크기를 확정하면 창 변화와
+     canvas 표시 크기가 같은 레이아웃 틱에 반영되고, JS는 bitmap 버퍼(`width`/`height` 속성)만 맞추면 된다. */
+  flex: 1 1 0;
+  min-width: 0;
+  min-height: 0;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  display: block;
+}
+
+/* 상세 페이지(.pitch-analyzer-direct) 는 scroll 기반이라 부모 높이가 열려있다 → `flex:1` 이 0 으로 resolve.
+   따라서 캔버스에 뷰포트 기반의 명시적 높이를 주고, 루트의 `height:100%` 는 풀어준다. 이렇게 해도
+   창 세로가 바뀌면 `vh` 계산이 CSS 차원에서 한 번에 반영되므로 지연이 생기지 않는다. */
+.pitch-analyzer-direct .pitch-plot-fullscreen-host {
+  width: 100%;
+}
+
+.pitch-analyzer-direct .pitch-plot-root {
+  height: auto;
+  min-height: 0;
+}
+
+.pitch-analyzer-direct .pitch-plot-canvas {
+  flex: 0 0 auto;
+  width: 100%;
+  height: 85vh;
+  min-height: 360px;
+  max-height: 820px;
+}
+
+/* `.pitch-analyzer-direct .pitch-plot-root { height: auto }`가 아래에 있어 풀스크린 flex를 막음 — 더 구체적으로 복원 */
+.main-content:fullscreen .pitch-analyzer-direct .pitch-plot-root,
+.main-content:-webkit-full-screen .pitch-analyzer-direct .pitch-plot-root {
+  height: 100%;
+  min-height: 0;
+  flex: 1 1 0;
+}
+
+/* 상세 페이지(고정 vh 캔버스) — 브라우저 풀스크린에서 flex로 남는 공간 채움 */
+.main-content:fullscreen .pitch-analyzer-direct .pitch-plot-canvas,
+.main-content:-webkit-full-screen .pitch-analyzer-direct .pitch-plot-canvas {
+  flex: 1 1 0 !important;
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+}
+
+/* 601~1024px: 2×2 + 셀 구분선(가로/세로) */
+@media (min-width: 601px) and (max-width: 1024px) {
+  .pitch-plot-control-rows {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: "ppr-y ppr-flags" "ppr-sens ppr-fs";
+    align-items: center;
+  }
+  .ppr-y,
+  .pitch-plot-flags,
+  .pitch-plot-sens,
+  .pitch-plot-fs-wrap {
+    border: 0;
+  }
+  .ppr-y {
+    border-right: var(--ppr-divider);
+    border-bottom: var(--ppr-divider);
+  }
+  .pitch-plot-flags {
+    border-bottom: var(--ppr-divider);
+  }
+  .ppr-sens {
+    border-right: var(--ppr-divider);
+  }
+  .pitch-plot-fs-wrap {
+    align-self: stretch;
+  }
+}
+/* 1025px~: 1행 4열 + 셀 사이 세로 구분선, Y/민감도/FS 열이 남는 폭 공유 */
+@media (min-width: 1025px) {
+  .pitch-plot-control-rows {
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, auto) minmax(0, 1.25fr) minmax(0, 1fr);
+    grid-template-areas: "ppr-y ppr-flags ppr-sens ppr-fs";
+    align-items: stretch; /* 셀 높이·세로 border 일치, 내용은 아래 flex에서 가운데 */
+  }
+  .pitch-plot-panel {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .ppr-y,
+  .pitch-plot-flags,
+  .pitch-plot-sens,
+  .pitch-plot-fs-wrap {
+    border: 0;
+  }
+  .ppr-y,
+  .pitch-plot-flags,
+  .pitch-plot-sens {
+    border-right: var(--ppr-divider);
+    min-height: 100%;
+    align-content: center; /* 셀 안에서 flex 줄(들)을 세로 가운데 */
+  }
+  .pitch-plot-fs-wrap {
+    align-self: stretch;
+  }
+  /* 1행: 셀마다 내부는 줄바꿈 없음 — 그리드 fr + flex `minmax(0)`·`flex: 1 1 0` 으로 폭이 서로 뺏어감(완화 불가 시 셀 가로만 넘침) */
+  .ppr-y,
+  .pitch-plot-sens {
+    flex-wrap: nowrap;
+    gap: 4px 6px;
+  }
+  .pitch-plot-flags {
+    flex-wrap: nowrap;
+    gap: 4px 8px;
+  }
+  .ppr-y .pitch-plot-select {
+    flex: 1 1 0;
+    min-width: 2.25rem;
+  }
+  .ppr-y .pitch-plot-tag,
+  .ppr-y > span:not(.pitch-plot-tag) {
+    flex-shrink: 0; /* "Low/High" 라벨, "—" 구분 */
+  }
+  .pitch-plot-control-rows .pitch-plot-sens .pitch-plot-sens-range {
+    flex: 1 1 0;
+    min-width: 1.25rem; /* 전역 `1 1 120px` 대체 — 슬라이더가 Y·콤보 쪽으로 폭 뺏음 */
+  }
+  .pitch-plot-flags .pitch-plot-check {
+    flex: 0 1 auto; /* `flex-shrink:0` 대체(위 전역보다 뒤·동일 구체) */
+    min-width: 0;
+  }
+  .pitch-plot-flags .pitch-plot-check > span {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
 /* 대시보드 아이템 링크 스타일 */
 .dashboard-item-link {
   position: absolute;
@@ -1493,6 +2198,13 @@ canvas {
   overflow: visible;
 }
 
+/* 데스크톱: 사이드바 접힘 시 본문이 넓어지는 만큼 디테일 카드도 남는 오른쪽까지 채움 */
+@media (min-width: 1025px) {
+  .app-layout.sidebar-collapsed .content-area .detail-page {
+    max-width: 100%;
+    width: 100%;
+  }
+}
 /* SEO 인트로: 헤더 H1 아래를 한 블록으로 묶어 도구 영역과 시각적으로 분리 */
 .detail-seo-bundle {
   font-family: "Quicksand", system-ui, -apple-system, sans-serif;
@@ -2834,38 +3546,46 @@ input[type=number] {
   }
 }
 /* 피아노 키보드 스타일 */
+.piano-wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
 .piano-container {
   display: flex;
   flex-direction: column;
   background-color: #1a1f2e;
   border-radius: 8px;
   width: 100%;
-  height: 100%;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-  aspect-ratio: 8.9;
-  max-height: 100%;
+  min-height: 0;
+  /* 컨트롤 패널(위) + 건반(아래) — 뷰포트 너비와 무관하게 동일 구조 */
 }
 .piano-container .piano-layout {
   display: flex;
-  height: 100%;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0;
 }
 .piano-container .piano-section {
-  flex: 4; /* 80% 차지 */
+  flex: 0 0 auto;
   display: flex;
   flex-direction: column;
-  height: 100%;
+  min-height: 0;
 }
 .piano-container .settings-section {
-  flex: 1; /* 20% 차지 */
+  flex: 0 0 auto;
   display: flex;
   flex-direction: column;
-  padding: 10px;
+  padding: 10px 10px 0;
 }
 .piano-container .settings-container {
   display: flex;
   flex-direction: column;
   gap: 5px;
-  height: 100%;
+  height: auto;
 }
 .piano-container .settings-row {
   display: flex;
@@ -2992,11 +3712,12 @@ input[type=number] {
   box-shadow: 0 0 8px rgba(102, 126, 234, 0.6);
 }
 .piano-container .keyboard-container {
-  flex: 1;
+  flex: 0 0 auto;
   overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
   position: relative;
   border-radius: 6px;
-  padding: 10px;
+  padding: 8px 10px 10px;
 }
 .piano-container .keyboard-container::-webkit-scrollbar {
   height: 8px;
@@ -3016,9 +3737,17 @@ input[type=number] {
   position: relative;
   display: flex;
   flex-direction: row;
-  height: 100%;
-  min-width: 100%;
+  align-items: stretch;
   width: 100%;
+  min-width: 100%;
+  min-height: 0;
+  /* 흰 건반이 세로로 과도하게 늘어나는 것을 막고, 음률(가로:세로) 비슷한 비율로 고정 */
+  height: auto;
+  aspect-ratio: 8.6/1;
+  /* 좁은 뷰에서도 흰 건반·검은 건반 비율이 납작해지지 않게 높이 하한(너비/8.6만 쓰면 300px 대에서 ~35px 이하로 붕괴) */
+  min-height: 100px;
+  max-height: 152px;
+  box-sizing: border-box;
 }
 .piano-container .keyboard-container .piano-keyboard .piano-key {
   position: relative;
@@ -3074,6 +3803,8 @@ input[type=number] {
   background: linear-gradient(to right, rgb(50, 70, 82), rgb(55, 55, 55), rgb(82, 70, 50));
 }
 .piano-container .keyboard-container .piano-keyboard .piano-key.white-key {
+  flex: 1 1 0;
+  min-width: 0;
   height: 100%;
   background: linear-gradient(to right, #f5f5f5, #e0e0e0);
   border: 1px solid #999;
@@ -3093,7 +3824,8 @@ input[type=number] {
 }
 .piano-container .keyboard-container .piano-keyboard .piano-key.black-key {
   height: 60%;
-  width: 26px;
+  width: clamp(15px, 4.2%, 30px);
+  max-width: 32px;
   position: absolute;
   background: linear-gradient(to right, #333, #000);
   border: 1px solid #000;
@@ -3338,82 +4070,254 @@ input[type=number] {
   color: #667eea;
 }
 
-.piano-sets .piano-sets-container {
+/* === Piano control panel — Chords 블록 안에 Play/Edit, 슬롯 1행 ================== */
+.piano-container .chord-slots .mode-toggle-row {
+  display: flex;
+  flex: 0 0 auto;
+  gap: 2px;
+  background-color: #151925;
+  border: 1px solid #2a2f3e;
+  border-radius: 6px;
+  padding: 2px 3px;
+  min-width: 0;
+}
+.piano-container .chord-slots .mode-toggle-row .mode-tab {
+  flex: 0 1 auto;
+  background: transparent;
+  color: #8b92a5;
+  border: none;
+  border-radius: 4px;
+  padding: 3px 8px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  white-space: nowrap;
+  transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
+}
+.piano-container .chord-slots .mode-toggle-row .mode-tab .mode-tab-icon {
+  font-size: 10px;
+  line-height: 1;
+}
+.piano-container .chord-slots .mode-toggle-row .mode-tab .mode-tab-text {
+  font-size: 10px;
+}
+.piano-container .chord-slots .mode-toggle-row .mode-tab:hover:not(.active) {
+  color: #ddd;
+  background-color: rgba(255, 255, 255, 0.05);
+}
+.piano-container .chord-slots .mode-toggle-row .mode-tab:active:not(.active) {
+  transform: translateY(1px);
+}
+.piano-container .chord-slots .mode-toggle-row .mode-tab.active {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #fff;
+  box-shadow: 0 1px 4px rgba(102, 126, 234, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  cursor: default;
+}
+
+.piano-container .chord-slots-row {
+  padding: 4px 6px;
+  background-color: #2a2f3e;
+  border-radius: 5px;
+}
+
+.piano-container .chord-slots {
   display: flex;
   flex-direction: column;
-  background-color: #222;
-  padding: 8px;
-  border-radius: 8px;
+  gap: 5px;
   width: 100%;
 }
-.piano-sets .piano-sets-layout {
+.piano-container .chord-slots .chord-slots-header {
   display: flex;
   align-items: center;
-  gap: 3px;
+  flex-wrap: nowrap;
+  gap: 6px;
+  min-width: 0;
+  /* 한 행: Chords | Play·Edit | … actions */
 }
-.piano-sets .edit-mode-button {
-  background-color: #2a2f3e;
+.piano-container .chord-slots .chord-slots-header .chord-slots-title {
+  flex: 0 0 auto;
+  font-size: 9px;
+  font-weight: 700;
+  color: #6f768a;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.piano-container .chord-slots .chord-slots-header .chord-slots-actions {
+  flex: 0 0 auto;
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 4px;
+  margin-left: auto;
+}
+.piano-container .chord-slots .btn-mini {
+  background-color: #1f2433;
   color: #8b92a5;
   border: 1px solid #3a3f4e;
   border-radius: 4px;
-  padding: 4px;
-  font-size: 14px;
+  padding: 3px 8px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
   cursor: pointer;
-  transition: all 0.2s;
-  width: 20px;
-  height: 20px;
-  min-width: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  transition: all 0.2s ease;
 }
-.piano-sets .edit-mode-button:hover {
-  background-color: #444;
-}
-.piano-sets .edit-mode-button.active {
-  background-color: #667eea;
-  border-color: #8b9aff;
-  color: white;
-  box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.2);
-}
-.piano-sets .piano-sets-buttons {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 3px;
-  flex: 1;
-}
-.piano-sets .piano-sets-buttons .set-button {
-  width: 20px;
-  height: 20px;
-  border-radius: 4px;
-  background-color: #2a2f3e;
-  border: 1px solid #3a3f4e;
-  font-size: 14px;
-  cursor: pointer;
-  transition: all 0.2s;
+.piano-container .chord-slots .btn-mini:hover:not(:disabled) {
+  background-color: #2e3446;
   color: #ddd;
-  padding: 0;
+  border-color: #4a4f5e;
+}
+.piano-container .chord-slots .btn-mini:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+.piano-container .chord-slots .btn-mini.subtle {
+  background: transparent;
+  border-color: transparent;
+  color: #667694;
+}
+.piano-container .chord-slots .btn-mini.subtle:hover:not(:disabled) {
+  background-color: #1f2433;
+  border-color: #3a3f4e;
+  color: #ddd;
+}
+.piano-container .chord-slots .chord-slots-grid {
+  display: grid;
+  grid-template-columns: repeat(10, minmax(0, 1fr));
+  grid-template-rows: 28px;
+  gap: 4px;
+  width: 100%;
+  align-items: stretch;
+}
+.piano-container .chord-slots .chord-slot {
+  position: relative;
+  box-sizing: border-box;
+  min-width: 0;
+  height: 28px;
+  min-height: 28px;
+  max-height: 28px;
+  padding: 0 1px;
+  border-radius: 4px;
+  background-color: #1f2433;
+  border: 1px solid #3a3f4e;
+  color: #ddd;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, transform 0.12s ease;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 2px;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
 }
-.piano-sets .piano-sets-buttons .set-button:hover {
-  background-color: #444;
+.piano-container .chord-slots .chord-slot .chord-slot-number {
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
 }
-.piano-sets .piano-sets-buttons .set-button.has-notes {
-  background-color: #667eea;
-  border-color: #8b9aff;
-  color: white;
+.piano-container .chord-slots .chord-slot .chord-slot-badge {
+  font-size: 8px;
   font-weight: 600;
+  line-height: 1;
+  padding: 2px 6px;
+  border-radius: 999px;
+  min-width: 14px;
+  text-align: center;
 }
-.piano-sets .piano-sets-buttons .set-button.selected {
-  background-color: #5a6fd8;
+.piano-container .chord-slots .chord-slot .chord-slot-badge.count {
+  color: #c9d1ff;
+  background-color: rgba(102, 126, 234, 0.22);
+}
+.piano-container .chord-slots .chord-slot .chord-slot-badge.add {
+  color: #8b9aff;
+  background-color: transparent;
+  font-size: 12px;
+  padding: 0 4px;
+}
+.piano-container .chord-slots .chord-slot .chord-slot-badge.empty-dash {
+  color: #4a4f5e;
+  background-color: transparent;
+  font-size: 10px;
+  padding: 0 4px;
+}
+.piano-container .chord-slots .chord-slot:hover:not(.playing) {
+  background-color: #2a3046;
+  border-color: #4a4f5e;
+  transform: translateY(-1px);
+}
+.piano-container .chord-slots .chord-slot:active:not(.playing) {
+  transform: translateY(0);
+}
+.piano-container .chord-slots .chord-slot.empty {
+  border-style: dashed;
+  color: #6a6f7e;
+}
+.piano-container .chord-slots .chord-slot.empty .chord-slot-number {
+  color: #767c92;
+}
+.piano-container .chord-slots .chord-slot.filled {
+  background-color: rgba(102, 126, 234, 0.14);
+  border-color: rgba(102, 126, 234, 0.5);
+  border-style: solid;
+  color: #fff;
+}
+.piano-container .chord-slots .chord-slot.filled .chord-slot-number {
+  color: #fff;
+}
+.piano-container .chord-slots .chord-slot.edit-mode.empty {
+  border-color: rgba(139, 154, 255, 0.35);
+}
+.piano-container .chord-slots .chord-slot.edit-mode.empty:hover {
   border-color: #8b9aff;
-  color: white;
-  font-weight: 600;
-  box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.2);
+  background-color: rgba(102, 126, 234, 0.1);
+}
+.piano-container .chord-slots .chord-slot.edit-mode.empty:hover .chord-slot-badge.add {
+  color: #b3bcff;
+}
+.piano-container .chord-slots .chord-slot.selected {
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.35) 0%, rgba(118, 75, 162, 0.28) 100%);
+  border-color: #8b9aff;
+  border-style: solid;
+  color: #fff;
+  box-shadow: 0 0 0 2px rgba(139, 154, 255, 0.35), 0 2px 10px rgba(102, 126, 234, 0.3);
+}
+.piano-container .chord-slots .chord-slot.selected .chord-slot-number {
+  color: #fff;
+}
+.piano-container .chord-slots .chord-slot.selected .chord-slot-badge.count {
+  background-color: rgba(255, 255, 255, 0.22);
+  color: #fff;
+}
+.piano-container .chord-slots .chord-slot.playing {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-color: #8b9aff;
+  color: #fff;
+  box-shadow: 0 0 14px rgba(139, 154, 255, 0.55);
+  animation: chord-slot-pulse 0.6s ease-out;
+}
+.piano-container .chord-slots .chord-slot.playing .chord-slot-number {
+  color: #fff;
+}
+.piano-container .chord-slots .chord-slot.playing .chord-slot-badge.count {
+  background-color: rgba(255, 255, 255, 0.25);
+  color: #fff;
 }
 
+@keyframes chord-slot-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(139, 154, 255, 0.55);
+  }
+  100% {
+    box-shadow: 0 0 18px rgba(139, 154, 255, 0.35);
+  }
+}
 .set-marker {
   position: absolute;
   bottom: 5px;
@@ -3758,44 +4662,52 @@ input[type=number] {
   background-color: rgba(255, 255, 255, 0.1);
 }
 
-/* 반응형 대시보드 */
+/* 반응형 대시보드(레이아웃 뷰) */
 @media (max-width: 1200px) {
   .content-area {
     padding: 16px;
   }
-  .dashboard-overview {
-    min-width: 1200px; /* 모바일에서도 최소 너비 유지 */
-  }
-  .metrics-row {
-    min-width: 1200px; /* 모바일에서도 최소 너비 유지 */
-  }
+  .dashboard-overview,
+  .metrics-row,
   .bottom-row {
-    min-width: 1200px; /* 모바일에서도 최소 너비 유지 */
+    min-width: 0;
+    max-width: 100%;
+    box-sizing: border-box;
   }
 }
 @media (max-width: 1024px) {
   .content-area {
     padding: 16px;
-    min-width: auto; /* 최소 너비 제한 해제 */
+    min-width: 0 !important;
+    max-width: 100%;
+    box-sizing: border-box;
   }
   .dashboard .dashboard-item {
-    min-width: 750px;
+    min-width: 0 !important;
+    max-width: 100%;
+    box-sizing: border-box;
   }
   .dashboard-overview {
-    min-width: auto; /* 최소 너비 제한 해제 */
+    min-width: 0;
+    max-width: 100%;
+    box-sizing: border-box;
     gap: 20px;
   }
   .metrics-row {
-    min-width: auto; /* 최소 너비 제한 해제 */
+    min-width: 0;
+    max-width: 100%;
     display: flex;
     flex-direction: column; /* 세로 정렬 */
     gap: 20px;
+    box-sizing: border-box;
   }
   .bottom-row {
-    min-width: auto; /* 최소 너비 제한 해제 */
+    min-width: 0;
+    max-width: 100%;
     display: flex;
     flex-direction: column; /* 세로 정렬 */
     gap: 20px;
+    box-sizing: border-box;
   }
   /* 카드들의 높이를 자동으로 조정 */
   .metric-card {
@@ -3811,74 +4723,96 @@ input[type=number] {
   .chart-container {
     min-height: 150px; /* 차트 최소 높이 */
     height: auto;
+    max-width: 100%;
   }
   /* 테이블 컨테이너 높이 조정 */
   .table-container {
     min-height: 200px; /* 테이블 최소 높이 */
     height: auto;
+    max-width: 100%;
   }
   /* 피아노 컨테이너 높이 조정 */
   .piano-container-wrapper {
     min-height: 300px; /* 피아노 최소 높이 증가 */
     height: auto;
+    max-width: 100%;
   }
-  /* 피아노 레이아웃을 세로로 변경 */
-  .piano-container .piano-layout {
-    flex-direction: column;
-  }
+  /* 좁은 화면: 컴팩트 코드 패널(Play/Edit + 슬롯) — 좌/우 2열 */
   .piano-container .piano-section {
-    flex: 1;
-    order: 1; /* 건반을 위쪽에 배치 */
+    flex: 0 0 auto;
+    min-height: 0;
   }
   .piano-container .settings-section {
-    flex: none;
-    order: 2; /* 설정을 아래쪽에 배치 */
-    padding: 10px 0;
+    padding: 8px 8px 6px;
   }
-  .piano-container .settings-section .settings-container {
-    flex-direction: row;
-    gap: 10px;
-    height: auto;
-    /* 모든 설정 행을 먼저 숨기고 첫 번째 행만 표시 */
-    /* keyboard-octave-display는 숨기기 */
+  .piano-container .settings-section .chord-slots-row {
+    padding: 4px 5px;
   }
-  .piano-container .settings-section .settings-container .settings-row {
-    display: none;
+  .piano-container .settings-section .chord-slots-row .chord-slots {
+    gap: 4px;
   }
-  .piano-container .settings-section .settings-container .settings-row:first-child {
-    display: flex;
-    flex: 1;
-    /* 첫 번째 행에서 octave-control만 보이게 하고 sustain-control 숨기기 */
+  .piano-container .settings-section .chord-slots-row .chord-slots .chord-slots-header {
+    gap: 4px;
   }
-  .piano-container .settings-section .settings-container .settings-row:first-child .sustain-control {
-    display: none;
+  .piano-container .settings-section .chord-slots-row .chord-slots .chord-slots-grid {
+    grid-template-rows: 26px;
+    gap: 3px;
   }
-  .piano-container .settings-section .settings-container .keyboard-octave-display {
-    display: none;
+  .piano-container .settings-section .chord-slots-row .chord-slots .chord-slot {
+    height: 26px;
+    min-height: 26px;
+    max-height: 26px;
+    border-radius: 4px;
+  }
+  .piano-container .settings-section .chord-slots-row .chord-slots .chord-slot .chord-slot-number {
+    font-size: 10px;
+  }
+  .piano-container .settings-section .chord-slots-row .chord-slots .chord-slot .chord-slot-badge {
+    font-size: 7px;
+    padding: 0 3px;
+  }
+  .piano-container .settings-section .chord-slots-row .chord-slots .mode-toggle-row .mode-tab {
+    padding: 2px 5px;
+    font-size: 9px;
+  }
+  .piano-container .settings-section .chord-slots-row .chord-slots .mode-toggle-row .mode-tab .mode-tab-icon, .piano-container .settings-section .chord-slots-row .chord-slots .mode-toggle-row .mode-tab .mode-tab-text {
+    font-size: 9px;
   }
 }
 @media (max-width: 768px) {
   .content-area {
     padding: 16px;
+    min-width: 0 !important;
+    max-width: 100%;
+    box-sizing: border-box;
   }
   .dashboard {
     grid-template-columns: 1fr;
     gap: 16px;
-    min-width: auto; /* 최소 너비 제한 해제 */
+    min-width: 0 !important;
+    max-width: 100%;
   }
   .dashboard .dashboard-item {
-    min-width: 750px;
+    min-width: 0 !important;
+    max-width: 100%;
+    box-sizing: border-box;
   }
   .dashboard-overview {
-    min-width: auto; /* 최소 너비 제한 해제 */
+    min-width: 0;
+    max-width: 100%;
+    box-sizing: border-box;
     gap: 16px;
   }
   .metrics-row {
-    min-width: auto; /* 최소 너비 제한 해제 */
+    min-width: 0;
+    max-width: 100%;
+    box-sizing: border-box;
     gap: 16px;
   }
   .bottom-row {
-    min-width: auto; /* 최소 너비 제한 해제 */
+    min-width: 0;
+    max-width: 100%;
+    box-sizing: border-box;
     gap: 16px;
   }
   /* 모바일에서 카드 패딩 조정 */
@@ -3894,8 +4828,10 @@ input[type=number] {
 }
 @media (max-width: 540px) {
   .content-area {
-    min-width: 540px;
+    min-width: 0 !important;
+    max-width: 100%;
     padding: 12px;
+    box-sizing: border-box;
   }
   .dashboard-overview {
     min-width: auto; /* 최소 너비 제한 해제 */
@@ -4254,6 +5190,99 @@ input[type=number] {
   flex: 1;
 }
 
+/* `/pitch-controls` 상세 본문: 데스크톱에서 Controller 스트립을 본문 가로 가운데 (`.analyzer-container > * { width:100% }` 보정) */
+@media (min-width: 769px) {
+  .analyzer-container > .controller-detail-pitch-controls {
+    width: fit-content;
+    max-width: min(1024px, 100%);
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .controller-detail-pitch-controls .navbar-controls-buttons {
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px 10px;
+  }
+  .controller-detail-pitch-controls .playback-progress {
+    margin-left: 0;
+  }
+}
+/* `/pitch-controls` 상세 본문: 모바일에서 헤더 슬라이드 패널(`.mobile-controls-content`)과 동일한 격자·터치 UI */
+@media (max-width: 768px) {
+  .controller-detail-pitch-controls {
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+  }
+  .controller-detail-pitch-controls .pitch-controls {
+    margin: 0;
+  }
+  .controller-detail-pitch-controls .navbar-controls-buttons {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 4px 6px;
+    align-items: center;
+    justify-items: stretch;
+  }
+  .controller-detail-pitch-controls .navbar-controls-buttons > .playback-progress {
+    grid-column: 1/-1;
+    width: 100%;
+    min-width: 0;
+    margin: 4px 0 0;
+    gap: 6px;
+    flex-direction: row;
+    align-items: center;
+  }
+  .controller-detail-pitch-controls .playback-progress .progress-bar {
+    width: 100%;
+    min-width: 0;
+    margin: 0;
+    flex: 1;
+  }
+  .controller-detail-pitch-controls .time-display {
+    font-size: 10px;
+    min-width: 0;
+    flex-shrink: 0;
+    padding: 0 2px;
+  }
+  .controller-detail-pitch-controls .modern-button,
+  .controller-detail-pitch-controls .icon-button.modern-button {
+    width: 100%;
+    min-width: 0;
+    min-height: 40px;
+    padding: 4px 2px;
+    box-sizing: border-box;
+  }
+  .controller-detail-pitch-controls .modern-button svg,
+  .controller-detail-pitch-controls .icon-button.modern-button svg {
+    width: 18px;
+    height: 18px;
+  }
+  .controller-detail-pitch-controls .download-dropdown,
+  .controller-detail-pitch-controls .sensitivity-dropdown {
+    width: 100%;
+    min-width: 0;
+  }
+  .controller-detail-pitch-controls .sensitivity-dropdown > .icon-button {
+    width: 100%;
+  }
+  .controller-detail-pitch-controls .sensitivity-dropdown-content {
+    left: auto;
+    right: 0;
+    margin-top: 4px;
+    padding: 6px 8px;
+    max-width: min(280px, 100vw - 24px);
+  }
+  .controller-detail-pitch-controls .sensitivity-slider {
+    gap: 6px;
+  }
+  .controller-detail-pitch-controls .sensitivity-slider input[type=range] {
+    min-width: 0;
+    width: 100%;
+    max-width: none;
+    flex: 1;
+  }
+}
 /* 768px 이하에서 모바일 컨트롤 활성화 */
 @media (max-width: 768px) {
   .mobile-controls-btn {
