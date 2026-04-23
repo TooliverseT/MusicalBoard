@@ -1556,6 +1556,23 @@ button.active {
   height: auto;
 }
 
+/*
+ * 스케일 제너레이터: 홈 대시보드에서 기본 16:9 타일 높이를 쓰면,
+ * 1024px 이하 1열·모바일에서 상단(레인지/BPM/방향)이 세로로 길어져 잘림.
+ * 타일·래퍼는 콘텐츠 높이에 맞춤(피아노와 동일한 패턴).
+ */
+#scale-generator.dashboard-item {
+  aspect-ratio: auto;
+  height: auto;
+}
+
+#scale-generator .dashboard-item-content {
+  flex: 0 0 auto;
+  height: auto;
+  min-height: 0;
+  overflow: visible;
+}
+
 /* 대시보드 아이템 헤더 스타일 */
 .dashboard-item-header {
   background-color: #16272d;
@@ -3115,6 +3132,25 @@ input[type=number] {
 /* 대시보드 컨텍스트: 부모 타일의 aspect-ratio 를 그대로 채움 */
 .dashboard-item .scale-generator {
   height: 100%;
+}
+
+/* `#scale-generator` 타일은 높이를 콘텐츠에 맞출 때 `height:100%`·1fr 그리드가 순환 참조로 납작해지지 않게 덮어씀 */
+#scale-generator .scale-generator {
+  height: auto;
+  flex: 0 0 auto;
+}
+
+#scale-generator .sg-main {
+  height: auto;
+  grid-template-rows: auto auto auto;
+}
+
+#scale-generator .sg-intervals {
+  flex: 0 1 auto;
+}
+
+#scale-generator .sg-chips {
+  flex: 0 1 auto;
 }
 
 .sg-main {
