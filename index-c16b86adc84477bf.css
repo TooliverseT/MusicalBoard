@@ -73,8 +73,8 @@ body {
    * `main.main-content`의 `padding-top`과 동일 — 뷰포트 0~이 값이 고정 내비가 차지하는 영역.
    */
   --app-header-offset: calc(var(--app-header-height) + 1px);
-  /* 본문 `.content-area`의 위/아래 padding 합(기본 24+24). 모바일은 768 이하에서 16+16으로 덮어씀 */
-  --app-content-pad-y-sum: 48px;
+  /* 본문 `.content-area`의 위/아래 padding 합(기본 16+16). 768px 이하에서는 padding 5px → 합 10px */
+  --app-content-pad-y-sum: 32px;
   /* 사이드바 — main / top-header `margin-left`·`left`와 동일하게 유지 */
   --sidebar-width: 244px;
   /* 접힘 시 아이콘 레일(데스크톱만) */
@@ -998,19 +998,13 @@ article.musicalboard-prose strong {
   }
 }
 .dashboard-item {
-  background-color: #1a1f2e;
-  border-radius: 12px;
-  border: 1px solid #2a2f3e;
+  background-color: #0f1419;
+  border-radius: 0;
+  border: none;
   overflow: hidden;
   /* `all`이면 height도 보간됨 — #pitch-plot 등은 위에서 덮어씀 */
-  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s, opacity 0.2s;
+  transition: transform 0.2s, box-shadow 0.2s, opacity 0.2s;
   position: relative;
-}
-
-.dashboard-item-content {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
 }
 
 /* Home: hero + collapsible intro sit above the tool grid as one block (not a third “card”). */
@@ -1078,7 +1072,7 @@ article.musicalboard-prose strong {
 details.seo-home-intro {
   background-color: #1a1f2e;
   border: 1px solid #2a2f3e;
-  border-radius: 12px;
+  border-radius: 0;
   margin-bottom: 20px;
   width: 100%;
   box-sizing: border-box;
@@ -1331,11 +1325,11 @@ details.seo-home-intro .seo-home-tool-links a:hover {
     gap: 8px;
   }
   .content-area {
-    padding: 16px;
+    padding: 5px;
   }
   :root {
-    /* 위 `.content-area` 세로 16+16px — #pitch-plot `calc(…- …- var(--app-content-pad-y-sum))`에 사용 */
-    --app-content-pad-y-sum: 32px;
+    /* 768px 이하: `.content-area` padding 5px — #pitch-plot 높이 calc(위+아래 10px) */
+    --app-content-pad-y-sum: 10px;
   }
   .dashboard-overview {
     min-width: auto; /* 최소 너비 제한 해제 */
@@ -1537,14 +1531,16 @@ button.active {
 .dashboard-item {
   grid-column: span var(--item-width, 1);
   grid-row: span var(--item-height, 1);
-  background-color: #1a1f2e;
-  border-radius: 2px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: #0f1419;
+  border-radius: 0;
+  box-shadow: none;
   overflow: hidden;
   transition: transform 0.2s, box-shadow 0.2s;
   display: flex;
   flex-direction: column;
-  border: 1px solid #11282f;
+  justify-content: center;
+  align-items: stretch;
+  border: none;
   /* 가로세로 비율 유지를 위한 스타일 */
   aspect-ratio: var(--item-aspect-ratio, 16/9);
   min-height: 0;
@@ -1577,6 +1573,7 @@ button.active {
 #vocal-range-gauge.dashboard-item {
   aspect-ratio: auto;
   height: auto;
+  justify-content: flex-end;
 }
 
 #vocal-range-gauge .dashboard-item-content {
@@ -1584,12 +1581,15 @@ button.active {
   height: auto;
   min-height: 0;
   overflow: hidden;
+  justify-content: flex-end;
 }
 
 /*
- * 홈 대시보드(≥1025px, `.dashboard-home-layout`): 좌 3열=피치만(행 1–5),
- * 우 2열=1행 진폭+메트로놈, 2–3행 스케일, 4–5행 레인지, 6행=피아노 풀폭.
- * `minmax()` 로 행별 최소 높이 유지, `1fr` 로 피치 높이가 우열 전체(5행)와 맞춤.
+ * 홈 대시보드(≥1025px, `.dashboard-home-layout`):
+ * `grid-template-rows`는 행별 `minmax(…, auto)` 최소 높이(너무 크지 않게 약 60% 스케일) + `auto`로 확장.
+ * 스케일·레인지는 각 2행 span, 피치는 그 위 5행 span + `height:100%`.
+ * --with-range: 행1 진폭+메트로놈 | 행2–3 스케일 | 행4–5 레인지 | 행6 피아노
+ * --no-range: 행1 진폭+메트로놈 | 행2–3 스케일 | 행4 피아노
  */
 @media (min-width: 1025px) {
   .content-area:has(> .app-container) {
@@ -1610,19 +1610,35 @@ button.active {
     flex: 1 1 0;
     min-height: 0;
     width: 100%;
-    align-content: stretch;
-    grid-template-rows: minmax(168px, 1.55fr) minmax(132px, 1fr) minmax(132px, 1fr) minmax(108px, 1fr) minmax(108px, 1fr) auto;
+    align-content: start;
   }
+  /* 행 최소 높이: 직전(2배) 대비 약 60% — 콘텐츠가 더 크면 auto로 확장 */
+  .content-area .dashboard.dashboard-home-layout.dashboard--with-range {
+    grid-template-rows: minmax(206px, auto) minmax(147px, auto) minmax(147px, auto) minmax(120px, auto) minmax(120px, auto) auto;
+  }
+  .content-area .dashboard.dashboard-home-layout.dashboard--no-range {
+    grid-template-rows: minmax(202px, auto) minmax(158px, auto) minmax(158px, auto) auto;
+  }
+  /* 그리드 셀 높이를 타일 박스가 꽉 채우게 — `align-self:start`+`height:auto`만 쓰면 셀·행 정렬이 깨져 겹쳐 보일 수 있음 */
   .content-area .dashboard.dashboard-home-layout > .dashboard-item {
-    min-height: 0;
     align-self: stretch;
+    min-height: auto;
   }
-  .content-area .dashboard.dashboard-home-layout #pitch-plot.dashboard-item {
+  .content-area .dashboard.dashboard-home-layout.dashboard--with-range #pitch-plot.dashboard-item {
     grid-column: 1/4;
     grid-row: 1/6;
     aspect-ratio: auto;
     height: 100%;
     max-height: none;
+    align-self: stretch;
+  }
+  .content-area .dashboard.dashboard-home-layout.dashboard--no-range #pitch-plot.dashboard-item {
+    grid-column: 1/4;
+    grid-row: 1/4;
+    aspect-ratio: auto;
+    height: 100%;
+    max-height: none;
+    align-self: stretch;
   }
   .content-area .dashboard.dashboard-home-layout #pitch-plot .dashboard-item-content {
     flex: 1 1 0;
@@ -1634,16 +1650,18 @@ button.active {
     grid-row: 1/2;
     height: 100%;
     aspect-ratio: auto;
+    align-self: stretch;
   }
   .content-area .dashboard.dashboard-home-layout #metronome.dashboard-item {
     grid-column: 5;
     grid-row: 1/2;
     height: 100%;
     aspect-ratio: auto;
+    align-self: stretch;
   }
   .content-area .dashboard.dashboard-home-layout #metronome .dashboard-item-content,
   .content-area .dashboard.dashboard-home-layout #amplitude-visualizer .dashboard-item-content {
-    flex: 1 1 0;
+    flex: 1 1 auto;
     min-height: 0;
     height: 100%;
   }
@@ -1652,35 +1670,60 @@ button.active {
     grid-row: 2/4;
     height: 100%;
     aspect-ratio: auto;
+    align-self: stretch;
   }
   .content-area .dashboard.dashboard-home-layout.dashboard--with-range #vocal-range-gauge.dashboard-item {
     grid-column: 4/6;
     grid-row: 4/6;
     height: 100%;
     aspect-ratio: auto;
+    align-self: stretch;
   }
-  .content-area .dashboard.dashboard-home-layout.dashboard--with-range #scale-generator .dashboard-item-content,
-  .content-area .dashboard.dashboard-home-layout.dashboard--with-range #vocal-range-gauge .dashboard-item-content {
-    flex: 1 1 0;
+  .content-area .dashboard.dashboard-home-layout.dashboard--with-range #scale-generator .dashboard-item-content {
+    flex: 0 0 auto;
     min-height: 0;
-    height: 100%;
+    height: auto;
+    max-height: 100%;
+  }
+  .content-area .dashboard.dashboard-home-layout.dashboard--with-range #vocal-range-gauge .dashboard-item-content {
+    flex: 1 1 auto;
+    min-height: 0;
+    height: auto;
+    max-height: 100%;
+    overflow: hidden;
   }
   .content-area .dashboard.dashboard-home-layout.dashboard--no-range #scale-generator.dashboard-item {
     grid-column: 4/6;
-    grid-row: 2/6;
+    grid-row: 2/4;
     height: 100%;
     aspect-ratio: auto;
+    align-self: stretch;
   }
   .content-area .dashboard.dashboard-home-layout.dashboard--no-range #scale-generator .dashboard-item-content {
-    flex: 1 1 0;
+    flex: 0 0 auto;
     min-height: 0;
-    height: 100%;
-  }
-  .content-area .dashboard.dashboard-home-layout #piano-keyboard.dashboard-item {
-    grid-column: 1/-1;
-    grid-row: 6/7;
     height: auto;
+    max-height: 100%;
+  }
+  /* 피아노: 그리드 행 최소 높이에 맞추지 않고 건반·패널의 자연 높이만 사용 */
+  .content-area .dashboard.dashboard-home-layout.dashboard--with-range #piano-keyboard.dashboard-item,
+  .content-area .dashboard.dashboard-home-layout.dashboard--no-range #piano-keyboard.dashboard-item {
+    grid-column: 1/-1;
     align-self: start;
+    height: auto;
+    min-height: 0;
+  }
+  .content-area .dashboard.dashboard-home-layout.dashboard--with-range #piano-keyboard.dashboard-item {
+    grid-row: 6/7;
+  }
+  .content-area .dashboard.dashboard-home-layout.dashboard--no-range #piano-keyboard.dashboard-item {
+    grid-row: 4/5;
+  }
+  .content-area .dashboard.dashboard-home-layout #piano-keyboard .dashboard-item-content {
+    flex: 0 0 auto;
+    height: auto;
+    min-height: 0;
+    width: 100%;
   }
 }
 /* 대시보드 아이템 헤더 스타일 */
@@ -1709,12 +1752,14 @@ button.active {
 }
 
 .dashboard-item-content {
-  flex: 1;
+  flex: 1 1 auto;
   min-height: 0;
+  width: 100%;
   overflow: hidden;
   position: relative;
   display: flex;
   flex-direction: column;
+  justify-content: center;
 }
 
 /* 피치 카드: 세로 스크롤 없음(레이아웃·캔버스 크기가 맞음) */
@@ -1903,6 +1948,7 @@ button.active {
   height: 100%;
   width: 100%;
   background-color: #0f1419;
+  border: 1px solid #343b4d;
 }
 
 /* Scale Generator `.sg-seg-btn` / `.is-on` 과 동일 톤(방향 토글 활성 = 보라 그라데이션) */
@@ -1918,8 +1964,8 @@ button.active {
   font-weight: 600;
   color: #d0d5e6;
   background: rgba(15, 20, 30, 0.65);
-  border: 1px solid #2a2f3e;
-  border-radius: 6px;
+  border: unset;
+  border-radius: 0;
   cursor: pointer;
   white-space: nowrap;
   transition: background 0.18s ease, border-color 0.18s ease, color 0.18s ease, box-shadow 0.18s ease;
@@ -1957,6 +2003,11 @@ button.active {
   display: block;
 }
 
+.amplitude-visualizer {
+  border: 1px solid #343b4d;
+  box-sizing: border-box;
+}
+
 /* 상세 페이지(.pitch-analyzer-direct) 는 scroll 기반이라 부모 높이가 열려있다 → `flex:1` 이 0 으로 resolve.
    따라서 캔버스에 뷰포트 기반의 명시적 높이를 주고, 루트의 `height:100%` 는 풀어준다. 이렇게 해도
    창 세로가 바뀌면 `vh` 계산이 CSS 차원에서 한 번에 반영되므로 지연이 생기지 않는다. */
@@ -1984,6 +2035,7 @@ button.active {
   min-width: 0;
   box-sizing: border-box;
   overflow-x: clip;
+  border: 1px solid #343b4d;
   /* 패널 줄바꿈은 뷰포트가 아니라 타일/카드 실제 너비 기준(대시보드 좁은 칸 대응) */
   /* `.pitch-analyzer-direct .pitch-plot-canvas` 의 85vh 등이 섞이지 않도록 명시 */
 }
@@ -2002,7 +2054,7 @@ button.active {
   min-width: 0;
   box-sizing: border-box;
   overflow: hidden;
-  border-radius: 0 0 6px 6px;
+  border-radius: 0;
   /* 창이 좁아지면 가로에 비례해 히트맵 높이도 줄어듦 (가로 대비 세로: 100/22 → 100/19 로 약간 낮춤) */
   aspect-ratio: 100/19;
   height: auto;
@@ -2120,7 +2172,8 @@ button.active {
   .pitch-plot-control-rows {
     grid-template-columns: 1fr 1fr;
     grid-template-areas: "ppr-y ppr-flags" "ppr-sens ppr-fs";
-    align-items: center;
+    /* center면 같은 행 좌·우 셀 높이가 달라 가로 구분선이 계단처럼 보임 */
+    align-items: stretch;
   }
   .ppr-y,
   .pitch-plot-flags,
@@ -2135,8 +2188,15 @@ button.active {
   .pitch-plot-flags {
     border-bottom: var(--ppr-divider);
   }
-  .ppr-sens {
+  .pitch-plot-sens {
     border-right: var(--ppr-divider);
+  }
+  .ppr-y,
+  .pitch-plot-flags,
+  .pitch-plot-sens {
+    min-height: 100%;
+    align-content: center;
+    align-items: center;
   }
   .pitch-plot-fs-wrap {
     align-self: stretch;
@@ -2213,8 +2273,9 @@ button.active {
   }
 }
 @media (min-width: 1025px) {
+  /* 열 비율은 `.pitch-plot-control-rows`(피치 패널)과 동일 — 대시보드에서 세로 구분선이 같은 위치에 오도록 */
   .vocal-range-plot-root .vocal-range-panel-rows {
-    grid-template-columns: minmax(0, 1.02fr) minmax(0, auto) minmax(0, 1.08fr) minmax(0, 1.42fr);
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, auto) minmax(0, 1.25fr) minmax(0, 1fr);
     grid-template-areas: "ppr-y ppr-flags ppr-sens pvr-stats";
     align-items: stretch;
   }
@@ -2237,7 +2298,7 @@ button.active {
   .vocal-range-plot-root .vocal-range-panel-rows {
     grid-template-columns: 1fr 1fr;
     grid-template-areas: "ppr-y ppr-flags" "ppr-sens pvr-stats";
-    align-items: center;
+    align-items: stretch;
   }
   .vocal-range-plot-root .ppr-y,
   .vocal-range-plot-root .pitch-plot-flags,
@@ -2259,8 +2320,19 @@ button.active {
     border-bottom: 0;
     border-top: 0;
   }
+  .vocal-range-plot-root .ppr-y,
+  .vocal-range-plot-root .pitch-plot-flags,
+  .vocal-range-plot-root .pitch-plot-sens {
+    min-height: 100%;
+    align-content: center;
+    align-items: center;
+  }
+  .vocal-range-plot-root .vocal-range-panel-stats {
+    min-height: 100%;
+    align-content: center;
+  }
 }
-@container vocal-range-panel (max-width: 359px) {
+@container vocal-range-panel (max-width: 559px) {
   .vocal-range-plot-root .vocal-range-panel-rows {
     grid-template-columns: minmax(0, 1fr);
     grid-template-areas: "ppr-y" "ppr-flags" "ppr-sens" "pvr-stats";
@@ -2291,7 +2363,7 @@ button.active {
     -webkit-overflow-scrolling: touch;
   }
   .vocal-range-plot-root .vocal-range-panel-rows {
-    grid-template-columns: minmax(0, 1.02fr) minmax(0, auto) minmax(0, 1.08fr) minmax(0, 1.42fr);
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, auto) minmax(0, 1.25fr) minmax(0, 1fr);
     grid-template-areas: "ppr-y ppr-flags ppr-sens pvr-stats";
     align-items: stretch;
   }
@@ -2574,7 +2646,7 @@ input[type=range]::-webkit-slider-thumb {
 canvas {
   width: 100%;
   height: 100%;
-  border-radius: 2px;
+  border-radius: 0;
   background-color: #001117;
 }
 
@@ -2583,7 +2655,7 @@ canvas {
   max-width: 1600px;
   padding: 20px;
   background-color: #1a1f2e;
-  border-radius: 12px;
+  border-radius: 0;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   border: 1px solid #2a2f3e;
   overflow: visible;
@@ -2607,7 +2679,7 @@ canvas {
   padding: 1.35rem 1.4rem 1.2rem;
   background: linear-gradient(165deg, rgba(102, 126, 234, 0.09) 0%, rgba(20, 25, 36, 0.97) 42%, #121722 100%);
   border: 1px solid rgba(102, 126, 234, 0.22);
-  border-radius: 12px;
+  border-radius: 0;
   box-shadow: 0 4px 18px rgba(0, 0, 0, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 @media (max-width: 768px) {
@@ -2668,7 +2740,7 @@ canvas {
   .detail-seo-bundle {
     padding: 1.05rem 1rem;
     margin-bottom: 22px;
-    border-radius: 10px;
+    border-radius: 0;
   }
   .detail-seo-bundle h2 {
     font-size: 16px;
@@ -2780,7 +2852,7 @@ a.not-found-primary:hover {
 .pitch-analyzer-direct {
   width: 100%;
   height: 100%;
-  border-radius: 4px;
+  border-radius: 0;
   overflow: hidden;
   border: 1px solid #11282f;
   background-color: #001117;
@@ -2789,7 +2861,7 @@ a.not-found-primary:hover {
 /* 분석기 컨테이너 */
 .analyzer-container {
   margin: 20px 0;
-  border-radius: 4px;
+  border-radius: 0;
   overflow: visible;
   display: flex;
   justify-content: center;
@@ -2811,7 +2883,7 @@ a.not-found-primary:hover {
 .description {
   background-color: #1a1f2e;
   padding: 20px;
-  border-radius: 12px;
+  border-radius: 0;
   margin-top: 30px;
   border: 1px solid #2a2f3e;
 }
@@ -3083,7 +3155,7 @@ a.not-found-primary:hover {
   color: #e4e7ec;
   background: linear-gradient(165deg, rgba(26, 31, 46, 0.98) 0%, #151a28 55%, #121722 100%);
   border: 1px solid #2a2f3e;
-  border-radius: 8px;
+  border-radius: 0;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.04);
 }
 
@@ -3235,7 +3307,7 @@ a.not-found-primary:hover {
   width: 100%;
   min-height: 0;
   aspect-ratio: 30/9;
-  border-radius: 8px;
+  border-radius: 0;
   border: 1px solid rgba(42, 47, 62, 0.9);
   background: #0b0f16;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
@@ -3246,7 +3318,7 @@ a.not-found-primary:hover {
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
-  border-radius: 6px;
+  border-radius: 0;
   background-color: #0f1419;
   display: block;
 }
@@ -3499,7 +3571,7 @@ input[type=number] {
   font-family: "Quicksand", system-ui, -apple-system, sans-serif;
   background: linear-gradient(165deg, rgba(26, 31, 46, 0.98) 0%, #151a28 55%, #121722 100%);
   border: 1px solid #2a2f3e;
-  border-radius: 8px;
+  border-radius: 0;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.04);
 }
 
@@ -3512,6 +3584,9 @@ input[type=number] {
 #scale-generator .scale-generator {
   height: auto;
   flex: 0 0 auto;
+  /* 기본 `.scale-generator { overflow: hidden }` 은 칩이 2→3행으로 늘 때 하단을 자름 */
+  overflow-x: hidden;
+  overflow-y: visible;
 }
 
 #scale-generator .sg-main {
@@ -3521,10 +3596,13 @@ input[type=number] {
 
 #scale-generator .sg-intervals {
   flex: 0 1 auto;
+  min-height: min-content;
 }
 
 #scale-generator .sg-chips {
   flex: 0 1 auto;
+  min-height: min-content;
+  align-content: start;
 }
 
 .sg-main {
@@ -3967,14 +4045,12 @@ input[type=number] {
   display: flex;
   flex-direction: column;
   background-color: #1a1f2e;
-  border-radius: 8px;
+  border-radius: 0;
   width: 100%;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   min-height: 0;
   /* 컨트롤 패널(위) + 건반(아래) — 뷰포트 너비와 무관하게 동일 구조 */
-  /* 접힘: 본문 대신 행 오른쪽 전체를 탭해 펼침 (닫기는 왼쪽 토글만) */
-  /* 왼쪽: 접기 버튼만 — 오른쪽: 패널 내용 (한 행) */
-  /* 패널 안: 바깥 카드 한 겹만 두고 내부 settings-row 패딩·배경 최소화 */
+  /* Chords 패널 제외: 옥타브·서스테인 + 키보드 매핑 행만 세로 타이트 */
 }
 .piano-container .piano-layout {
   display: flex;
@@ -3992,157 +4068,100 @@ input[type=number] {
   flex: 0 0 auto;
   display: flex;
   flex-direction: column;
-  padding: 5px 6px 0;
+  padding: 6px 8px 0;
 }
 .piano-container .settings-container {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 4px;
   height: auto;
 }
-.piano-container .piano-settings-panel {
-  border-radius: 3px;
-  overflow: hidden;
-  background-color: #2a2f3e;
+.piano-container .settings-container > .settings-row:not(.keyboard-settings):not(.chord-slots-row) {
+  padding: 3px 5px;
+  gap: 5px;
 }
-.piano-container .piano-settings-panel-expand-hit {
-  flex: 1 1 auto;
-  min-width: 0;
-  min-height: 26px;
-  align-self: stretch;
-  cursor: pointer;
-  border-radius: 0 2px 2px 0;
-  background: linear-gradient(90deg, rgba(30, 35, 48, 0.35) 0%, rgba(42, 47, 62, 0.2) 100%);
+.piano-container .settings-container > .settings-row:not(.keyboard-settings):not(.chord-slots-row) .octave-control {
+  gap: 5px;
 }
-.piano-container .piano-settings-panel-row {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 0;
-  min-width: 0;
-}
-.piano-container .piano-settings-panel-toggle {
-  flex: 0 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: auto;
-  min-width: 22px;
-  margin: 0;
-  padding: 2px 4px;
-  line-height: 1;
-  color: #c4c0a8;
-  background-color: #252b38;
-  border: none;
-  border-right: 1px solid #1a1f2e;
-  cursor: pointer;
-  transition: background-color 0.12s ease;
-}
-.piano-container .piano-settings-panel-toggle:hover {
-  background-color: #2c3445;
-}
-.piano-container .piano-settings-panel-chevron {
-  flex: 0 0 auto;
-  font-size: 10px;
-  line-height: 1;
-  opacity: 0.9;
-}
-.piano-container .piano-settings-panel-body {
-  flex: 1 1 auto;
-  min-width: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-  padding: 1px 3px 2px 4px;
-}
-.piano-container .piano-settings-panel-body > .settings-row {
-  margin: 0;
-  padding: 2px 3px;
-  gap: 4px;
-  background-color: transparent;
-  border-radius: 0;
-}
-.piano-container .piano-settings-panel-body .octave-control {
-  gap: 4px;
-}
-.piano-container .piano-settings-panel-body .octave-control button {
+.piano-container .settings-container > .settings-row:not(.keyboard-settings):not(.chord-slots-row) .octave-control button {
   padding: 3px 6px;
   font-size: 12px;
   min-width: 30px;
-  border-radius: 3px;
 }
-.piano-container .piano-settings-panel-body .octave-control .octave-display {
-  padding: 3px 6px;
+.piano-container .settings-container > .settings-row:not(.keyboard-settings):not(.chord-slots-row) .octave-control .octave-display {
+  padding: 3px 8px;
   font-size: 11px;
-  border-radius: 3px;
 }
-.piano-container .piano-settings-panel-body .sustain-control .sustain-button {
-  padding: 3px 6px;
+.piano-container .settings-container > .settings-row:not(.keyboard-settings):not(.chord-slots-row) .sustain-control .sustain-button {
+  padding: 3px 8px;
   font-size: 11px;
-  border-radius: 3px;
 }
-.piano-container .piano-settings-panel-body .keyboard-settings .keyboard-octave-display {
-  padding: 4px 5px;
-  gap: 3px;
-  border-radius: 3px;
+.piano-container .settings-row.keyboard-settings .keyboard-octave-display {
+  padding: 3px 4px;
+  gap: 2px;
 }
-.piano-container .piano-settings-panel-body .octave-info .octave-label {
-  font-size: 10px;
-}
-.piano-container .piano-settings-panel-body .octave-info .octave-label .octave-value {
-  font-size: 12px;
-  padding: 2px 4px;
-}
-.piano-container .piano-settings-panel-body .keyboard-settings .keyboard-toggle .keyboard-toggle-button {
-  padding: 3px 7px;
-  font-size: 12px;
-}
-.piano-container .piano-settings-panel-body > .settings-row.chord-slots-row {
-  padding: 1px 2px;
-}
-.piano-container .piano-settings-panel-body .chord-slots {
-  gap: 3px;
-}
-.piano-container .piano-settings-panel-body .chord-slots .chord-slots-header {
+.piano-container .settings-row.keyboard-settings .octave-info {
   gap: 4px;
-  align-items: center;
 }
-.piano-container .piano-settings-panel-body .chord-slots .chord-slots-title {
-  font-size: 8px;
-}
-.piano-container .piano-settings-panel-body .chord-slots-grid {
-  grid-template-rows: 24px;
-  gap: 3px;
-}
-.piano-container .piano-settings-panel-body .chord-slot {
-  height: 24px;
-  min-height: 24px;
-  max-height: 24px;
-  border-radius: 3px;
-  gap: 1px;
-}
-.piano-container .piano-settings-panel-body .chord-slot .chord-slot-number {
+.piano-container .settings-row.keyboard-settings .octave-label {
   font-size: 10px;
+  gap: 0;
 }
-.piano-container .piano-settings-panel-body .chord-slot .chord-slot-badge {
-  font-size: 7px;
-  padding: 1px 4px;
+.piano-container .settings-row.keyboard-settings .octave-label .octave-range-shift {
+  gap: 2px;
 }
-.piano-container .piano-settings-panel-body .mode-toggle-row {
-  padding: 1px 2px;
-  gap: 1px;
-  border-radius: 4px;
+.piano-container .settings-row.keyboard-settings .octave-label .octave-value {
+  font-size: 11px;
+  padding: 1px 3px;
 }
-.piano-container .piano-settings-panel-body .mode-toggle-row .mode-tab {
-  padding: 2px 5px;
+.piano-container .settings-row.keyboard-settings .octave-shift-btn {
+  min-width: 20px;
+  min-height: 20px;
+  padding: 0 2px;
 }
-.piano-container .piano-settings-panel-body .mode-toggle-row .mode-tab .mode-tab-icon,
-.piano-container .piano-settings-panel-body .mode-toggle-row .mode-tab .mode-tab-text {
-  font-size: 9px;
+.piano-container .settings-row.keyboard-settings .octave-shift-btn svg {
+  width: 9px;
+  height: 9px;
 }
-.piano-container .piano-settings-panel-body .btn-mini {
-  padding: 2px 5px;
-  font-size: 9px;
+.piano-container .settings-row.keyboard-settings .keyboard-toggle {
+  min-width: 0;
+}
+.piano-container .settings-row.keyboard-settings .keyboard-toggle .keyboard-toggle-button {
+  padding: 2px 6px;
+  font-size: 10px;
+  line-height: 1.2;
+}
+.piano-container .settings-row.keyboard-settings .octave-hand-shortcuts {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  flex-shrink: 0;
+  font-size: 8px;
+  line-height: 1.1;
+  color: #6c7389;
+  user-select: none;
+}
+.piano-container .settings-row.keyboard-settings .octave-hand-shortcuts.octave-hand-shortcuts--outside-left {
+  margin-right: 0;
+}
+.piano-container .settings-row.keyboard-settings .octave-hand-shortcuts.octave-hand-shortcuts--outside-right {
+  margin-left: 0;
+}
+.piano-container .settings-row.keyboard-settings .octave-hand-shortcuts kbd {
+  display: inline-block;
+  padding: 0 3px;
+  min-width: 1em;
+  text-align: center;
+  font-family: ui-monospace, "JetBrains Mono", monospace;
+  font-size: 8px;
+  font-weight: 600;
+  color: #9ef5cf;
+  background: rgba(18, 22, 32, 0.95);
+  border: 1px solid #3a4556;
+  border-radius: 2px;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
 }
 .piano-container .settings-row {
   display: flex;
@@ -4273,7 +4292,7 @@ input[type=number] {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   position: relative;
-  border-radius: 6px;
+  border-radius: 0;
   padding: 5px 8px 8px;
 }
 .piano-container .keyboard-container::-webkit-scrollbar {
@@ -4407,10 +4426,10 @@ input[type=number] {
 .piano-container .keyboard-settings .keyboard-octave-display {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 3px;
   width: 100%;
   background-color: #2a2f3e;
-  padding: 8px;
+  padding: 5px 6px;
   border-radius: 4px;
   box-sizing: border-box;
 }
@@ -4418,20 +4437,58 @@ input[type=number] {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 6px;
 }
 .piano-container .keyboard-settings .keyboard-octave-display .octave-info .octave-label {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2px;
-  font-size: 12px;
+  gap: 0;
+  font-size: 10px;
   color: #999;
 }
+.piano-container .keyboard-settings .keyboard-octave-display .octave-info .octave-label .octave-range-shift {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  min-width: 0;
+}
+.piano-container .keyboard-settings .keyboard-octave-display .octave-info .octave-label .octave-shift-btn {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 1px 4px;
+  min-width: 22px;
+  min-height: 22px;
+  box-sizing: border-box;
+  background-color: #3a3f4e;
+  color: #fff;
+  border: 1px solid #4a5f5e;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease, transform 0.1s ease;
+}
+.piano-container .keyboard-settings .keyboard-octave-display .octave-info .octave-label .octave-shift-btn svg {
+  width: 10px;
+  height: 10px;
+  display: block;
+}
+.piano-container .keyboard-settings .keyboard-octave-display .octave-info .octave-label .octave-shift-btn:hover {
+  background-color: #4a5f5e;
+  border-color: #5a6f6e;
+}
+.piano-container .keyboard-settings .keyboard-octave-display .octave-info .octave-label .octave-shift-btn:active {
+  transform: translateY(1px);
+}
 .piano-container .keyboard-settings .keyboard-octave-display .octave-info .octave-label .octave-value {
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 600;
   color: #fff;
-  padding: 3px 6px;
+  padding: 2px 5px;
   border-radius: 3px;
   background-color: rgba(100, 100, 100, 0.2);
 }
@@ -4455,16 +4512,19 @@ input[type=number] {
 .piano-container .keyboard-settings .keyboard-octave-display .octave-info .keyboard-toggle {
   display: flex;
   justify-content: center;
-  min-width: 100px;
+  align-items: center;
+  min-width: 0;
+  flex-shrink: 0;
 }
 .piano-container .keyboard-settings .keyboard-octave-display .octave-info .keyboard-toggle .keyboard-toggle-button {
-  padding: 5px 10px;
+  padding: 3px 8px;
   background-color: #2a2f3e;
   color: #8b92a5;
   border: 1px solid #3a3f4e;
-  border-radius: 4px;
+  border-radius: 3px;
   cursor: pointer;
-  font-size: 14px;
+  font-size: 11px;
+  line-height: 1.2;
   transition: all 0.2s ease;
 }
 .piano-container .keyboard-settings .keyboard-octave-display .octave-info .keyboard-toggle .keyboard-toggle-button:hover {
@@ -4999,7 +5059,7 @@ input[type=number] {
 
 .metric-card {
   background-color: #1a1f2e;
-  border-radius: 16px;
+  border-radius: 0;
   border: 1px solid #2a2f3e;
   padding: 24px;
   transition: all 0.3s ease;
@@ -5028,14 +5088,14 @@ input[type=number] {
 
 .invoices-card {
   background-color: #1a1f2e;
-  border-radius: 16px;
+  border-radius: 0;
   border: 1px solid #2a2f3e;
   padding: 24px;
 }
 
 .activity-card {
   background-color: #1a1f2e;
-  border-radius: 16px;
+  border-radius: 0;
   border: 1px solid #2a2f3e;
   padding: 24px;
 }
@@ -5301,7 +5361,6 @@ input[type=number] {
   }
   .piano-container .settings-section {
     padding: 5px 6px 4px;
-    /* 접기 패널 안 코드 행: 위 일반 .chord-slots-row 패딩보다 나중에 두어 덮어씀 */
   }
   .piano-container .settings-section .chord-slots-row {
     padding: 4px 5px;
@@ -5336,13 +5395,10 @@ input[type=number] {
   .piano-container .settings-section .chord-slots-row .chord-slots .mode-toggle-row .mode-tab .mode-tab-icon, .piano-container .settings-section .chord-slots-row .chord-slots .mode-toggle-row .mode-tab .mode-tab-text {
     font-size: 9px;
   }
-  .piano-container .settings-section .piano-settings-panel-body > .settings-row.chord-slots-row {
-    padding: 1px 3px;
-  }
 }
 @media (max-width: 768px) {
   .content-area {
-    padding: 16px;
+    padding: 5px;
     min-width: 0 !important;
     max-width: 100%;
     box-sizing: border-box;
@@ -5391,7 +5447,7 @@ input[type=number] {
   .content-area {
     min-width: 0 !important;
     max-width: 100%;
-    padding: 12px;
+    padding: 5px;
     box-sizing: border-box;
   }
   .dashboard-overview {
@@ -5854,5 +5910,9 @@ input[type=number] {
   }
   .modern-button {
     width: 100%;
+  }
+  /* 피아노: 키보드 매핑/⌨ 패널은 모바일에서 숨김(터치 건반만 사용) */
+  .piano-container .settings-row.keyboard-settings {
+    display: none;
   }
 }
