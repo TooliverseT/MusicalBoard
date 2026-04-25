@@ -1586,6 +1586,103 @@ button.active {
   overflow: hidden;
 }
 
+/*
+ * 홈 대시보드(≥1025px, `.dashboard-home-layout`): 좌 3열=피치만(행 1–5),
+ * 우 2열=1행 진폭+메트로놈, 2–3행 스케일, 4–5행 레인지, 6행=피아노 풀폭.
+ * `minmax()` 로 행별 최소 높이 유지, `1fr` 로 피치 높이가 우열 전체(5행)와 맞춤.
+ */
+@media (min-width: 1025px) {
+  .content-area:has(> .app-container) {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+  }
+  .content-area > .app-container {
+    flex: 1 1 0;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  .content-area > .app-container > .seo-home-above-dashboard {
+    flex: 0 0 auto;
+  }
+  .content-area .dashboard.dashboard-home-layout {
+    flex: 1 1 0;
+    min-height: 0;
+    width: 100%;
+    align-content: stretch;
+    grid-template-rows: minmax(168px, 1.55fr) minmax(132px, 1fr) minmax(132px, 1fr) minmax(108px, 1fr) minmax(108px, 1fr) auto;
+  }
+  .content-area .dashboard.dashboard-home-layout > .dashboard-item {
+    min-height: 0;
+    align-self: stretch;
+  }
+  .content-area .dashboard.dashboard-home-layout #pitch-plot.dashboard-item {
+    grid-column: 1/4;
+    grid-row: 1/6;
+    aspect-ratio: auto;
+    height: 100%;
+    max-height: none;
+  }
+  .content-area .dashboard.dashboard-home-layout #pitch-plot .dashboard-item-content {
+    flex: 1 1 0;
+    min-height: 0;
+    height: 100%;
+  }
+  .content-area .dashboard.dashboard-home-layout #amplitude-visualizer.dashboard-item {
+    grid-column: 4;
+    grid-row: 1/2;
+    height: 100%;
+    aspect-ratio: auto;
+  }
+  .content-area .dashboard.dashboard-home-layout #metronome.dashboard-item {
+    grid-column: 5;
+    grid-row: 1/2;
+    height: 100%;
+    aspect-ratio: auto;
+  }
+  .content-area .dashboard.dashboard-home-layout #metronome .dashboard-item-content,
+  .content-area .dashboard.dashboard-home-layout #amplitude-visualizer .dashboard-item-content {
+    flex: 1 1 0;
+    min-height: 0;
+    height: 100%;
+  }
+  .content-area .dashboard.dashboard-home-layout.dashboard--with-range #scale-generator.dashboard-item {
+    grid-column: 4/6;
+    grid-row: 2/4;
+    height: 100%;
+    aspect-ratio: auto;
+  }
+  .content-area .dashboard.dashboard-home-layout.dashboard--with-range #vocal-range-gauge.dashboard-item {
+    grid-column: 4/6;
+    grid-row: 4/6;
+    height: 100%;
+    aspect-ratio: auto;
+  }
+  .content-area .dashboard.dashboard-home-layout.dashboard--with-range #scale-generator .dashboard-item-content,
+  .content-area .dashboard.dashboard-home-layout.dashboard--with-range #vocal-range-gauge .dashboard-item-content {
+    flex: 1 1 0;
+    min-height: 0;
+    height: 100%;
+  }
+  .content-area .dashboard.dashboard-home-layout.dashboard--no-range #scale-generator.dashboard-item {
+    grid-column: 4/6;
+    grid-row: 2/6;
+    height: 100%;
+    aspect-ratio: auto;
+  }
+  .content-area .dashboard.dashboard-home-layout.dashboard--no-range #scale-generator .dashboard-item-content {
+    flex: 1 1 0;
+    min-height: 0;
+    height: 100%;
+  }
+  .content-area .dashboard.dashboard-home-layout #piano-keyboard.dashboard-item {
+    grid-column: 1/-1;
+    grid-row: 6/7;
+    height: auto;
+    align-self: start;
+  }
+}
 /* 대시보드 아이템 헤더 스타일 */
 .dashboard-item-header {
   background-color: #16272d;
@@ -1906,12 +2003,12 @@ button.active {
   box-sizing: border-box;
   overflow: hidden;
   border-radius: 0 0 6px 6px;
-  /* 창이 좁아지면 가로에 비례해 히트맵 높이도 줄어듦 */
-  aspect-ratio: 100/22;
+  /* 창이 좁아지면 가로에 비례해 히트맵 높이도 줄어듦 (가로 대비 세로: 100/22 → 100/19 로 약간 낮춤) */
+  aspect-ratio: 100/19;
   height: auto;
   flex: 0 1 auto;
-  max-height: min(36vw, 260px);
-  min-height: 56px;
+  max-height: min(30vw, 220px);
+  min-height: 48px;
   display: flex;
   flex-direction: column;
 }
@@ -3875,6 +3972,9 @@ input[type=number] {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   min-height: 0;
   /* 컨트롤 패널(위) + 건반(아래) — 뷰포트 너비와 무관하게 동일 구조 */
+  /* 접힘: 본문 대신 행 오른쪽 전체를 탭해 펼침 (닫기는 왼쪽 토글만) */
+  /* 왼쪽: 접기 버튼만 — 오른쪽: 패널 내용 (한 행) */
+  /* 패널 안: 바깥 카드 한 겹만 두고 내부 settings-row 패딩·배경 최소화 */
 }
 .piano-container .piano-layout {
   display: flex;
@@ -3892,13 +3992,157 @@ input[type=number] {
   flex: 0 0 auto;
   display: flex;
   flex-direction: column;
-  padding: 10px 10px 0;
+  padding: 5px 6px 0;
 }
 .piano-container .settings-container {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 2px;
   height: auto;
+}
+.piano-container .piano-settings-panel {
+  border-radius: 3px;
+  overflow: hidden;
+  background-color: #2a2f3e;
+}
+.piano-container .piano-settings-panel-expand-hit {
+  flex: 1 1 auto;
+  min-width: 0;
+  min-height: 26px;
+  align-self: stretch;
+  cursor: pointer;
+  border-radius: 0 2px 2px 0;
+  background: linear-gradient(90deg, rgba(30, 35, 48, 0.35) 0%, rgba(42, 47, 62, 0.2) 100%);
+}
+.piano-container .piano-settings-panel-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0;
+  min-width: 0;
+}
+.piano-container .piano-settings-panel-toggle {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  min-width: 22px;
+  margin: 0;
+  padding: 2px 4px;
+  line-height: 1;
+  color: #c4c0a8;
+  background-color: #252b38;
+  border: none;
+  border-right: 1px solid #1a1f2e;
+  cursor: pointer;
+  transition: background-color 0.12s ease;
+}
+.piano-container .piano-settings-panel-toggle:hover {
+  background-color: #2c3445;
+}
+.piano-container .piano-settings-panel-chevron {
+  flex: 0 0 auto;
+  font-size: 10px;
+  line-height: 1;
+  opacity: 0.9;
+}
+.piano-container .piano-settings-panel-body {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding: 1px 3px 2px 4px;
+}
+.piano-container .piano-settings-panel-body > .settings-row {
+  margin: 0;
+  padding: 2px 3px;
+  gap: 4px;
+  background-color: transparent;
+  border-radius: 0;
+}
+.piano-container .piano-settings-panel-body .octave-control {
+  gap: 4px;
+}
+.piano-container .piano-settings-panel-body .octave-control button {
+  padding: 3px 6px;
+  font-size: 12px;
+  min-width: 30px;
+  border-radius: 3px;
+}
+.piano-container .piano-settings-panel-body .octave-control .octave-display {
+  padding: 3px 6px;
+  font-size: 11px;
+  border-radius: 3px;
+}
+.piano-container .piano-settings-panel-body .sustain-control .sustain-button {
+  padding: 3px 6px;
+  font-size: 11px;
+  border-radius: 3px;
+}
+.piano-container .piano-settings-panel-body .keyboard-settings .keyboard-octave-display {
+  padding: 4px 5px;
+  gap: 3px;
+  border-radius: 3px;
+}
+.piano-container .piano-settings-panel-body .octave-info .octave-label {
+  font-size: 10px;
+}
+.piano-container .piano-settings-panel-body .octave-info .octave-label .octave-value {
+  font-size: 12px;
+  padding: 2px 4px;
+}
+.piano-container .piano-settings-panel-body .keyboard-settings .keyboard-toggle .keyboard-toggle-button {
+  padding: 3px 7px;
+  font-size: 12px;
+}
+.piano-container .piano-settings-panel-body > .settings-row.chord-slots-row {
+  padding: 1px 2px;
+}
+.piano-container .piano-settings-panel-body .chord-slots {
+  gap: 3px;
+}
+.piano-container .piano-settings-panel-body .chord-slots .chord-slots-header {
+  gap: 4px;
+  align-items: center;
+}
+.piano-container .piano-settings-panel-body .chord-slots .chord-slots-title {
+  font-size: 8px;
+}
+.piano-container .piano-settings-panel-body .chord-slots-grid {
+  grid-template-rows: 24px;
+  gap: 3px;
+}
+.piano-container .piano-settings-panel-body .chord-slot {
+  height: 24px;
+  min-height: 24px;
+  max-height: 24px;
+  border-radius: 3px;
+  gap: 1px;
+}
+.piano-container .piano-settings-panel-body .chord-slot .chord-slot-number {
+  font-size: 10px;
+}
+.piano-container .piano-settings-panel-body .chord-slot .chord-slot-badge {
+  font-size: 7px;
+  padding: 1px 4px;
+}
+.piano-container .piano-settings-panel-body .mode-toggle-row {
+  padding: 1px 2px;
+  gap: 1px;
+  border-radius: 4px;
+}
+.piano-container .piano-settings-panel-body .mode-toggle-row .mode-tab {
+  padding: 2px 5px;
+}
+.piano-container .piano-settings-panel-body .mode-toggle-row .mode-tab .mode-tab-icon,
+.piano-container .piano-settings-panel-body .mode-toggle-row .mode-tab .mode-tab-text {
+  font-size: 9px;
+}
+.piano-container .piano-settings-panel-body .btn-mini {
+  padding: 2px 5px;
+  font-size: 9px;
 }
 .piano-container .settings-row {
   display: flex;
@@ -4030,7 +4274,7 @@ input[type=number] {
   -webkit-overflow-scrolling: touch;
   position: relative;
   border-radius: 6px;
-  padding: 8px 10px 10px;
+  padding: 5px 8px 8px;
 }
 .piano-container .keyboard-container::-webkit-scrollbar {
   height: 8px;
@@ -5056,7 +5300,8 @@ input[type=number] {
     min-height: 0;
   }
   .piano-container .settings-section {
-    padding: 8px 8px 6px;
+    padding: 5px 6px 4px;
+    /* 접기 패널 안 코드 행: 위 일반 .chord-slots-row 패딩보다 나중에 두어 덮어씀 */
   }
   .piano-container .settings-section .chord-slots-row {
     padding: 4px 5px;
@@ -5090,6 +5335,9 @@ input[type=number] {
   }
   .piano-container .settings-section .chord-slots-row .chord-slots .mode-toggle-row .mode-tab .mode-tab-icon, .piano-container .settings-section .chord-slots-row .chord-slots .mode-toggle-row .mode-tab .mode-tab-text {
     font-size: 9px;
+  }
+  .piano-container .settings-section .piano-settings-panel-body > .settings-row.chord-slots-row {
+    padding: 1px 3px;
   }
 }
 @media (max-width: 768px) {
