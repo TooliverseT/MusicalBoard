@@ -3584,22 +3584,6 @@ input[type=number] {
   overflow-y: visible;
 }
 
-#scale-generator .sg-main {
-  height: auto;
-  grid-template-rows: auto auto auto;
-}
-
-#scale-generator .sg-intervals {
-  flex: 0 1 auto;
-  min-height: min-content;
-}
-
-#scale-generator .sg-chips {
-  flex: 0 1 auto;
-  min-height: min-content;
-  align-content: start;
-}
-
 .sg-main {
   display: flex;
   flex-direction: column;
@@ -3615,9 +3599,31 @@ input[type=number] {
   grid-template-rows: auto 1fr auto;
 }
 
+/*
+ * 스케일 제너레이터 타일: 상세(.pitch-analyzer-direct)와 같이 세로는 콘텐츠 높이만 사용.
+ * 위 `.dashboard-item .sg-main` 의 height:100%·grid 1fr 중간 행이 좁은 타일에서 하단(ROOT/NOW) 과대·overflow 를 유발하므로 flex 열로 덮어씀.
+ */
+#scale-generator.dashboard-item .sg-main {
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  min-height: 0;
+}
+
+#scale-generator.dashboard-item .sg-intervals {
+  flex: 0 1 auto;
+  min-height: 0;
+}
+
+#scale-generator.dashboard-item .sg-chips {
+  flex: 0 1 auto;
+  min-height: 0;
+  align-content: start;
+}
+
 .sg-row-top {
   display: grid;
-  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr) minmax(0, 0.9fr);
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
   gap: clamp(6px, 0.8vw, 10px);
   min-width: 0;
 }
@@ -3735,49 +3741,6 @@ input[type=number] {
   height: 18px;
   display: block;
   pointer-events: none;
-}
-
-.sg-tempo-row {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  min-width: 0;
-}
-
-.sg-bpm-input {
-  flex: 1;
-  min-width: 0;
-  padding: 4px 6px;
-  font-family: "JetBrains Mono", ui-monospace, monospace;
-  font-size: 0.95rem;
-  font-weight: 700;
-  color: #f0f2f8;
-  text-align: center;
-  background: rgba(15, 20, 30, 0.65);
-  border: 1px solid #2a2f3e;
-  border-radius: 6px;
-  outline: none;
-  -moz-appearance: textfield;
-}
-.sg-bpm-input::-webkit-outer-spin-button, .sg-bpm-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-.sg-bpm-input:hover {
-  border-color: rgba(102, 126, 234, 0.45);
-}
-.sg-bpm-input:focus {
-  border-color: var(--sg-accent);
-  box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.28);
-}
-
-.sg-bpm-label {
-  flex-shrink: 0;
-  font-family: "Quicksand", system-ui, -apple-system, sans-serif;
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  color: var(--sg-muted);
 }
 
 .sg-intervals {
@@ -3907,20 +3870,141 @@ input[type=number] {
 
 .sg-row-bottom {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  gap: 8px;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  gap: clamp(8px, 1vw, 12px);
   align-items: stretch;
+  width: 100%;
+  min-width: 0;
+}
+
+.sg-row-bottom > .sg-status {
+  justify-self: stretch;
+  min-width: 0;
+}
+
+.sg-row-bottom > .sg-play-btn {
+  justify-self: center;
+}
+
+.sg-row-bottom > .sg-tempo-panel {
+  justify-self: stretch;
+  min-width: 0;
+}
+
+.sg-tempo-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-height: 0;
+  justify-content: flex-start;
+}
+
+.sg-tempo-panel-label {
+  margin: 0;
+  align-self: stretch;
+  text-align: left;
 }
 
 .sg-status {
   display: flex;
+  flex-direction: row;
+  align-items: center;
   gap: 10px;
-  padding: 6px 10px;
+  padding: 6px 8px;
   min-width: 0;
+  box-sizing: border-box;
   overflow: hidden;
   background: var(--sg-panel-bg);
   border: 1px solid var(--sg-panel-border);
   border-radius: 8px;
+}
+
+.sg-status .sg-status-item {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+/* Mirror metronome BPM layout tokens inside scale generator (not under `.metronome-container`) */
+.scale-generator .sg-tempo-panel .bpm-control-compact {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: clamp(4px, 0.8vw, 10px);
+  width: 100%;
+  max-width: none;
+}
+
+.scale-generator .bpm-buttons {
+  display: flex;
+  flex-direction: row;
+  gap: 3px;
+  flex-shrink: 0;
+}
+
+.scale-generator .bpm-display-compact {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  min-width: 0;
+}
+
+.scale-generator .bpm-tap-area {
+  flex: 1;
+  text-align: center;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 4px 8px;
+  margin: 0;
+  border-radius: 10px;
+  border: 1px solid rgba(102, 126, 234, 0.22);
+  background: linear-gradient(180deg, rgba(102, 126, 234, 0.1) 0%, rgba(18, 23, 34, 0.55) 100%);
+  transition: border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+}
+.scale-generator .bpm-tap-area:hover {
+  border-color: rgba(102, 126, 234, 0.45);
+  box-shadow: 0 0 0 1px rgba(102, 126, 234, 0.12);
+}
+
+.scale-generator .bpm-value-input {
+  width: clamp(48px, 18%, 80px);
+  min-width: 0;
+  padding: 0;
+  background: transparent;
+  border: none;
+  color: #f0f2f8;
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  font-weight: 700;
+  text-align: center;
+  line-height: 1.2;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  pointer-events: auto;
+}
+
+.scale-generator .bpm-value-input:focus {
+  outline: none;
+}
+
+.scale-generator .bpm-label {
+  flex-shrink: 0;
+  font-family: "Quicksand", system-ui, -apple-system, sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: #a8b4ff;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 .sg-status-item {
@@ -4015,13 +4099,33 @@ input[type=number] {
     padding: 6px 10px;
   }
   .sg-row-bottom {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 6px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    width: 100%;
+  }
+  /* DOM 순서는 tempo–play–status(가로 그리드). 1열에서는 Tempo → Root/Now → 재생(맨 아래) */
+  .sg-row-bottom > .sg-tempo-panel {
+    order: 1;
+  }
+  .sg-row-bottom > .sg-status {
+    order: 2;
+  }
+  .sg-row-bottom > .sg-play-btn {
+    order: 3;
+    align-self: center;
+  }
+  .sg-tempo-panel-label {
+    align-self: stretch;
+    text-align: left;
+  }
+  .scale-generator .sg-tempo-panel .bpm-control-compact {
+    justify-content: center;
   }
   .sg-play-btn {
     width: 44px;
     height: 44px;
-    justify-self: center;
   }
   .sg-play-btn svg {
     width: 18px;
