@@ -2,62 +2,62 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://www.musicalboard.com/</loc>
-    <lastmod>2026-04-12</lastmod>
+    <lastmod>2026-04-27</lastmod>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.musicalboard.com/pitch-controls/</loc>
-    <lastmod>2026-04-12</lastmod>
+    <loc>https://www.musicalboard.com/singing-recorder/</loc>
+    <lastmod>2026-04-27</lastmod>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.musicalboard.com/pitch-plot/</loc>
-    <lastmod>2026-04-12</lastmod>
+    <loc>https://www.musicalboard.com/vocal-pitch-monitor/</loc>
+    <lastmod>2026-04-27</lastmod>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.musicalboard.com/amplitude-visualizer/</loc>
-    <lastmod>2026-04-12</lastmod>
+    <loc>https://www.musicalboard.com/audio-spectrum-analyzer/</loc>
+    <lastmod>2026-04-27</lastmod>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.musicalboard.com/metronome/</loc>
-    <lastmod>2026-04-12</lastmod>
+    <loc>https://www.musicalboard.com/online-metronome/</loc>
+    <lastmod>2026-04-27</lastmod>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.musicalboard.com/scale-generator/</loc>
-    <lastmod>2026-04-12</lastmod>
+    <loc>https://www.musicalboard.com/vocal-scales/</loc>
+    <lastmod>2026-04-27</lastmod>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.musicalboard.com/piano-keyboard/</loc>
-    <lastmod>2026-04-12</lastmod>
+    <loc>https://www.musicalboard.com/virtual-piano/</loc>
+    <lastmod>2026-04-27</lastmod>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.musicalboard.com/vocal-range-map/</loc>
-    <lastmod>2026-04-25</lastmod>
+    <loc>https://www.musicalboard.com/vocal-range-test/</loc>
+    <lastmod>2026-04-27</lastmod>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.musicalboard.com/about/</loc>
-    <lastmod>2026-04-12</lastmod>
+    <lastmod>2026-04-27</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://www.musicalboard.com/privacy/</loc>
-    <lastmod>2026-04-12</lastmod>
+    <lastmod>2026-04-27</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://www.musicalboard.com/terms/</loc>
-    <lastmod>2026-04-12</lastmod>
+    <lastmod>2026-04-27</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://www.musicalboard.com/contact/</loc>
-    <lastmod>2026-04-12</lastmod>
+    <lastmod>2026-04-27</lastmod>
     <priority>0.6</priority>
   </url>
 </urlset>
