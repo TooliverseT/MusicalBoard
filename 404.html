@@ -65,15 +65,19 @@
                 document.getElementsByTagName('head')[0].appendChild(meta);
             }
 
+            let redirectTarget = '/';
             if (legacyRouteRedirects[segment]) {
-                createMetaTag(legacyRouteRedirects[segment]);
+                redirectTarget = legacyRouteRedirects[segment];
+                sessionStorage.removeItem('redirect');
             } else if (validRoutes.includes(segment)) {
-                createMetaTag(segment);
+                redirectTarget = segment;
+                sessionStorage.redirect = window.location.href;
             } else {
-                createMetaTag('/');
+                sessionStorage.removeItem('redirect');
             }
 
-            sessionStorage.redirect = window.location.href;
+            createMetaTag(redirectTarget);
+            window.location.replace(redirectTarget);
         })();
     </script>
 </head>
