@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow, noarchive">
     <title>MusicalBoard — Redirecting…</title>
     <style>
         body {
@@ -46,6 +47,15 @@
     <script>
         (function() {
             const validRoutes = ['/', '/singing-recorder/', '/vocal-pitch-monitor/', '/audio-spectrum-analyzer/', '/online-metronome/', '/vocal-scales/', '/vocal-range-test/', '/virtual-piano/', '/blog/2026-04-30-musicalboard-introduction/', '/about/', '/privacy/', '/terms/', '/contact/', '/blog/'];
+            const legacyRouteRedirects = {
+                '/pitch-controls/': '/singing-recorder/',
+                '/pitch-plot/': '/vocal-pitch-monitor/',
+                '/amplitude-visualizer/': '/audio-spectrum-analyzer/',
+                '/metronome/': '/online-metronome/',
+                '/scale-generator/': '/vocal-scales/',
+                '/piano-keyboard/': '/virtual-piano/',
+                '/vocal-range-map/': '/vocal-range-test/'
+            };
             const segment = window.location.pathname;
 
             function createMetaTag(path) {
@@ -55,7 +65,9 @@
                 document.getElementsByTagName('head')[0].appendChild(meta);
             }
 
-            if (validRoutes.includes(segment)) {
+            if (legacyRouteRedirects[segment]) {
+                createMetaTag(legacyRouteRedirects[segment]);
+            } else if (validRoutes.includes(segment)) {
                 createMetaTag(segment);
             } else {
                 createMetaTag('/');
