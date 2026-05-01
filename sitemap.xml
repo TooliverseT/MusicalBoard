@@ -41,11 +41,6 @@
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.musicalboard.com/blog/2026-04-30-musicalboard-introduction/</loc>
-    <lastmod>2026-04-30</lastmod>
-    <priority>0.9</priority>
-  </url>
-  <url>
     <loc>https://www.musicalboard.com/about/</loc>
     <lastmod>2026-04-27</lastmod>
     <priority>0.6</priority>
@@ -69,5 +64,15 @@
     <loc>https://www.musicalboard.com/blog/</loc>
     <lastmod>2026-04-25</lastmod>
     <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://www.musicalboard.com/blog/2026-04-30-musicalboard-introduction/</loc>
+    <lastmod>2026-04-30</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.musicalboard.com/blog/2026-05-01-vocal-intonation/</loc>
+    <lastmod>2026-05-01</lastmod>
+    <priority>0.8</priority>
   </url>
 </urlset>

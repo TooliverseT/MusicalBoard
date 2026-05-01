@@ -21,8 +21,6 @@ What makes MusicalBoard useful rather than just convenient is that **the pitch g
 
 You can watch the line on the graph while you're sustaining a note, see whether it's sitting where it should be, and make adjustments without stopping. If you've only ever used your ears to judge your own pitch, the graph will probably surprise you a few times early on.
 
-<!-- Image suggestion: Full desktop screenshot of the MusicalBoard main dashboard. Left 3-column area: Vocal Pitch Monitor with a live line graph. Top right: Audio Spectrum & Vocal Level + Online Metronome. Middle right: Vocal Scales + Vocal Range Test gauge. Bottom full-width: Virtual Piano. Dark-theme professional UI. -->
-
 <p class="mb-blog-image">
   <img src="/blog/assets/musicalboard/musicalboard.png" alt="MusicalBoard dashboard showing 7 free vocal practice tools — Vocal Pitch Monitor, Audio Spectrum and Vocal Level, Online Metronome, Vocal Scales, Vocal Range Test, Virtual Piano, and Singing Recorder — arranged in a single dark-themed browser interface">
 </p>
