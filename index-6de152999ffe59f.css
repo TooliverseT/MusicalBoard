@@ -404,6 +404,7 @@ article.musicalboard-prose {
   padding-top: 4px;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
+  /* 모든 본문 h2 는 동일 톤(첫 섹션 제목과 동일): 크기·보더·여백 통일 */
   /* Markdown tables — CompuTools `post.scss` (separate borders, radii, cell rhythm); MB palette */
 }
 @media (max-width: 1200px) {
@@ -418,8 +419,8 @@ article.musicalboard-prose {
     font-size: 14px;
   }
 }
-.site-legal-page .content > h2:first-of-type,
-article.musicalboard-prose > h2:first-of-type {
+.site-legal-page .content h2,
+article.musicalboard-prose h2 {
   font-family: "Quicksand", system-ui, -apple-system, sans-serif;
   font-size: 28px;
   font-weight: 600;
@@ -431,38 +432,15 @@ article.musicalboard-prose > h2:first-of-type {
   text-align: left;
 }
 @media (max-width: 1200px) {
-  .site-legal-page .content > h2:first-of-type,
-  article.musicalboard-prose > h2:first-of-type {
+  .site-legal-page .content h2,
+  article.musicalboard-prose h2 {
     font-size: 26px;
   }
 }
 @media (max-width: 768px) {
-  .site-legal-page .content > h2:first-of-type,
-  article.musicalboard-prose > h2:first-of-type {
+  .site-legal-page .content h2,
+  article.musicalboard-prose h2 {
     font-size: 22px;
-  }
-}
-.site-legal-page .content h2:not(:first-of-type),
-article.musicalboard-prose h2:not(:first-of-type) {
-  font-family: "Quicksand", system-ui, -apple-system, sans-serif;
-  font-size: 22px;
-  font-weight: 600;
-  line-height: 1.4;
-  margin: 40px 0 18px;
-  padding-bottom: 5px;
-  color: #f0f2f8;
-  text-align: left;
-}
-@media (max-width: 1200px) {
-  .site-legal-page .content h2:not(:first-of-type),
-  article.musicalboard-prose h2:not(:first-of-type) {
-    font-size: 21px;
-  }
-}
-@media (max-width: 768px) {
-  .site-legal-page .content h2:not(:first-of-type),
-  article.musicalboard-prose h2:not(:first-of-type) {
-    font-size: 19px;
   }
 }
 .site-legal-page .content h3,
