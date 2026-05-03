@@ -6806,11 +6806,12 @@ a.mb-blog-article-tag:hover {
   text-decoration: underline;
 }
 
-.mb-blog-image {
+/* `.musicalboard-prose p { margin: 0 0 1rem }` 가 더 높은 특이성이라 `.mb-blog-image` 단독 규칙의 margin:auto 가 무시됨 → 블록 가운데 정렬 실패 */
+article.musicalboard-prose p.mb-blog-image {
   text-align: center;
-  margin: 0 auto;
+  margin: 0 auto 1rem;
   width: 95%;
 }
-.mb-blog-image img {
+article.musicalboard-prose p.mb-blog-image img {
   width: 100%;
 }
