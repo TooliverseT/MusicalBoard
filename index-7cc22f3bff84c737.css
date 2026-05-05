@@ -6761,6 +6761,21 @@ a.mb-blog-article-tag:hover {
   margin-bottom: 28px;
 }
 
+.mb-blog-article-body pre {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 1rem 1.25rem;
+  margin: 0 0 1rem;
+  overflow-x: auto;
+  border-radius: 10px;
+  border: 1px solid rgba(154, 163, 184, 0.25);
+  background: rgba(18, 22, 34, 0.85);
+  color: #e4e7ec;
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 0.8rem;
+  line-height: 2;
+}
+
 .mb-blog-related {
   margin: 28px 0;
   padding: 16px 18px;
