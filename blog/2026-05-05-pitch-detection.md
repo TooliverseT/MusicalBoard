@@ -1,6 +1,6 @@
 ---
 title: "How Browser-Based Pitch Detection Works — From Web Audio API to WebAssembly"
-date: 2026-05-05
+date: 05 May 2026
 tags: ["Vocal Pitch Monitor"]
 excerpt: "A look at how real-time pitch detection works in the browser, from Web Audio API and AudioWorklet to WebAssembly. Understanding the technology behind Vocal Pitch Monitor — which runs with nothing to install — helps you get more out of the tool."
 ---
