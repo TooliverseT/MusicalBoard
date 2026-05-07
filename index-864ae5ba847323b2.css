@@ -195,6 +195,52 @@ body {
   .app-layout.sidebar-collapsed .sidebar-edge-toggle {
     left: var(--sidebar-rail);
   }
+  html.mb-sidebar-collapsed-bootstrap .app-layout .sidebar {
+    width: var(--sidebar-rail);
+    transition: none;
+  }
+  html.mb-sidebar-collapsed-bootstrap .app-layout .main-content {
+    margin-left: var(--sidebar-rail);
+    transition: none;
+  }
+  html.mb-sidebar-collapsed-bootstrap .app-layout .top-header-container {
+    left: var(--sidebar-rail);
+    transition: none;
+  }
+  html.mb-sidebar-collapsed-bootstrap .app-layout .sidebar .logo-text,
+  html.mb-sidebar-collapsed-bootstrap .app-layout .sidebar .nav-text {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+  html.mb-sidebar-collapsed-bootstrap .app-layout .sidebar .sidebar-header {
+    justify-content: center;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  html.mb-sidebar-collapsed-bootstrap .app-layout .sidebar .logo {
+    justify-content: center;
+    flex: 0 0 auto;
+    min-width: 0;
+  }
+  html.mb-sidebar-collapsed-bootstrap .app-layout .sidebar .nav-item {
+    justify-content: center;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  html.mb-sidebar-collapsed-bootstrap .app-layout .sidebar .sidebar-footer-legal {
+    display: none;
+  }
+  html.mb-sidebar-collapsed-bootstrap .app-layout .sidebar-edge-toggle {
+    left: var(--sidebar-rail);
+    transition: none;
+  }
 }
 /* 사이드바 오른쪽(본문 쪽) 접기: 하단·푸터·법적 링크와 같은 대역, 패널 밖(본문 영역에 걸침) */
 .sidebar-edge-toggle {
