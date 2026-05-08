@@ -669,6 +669,7 @@ article.musicalboard-prose strong {
   min-width: 0 !important;
   display: flex;
   flex-direction: column;
+  overflow-y: hidden;
 }
 
 /* 홈: app-container → 대시보드가 남는 세로 공간 사용 */
@@ -678,6 +679,19 @@ article.musicalboard-prose strong {
   min-height: 0;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
+}
+
+.main-content:fullscreen .content-area .dashboard-workspace-layout,
+.main-content:-webkit-full-screen .content-area .dashboard-workspace-layout {
+  flex: 1 1 0;
+  min-height: 0;
+}
+
+.main-content:fullscreen .content-area .dashboard-window-workspace,
+.main-content:-webkit-full-screen .content-area .dashboard-window-workspace {
+  height: 100%;
+  min-height: 0;
 }
 
 /* 상세(툴) 풀스크린: .detail-page 박스 제거 — main.content-area의 flex 자식이 .content.full-width(→ analyzer)가 됨 */
@@ -6277,6 +6291,11 @@ input[type=number] {
     align-items: start;
     min-height: calc(100vh - 72px);
   }
+  .main-content:fullscreen .dashboard-mobile-workspace,
+  .main-content:-webkit-full-screen .dashboard-mobile-workspace {
+    min-height: 0;
+    height: 100%;
+  }
   .dashboard-mobile-tool-row {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -6304,6 +6323,7 @@ input[type=number] {
     display: flex;
     flex-direction: column;
     gap: 12px;
+    min-height: 0;
   }
   .dashboard-item.dashboard-item-mobile {
     aspect-ratio: auto;
