@@ -2738,6 +2738,7 @@ button.active {
 .pitch-controls {
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
 /* 아이콘 버튼 스타일 */
@@ -2787,6 +2788,19 @@ button.active {
   padding: 2px;
 }
 
+@media (max-width: 768px) {
+  .navbar-controls-buttons {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 4px 6px;
+    align-items: center;
+    justify-items: stretch;
+  }
+  .navbar-controls-buttons > .playback-progress {
+    grid-column: 1/-1;
+    width: 100%;
+  }
+}
 /* 감도 드롭다운 스타일 */
 .sensitivity-dropdown {
   position: relative;
@@ -6036,6 +6050,57 @@ input[type=number] {
   transition: all 0.3s ease;
 }
 
+.upload-processing-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 12, 18, 0.72);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+
+.upload-processing-card {
+  min-width: 230px;
+  padding: 14px 16px;
+  border-radius: 10px;
+  background: rgba(21, 26, 38, 0.96);
+  border: 1px solid rgba(102, 126, 234, 0.45);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.upload-processing-spinner {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 3px solid rgba(168, 180, 255, 0.28);
+  border-top-color: #a8b4ff;
+  animation: upload-spin 0.9s linear infinite;
+}
+
+.upload-processing-text {
+  color: #d7def3;
+  font-size: 0.86rem;
+  font-family: "JetBrains Mono", monospace;
+}
+
+.upload-cancel-button {
+  min-width: 108px;
+  min-height: 40px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+@keyframes upload-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
 .modern-button:hover svg {
   transform: scale(1.1);
 }
@@ -6128,15 +6193,13 @@ input[type=number] {
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-  transform: translateY(-6px);
-  transition: opacity 0.2s ease, visibility 0.2s ease, transform 0.2s ease;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
 }
 
 .mobile-controls-panel.active {
   opacity: 1;
   visibility: visible;
   pointer-events: auto;
-  transform: translateY(0);
 }
 
 @media (max-width: 380px) {
@@ -6186,7 +6249,7 @@ input[type=number] {
 /* 한 줄 아이콘 + 다음 줄 게이지 */
 .mobile-controls-content .navbar-controls-buttons {
   display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 4px 6px;
   align-items: center;
   justify-items: stretch;
@@ -6290,7 +6353,7 @@ input[type=number] {
   }
   .controller-detail-pitch-controls .navbar-controls-buttons {
     display: grid;
-    grid-template-columns: repeat(5, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 4px 6px;
     align-items: center;
     justify-items: stretch;

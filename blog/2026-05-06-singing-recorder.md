@@ -2,7 +2,7 @@
 title: "Recording Your Voice in the Browser — A Step-by-Step Guide and What to Actually Listen For"
 date: 06 May 2026
 tags: ["Singing Recorder"]
-excerpt: "The fastest way to record yourself singing and play it back without installing anything. This guide covers mic setup, monitoring, playback and download — and more importantly, what to actually listen for when you review your recordings."
+excerpt: "The fastest way to record yourself singing and play it back without installing anything. This guide covers mic setup, monitoring, upload analysis, playback and download — and more importantly, what to actually listen for when you review your takes."
 ---
 
 There's a good chance you've hit play on a recording of yourself and thought, "do I really sound like that?" That reaction makes total sense. When you're singing, the voice you hear is partly carried through bone conduction — vibrations traveling through your skull — which makes it sound fuller and richer than it actually is. A recording strips that away and gives you what everyone else hears. It's uncomfortable, but that honesty is exactly what makes it useful.
@@ -70,6 +70,21 @@ To stop recording, click the mic button again. The playback button will become a
 Hit the play button to hear what you just recorded. You can click or drag anywhere on the progress bar to jump straight to that moment. The timestamp displays in minutes:seconds.milliseconds format, so finding a specific section you want to re-examine is pretty easy.
 
 The mic disables during playback. If you want to record again after listening, stop or let playback finish, then re-enable the mic. Starting a new recording will overwrite the previous take.
+
+### Step 4.5 — Upload an existing audio file and analyze it
+
+If you already have a take on your device, click the upload icon in the same control strip and choose a file. Singing Recorder analyzes the uploaded audio locally in your browser, then converts it into the same timeline/history format used for recorded takes.
+
+That means once analysis completes, playback behaves like a finished recording: the progress bar, pitch-related history views, and range/spectrum playback tracking all run from the uploaded file's timeline.
+
+Upload limits and format notes:
+
+- **Max duration:** 10 minutes
+- **Max file size:** 50MB
+- **Accepted picker type:** `audio/*` (actual decode support depends on your browser codec support)
+- **If upload decode fails:** convert to a common format like WAV or MP3 and try again
+
+While analysis is running, transport and edit controls are temporarily blocked and a processing modal appears with progress. Use **Cancel** in that modal if you want to stop analysis mid-way.
 
 ### Step 5 — Download
 
