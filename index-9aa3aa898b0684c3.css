@@ -669,7 +669,7 @@ article.musicalboard-prose strong {
   min-width: 0 !important;
   display: flex;
   flex-direction: column;
-  overflow-y: hidden;
+  overflow: hidden;
 }
 
 /* 홈: app-container → 대시보드가 남는 세로 공간 사용 */
@@ -677,21 +677,30 @@ article.musicalboard-prose strong {
 .main-content:-webkit-full-screen .content-area > .app-container {
   flex: 1 1 0;
   min-height: 0;
+  min-width: 0;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
 }
 
 .main-content:fullscreen .content-area .dashboard-workspace-layout,
 .main-content:-webkit-full-screen .content-area .dashboard-workspace-layout {
   flex: 1 1 0;
   min-height: 0;
+  min-width: 0;
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
 }
 
 .main-content:fullscreen .content-area .dashboard-window-workspace,
 .main-content:-webkit-full-screen .content-area .dashboard-window-workspace {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
   height: 100%;
   min-height: 0;
+  overflow-x: auto;
+  overflow-y: auto;
 }
 
 /* 상세(툴) 풀스크린: .detail-page 박스 제거 — main.content-area의 flex 자식이 .content.full-width(→ analyzer)가 됨 */
@@ -1688,6 +1697,7 @@ button.active {
 
 .dashboard-desktop-shell {
   width: 100%;
+  display: contents;
 }
 
 .dashboard-workspace-layout {
