@@ -31,7 +31,7 @@ The entire process happens inside your device without a single round-trip to a s
 
 [Web Audio API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API) has been a browser standard since W3C began standardizing it in 2013, and today Chrome, Firefox, Safari, and Edge all support it reliably. The core idea is straightforward: **connect nodes together to build an audio graph**.
 
-For pitch detection specifically, you take the microphone stream as a source node and attach an `AnalyserNode` to it. The `AnalyserNode` lets you pull waveform data (`getByteTimeDomainData`) or frequency spectrum data (`getByteFrequencyData`) from the current audio buffer in real time. The spectrum bars you see on MusicalBoard's [Audio Spectrum & Vocal Level](https://www.musicalboard.com/audio-spectrum-analyzer/) page are a direct visualization of that data.
+For pitch detection specifically, you take the microphone stream as a source node and attach an `AnalyserNode` to it. The `AnalyserNode` lets you pull waveform data (`getByteTimeDomainData`) or frequency spectrum data (`getByteFrequencyData`) from the current audio buffer in real time. On MusicalBoard's [Vocal Spectrum](https://www.musicalboard.com/audio-spectrum-analyzer/) page, that frequency data is rendered as FFT bars on a logarithmic Hz axis and dBFS scale, which makes vocal-band energy changes easier to read in practice.
 
 That said, `AnalyserNode` alone isn't great at extracting a precise fundamental frequency from a vocal signal. FFT (Fast Fourier Transform) breaks a signal down into frequency bins, but a human voice — rich with harmonics — doesn't sit cleanly in a single bin. That's why you need a dedicated pitch detection algorithm on top of it.
 
@@ -111,7 +111,7 @@ A bit of technical background goes a long way in getting better results out of t
 
 [Vocal Pitch Monitor](https://www.musicalboard.com/vocal-pitch-monitor/) is the most direct place to see this whole technical stack in action. Start singing and your note name and pitch graph appear in real time; when you're done, you can play back the same timeline and review it. Settings like sensitivity and Y-axis range are saved automatically in your browser so they're waiting for you next time.
 
-If you want volume and spectrum alongside pitch information, [Audio Spectrum & Vocal Level](https://www.musicalboard.com/audio-spectrum-analyzer/) shares the same microphone pipeline and opens in the same interface. For scale practice you can run [Vocal Scales](https://www.musicalboard.com/vocal-scales/) alongside it, and [Virtual Piano](https://www.musicalboard.com/virtual-piano/) is there when you need to find a reference pitch.
+If you want spectrum context alongside pitch information, [Vocal Spectrum](https://www.musicalboard.com/audio-spectrum-analyzer/) shares the same microphone pipeline and opens in the same interface. It is especially useful for reading harmonic balance, register-shift patterns, sibilance peaks, and breath-noise bands while you monitor pitch separately in the graph. For scale practice you can run [Vocal Scales](https://www.musicalboard.com/vocal-scales/) alongside it, and [Virtual Piano](https://www.musicalboard.com/virtual-piano/) is there when you need to find a reference pitch.
 
 Technically it's a lot of moving parts. From where you're sitting, it's just one browser tab.
 

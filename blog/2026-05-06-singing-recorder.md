@@ -116,7 +116,7 @@ Things worth noticing:
 Tone is subjective, but there are some things you can assess fairly objectively.
 
 - **Unintended nasality.** "Singing through your nose" might be deliberate for a certain style, or it might be a habit you haven't noticed. High notes are where this tends to creep in most.
-- **Register transitions (chest to head voice).** Check for any abrupt breaks or sudden changes in tone at the point where your registers shift. [Audio Spectrum & Vocal Level](https://www.musicalboard.com/audio-spectrum-analyzer/) can make this visible — the frequency graph will show you the tonal shift alongside what your ear is hearing.
+- **Register transitions (chest to head voice).** Check for abrupt breaks or sudden tone changes where registers shift. [Vocal Spectrum](https://www.musicalboard.com/audio-spectrum-analyzer/) makes this visible with log-frequency FFT bars, so you can compare how harmonic energy reorganizes across the transition.
 - **Breathiness.** Sometimes intentional, sometimes not. If it's showing up only in certain phrases, that's usually a sign those are the spots where your vocal support is running thin.
 
 ### Rhythm and diction — are notes landing where you expect them?
@@ -142,7 +142,7 @@ MP3 or WAV files exported from Singing Recorder can be shared through email, mes
 
 ## Using Singing Recorder as Part of a Practice Flow
 
-[Singing Recorder](https://www.musicalboard.com/singing-recorder/) runs alongside the rest of the tools on MusicalBoard. [Vocal Pitch Monitor](https://www.musicalboard.com/vocal-pitch-monitor/) and [Audio Spectrum & Vocal Level](https://www.musicalboard.com/audio-spectrum-analyzer/) stay active while you're recording, so you can have real-time visual feedback going and still capture the full take to review afterward.
+[Singing Recorder](https://www.musicalboard.com/singing-recorder/) runs alongside the rest of the tools on MusicalBoard. [Vocal Pitch Monitor](https://www.musicalboard.com/vocal-pitch-monitor/) and [Vocal Spectrum](https://www.musicalboard.com/audio-spectrum-analyzer/) stay active while you're recording, so you can track pitch and spectrum in real time, then review the same sections again on playback with synchronized spectrum history.
 
 A practical example of how this fits together: use [Virtual Piano](https://www.musicalboard.com/virtual-piano/) to find your starting pitch, run through a phrase while watching the Vocal Pitch Monitor, and once it's feeling solid, switch to Singing Recorder to capture a full run-through. Play it back and check the one thing you decided to focus on for that session. If something stands out in a particular bar, jump directly to it on the progress bar and replay it a few times.
 

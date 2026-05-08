@@ -22,7 +22,7 @@ What makes MusicalBoard useful rather than just convenient is that **the pitch g
 You can watch the line on the graph while you're sustaining a note, see whether it's sitting where it should be, and make adjustments without stopping. If you've only ever used your ears to judge your own pitch, the graph will probably surprise you a few times early on.
 
 <p class="mb-blog-image">
-  <img src="/blog/assets/musicalboard/musicalboard.png" alt="MusicalBoard dashboard showing 7 free vocal practice tools — Vocal Pitch Monitor, Audio Spectrum and Vocal Level, Online Metronome, Vocal Scales, Vocal Range Test, Virtual Piano, and Singing Recorder — arranged in a single dark-themed browser interface">
+  <img src="/blog/assets/musicalboard/musicalboard.png" alt="MusicalBoard dashboard showing 7 free vocal practice tools — Vocal Pitch Monitor, Vocal Spectrum, Online Metronome, Vocal Scales, Vocal Range Test, Virtual Piano, and Singing Recorder — arranged in a single dark-themed browser interface">
 </p>
 
 <p align="center">
@@ -35,7 +35,7 @@ It's a fair question whenever you're giving a website microphone access. Everyth
 
 ## Dashboard Layout — A Space That Mirrors How You Practice
 
-[MusicalBoard](https://www.musicalboard.com/) uses a grid layout that's responsive across screen sizes. The **Vocal Pitch Monitor** is the largest element — it's clearly the thing you'll be looking at most. Audio Spectrum & Vocal Level, the Online Metronome, Vocal Scales, and the Vocal Range Test fill in around it, and the Virtual Piano runs across the full bottom of the screen.
+[MusicalBoard](https://www.musicalboard.com/) uses a grid layout that's responsive across screen sizes. The **Vocal Pitch Monitor** is the largest element — it's clearly the thing you'll be looking at most. Vocal Spectrum, the Online Metronome, Vocal Scales, and the Vocal Range Test fill in around it, and the Virtual Piano runs across the full bottom of the screen.
 
 The positioning loosely follows a practice logic: check your pitch, look at your tone, keep time, run scales, check your range, find a reference note. You're not hunting for the next tool — it's already on screen.
 
@@ -54,13 +54,13 @@ There's a sensitivity control that handles different recording environments reas
 - **Legato practice:** Gaps or drops between notes show up as breaks in the line, which is a useful way to catch places where your phrasing is choppier than it feels.
 - **Comparing sessions over time:** If you record a session and come back to it later, you have something concrete to compare instead of just a general impression.
 
-### Audio Spectrum & Vocal Level — Look Inside Your Sound
+### Vocal Spectrum — Look Inside Your Sound
 
-The [Audio Spectrum & Vocal Level](https://www.musicalboard.com/audio-spectrum-analyzer/) tool shows the frequency breakdown of your voice — where the energy is sitting across the pitch spectrum — in real time.
+The [Vocal Spectrum](https://www.musicalboard.com/audio-spectrum-analyzer/) tool visualizes your voice with FFT bars on a logarithmic frequency axis (80 Hz-16 kHz) and a dBFS scale (-60 to 0). In practice, it tells you where energy is concentrating across low, mid, and high bands while you sing.
 
-The most practical use for this is probably **working on register transitions**. Moving between chest voice and head voice changes the harmonic structure of your sound pretty noticeably, and that change shows up clearly on the spectrum display. If you've been trying to smooth out your passaggio by ear alone, having a visual reference for what the shift actually looks like can help you understand what you're aiming for.
+The most practical use for this is **working on register transitions**. Moving between chest voice and head voice changes harmonic structure, and that shift is visible as a changing peak pattern. If you've been trying to smooth your passaggio by ear alone, this gives you a concrete visual target.
 
-The level meter is also just handy as a basic monitoring tool, especially if you're new to singing into a microphone and unsure whether your volume is in a useful range. Too quiet and the pitch detection gets less reliable; the meter tells you where you stand.
+It is also useful for **sibilance and breath-noise checks**. High-frequency spikes during consonants and sustained 10 kHz+ energy are easy to spot, so you can quickly test mic angle, distance, and articulation changes. During playback, the recorded spectrum history is synced to the timeline, which makes section-by-section A/B comparison straightforward.
 
 ### Online Metronome — An Unshakeable Rhythmic Reference
 
@@ -107,7 +107,7 @@ It's not a full-featured piano instrument — it's a reference tool, and that's 
 
 Recording yourself is uncomfortable. Most people avoid it. But listening back to a recording of your own singing is probably the most informative thing you can do, because the version of your voice you hear while singing is not the version other people hear. Bone conduction makes your own voice sound warmer and fuller to you than it actually is. A recording strips that away and plays back what actually happened.
 
-MusicalBoard's [Singing Recorder](https://www.musicalboard.com/singing-recorder/) handles recording directly in the browser — no external software, no hardware setup beyond the mic you're already using. Recordings stay on your device, up to 10 minutes per session, and you can play back or download immediately after. Crucially, the Vocal Pitch Monitor, Audio Spectrum & Vocal Level, and Online Metronome all keep running while you record, so you're not giving up live feedback to get the recording.
+MusicalBoard's [Singing Recorder](https://www.musicalboard.com/singing-recorder/) handles recording directly in the browser — no external software, no hardware setup beyond the mic you're already using. Recordings stay on your device, up to 10 minutes per session, and you can play back or download immediately after. Crucially, the Vocal Pitch Monitor, Vocal Spectrum, and Online Metronome all keep running while you record, so you're not giving up live feedback to get the recording.
 
 ## Using the Dashboard as a Whole
 
@@ -121,7 +121,7 @@ The reason the dashboard format is worth highlighting is that having all 7 tools
 
 **Step 3 (5 min) — Scale work:** Open Vocal Scales, set a comfortable tempo (70 BPM is a reasonable starting point), choose a major scale in a key that sits in your green zone, and sing through it while watching the pitch graph. When a note keeps pulling the line flat or sharp, stop and work that note a few times on its own before continuing.
 
-**Step 4 (4 min) — Applied singing:** Start the Singing Recorder and sing through whatever you're working on. Keep an eye on the Audio Spectrum & Vocal Level to see how your tone shifts across different parts of your range.
+**Step 4 (4 min) — Applied singing:** Start the Singing Recorder and sing through whatever you're working on. Keep an eye on the Vocal Spectrum to see how your tone shifts across different parts of your range.
 
 **Step 5 (1 min) — Listen back:** Play the recording. Note where the pitch graph was unstable. That's your agenda for next time.
 
@@ -129,7 +129,7 @@ The reason the dashboard format is worth highlighting is that having all 7 tools
 
 **Targeting weak spots:** Once you've identified the red zones in the Vocal Range Test, use those exact notes as the starting point in Vocal Scales. Run narrow patterns centered around the problem notes. The heat map is a direct readout of whether the work is paying off — red turning to yellow to green over a few sessions.
 
-**Working the passaggio:** Park in the notes around your chest-to-head break and watch the Audio Spectrum & Vocal Level carefully. The spectral shift that happens across the transition is visible on screen, which gives you something specific to focus on rather than just trying to sense it by feel.
+**Working the passaggio:** Park in the notes around your chest-to-head break and watch the Vocal Spectrum carefully. The spectral shift that happens across the transition is visible on screen, which gives you something specific to focus on rather than just trying to sense it by feel.
 
 **Tempo increments:** Start the Online Metronome slow enough that the pitch graph looks clean, then bring the tempo up gradually. Stay at any tempo where the graph gets choppy until it stabilizes before moving on.
 
@@ -156,7 +156,7 @@ Whether you're just starting out or you've been at it for years and want a clean
 [**Go to the MusicalBoard Dashboard →**](https://www.musicalboard.com/)
 
 **Individual tools:**
-[Vocal Pitch Monitor](https://www.musicalboard.com/vocal-pitch-monitor/) · [Audio Spectrum & Vocal Level](https://www.musicalboard.com/audio-spectrum-analyzer/) · [Online Metronome](https://www.musicalboard.com/online-metronome/) · [Vocal Scales](https://www.musicalboard.com/vocal-scales/) · [Vocal Range Test](https://www.musicalboard.com/vocal-range-test/) · [Virtual Piano](https://www.musicalboard.com/virtual-piano/) · [Singing Recorder](https://www.musicalboard.com/singing-recorder/)
+[Vocal Pitch Monitor](https://www.musicalboard.com/vocal-pitch-monitor/) · [Vocal Spectrum](https://www.musicalboard.com/audio-spectrum-analyzer/) · [Online Metronome](https://www.musicalboard.com/online-metronome/) · [Vocal Scales](https://www.musicalboard.com/vocal-scales/) · [Vocal Range Test](https://www.musicalboard.com/vocal-range-test/) · [Virtual Piano](https://www.musicalboard.com/virtual-piano/) · [Singing Recorder](https://www.musicalboard.com/singing-recorder/)
 
 **References:**
 - [W3C Web Audio API 1.1 Specification](https://www.w3.org/TR/webaudio/)
