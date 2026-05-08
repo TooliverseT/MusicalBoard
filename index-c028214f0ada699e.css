@@ -645,6 +645,11 @@ article.musicalboard-prose strong {
   transition: margin-left 0.25s ease;
 }
 
+/* 정적 HTML 선표시(배포 환경)에서 WASM 초기화 전 대시보드 깜빡임 방지 */
+body:not(.app-ready) .dashboard-desktop-shell {
+  visibility: hidden;
+}
+
 /* Fullscreen API: `#app-main-content` — top-header + 본문이 함께 표시. 사이드바는 대상 밖. */
 .main-content:fullscreen,
 .main-content:-webkit-full-screen {
