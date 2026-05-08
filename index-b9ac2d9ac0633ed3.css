@@ -1018,7 +1018,6 @@ article.musicalboard-prose strong {
   background-color: #0f1419;
   overflow-x: auto;
   overflow-y: auto;
-  min-width: 1600px;
   /* 스크롤바 항상 표시 */
   scrollbar-width: auto;
 }
@@ -1673,6 +1672,342 @@ button.active {
   min-height: 0;
 }
 
+.dashboard-desktop-shell {
+  width: 100%;
+}
+
+.dashboard-workspace-layout {
+  width: 100%;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 160px;
+  gap: 14px;
+  align-items: start;
+}
+
+.dashboard-window-workspace {
+  position: relative;
+  width: 100%;
+  min-width: 0;
+  height: calc(100vh - 60px);
+  min-height: 320px;
+  border: 1px solid #232a35;
+  background-color: #0c1118;
+  overflow: auto;
+}
+
+.dashboard-window-workspace:fullscreen,
+.dashboard-window-workspace:-webkit-full-screen {
+  height: 100vh;
+}
+
+.dashboard-window-surface {
+  position: relative;
+  width: 200%;
+  min-width: 1400px;
+  min-height: calc((100vh - 60px) * 2);
+}
+
+.dashboard-window {
+  position: absolute;
+  margin: 0;
+  border: 1px solid #2f3744;
+  background-color: #0f1419;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.32);
+  aspect-ratio: auto;
+  transition: none;
+  display: flex;
+  flex-direction: column;
+  border-radius: 8px;
+  overflow: visible;
+}
+
+.dashboard-window-bar {
+  height: 36px;
+  min-height: 36px;
+  max-height: 36px;
+  flex: 0 0 36px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 0 10px;
+  border-bottom: 1px solid #2a3342;
+  background-color: #161d28;
+  cursor: move;
+  user-select: none;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  position: relative;
+  z-index: 8;
+}
+
+.dashboard-window-bar--default {
+  background: linear-gradient(90deg, #222a37 0%, #18202b 100%);
+  border-bottom-color: #2b3445;
+}
+
+.dashboard-window-bar--pitch {
+  background: linear-gradient(90deg, rgba(106, 120, 255, 0.5) 0%, rgba(46, 57, 110, 0.9) 100%);
+  border-bottom-color: #4f5fbe;
+}
+
+.dashboard-window-bar--spectrum {
+  background: linear-gradient(90deg, rgba(75, 194, 217, 0.45) 0%, rgba(25, 88, 113, 0.9) 100%);
+  border-bottom-color: #3689a6;
+}
+
+.dashboard-window-bar--metronome {
+  background: linear-gradient(90deg, rgba(255, 163, 97, 0.5) 0%, rgba(117, 68, 34, 0.9) 100%);
+  border-bottom-color: #b77543;
+}
+
+.dashboard-window-bar--scale {
+  background: linear-gradient(90deg, rgba(128, 214, 121, 0.48) 0%, rgba(42, 104, 50, 0.9) 100%);
+  border-bottom-color: #5aa65c;
+}
+
+.dashboard-window-bar--range {
+  background: linear-gradient(90deg, rgba(210, 132, 243, 0.48) 0%, rgba(96, 47, 129, 0.9) 100%);
+  border-bottom-color: #9558b9;
+}
+
+.dashboard-window-bar--piano {
+  background: linear-gradient(90deg, rgba(222, 230, 246, 0.35) 0%, rgba(72, 81, 98, 0.9) 100%);
+  border-bottom-color: #7b879d;
+}
+
+.dashboard-window-title {
+  color: #e6ebff;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.dashboard-window-close {
+  border: none;
+  background: transparent;
+  color: #bfc7df;
+  width: 24px;
+  height: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+  cursor: pointer;
+  font-size: 18px;
+  line-height: 1;
+  padding: 0;
+}
+
+.dashboard-window-close:hover {
+  color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+.dashboard-window-content {
+  width: 100%;
+  flex: 1 1 auto;
+  min-height: 0;
+  height: auto;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+}
+
+.dashboard-window-resizer {
+  position: absolute;
+  z-index: 10;
+}
+
+.dashboard-window-resizer.is-n,
+.dashboard-window-resizer.is-s {
+  left: -6px;
+  right: -6px;
+  height: 12px;
+}
+
+.dashboard-window-resizer.is-n {
+  top: -6px;
+  cursor: n-resize;
+}
+
+.dashboard-window-resizer.is-s {
+  bottom: -6px;
+  cursor: s-resize;
+}
+
+.dashboard-window-resizer.is-e,
+.dashboard-window-resizer.is-w {
+  top: -6px;
+  bottom: -6px;
+  width: 12px;
+}
+
+.dashboard-window-resizer.is-e {
+  right: -6px;
+  cursor: e-resize;
+}
+
+.dashboard-window-resizer.is-w {
+  left: -6px;
+  cursor: w-resize;
+}
+
+.dashboard-window-resizer.is-ne,
+.dashboard-window-resizer.is-nw,
+.dashboard-window-resizer.is-se,
+.dashboard-window-resizer.is-sw {
+  width: 16px;
+  height: 16px;
+}
+
+.dashboard-window-resizer.is-ne {
+  top: -8px;
+  right: -8px;
+  cursor: ne-resize;
+}
+
+.dashboard-window-resizer.is-nw {
+  top: -8px;
+  left: -8px;
+  cursor: nw-resize;
+}
+
+.dashboard-window-resizer.is-se {
+  right: -8px;
+  bottom: -8px;
+  cursor: se-resize;
+}
+
+.dashboard-window-resizer.is-sw {
+  left: -8px;
+  bottom: -8px;
+  cursor: sw-resize;
+}
+
+.dashboard-tool-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 160px;
+  min-width: 160px;
+}
+
+.dashboard-tool-sidebar-top {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  align-items: stretch;
+  justify-items: stretch;
+}
+
+.dashboard-tool-icon {
+  border: 1px solid #3d4558;
+  width: 100%;
+  height: 40px;
+  border-radius: 7px;
+  background: rgba(81, 90, 112, 0.24);
+  color: #d8deef;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.dashboard-tool-icon:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  background: rgba(81, 90, 112, 0.14);
+}
+
+.dashboard-tool-icon.is-open {
+  border-color: #7b8cff;
+  color: #ffffff;
+  background: rgba(123, 140, 255, 0.28);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .dashboard-tool-icon:hover {
+    border-color: #7b8cff;
+    color: #ffffff;
+    background: rgba(123, 140, 255, 0.28);
+  }
+  .dashboard-tool-icon.is-open:hover {
+    background: rgba(123, 140, 255, 0.34);
+  }
+}
+@media (hover: none), (pointer: coarse) {
+  .dashboard-tool-icon {
+    transition: none;
+  }
+  .dashboard-tool-icon:not(.is-open):focus,
+  .dashboard-tool-icon:not(.is-open):focus-visible,
+  .dashboard-tool-icon:not(.is-open):active {
+    border-color: #3d4558;
+    color: #d8deef;
+    background: rgba(81, 90, 112, 0.24);
+    outline: none;
+  }
+}
+.dashboard-tool-icon.nav-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.dashboard-tool-icon-fullscreen {
+  grid-column: 1/-1;
+  height: 36px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: none;
+}
+
+@media (max-width: 1200px) and (min-width: 769px) {
+  .dashboard-workspace-layout {
+    grid-template-columns: minmax(0, 1fr) 144px;
+    gap: 10px;
+  }
+  .dashboard-tool-sidebar {
+    width: 144px;
+    min-width: 144px;
+  }
+}
+/* 창 너비에 맞춰 Pitch Plot 상단 패널 배열을 재배치 */
+.dashboard-window #pitch-plot .pitch-plot-panel {
+  container-type: inline-size;
+  container-name: pitch-window-panel;
+}
+
+@container pitch-window-panel (max-width: 600px) {
+  .dashboard-window #pitch-plot .pitch-plot-control-rows {
+    grid-template-columns: minmax(0, 1fr) !important;
+    grid-template-areas: "ppr-y" "ppr-flags" "ppr-sens" "ppr-fs" !important;
+  }
+  .dashboard-window #pitch-plot .pitch-plot-flags,
+  .dashboard-window #pitch-plot .pitch-plot-sens,
+  .dashboard-window #pitch-plot .pitch-plot-fs-wrap {
+    min-width: 0;
+  }
+}
+@container pitch-window-panel (min-width: 601px) and (max-width: 920px) {
+  .dashboard-window #pitch-plot .pitch-plot-control-rows {
+    grid-template-columns: 1fr 1fr !important;
+    grid-template-areas: "ppr-y ppr-flags" "ppr-sens ppr-fs" !important;
+  }
+}
+@container pitch-window-panel (min-width: 921px) {
+  .dashboard-window #pitch-plot .pitch-plot-control-rows {
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, auto) minmax(0, 1.25fr) minmax(0, 1fr) !important;
+    grid-template-areas: "ppr-y ppr-flags ppr-sens ppr-fs" !important;
+  }
+}
 /* 피아노 타일은 컨트롤 패널 + 건반이 잘리지 않도록 콘텐츠 기반 높이를 사용 */
 #piano-keyboard.dashboard-item {
   aspect-ratio: auto;
@@ -1690,10 +2025,8 @@ button.active {
 }
 
 #scale-generator .dashboard-item-content {
-  flex: 0 0 auto;
   height: auto;
   min-height: 0;
-  overflow: visible;
 }
 
 /* Range map: 피치 플롯 오른쪽(2열)·스케일 제너레이터 아래(2행) 타일 — 고정 16:9보다 콘텐츠 높이 우선 */
@@ -1733,11 +2066,14 @@ button.active {
   .content-area > .app-container > .seo-home-above-dashboard {
     flex: 0 0 auto;
   }
-  .content-area .dashboard.dashboard-home-layout {
+  .content-area .dashboard-workspace-layout {
     flex: 1 1 0;
     min-height: 0;
     width: 100%;
-    align-content: start;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 160px;
+    gap: 14px;
+    align-items: start;
   }
   /* 행 최소 높이: 직전(2배) 대비 약 60% — 콘텐츠가 더 크면 auto로 확장 */
   .content-area .dashboard.dashboard-home-layout.dashboard--with-range {
@@ -4002,6 +4338,60 @@ input[type=number] {
   align-content: start;
 }
 
+/* 창 모드에서 Scale controls가 잘리지 않도록 상단부터 배치 + 내부 스크롤 허용 */
+.dashboard-window #scale-generator .dashboard-item-content {
+  justify-content: flex-start;
+  overflow: hidden;
+}
+
+.dashboard-window #scale-generator .dashboard-window-content {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  height: 100%;
+  background: #0f1419;
+  padding-top: 0;
+  min-height: 0;
+  min-width: 0;
+}
+
+.dashboard-window #scale-generator .scale-generator {
+  min-height: 0;
+  min-width: 0;
+  height: 100%;
+  width: 100%;
+  max-width: 100%;
+  overflow: auto;
+  margin: 0 !important;
+  transform: none !important;
+  position: relative;
+  top: 0;
+  flex: 1 1 auto;
+  container-type: inline-size;
+  container-name: scale-window-panel;
+}
+
+/* Scale 창이 좁아지면 내부 컨트롤을 세로 스택으로 전환해 최소 너비 강제를 피함 */
+@container scale-window-panel (max-width: 640px) {
+  .sg-row-top {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .sg-row-bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    width: 100%;
+  }
+  .sg-row-bottom > .sg-tempo-panel,
+  .sg-row-bottom > .sg-status-block,
+  .sg-row-bottom > .sg-play-btn {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+}
 .sg-row-top {
   display: grid;
   grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
@@ -5871,6 +6261,82 @@ input[type=number] {
     max-width: 100%;
     box-sizing: border-box;
   }
+  .dashboard-workspace-layout {
+    display: block;
+  }
+  .dashboard-window-workspace {
+    display: none;
+  }
+  .dashboard-tool-sidebar {
+    display: none;
+  }
+  .dashboard-mobile-workspace {
+    display: grid;
+    grid-template-rows: auto minmax(0, 1fr);
+    gap: 10px;
+    align-items: start;
+    min-height: calc(100vh - 72px);
+  }
+  .dashboard-mobile-tool-row {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 8px;
+    align-items: stretch;
+  }
+  .dashboard-mobile-tool-button {
+    height: 42px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+  }
+  .dashboard-mobile-tool-button svg {
+    width: 18px;
+    height: 18px;
+  }
+  .dashboard-mobile-tool-panel {
+    min-width: 0;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .dashboard-item.dashboard-item-mobile {
+    aspect-ratio: auto;
+    height: auto;
+    border: 1px solid #2f3744;
+    border-radius: 8px;
+    background-color: #0f1419;
+  }
+  .dashboard-item.dashboard-item-mobile:has(.dashboard-item-content:hover) {
+    border-color: #3d4a63;
+  }
+  .dashboard-mobile-tool-panel .dashboard-item.dashboard-item-mobile {
+    display: block;
+  }
+  .dashboard-mobile-tool-panel #pitch-plot .pitch-plot-root {
+    min-height: 800px;
+  }
+  .dashboard-mobile-tool-panel .dashboard-item.dashboard-item-mobile .dashboard-item-content {
+    overflow-y: visible;
+    padding-bottom: 1px;
+  }
+  .main-content:fullscreen .dashboard-mobile-tool-panel .dashboard-item.dashboard-item-mobile,
+  .main-content:-webkit-full-screen .dashboard-mobile-tool-panel .dashboard-item.dashboard-item-mobile {
+    display: block !important;
+    width: 100% !important;
+  }
+  .main-content:fullscreen .dashboard-mobile-tool-panel #pitch-plot .pitch-plot-fullscreen-host,
+  .main-content:-webkit-full-screen .dashboard-mobile-tool-panel #pitch-plot .pitch-plot-fullscreen-host,
+  .main-content:fullscreen .dashboard-mobile-tool-panel #pitch-plot .pitch-plot-root,
+  .main-content:-webkit-full-screen .dashboard-mobile-tool-panel #pitch-plot .pitch-plot-root {
+    width: 100% !important;
+    min-height: 800px;
+  }
   .dashboard {
     grid-template-columns: 1fr;
     gap: 16px;
@@ -5917,6 +6383,17 @@ input[type=number] {
     max-width: 100%;
     padding: 5px;
     box-sizing: border-box;
+  }
+  .dashboard-mobile-workspace {
+    grid-template-rows: auto minmax(0, 1fr);
+    gap: 8px;
+  }
+  .dashboard-mobile-tool-row {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 6px;
+  }
+  .dashboard-mobile-tool-button {
+    height: 38px;
   }
   .dashboard-overview {
     min-width: auto; /* 최소 너비 제한 해제 */
