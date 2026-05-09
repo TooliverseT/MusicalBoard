@@ -112,12 +112,21 @@ body {
   background: #1a1f2e;
 }
 
-/* SPECTRA 레이아웃 스타일 */
+/* SPECTRA 레이아웃 스타일.
+ * 셸 자체를 뷰포트 높이로 고정해 body 스크롤을 차단하고, 내부 `.content-area` 가
+ * 자체 스크롤 컨테이너가 되도록 한다 — 이렇게 해야 모든 페이지에서 top-header 가
+ * 항상 고정되어 보이고 세로 스크롤이 헤더 아래쪽 영역에만 나타난다.
+ * `100dvh` 는 모바일 Safari/Chrome 의 URL 바 변화에 동적으로 맞춰지며,
+ * 미지원 브라우저는 앞 줄의 `100vh` 로 폴백된다. */
 .app-layout {
   display: flex;
-  min-height: 100vh;
+  height: 100vh;
+  height: 100dvh;
+  max-height: 100vh;
+  max-height: 100dvh;
   background-color: #0f1419;
   overflow-x: auto;
+  overflow-y: hidden;
 }
 
 /* 사이드바 스타일 */
@@ -638,6 +647,8 @@ article.musicalboard-prose strong {
 .main-content {
   flex: 1;
   min-width: 0; /* flex 자식이 뷰포트보다 좁아질 수 있게 — 좁은 화면에서 본문이 잘리지 않도록 */
+  min-height: 0; /* `.content-area` 의 overflow-y 가 작동하려면 column flex 자식이 0 까지 줄어들 수 있어야 한다 */
+  height: 100%; /* `.app-layout` 의 100vh 안에서 풀 높이를 차지 — `.content-area` 스크롤 영역의 기준이 된다 */
   margin-left: var(--sidebar-width);
   display: flex;
   flex-direction: column;
@@ -794,6 +805,8 @@ body:not(.app-ready) .dashboard-desktop-shell {
 /* 상세 페이지: SEO/설명 숨기고 분석 영역만 */
 .main-content:fullscreen .detail-page .detail-seo-bundle,
 .main-content:-webkit-full-screen .detail-page .detail-seo-bundle,
+.main-content:fullscreen .detail-page .local-storage-notice,
+.main-content:-webkit-full-screen .detail-page .local-storage-notice,
 .main-content:fullscreen .detail-page .description,
 .main-content:-webkit-full-screen .detail-page .description {
   display: none !important;
@@ -1042,25 +1055,28 @@ body:not(.app-ready) .dashboard-desktop-shell {
 /* 컨텐츠 영역 */
 .content-area {
   flex: 1;
+  min-height: 0; /* `.main-content` column flex 안에서 0 까지 줄어들 수 있어야 자체 스크롤이 작동한다 */
   padding: 16px;
   background-color: #0f1419;
   overflow-x: auto;
   overflow-y: auto;
-  /* 스크롤바 항상 표시 */
-  scrollbar-width: auto;
+  /* 스크롤바 항상 표시 — 두께를 살짝 줄여 본문 영역을 더 확보한다.
+     Firefox 는 `scrollbar-width: thin` (≈8px) 으로, WebKit/Chromium 은 직접 8px 지정. */
+  scrollbar-width: thin;
+  scrollbar-color: #3a3f4e #1a1f2e;
 }
 .content-area::-webkit-scrollbar {
-  width: 12px;
-  height: 12px;
+  width: 8px;
+  height: 8px;
 }
 .content-area::-webkit-scrollbar-track {
   background: #1a1f2e;
-  border-radius: 6px;
+  border-radius: 4px;
 }
 .content-area::-webkit-scrollbar-thumb {
   background: #3a3f4e;
-  border-radius: 6px;
-  border: 2px solid #1a1f2e;
+  border-radius: 4px;
+  border: 1px solid #1a1f2e;
 }
 .content-area::-webkit-scrollbar-thumb:hover {
   background: #4a4f5e;
@@ -1722,6 +1738,32 @@ button.active {
   border: 1px solid #232a35;
   background-color: #0c1118;
   overflow: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #3a3f4e #1a1f2e;
+}
+
+.dashboard-window-workspace::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.dashboard-window-workspace::-webkit-scrollbar-track {
+  background: #1a1f2e;
+  border-radius: 4px;
+}
+
+.dashboard-window-workspace::-webkit-scrollbar-thumb {
+  background: #3a3f4e;
+  border-radius: 4px;
+  border: 1px solid #1a1f2e;
+}
+
+.dashboard-window-workspace::-webkit-scrollbar-thumb:hover {
+  background: #4a4f5e;
+}
+
+.dashboard-window-workspace::-webkit-scrollbar-corner {
+  background: #1a1f2e;
 }
 
 .dashboard-window-workspace:fullscreen,
@@ -1922,6 +1964,7 @@ button.active {
   gap: 12px;
   width: 160px;
   min-width: 160px;
+  padding-top: 1px;
 }
 
 .dashboard-tool-sidebar-top {
@@ -3493,6 +3536,60 @@ canvas {
   }
   .detail-seo-bundle h2 {
     font-size: 16px;
+  }
+}
+/* 로컬 저장(녹음 캐시 / localStorage 설정) 사용에 대한 페이지 내 안내 박스.
+   사용자에게 단말 저장 사용 사실과 보존 기간/삭제 방법을 명확히 알린다. */
+.local-storage-notice {
+  font-family: "Quicksand", system-ui, -apple-system, sans-serif;
+  margin: -10px 0 26px;
+  padding: 1rem 1.15rem 1.05rem;
+  background: linear-gradient(165deg, rgba(154, 196, 255, 0.07) 0%, rgba(20, 25, 36, 0.96) 55%, #121722 100%);
+  border: 1px solid rgba(154, 196, 255, 0.22);
+  border-left: 3px solid rgba(154, 196, 255, 0.55);
+  border-radius: 0;
+  box-shadow: 0 3px 14px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  color: #c9d1e0;
+  font-size: 0.875rem;
+  line-height: 1.55;
+}
+
+.local-storage-notice-title {
+  margin: 0 0 0.55rem;
+  color: #e8ecf6;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.local-storage-notice-list {
+  margin: 0;
+  padding-left: 1.15rem;
+  color: #b2bcd0;
+}
+
+.local-storage-notice-list > li {
+  margin: 0 0 0.45rem;
+}
+
+.local-storage-notice-list > li:last-child {
+  margin-bottom: 0;
+}
+
+.local-storage-notice a {
+  color: #a8b4ff;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+@media (max-width: 640px) {
+  .local-storage-notice {
+    padding: 0.85rem 0.95rem 0.9rem;
+    margin: -6px 0 20px;
+    font-size: 0.84rem;
+  }
+  .local-storage-notice-title {
+    font-size: 0.9rem;
   }
 }
 .detail-page h3 {
