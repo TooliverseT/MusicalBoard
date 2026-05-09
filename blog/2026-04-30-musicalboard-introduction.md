@@ -109,6 +109,8 @@ Recording yourself is uncomfortable. Most people avoid it. But listening back to
 
 MusicalBoard's [Singing Recorder](https://www.musicalboard.com/singing-recorder/) handles recording directly in the browser — no external software, no hardware setup beyond the mic you're already using. Recordings stay on your device, up to 10 minutes per session, and you can play back or download immediately after. Crucially, the Vocal Pitch Monitor, Vocal Spectrum, and Online Metronome all keep running while you record, so you're not giving up live feedback to get the recording.
 
+You can also upload an audio file you've already recorded elsewhere and analyze it on the same page — handy when you've captured something on another device or app and still want pitch and spectrum feedback without starting over.
+
 ## Using the Dashboard as a Whole
 
 The reason the dashboard format is worth highlighting is that having all 7 tools on the same screen means you don't have to switch between apps. That might sound minor, but in practice — especially mid-session — it's not. Every time you alt-tab or dig through your phone for a different app, you lose a small piece of momentum. The voice cools down a little, your focus drifts, and the session gradually becomes more disjointed than it needs to be. The consolidated layout avoids all of that.
