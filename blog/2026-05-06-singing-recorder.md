@@ -65,15 +65,9 @@ To stop recording, click the mic button again. The playback button will become a
   <em>Left to right: mic, monitor, monitor level, play/pause, download. Click or drag anywhere on the progress bar to jump to that point.</em>
 </p>
 
-### Step 4 — Play back and navigate
+### Step 4 — Upload an existing audio file and analyze it (optional)
 
-Hit the play button to hear what you just recorded. You can click or drag anywhere on the progress bar to jump straight to that moment. The timestamp displays in minutes:seconds.milliseconds format, so finding a specific section you want to re-examine is pretty easy.
-
-The mic disables during playback. If you want to record again after listening, stop or let playback finish, then re-enable the mic. Starting a new recording will overwrite the previous take.
-
-### Step 4.5 — Upload an existing audio file and analyze it
-
-If you already have a take on your device, click the upload icon in the same control strip and choose a file. Singing Recorder analyzes the uploaded audio locally in your browser, then converts it into the same timeline/history format used for recorded takes.
+If you already have a take on your device instead of recording fresh in Step 3, click the upload icon in the same control strip and choose a file. Singing Recorder analyzes the uploaded audio locally in your browser, then converts it into the same timeline/history format used for recorded takes.
 
 That means once analysis completes, playback behaves like a finished recording: the progress bar, pitch-related history views, and range/spectrum playback tracking all run from the uploaded file's timeline.
 
@@ -86,7 +80,13 @@ Upload limits and format notes:
 
 While analysis is running, transport and edit controls are temporarily blocked and a processing modal appears with progress. Use **Cancel** in that modal if you want to stop analysis mid-way.
 
-### Step 5 — Download
+### Step 5 — Play back and navigate
+
+Hit the play button to hear your take — whether you captured it in Step 3 or brought it in via Step 4. You can click or drag anywhere on the progress bar to jump straight to that moment. The timestamp displays in minutes:seconds.milliseconds format, so finding a specific section you want to re-examine is pretty easy.
+
+The mic disables during playback. If you want to record again after listening, stop or let playback finish, then re-enable the mic. Starting a new recording will overwrite the previous take.
+
+### Step 6 — Download
 
 Clicking the download button opens a format menu. Choose from WebM, MP3, WAV, OGG, or M4A, then tap "Download" to save the file to your device.
 
