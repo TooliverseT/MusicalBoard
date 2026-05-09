@@ -2618,6 +2618,66 @@ button.active {
 .amplitude-visualizer {
   border: 1px solid #343b4d;
   box-sizing: border-box;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  overflow-x: clip;
+  /* `vocal-range-plot-root` 의 container 규칙은 `.vocal-range-gauge-root` 안에서만 적용되므로
+     여기서도 동일한 컨테이너 이름을 부여해 4-셀 그리드의 1행/2×2/4행 반응형 전환이 동작하게 한다. */
+  /* 캔버스 영역만 별도 비율로 잡는다(레인지 게이지의 100/19 와 다른 16/9). */
+  /* `.pitch-analyzer-direct .pitch-plot-canvas` 의 85vh 등이 섞이지 않도록 명시 */
+}
+.amplitude-visualizer .amp-spectrum-plot-root {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  overflow-x: clip;
+  container-type: inline-size;
+  container-name: vocal-range-panel;
+}
+.amplitude-visualizer .amp-spectrum-canvas-wrap {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  overflow: hidden;
+  aspect-ratio: 16/9;
+  height: auto;
+  flex: 0 1 auto;
+  max-height: min(56vw, 480px);
+  min-height: 60px;
+  display: flex;
+  flex-direction: column;
+}
+.amplitude-visualizer .amp-spectrum-canvas.pitch-plot-canvas {
+  display: block;
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+  min-height: 0;
+  box-sizing: border-box;
+  flex: 1 1 auto;
+  height: 100%;
+  max-height: none;
+}
+
+/* 상세 페이지(`.pitch-analyzer-direct`) 에서는 캔버스를 크게 — vocal-range 와 같은 톤의 vh 기반 클램프 */
+.pitch-analyzer-direct .amplitude-visualizer .amp-spectrum-canvas-wrap {
+  aspect-ratio: 16/9;
+  flex: 0 0 auto;
+  width: 100%;
+  height: auto;
+  max-height: min(85vh, 720px);
+  min-height: 320px;
+}
+
+.pitch-analyzer-direct .amplitude-visualizer .amp-spectrum-canvas.pitch-plot-canvas {
+  flex: 1 1 auto;
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 0 !important;
+  max-height: none !important;
 }
 
 /* 상세 페이지(.pitch-analyzer-direct) 는 scroll 기반이라 부모 높이가 열려있다 → `flex:1` 이 0 으로 resolve.
@@ -3154,12 +3214,22 @@ button.active {
 }
 
 @media (max-width: 768px) {
+  /* 12열 가상 그리드: 1행은 버튼 4개(span 3), 2행은 버튼 3개(span 4),
+     마지막 행은 playback-progress 가 전체 폭(1 / -1) 을 차지한다. */
   .navbar-controls-buttons {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(12, minmax(0, 1fr));
     gap: 4px 6px;
     align-items: center;
     justify-items: stretch;
+  }
+  .navbar-controls-buttons > * {
+    grid-column: span 3;
+  }
+  /* 5~8번째 자식(업로드, 숨겨진 file input, 다운로드, 삭제)은 3열로 배치.
+     file input 은 display:none 이라 grid 에서 빠진다. */
+  .navbar-controls-buttons > :nth-child(n+5):nth-child(-n+8) {
+    grid-column: span 4;
   }
   .navbar-controls-buttons > .playback-progress {
     grid-column: 1/-1;
@@ -6555,6 +6625,12 @@ input[type=number] {
   opacity: 1;
 }
 
+.modern-button.delete-button:hover {
+  border-color: rgba(255, 107, 122, 0.72);
+  color: #ff8a96;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 107, 122, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.18);
+}
+
 /* SVG 아이콘 스타일 */
 .modern-button svg {
   width: 20px;
@@ -6758,13 +6834,22 @@ input[type=number] {
   margin: 0;
 }
 
-/* 한 줄 아이콘 + 다음 줄 게이지 */
+/* 1행: 버튼 4개(4열), 2행: 버튼 3개(3열), 마지막 행: playback-progress 풀폭.
+   12열 가상 그리드를 사용해 행마다 다른 등분(LCM=12) 을 흉내낸다. */
 .mobile-controls-content .navbar-controls-buttons {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(12, minmax(0, 1fr));
   gap: 4px 6px;
   align-items: center;
   justify-items: stretch;
+}
+
+.mobile-controls-content .navbar-controls-buttons > * {
+  grid-column: span 3;
+}
+
+.mobile-controls-content .navbar-controls-buttons > :nth-child(n+5):nth-child(-n+8) {
+  grid-column: span 4;
 }
 
 .mobile-controls-content .navbar-controls-buttons > .playback-progress {
@@ -6865,10 +6950,16 @@ input[type=number] {
   }
   .controller-detail-pitch-controls .navbar-controls-buttons {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(12, minmax(0, 1fr));
     gap: 4px 6px;
     align-items: center;
     justify-items: stretch;
+  }
+  .controller-detail-pitch-controls .navbar-controls-buttons > * {
+    grid-column: span 3;
+  }
+  .controller-detail-pitch-controls .navbar-controls-buttons > :nth-child(n+5):nth-child(-n+8) {
+    grid-column: span 4;
   }
   .controller-detail-pitch-controls .navbar-controls-buttons > .playback-progress {
     grid-column: 1/-1;

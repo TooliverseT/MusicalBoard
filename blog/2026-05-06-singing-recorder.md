@@ -62,7 +62,7 @@ To stop recording, click the mic button again. The playback button will become a
 </p>
 
 <p align="center">
-  <em>Left to right: mic, monitor, monitor level, play/pause, download. Click or drag anywhere on the progress bar to jump to that point.</em>
+  <em>Left to right: mic, monitor, monitor level, play/pause, upload, download, delete. Click or drag anywhere on the progress bar to jump to that point.</em>
 </p>
 
 ### Step 4 — Upload an existing audio file and analyze it (optional)
@@ -99,6 +99,20 @@ Clicking the download button opens a format menu. Choose from WebM, MP3, WAV, OG
 | OGG | Open-source format. Mostly for specific software use cases. |
 
 For most purposes: MP3 when sharing, WAV when archiving.
+
+### Step 7 — Delete a take and how recordings are stored
+
+Once you record or upload something, Singing Recorder keeps the take in your browser so it survives a page reload — you can return later in the day and replay or re-export without re-uploading the file. Two things are worth knowing about how that works:
+
+- **Local cache only.** The audio bytes and a small metadata record are stored in your browser's IndexedDB on the device you're using. Nothing leaves your machine. Open a different browser or a different computer and the take won't be there.
+- **Auto-expiry after 1 day.** A cached take is kept for up to 24 hours from when it was saved. After that, it's discarded automatically the next time you open the page. The app also tries to clear the cache when you close the tab or browser window — that part is best-effort (some browsers cut JavaScript short on close), but the 1-day expiry is the hard guarantee.
+
+If you want to clear a take right away without waiting for the timeout:
+
+- Tap the **trash icon** at the right end of the control strip. The button stays visible at all times so you always know where it is, and it only becomes active when there's a recording or upload to remove. Pressing it wipes the current take from the playback view and deletes the cached copy in the same step — there's no separate "clear cache" action to remember.
+- Starting a new recording with the mic button also overwrites the previous take, so if you simply want to redo a phrase you don't have to delete first.
+
+In short: takes survive a refresh, expire after a day, can be cleared instantly with the trash icon, and never travel beyond your device.
 
 ## What to Actually Listen For
 
