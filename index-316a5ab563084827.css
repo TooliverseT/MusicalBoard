@@ -6457,6 +6457,23 @@ input[type=number] {
     max-width: 100%;
     box-sizing: border-box;
   }
+  /* 워크스페이스 풀스크린 + 모바일: 본문(content-area)에서 세로 스크롤 — 데스크톱 풀스크린은 기존처럼 overflow hidden 유지 */
+  .main-content:fullscreen > main.content-area,
+  .main-content:-webkit-full-screen > main.content-area {
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .main-content:fullscreen .content-area > .app-container,
+  .main-content:-webkit-full-screen .content-area > .app-container {
+    flex: 0 0 auto;
+  }
+  .main-content:fullscreen .content-area .dashboard-workspace-layout,
+  .main-content:-webkit-full-screen .content-area .dashboard-workspace-layout {
+    flex: 0 0 auto;
+    min-height: auto;
+    overflow: visible;
+  }
   .dashboard-workspace-layout {
     display: block;
   }
@@ -6476,7 +6493,8 @@ input[type=number] {
   .main-content:fullscreen .dashboard-mobile-workspace,
   .main-content:-webkit-full-screen .dashboard-mobile-workspace {
     min-height: 0;
-    height: 100%;
+    height: auto;
+    grid-template-rows: auto auto;
   }
   .dashboard-mobile-tool-row {
     display: grid;
@@ -6506,6 +6524,11 @@ input[type=number] {
     flex-direction: column;
     gap: 12px;
     min-height: 0;
+  }
+  .main-content:fullscreen .dashboard-mobile-tool-panel,
+  .main-content:-webkit-full-screen .dashboard-mobile-tool-panel {
+    overflow-y: visible;
+    min-height: auto;
   }
   .dashboard-item.dashboard-item-mobile {
     aspect-ratio: auto;
@@ -6589,6 +6612,10 @@ input[type=number] {
   .dashboard-mobile-workspace {
     grid-template-rows: auto minmax(0, 1fr);
     gap: 8px;
+  }
+  .main-content:fullscreen .dashboard-mobile-workspace,
+  .main-content:-webkit-full-screen .dashboard-mobile-workspace {
+    grid-template-rows: auto auto;
   }
   .dashboard-mobile-tool-row {
     grid-template-columns: repeat(4, minmax(0, 1fr));
