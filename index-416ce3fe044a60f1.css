@@ -4246,6 +4246,20 @@ a.not-found-primary:hover {
   min-width: 0;
 }
 
+.note-unit-controls {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.metronome-subdivide-label {
+  flex-shrink: 0;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #a8b0c4;
+  white-space: nowrap;
+}
+
 .metronome-transport {
   display: flex;
   align-items: center;
@@ -4352,7 +4366,6 @@ a.not-found-primary:hover {
 
 .time-signature-controls select,
 .note-unit-controls select {
-  width: 100%;
   box-sizing: border-box;
   font-family: "JetBrains Mono", ui-monospace, monospace;
   font-size: 0.78rem;
@@ -4383,6 +4396,15 @@ a.not-found-primary:hover {
 .note-unit-controls select option {
   background-color: #1a1f2e;
   color: #e4e7ec;
+}
+
+.time-signature-controls select {
+  width: 100%;
+}
+
+.note-unit-controls select {
+  flex: 1;
+  min-width: 0;
 }
 
 .tempo-indicator-compact {
