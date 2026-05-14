@@ -1,6 +1,6 @@
 ---
 title: "How to Find the BPM of a Song — A Complete Tap Tempo Guide"
-date: 11 May 2026
+date: 13 May 2026
 tags: ["Online Metronome"]
 excerpt: "Not sure what BPM a song is? This guide walks you through everything step by step — from how tap tempo works to practical tips for improving accuracy, and how to use it with the MusicalBoard Online Metronome."
 ---
