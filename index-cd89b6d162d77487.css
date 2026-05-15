@@ -4771,6 +4771,120 @@ input[type=number] {
   min-width: 0;
 }
 
+.sg-pattern {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.sg-pattern-strip {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px;
+  min-height: 34px;
+  padding: 4px 6px;
+  background: rgba(8, 12, 18, 0.55);
+  border: 1px solid #2c3342;
+  border-radius: 6px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.sg-pattern-empty {
+  font-size: 0.72rem;
+  color: #8b92a5;
+  font-style: italic;
+}
+
+.sg-pattern-caret {
+  display: inline-block;
+  width: 2px;
+  height: 22px;
+  margin: 0 1px;
+  border-radius: 1px;
+  background: #667eea;
+  box-shadow: 0 0 6px rgba(102, 126, 234, 0.45);
+  flex-shrink: 0;
+}
+
+.sg-pattern-token {
+  display: inline-flex;
+  align-items: center;
+  gap: 1px;
+  padding: 1px 2px 1px 4px;
+  border-radius: 6px;
+  background: rgba(15, 20, 30, 0.85);
+  border: 1px solid #2c3342;
+  flex-shrink: 0;
+}
+.sg-pattern-token.is-current {
+  border-color: rgba(102, 126, 234, 0.65);
+  box-shadow: 0 0 0 1px rgba(102, 126, 234, 0.28);
+}
+
+.sg-pattern-degree {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #e6eaf2;
+  background: transparent;
+  border: none;
+  padding: 3px 6px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+.sg-pattern-degree:hover {
+  background: rgba(102, 126, 234, 0.2);
+}
+
+.sg-pattern-nudge,
+.sg-pattern-remove {
+  font-family: "Quicksand", system-ui, -apple-system, sans-serif;
+  font-size: 0.7rem;
+  line-height: 1;
+  color: #9aa6bc;
+  background: transparent;
+  border: none;
+  padding: 2px 4px;
+  cursor: pointer;
+  border-radius: 3px;
+}
+.sg-pattern-nudge:hover,
+.sg-pattern-remove:hover {
+  color: #e6eaf2;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.sg-pattern-remove {
+  color: #ff8a95;
+  font-size: 0.85rem;
+  padding: 2px 5px;
+}
+.sg-pattern-remove:hover {
+  color: #ffb3ba;
+  background: rgba(244, 67, 54, 0.15);
+}
+
+.sg-chip-count {
+  margin-left: 3px;
+  font-size: 0.62rem;
+  font-weight: 700;
+  opacity: 0.85;
+}
+
+.sg-btn-sort {
+  color: #9eb8ff;
+  background: rgba(102, 126, 234, 0.12);
+  border-color: rgba(102, 126, 234, 0.35);
+}
+.sg-btn-sort:hover {
+  color: #c5d4ff;
+  background: rgba(102, 126, 234, 0.22);
+  border-color: rgba(102, 126, 234, 0.55);
+}
+
 .sg-preset-select {
   flex: 0 1 auto;
   min-width: 110px;
