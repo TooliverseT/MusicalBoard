@@ -2968,6 +2968,48 @@ button.active {
   font-weight: 500;
 }
 
+.scale-generator .sg-status-v.sg-status-prep {
+  color: rgba(255, 220, 160, 0.95);
+}
+
+.scale-generator .sg-status-v.sg-status-next {
+  color: rgba(180, 220, 255, 0.98);
+}
+
+.scale-generator .sg-prep-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.scale-generator .sg-prep-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 8px 12px;
+}
+
+.scale-generator .sg-prep-field {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.scale-generator .sg-prep-label {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.scale-generator .sg-prep-select {
+  min-width: 5.5rem;
+  font-size: 11px;
+}
+
 /* `.pitch-analyzer-direct .pitch-plot-root { height: auto }`가 아래에 있어 풀스크린 flex를 막음 — 더 구체적으로 복원 */
 .main-content:fullscreen .pitch-analyzer-direct .pitch-plot-root,
 .main-content:-webkit-full-screen .pitch-analyzer-direct .pitch-plot-root {
@@ -4780,8 +4822,21 @@ input[type=number] {
   flex-shrink: 0;
 }
 .sg-pattern-token.is-current {
-  border-color: rgba(102, 126, 234, 0.65);
-  box-shadow: 0 0 0 1px rgba(102, 126, 234, 0.28);
+  color: #ffffff;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-color: transparent;
+  box-shadow: 0 1px 4px rgba(102, 126, 234, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.12), 0 0 0 1px rgba(102, 126, 234, 0.35);
+}
+.sg-pattern-token.is-current .sg-pattern-degree {
+  color: #ffffff;
+}
+.sg-pattern-token.is-current .sg-pattern-nudge,
+.sg-pattern-token.is-current .sg-pattern-remove {
+  color: rgba(255, 255, 255, 0.85);
+}
+.sg-pattern-token.is-current .sg-pattern-nudge:hover,
+.sg-pattern-token.is-current .sg-pattern-remove:hover {
+  background: rgba(255, 255, 255, 0.15);
 }
 
 .sg-pattern-degree {
