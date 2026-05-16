@@ -2817,9 +2817,86 @@ button.active {
   max-height: none;
 }
 
-/* Vocal range — 기본(가장 좁은 컨테이너): 1열 4행. 중간·넓음은 아래 @container */
+/*
+ * Vocal range 상단 패널: 컨테이너 너비 기준 2×2(기본)·559px 이하만 4행.
+ * 예전 1행(컨테이너 넓음) 구간은 피치 패널과 맞추려던 단일 행이라 제거 — 항상 2행 그리드.
+ */
+.vocal-range-plot-root .pitch-plot-panel {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
 .vocal-range-plot-root .vocal-range-panel-rows {
-  grid-template-areas: "ppr-y" "ppr-flags" "ppr-sens" "pvr-stats";
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas: "ppr-y ppr-flags" "ppr-sens pvr-stats";
+  align-items: stretch;
+}
+
+.vocal-range-plot-root .ppr-y,
+.vocal-range-plot-root .pitch-plot-flags,
+.vocal-range-plot-root .pitch-plot-sens,
+.vocal-range-plot-root .vocal-range-panel-stats {
+  border: 0;
+}
+
+.vocal-range-plot-root .ppr-y {
+  border-right: var(--ppr-divider);
+  border-bottom: var(--ppr-divider);
+}
+
+.vocal-range-plot-root .pitch-plot-flags {
+  border-bottom: var(--ppr-divider);
+}
+
+.vocal-range-plot-root .pitch-plot-sens {
+  border-right: var(--ppr-divider);
+}
+
+.vocal-range-plot-root .ppr-y,
+.vocal-range-plot-root .pitch-plot-flags,
+.vocal-range-plot-root .pitch-plot-sens {
+  min-height: 100%;
+  align-content: center;
+  align-items: center;
+}
+
+/* 셀 안에서 폭 분배(구 1행 전용 규칙 — 2×2에서도 넓은 칸에서 동일하게) */
+.vocal-range-plot-root .ppr-y,
+.vocal-range-plot-root .pitch-plot-sens {
+  flex-wrap: nowrap;
+  gap: 4px 6px;
+}
+
+.vocal-range-plot-root .pitch-plot-flags {
+  flex-wrap: nowrap;
+  gap: 4px 8px;
+}
+
+.vocal-range-plot-root .ppr-y .pitch-plot-select {
+  flex: 1 1 0;
+  min-width: 2.25rem;
+}
+
+.vocal-range-plot-root .ppr-y .pitch-plot-tag,
+.vocal-range-plot-root .ppr-y > span:not(.pitch-plot-tag) {
+  flex-shrink: 0;
+}
+
+.vocal-range-plot-root .vocal-range-panel-rows .pitch-plot-sens .pitch-plot-sens-range {
+  flex: 1 1 0;
+  min-width: 1.25rem;
+}
+
+.vocal-range-plot-root .pitch-plot-flags .pitch-plot-check {
+  flex: 0 1 auto;
+  min-width: 0;
+}
+
+.vocal-range-plot-root .pitch-plot-flags .pitch-plot-check > span {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .vocal-range-plot-root .vocal-range-panel-stats {
@@ -2827,18 +2904,20 @@ button.active {
   box-sizing: border-box;
   min-width: 0;
   padding: 6px 10px;
-  /* 2×2 그리드, 각 칸은 라벨 + 값 가로 배치 */
+  border-bottom: 0;
+  border-top: 0;
+  min-height: 100%;
+  align-content: center;
+  /* SCORE/LIVE/RANGE/VOICE 2×2 */
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   grid-template-rows: auto auto;
   column-gap: 12px;
   row-gap: 8px;
-  align-content: center;
   justify-items: stretch;
   font-family: "JetBrains Mono", monospace;
   font-size: 10.5px;
   color: #8b92a5;
-  border-bottom: 1px solid #2a3444;
 }
 
 .vocal-range-plot-root .vrs-chip,
@@ -3001,76 +3080,9 @@ button.active {
     white-space: nowrap;
   }
 }
-@media (min-width: 601px) and (max-width: 1024px) {
-  .vocal-range-plot-root .vocal-range-panel-rows {
-    grid-template-columns: 1fr 1fr;
-    grid-template-areas: "ppr-y ppr-flags" "ppr-sens ppr-sens" "pvr-stats pvr-stats";
-  }
-  .vocal-range-plot-root .vocal-range-panel-stats {
-    border-bottom: 0;
-    border-top: var(--ppr-divider);
-  }
-}
-@media (min-width: 1025px) {
-  /* 열 비율은 `.pitch-plot-control-rows`(피치 패널)과 동일 — 대시보드에서 세로 구분선이 같은 위치에 오도록 */
-  .vocal-range-plot-root .vocal-range-panel-rows {
-    grid-template-columns: minmax(0, 1.1fr) minmax(0, auto) minmax(0, 1.25fr) minmax(0, 1fr);
-    grid-template-areas: "ppr-y ppr-flags ppr-sens pvr-stats";
-    align-items: stretch;
-  }
-  .vocal-range-plot-root .vocal-range-panel-stats {
-    border: 0;
-    min-height: 100%;
-    align-content: center;
-  }
-}
 /*
- * Range 패널: 뷰포트 @media 만 쓰면 대시보드 타일이 좁아도 1행이 유지되다가
- * 뷰포트만 줄일 때 4행으로 점프한다. 컨테이너 너비로 1행 → 2행(2×2) → 4행 전환.
- * (--vr-panel-1row / --vr-panel-2row 는 SCSS 변수로 임계만 한곳에서 조정)
+ * Vocal range: 좁은 컨테이너(약 559px 이하)에서만 1열 4행. 그 외는 위 기본 2×2 유지.
  */
-/* 1행 ↔ 2행 경계: 타일이 꽤 넓어질 때까지 2×2 유지(대시보드 Range 등) */
-/* 이 너비 이하: 2×2(2행), 그 아래 $vr-panel-4row-max 에서 4행 */
-/* 이 너비 이상: 1행 4열 */
-/* 이 너비 이하: 1열 4행(위 2행 규칙 덮어씀) */
-@container vocal-range-panel (max-width: 900px) {
-  .vocal-range-plot-root .vocal-range-panel-rows {
-    grid-template-columns: 1fr 1fr;
-    grid-template-areas: "ppr-y ppr-flags" "ppr-sens pvr-stats";
-    align-items: stretch;
-  }
-  .vocal-range-plot-root .ppr-y,
-  .vocal-range-plot-root .pitch-plot-flags,
-  .vocal-range-plot-root .pitch-plot-sens,
-  .vocal-range-plot-root .vocal-range-panel-stats {
-    border: 0;
-  }
-  .vocal-range-plot-root .ppr-y {
-    border-right: var(--ppr-divider);
-    border-bottom: var(--ppr-divider);
-  }
-  .vocal-range-plot-root .pitch-plot-flags {
-    border-bottom: var(--ppr-divider);
-  }
-  .vocal-range-plot-root .pitch-plot-sens {
-    border-right: var(--ppr-divider);
-  }
-  .vocal-range-plot-root .vocal-range-panel-stats {
-    border-bottom: 0;
-    border-top: 0;
-  }
-  .vocal-range-plot-root .ppr-y,
-  .vocal-range-plot-root .pitch-plot-flags,
-  .vocal-range-plot-root .pitch-plot-sens {
-    min-height: 100%;
-    align-content: center;
-    align-items: center;
-  }
-  .vocal-range-plot-root .vocal-range-panel-stats {
-    min-height: 100%;
-    align-content: center;
-  }
-}
 @container vocal-range-panel (max-width: 559px) {
   .vocal-range-plot-root .vocal-range-panel-rows {
     grid-template-columns: minmax(0, 1fr);
@@ -3095,65 +3107,13 @@ button.active {
   .vocal-range-plot-root .vocal-range-panel-stats {
     border-bottom: 1px solid #2a3444;
   }
-}
-@container vocal-range-panel (min-width: 901px) {
-  .vocal-range-plot-root .pitch-plot-panel {
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-  }
-  .vocal-range-plot-root .vocal-range-panel-rows {
-    grid-template-columns: minmax(0, 1.1fr) minmax(0, auto) minmax(0, 1.25fr) minmax(0, 1fr);
-    grid-template-areas: "ppr-y ppr-flags ppr-sens pvr-stats";
-    align-items: stretch;
-  }
   .vocal-range-plot-root .ppr-y,
-  .vocal-range-plot-root .pitch-plot-flags,
   .vocal-range-plot-root .pitch-plot-sens,
-  .vocal-range-plot-root .vocal-range-panel-stats {
-    border: 0;
-  }
-  .vocal-range-plot-root .ppr-y,
-  .vocal-range-plot-root .pitch-plot-flags,
-  .vocal-range-plot-root .pitch-plot-sens {
-    border-right: var(--ppr-divider);
-    min-height: 100%;
-    align-content: center;
-  }
-  .vocal-range-plot-root .vocal-range-panel-stats {
-    border: 0;
-    min-height: 100%;
-    align-content: center;
-  }
-  .vocal-range-plot-root .ppr-y,
-  .vocal-range-plot-root .pitch-plot-sens {
-    flex-wrap: nowrap;
-    gap: 4px 6px;
-  }
   .vocal-range-plot-root .pitch-plot-flags {
-    flex-wrap: nowrap;
-    gap: 4px 8px;
-  }
-  .vocal-range-plot-root .ppr-y .pitch-plot-select {
-    flex: 1 1 0;
-    min-width: 2.25rem;
-  }
-  .vocal-range-plot-root .ppr-y .pitch-plot-tag,
-  .vocal-range-plot-root .ppr-y > span:not(.pitch-plot-tag) {
-    flex-shrink: 0;
-  }
-  .vocal-range-plot-root .vocal-range-panel-rows .pitch-plot-sens .pitch-plot-sens-range {
-    flex: 1 1 0;
-    min-width: 1.25rem;
-  }
-  .vocal-range-plot-root .pitch-plot-flags .pitch-plot-check {
-    flex: 0 1 auto;
-    min-width: 0;
-  }
-  .vocal-range-plot-root .pitch-plot-flags .pitch-plot-check > span {
-    min-width: 0;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    flex-wrap: wrap;
+    gap: 6px 8px;
+    align-items: center;
+    align-content: center;
   }
 }
 /* 대시보드 아이템 링크 스타일 */
