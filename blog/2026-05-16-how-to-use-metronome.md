@@ -15,8 +15,6 @@ The metronome is used to correct and strengthen that internal pulse. The goal is
 
 Research in music education repeatedly demonstrates that regular tempo training with a metronome yields measurable improvements in rhythmic accuracy. Educational materials from the [Music Teachers National Association (MTNA)](https://www.mtna.org/) define the metronome as an "internal pulse training device" and emphasize its role beyond mere beat-keeping.
 
-<!-- Image suggestion: An illustration placing a swinging metronome pendulum beside a human heartbeat waveform. alt: "Illustration comparing a metronome pendulum with the internal pulse" -->
-
 <p class="mb-blog-image">
   <img src="/blog/assets/metronome/internal_pulse.png" alt="Illustration comparing a metronome pendulum with the internal pulse (Internal Pulse)">
 </p>
@@ -81,8 +79,6 @@ Subdivision is a powerful tool for raising the precision of your practice. Music
 
 **Sixteenth note (1/16) subdivision**: Divides each beat into four. Sixteen clicks per measure. Use this when practicing fast melodic passages slowly — it makes clear exactly which click each note start corresponds to.
 
-<!-- Image suggestion: A graphic showing one 4/4 measure with the click positions for quarter-note, eighth-note, triplet, and sixteenth-note subdivision displayed side by side. alt: "Comparative graphic of quarter-note, eighth-note, triplet, and sixteenth-note subdivision click positions" -->
-
 <p class="mb-blog-image">
   <img src="/blog/assets/metronome/subdivision_types.png" alt="Graphic comparing quarter-note, eighth-note, triplet, and sixteenth-note subdivision click positions in one 4/4 measure">
 </p>
@@ -132,8 +128,6 @@ MusicalBoard's [Online Metronome](https://www.musicalboard.com/online-metronome/
 **Sound toggle**: Mutes all click sounds entirely. Useful for visual beat-checking or for practicing silently before turning the click back on to compare.
 
 **Settings auto-save**: BPM, time signature, subdivision, and accent settings are saved to the browser's localStorage. Your last settings are preserved across page refreshes and future visits.
-
-<!-- Image suggestion: A full-screen screenshot of the MusicalBoard Online Metronome interface showing the BPM buttons, time signature selection, subdivision selection, and accent toggle. alt: "MusicalBoard Online Metronome full interface" -->
 
 <p class="mb-blog-image">
   <img src="/blog/assets/metronome/metronome_tempo_120.png" alt="MusicalBoard Online Metronome interface — full screen showing BPM adjustment buttons, time signature selection, Subdivision selection, and accent toggle">
