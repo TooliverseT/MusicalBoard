@@ -7160,24 +7160,7 @@ input[type=number] {
   pointer-events: none;
 }
 
-/* 모바일 컨트롤: 배경 딤 없음(투명) — 탭으로만 닫기 레이어 */
-.mobile-controls-backdrop {
-  position: fixed;
-  inset: 0;
-  z-index: 1500;
-  background: transparent;
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-  transition: opacity 0.2s ease, visibility 0.2s ease;
-}
-
-.mobile-controls-backdrop.active {
-  opacity: 1;
-  visibility: visible;
-  pointer-events: auto;
-}
-
+/* .mobile-controls-backdrop 은 제거됨 — document 레벨 click 리스너로 대체 */
 /* 헤더 아래 우측 플로팅 패널 (좁은 화면용) */
 .mobile-controls-panel {
   position: fixed;
