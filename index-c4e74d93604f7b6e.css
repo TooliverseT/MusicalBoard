@@ -2,6 +2,7 @@
 /* Global styles */
 /* Quicksand = theme (nav, SEO chrome, headings); Inter = body copy. */
 /* 피치 플롯(.pitch-plot-panel) · 보컬 레인지 · 진폭 카드와 동일한 툴 UI 톤 — 메트로놈·스케일 제너레이터와 공유 */
+/* 헤더 Controller 드로어·피치 컨트롤 3×3 격자 등 모바일 컨트롤 UI 전환 기준 */
 /* 피아노 Chords 영역 Play / Edit `.mode-tab.active` — 메트로놈·스케일 제너레이터 주요 버튼과 공유 */
 * {
   box-sizing: border-box;
@@ -3274,17 +3275,17 @@ button.active {
   align-items: center;
 }
 
-@media (max-width: 768px) {
-  /* 3×3: mic·monitor·volume | −10·play·+10 | upload·download·delete, then progress full width */
+/* 모바일·Controller 패널: 1행 3열 | 2행 5열 | 3행 3열 — 행마다 동일 전체 너비.
+   15열(3·5의 최소공배수): 1·3행은 셀당 5칸(넓음), 2행은 셀당 3칸(좁음). */
+@media (max-width: 930px) {
   .navbar-controls-buttons {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(15, minmax(0, 1fr));
     gap: 4px 6px;
     align-items: stretch;
     justify-items: stretch;
   }
   .navbar-controls-buttons > * {
-    grid-column: auto;
     min-width: 0;
   }
   .navbar-controls-buttons > .playback-transport-cluster {
@@ -3295,7 +3296,52 @@ button.active {
   }
   .navbar-controls-buttons > .playback-progress {
     grid-column: 1/-1;
+    grid-row: 4;
     width: 100%;
+  }
+  .navbar-controls-buttons .pitch-control-grid-r1c1 {
+    grid-column: 1/span 5;
+    grid-row: 1;
+  }
+  .navbar-controls-buttons .pitch-control-grid-r1c2 {
+    grid-column: 6/span 5;
+    grid-row: 1;
+  }
+  .navbar-controls-buttons .pitch-control-grid-r1c3 {
+    grid-column: 11/span 5;
+    grid-row: 1;
+  }
+  .navbar-controls-buttons .pitch-control-grid-r2c1 {
+    grid-column: 1/span 3;
+    grid-row: 2;
+  }
+  .navbar-controls-buttons .pitch-control-grid-r2c2 {
+    grid-column: 4/span 3;
+    grid-row: 2;
+  }
+  .navbar-controls-buttons .pitch-control-grid-r2c3 {
+    grid-column: 7/span 3;
+    grid-row: 2;
+  }
+  .navbar-controls-buttons .pitch-control-grid-r2c4 {
+    grid-column: 10/span 3;
+    grid-row: 2;
+  }
+  .navbar-controls-buttons .pitch-control-grid-r2c5 {
+    grid-column: 13/span 3;
+    grid-row: 2;
+  }
+  .navbar-controls-buttons .pitch-control-grid-r3c1 {
+    grid-column: 1/span 5;
+    grid-row: 3;
+  }
+  .navbar-controls-buttons .pitch-control-grid-r3c2 {
+    grid-column: 6/span 5;
+    grid-row: 3;
+  }
+  .navbar-controls-buttons .pitch-control-grid-r3c3 {
+    grid-column: 11/span 5;
+    grid-row: 3;
   }
 }
 /* 감도 드롭다운 스타일 */
@@ -3974,6 +4020,34 @@ a.not-found-primary:hover {
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(255, 255, 255, 0.04);
   overflow: hidden;
   pointer-events: none;
+}
+
+/* === A↔B 구간 반복 (Section loop) =================================== */
+/* 모든 A/B 마커 및 플레이헤드 스크럽 인터랙션은 canvas 인 waveform-minimap
+   안에서 일어난다 (게이지 바를 푸시하지 않도록). */
+/* 구간반복 ON 일 때 게이지 바 자체는 입력을 받지 않고 표시만 한다 — 모든 조작이
+   미니맵 안에서 일어나도록 유도. */
+.playback-progress.has-loop .progress-bar {
+  pointer-events: none;
+  opacity: 0.85;
+}
+
+/* 평소(hover 표시) 미니맵은 pointer-events: none 인데, 구간반복 ON 일 때만
+   클릭/드래그를 받도록 활성화. */
+.waveform-minimap.is-interactive {
+  pointer-events: auto;
+}
+
+.waveform-minimap.is-interactive .waveform-minimap-canvas {
+  cursor: crosshair;
+  touch-action: none;
+}
+
+/* 구간반복 ON 토글 버튼: 활성화 상태를 분명히 표시. */
+.icon-button.loop-toggle-btn.is-on {
+  color: #ffb857;
+  background: rgba(255, 184, 87, 0.18);
+  box-shadow: 0 0 0 1px rgba(255, 184, 87, 0.55), 0 2px 6px rgba(255, 184, 87, 0.25);
 }
 
 .waveform-minimap-canvas {
@@ -7177,28 +7251,71 @@ input[type=number] {
 
 .mobile-controls-content .navbar-controls-buttons {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(15, minmax(0, 1fr));
   gap: 4px 6px;
   align-items: stretch;
   justify-items: stretch;
 }
-
 .mobile-controls-content .navbar-controls-buttons > * {
-  grid-column: auto;
   min-width: 0;
 }
-
 .mobile-controls-content .navbar-controls-buttons > .playback-transport-cluster {
   display: contents;
 }
-
 .mobile-controls-content .navbar-controls-buttons > input[type=file] {
   display: none !important;
 }
-
 .mobile-controls-content .navbar-controls-buttons > .playback-progress {
   grid-column: 1/-1;
+  grid-row: 4;
   width: 100%;
+}
+.mobile-controls-content .navbar-controls-buttons .pitch-control-grid-r1c1 {
+  grid-column: 1/span 5;
+  grid-row: 1;
+}
+.mobile-controls-content .navbar-controls-buttons .pitch-control-grid-r1c2 {
+  grid-column: 6/span 5;
+  grid-row: 1;
+}
+.mobile-controls-content .navbar-controls-buttons .pitch-control-grid-r1c3 {
+  grid-column: 11/span 5;
+  grid-row: 1;
+}
+.mobile-controls-content .navbar-controls-buttons .pitch-control-grid-r2c1 {
+  grid-column: 1/span 3;
+  grid-row: 2;
+}
+.mobile-controls-content .navbar-controls-buttons .pitch-control-grid-r2c2 {
+  grid-column: 4/span 3;
+  grid-row: 2;
+}
+.mobile-controls-content .navbar-controls-buttons .pitch-control-grid-r2c3 {
+  grid-column: 7/span 3;
+  grid-row: 2;
+}
+.mobile-controls-content .navbar-controls-buttons .pitch-control-grid-r2c4 {
+  grid-column: 10/span 3;
+  grid-row: 2;
+}
+.mobile-controls-content .navbar-controls-buttons .pitch-control-grid-r2c5 {
+  grid-column: 13/span 3;
+  grid-row: 2;
+}
+.mobile-controls-content .navbar-controls-buttons .pitch-control-grid-r3c1 {
+  grid-column: 1/span 5;
+  grid-row: 3;
+}
+.mobile-controls-content .navbar-controls-buttons .pitch-control-grid-r3c2 {
+  grid-column: 6/span 5;
+  grid-row: 3;
+}
+.mobile-controls-content .navbar-controls-buttons .pitch-control-grid-r3c3 {
+  grid-column: 11/span 5;
+  grid-row: 3;
+}
+
+.mobile-controls-content .navbar-controls-buttons > .playback-progress {
   min-width: 0;
   margin: 4px 0 0;
   gap: 6px;
@@ -7293,7 +7410,7 @@ input[type=number] {
   }
 }
 /* `/pitch-controls` 상세 본문: 모바일에서 헤더 슬라이드 패널(`.mobile-controls-content`)과 동일한 격자·터치 UI */
-@media (max-width: 768px) {
+@media (max-width: 930px) {
   .controller-detail-pitch-controls {
     width: 100%;
     min-width: 0;
@@ -7304,13 +7421,12 @@ input[type=number] {
   }
   .controller-detail-pitch-controls .navbar-controls-buttons {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(15, minmax(0, 1fr));
     gap: 4px 6px;
     align-items: stretch;
     justify-items: stretch;
   }
   .controller-detail-pitch-controls .navbar-controls-buttons > * {
-    grid-column: auto;
     min-width: 0;
   }
   .controller-detail-pitch-controls .navbar-controls-buttons > .playback-transport-cluster {
@@ -7321,7 +7437,54 @@ input[type=number] {
   }
   .controller-detail-pitch-controls .navbar-controls-buttons > .playback-progress {
     grid-column: 1/-1;
+    grid-row: 4;
     width: 100%;
+  }
+  .controller-detail-pitch-controls .navbar-controls-buttons .pitch-control-grid-r1c1 {
+    grid-column: 1/span 5;
+    grid-row: 1;
+  }
+  .controller-detail-pitch-controls .navbar-controls-buttons .pitch-control-grid-r1c2 {
+    grid-column: 6/span 5;
+    grid-row: 1;
+  }
+  .controller-detail-pitch-controls .navbar-controls-buttons .pitch-control-grid-r1c3 {
+    grid-column: 11/span 5;
+    grid-row: 1;
+  }
+  .controller-detail-pitch-controls .navbar-controls-buttons .pitch-control-grid-r2c1 {
+    grid-column: 1/span 3;
+    grid-row: 2;
+  }
+  .controller-detail-pitch-controls .navbar-controls-buttons .pitch-control-grid-r2c2 {
+    grid-column: 4/span 3;
+    grid-row: 2;
+  }
+  .controller-detail-pitch-controls .navbar-controls-buttons .pitch-control-grid-r2c3 {
+    grid-column: 7/span 3;
+    grid-row: 2;
+  }
+  .controller-detail-pitch-controls .navbar-controls-buttons .pitch-control-grid-r2c4 {
+    grid-column: 10/span 3;
+    grid-row: 2;
+  }
+  .controller-detail-pitch-controls .navbar-controls-buttons .pitch-control-grid-r2c5 {
+    grid-column: 13/span 3;
+    grid-row: 2;
+  }
+  .controller-detail-pitch-controls .navbar-controls-buttons .pitch-control-grid-r3c1 {
+    grid-column: 1/span 5;
+    grid-row: 3;
+  }
+  .controller-detail-pitch-controls .navbar-controls-buttons .pitch-control-grid-r3c2 {
+    grid-column: 6/span 5;
+    grid-row: 3;
+  }
+  .controller-detail-pitch-controls .navbar-controls-buttons .pitch-control-grid-r3c3 {
+    grid-column: 11/span 5;
+    grid-row: 3;
+  }
+  .controller-detail-pitch-controls .navbar-controls-buttons > .playback-progress {
     min-width: 0;
     margin: 4px 0 0;
     gap: 6px;
@@ -7386,8 +7549,8 @@ input[type=number] {
     flex: 1;
   }
 }
-/* 768px 이하에서 모바일 컨트롤 활성화 */
-@media (max-width: 768px) {
+/* $mobile-controls-breakpoint 이하에서 모바일 컨트롤 활성화 */
+@media (max-width: 930px) {
   .mobile-controls-btn {
     display: inline-flex;
   }
