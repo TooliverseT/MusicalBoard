@@ -6977,6 +6977,19 @@ input[type=number] {
   z-index: 2000;
 }
 
+/* MainLayout 전역 오버레이 — 헤더(999)·대시보드 창 stacking 위 */
+.upload-processing-overlay--global {
+  z-index: 20000;
+}
+
+/* `#app-main-content` 풀스크린 시에도 동일 스택 (오버레이가 main-content 자식일 때) */
+.main-content:fullscreen .upload-processing-overlay--global,
+.main-content:-webkit-full-screen .upload-processing-overlay--global {
+  position: fixed;
+  inset: 0;
+  z-index: 2147483647;
+}
+
 .upload-processing-card {
   min-width: 230px;
   padding: 14px 16px;
@@ -7954,4 +7967,460 @@ article.musicalboard-prose p.mb-blog-image {
 }
 article.musicalboard-prose p.mb-blog-image img {
   width: 100%;
+}
+
+/* ─── Vocal Post (Auto-Tune) ─────────────────────────────────────────────── */
+.dashboard-window-bar--autotune {
+  background: linear-gradient(90deg, rgba(255, 120, 160, 0.48) 0%, rgba(120, 40, 80, 0.9) 100%);
+  border-bottom-color: #c05070;
+}
+
+.auto-tune-root {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  background: #0f1419;
+  color: #d0d8e8;
+  font-size: 13px;
+  overflow-y: auto;
+}
+
+/* Settings panel — reuses pitch-plot-panel base */
+.auto-tune-root .pitch-plot-panel.at-panel {
+  border-radius: 0;
+  border-left: none;
+  border-right: none;
+  border-top: none;
+}
+
+/* Vocal Post controls — own flex layout (do NOT reuse pitch-plot-control-rows
+   grid areas: ppr-y / ppr-sens each accept only one child there). */
+.auto-tune-root .at-control-rows {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+.auto-tune-root .at-control-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 14px;
+  padding: 8px 10px;
+  min-width: 0;
+  box-sizing: border-box;
+  border-bottom: 1px solid #2a3444;
+}
+
+.auto-tune-root .at-control-row:last-child {
+  border-bottom: none;
+}
+
+.auto-tune-root .at-control-field {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 8px;
+  flex: 1 1 8rem;
+  min-width: min(100%, 8rem);
+  margin: 0;
+  cursor: default;
+}
+
+.auto-tune-root .at-control-field .pitch-plot-select {
+  flex: 1 1 5rem;
+  min-width: 4.5rem;
+}
+
+.auto-tune-root .at-control-slider {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 10px;
+  flex: 1 1 100%;
+  min-width: min(100%, 14rem);
+  margin: 0;
+  cursor: default;
+}
+
+.auto-tune-root .at-control-slider .pitch-plot-tag {
+  flex: 0 0 auto;
+  min-width: 7.5rem;
+  white-space: nowrap;
+}
+
+.auto-tune-root .at-control-slider .pitch-plot-sens-range {
+  flex: 1 1 8rem;
+  min-width: 0;
+  max-width: 100%;
+  height: 6px;
+  cursor: pointer;
+  accent-color: #c05070;
+}
+
+/* Narrow dashboard window: stack Key/Scale, one slider per row */
+@media (max-width: 600px) {
+  .auto-tune-root .at-control-row--meta .at-control-field {
+    flex: 1 1 100%;
+  }
+  .auto-tune-root .at-control-row--sliders {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .auto-tune-root .at-control-slider {
+    flex: 1 1 auto;
+  }
+}
+/* Medium width: Key + Scale side by side; sliders still full-width rows */
+@media (min-width: 601px) and (max-width: 900px) {
+  .auto-tune-root .at-control-row--meta .at-control-field {
+    flex: 1 1 calc(50% - 8px);
+  }
+}
+/* Wide panel: Key/Scale on top row; sliders in a 2-column grid when space allows */
+@media (min-width: 901px) {
+  .auto-tune-root .at-control-row--sliders {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 14px;
+    row-gap: 10px;
+  }
+  .auto-tune-root .at-control-slider:last-child:nth-child(odd) {
+    grid-column: 1/-1;
+  }
+}
+@media (min-width: 1100px) {
+  .auto-tune-root .at-control-row--sliders {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .auto-tune-root .at-control-slider:last-child:nth-child(odd) {
+    grid-column: auto;
+  }
+}
+/* Action row — apply button + inline hint (one row) */
+.at-action-row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: 10px 12px;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 10px 12px;
+  border-bottom: 1px solid #2c3342;
+}
+
+.at-action-row .at-btn {
+  flex: 0 0 auto;
+}
+
+.at-action-hint {
+  flex: 1 1 auto;
+  min-width: 0;
+  margin: 0;
+  font-size: 12px;
+  color: #a8b0c4;
+  line-height: 1.45;
+}
+
+@media (max-width: 520px) {
+  .at-action-row {
+    flex-wrap: wrap;
+  }
+  .at-action-hint {
+    flex: 1 1 100%;
+  }
+}
+/* Status line (processing / error / ok) */
+.at-status {
+  padding: 6px 12px;
+  font-size: 12px;
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  border-bottom: 1px solid #2c3342;
+}
+
+.at-status--processing {
+  color: #a8c8ff;
+  background: rgba(100, 140, 255, 0.07);
+}
+
+.at-status--error {
+  color: #ff8a8a;
+  background: rgba(255, 80, 80, 0.08);
+}
+
+.at-status--ok {
+  color: #7de89a;
+  background: rgba(80, 200, 100, 0.07);
+}
+
+/* Compare area — side-by-side original vs tuned */
+.at-compare {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 12px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.at-compare-col {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1 1 160px;
+  min-width: 0;
+}
+
+.at-compare-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #7d8699;
+}
+
+.at-audio {
+  width: 100%;
+  min-width: 0;
+  height: 36px;
+  border-radius: 4px;
+  accent-color: #c05070;
+  background: #121a22;
+  border: 1px solid #343b4d;
+}
+
+/* Hint / info text */
+.at-hint {
+  padding: 10px 12px;
+  font-size: 12px;
+  color: #a8b0c4;
+  line-height: 1.55;
+}
+
+/* Collapsible info accordion */
+.at-info {
+  border-top: 1px solid #2c3342;
+}
+
+.at-info-summary {
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  font-size: 12px;
+  color: #7d8699;
+  cursor: pointer;
+  user-select: none;
+  list-style: none;
+}
+.at-info-summary::-webkit-details-marker {
+  display: none;
+}
+.at-info-summary:hover {
+  color: #a8b0c4;
+}
+
+.at-info-body {
+  padding: 6px 12px 10px;
+  font-size: 12px;
+  color: #a8b0c4;
+  line-height: 1.6;
+}
+
+/* Buttons */
+.at-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  border: none;
+  border-radius: 4px;
+  padding: 5px 13px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.15s ease, box-shadow 0.15s ease;
+  white-space: nowrap;
+  user-select: none;
+}
+.at-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.at-btn--primary {
+  color: #ffffff;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border: 1px solid transparent;
+  box-shadow: 0 1px 4px rgba(102, 126, 234, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+.at-btn--primary:hover:not(:disabled) {
+  filter: brightness(1.05);
+  box-shadow: 0 1px 6px rgba(102, 126, 234, 0.42), inset 0 1px 0 rgba(255, 255, 255, 0.14);
+}
+
+.at-btn--secondary {
+  background: #121a22;
+  color: #d0d8e8;
+  border: 1px solid #343b4d;
+}
+.at-btn--secondary:hover:not(:disabled) {
+  border-color: #7d8699;
+  color: #fff;
+}
+
+.at-btn--ghost {
+  background: transparent;
+  color: #a8b0c4;
+  border: 1px solid transparent;
+}
+.at-btn--ghost:hover:not(:disabled) {
+  border-color: #2c3342;
+  color: #d0d8e8;
+}
+
+/* Auto-Tune detail: visible panel only; PitchAnalyzer runs hidden for audio */
+.auto-tune-detail-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.auto-tune-detail-container .auto-tune-root {
+  max-width: 100%;
+}
+
+.at-version-row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 10px 12px;
+  border-bottom: 1px solid #2c3342;
+}
+
+/* Load Original / Load Auto-Tuned — same toggle pattern as `.sg-seg-btn` / Pitch Plot */
+.at-version-row .at-btn--secondary {
+  flex: 1 1 120px;
+  min-width: 0;
+  padding: 7px 12px;
+  font-family: "Quicksand", system-ui, -apple-system, sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  color: #d0d5e6;
+  background: rgba(15, 20, 30, 0.65);
+  border: 1px solid #2c3342;
+  border-radius: 4px;
+  transition: background 0.18s ease, border-color 0.18s ease, color 0.18s ease, box-shadow 0.18s ease;
+  /* Currently loaded in Controller */
+}
+.at-version-row .at-btn--secondary:hover:not(:disabled):not(.is-on) {
+  border-color: rgba(102, 126, 234, 0.45);
+  color: var(--sg-text, #e4e7ec);
+}
+.at-version-row .at-btn--secondary:focus-visible {
+  outline: 2px solid rgba(138, 180, 248, 0.85);
+  outline-offset: 2px;
+}
+.at-version-row .at-btn--secondary:disabled:not(.is-on) {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.at-version-row .at-btn--secondary.is-on {
+  opacity: 1;
+  cursor: default;
+  font-weight: 700;
+  color: #ffffff;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-color: transparent;
+  box-shadow: 0 1px 4px rgba(102, 126, 234, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+.at-version-row .at-btn--secondary.is-on:hover:not(:disabled) {
+  border-color: rgba(255, 255, 255, 0.14);
+  color: #ffffff;
+}
+
+.at-roadmap {
+  padding: 8px 12px 12px;
+  border-bottom: 1px solid #2c3342;
+}
+
+.at-roadmap-caption {
+  margin: 0 0 6px;
+  font-size: 11px;
+  color: #a8b0c4;
+  line-height: 1.45;
+}
+
+.at-roadmap-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 16px;
+  margin: 0 0 8px;
+  padding: 6px 8px;
+  font-size: 10px;
+  color: #a8b0c4;
+  background: rgba(15, 20, 30, 0.65);
+  border: 1px solid #2c3342;
+  border-radius: 4px;
+}
+
+.at-roadmap-legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+.at-roadmap-legend-swatch {
+  display: inline-block;
+  width: 20px;
+  height: 0;
+  border-top: 2px solid transparent;
+  flex-shrink: 0;
+}
+.at-roadmap-legend-swatch--orig {
+  border-top-width: 3px;
+  border-top-style: dashed;
+  border-top-color: rgba(165, 178, 205, 0.95);
+}
+.at-roadmap-legend-swatch--tuned {
+  border-top-width: 1px;
+  border-top-color: rgba(255, 95, 130, 0.92);
+}
+.at-roadmap-legend-swatch--gap {
+  width: 2px;
+  height: 10px;
+  border: none;
+  background: rgba(255, 140, 165, 0.75);
+}
+.at-roadmap-legend-swatch--play {
+  width: 2px;
+  height: 12px;
+  border: none;
+  background: rgb(255, 215, 0);
+  box-shadow: 0 0 6px rgba(255, 215, 0, 0.45);
+}
+
+.at-roadmap-canvas {
+  display: block;
+  width: 100%;
+  height: 288px;
+  min-height: 288px;
+  max-height: 288px;
+  border-radius: 4px;
+  border: 1px solid #2c3342;
+  box-sizing: border-box;
+}
+
+.at-roadmap-range-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 6px;
+  flex-wrap: wrap;
 }
