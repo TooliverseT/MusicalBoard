@@ -8676,7 +8676,7 @@ article.musicalboard-prose p.mb-blog-image img {
   flex-wrap: wrap;
 }
 
-/* ─── Mic & Room Diagnostics ────────────────────────────────────────────── */
+/* ─── Mic Room Diagnostics ────────────────────────────────────────────── */
 .dashboard-window-bar--micdiag {
   background: linear-gradient(90deg, rgba(102, 126, 234, 0.48) 0%, rgba(55, 30, 90, 0.9) 100%);
   border-bottom-color: #667eea;
