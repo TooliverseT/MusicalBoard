@@ -663,6 +663,11 @@ body:not(.app-ready) .dashboard-desktop-shell {
   visibility: hidden;
 }
 
+body:not(.app-ready) .ui-tour-root {
+  visibility: hidden;
+  pointer-events: none;
+}
+
 /* Fullscreen API: `#app-main-content` — top-header + 본문이 함께 표시. 사이드바는 대상 밖. */
 .main-content:fullscreen,
 .main-content:-webkit-full-screen {
