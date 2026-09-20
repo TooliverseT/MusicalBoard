@@ -7333,6 +7333,12 @@ input[type=number] {
     grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 8px;
     align-items: stretch;
+    position: sticky;
+    top: 0;
+    z-index: 900;
+    padding-bottom: 4px;
+    background: #0f1419;
+    box-shadow: 0 6px 12px rgba(15, 20, 25, 0.85);
   }
   .dashboard-mobile-top-actions {
     grid-column: 1/-1;
@@ -7386,7 +7392,16 @@ input[type=number] {
     overflow-y: auto;
     display: flex;
     flex-direction: column;
+    min-height: 0;
+    align-self: stretch;
+  }
+  /* 투어·레이아웃: 1fr 그리드 셀 전체가 아니라 실제로 켜진 카드 높이만 잡는다 */
+  .dashboard-mobile-tool-stack {
+    display: flex;
+    flex-direction: column;
     gap: 12px;
+    width: 100%;
+    flex: 0 0 auto;
     min-height: 0;
   }
   .main-content:fullscreen .dashboard-mobile-tool-panel,
@@ -7637,6 +7652,22 @@ input[type=number] {
   inset: 0;
   z-index: 19000;
   pointer-events: auto;
+}
+
+/* `#app-main-content` 자식 — `.content-area` overflow 클립·헤더(999) 위 (업로드 오버레이와 동일 층) */
+.ui-tour-root--global {
+  z-index: 20000;
+}
+
+.main-content:fullscreen .ui-tour-root--global,
+.main-content:-webkit-full-screen .ui-tour-root--global {
+  position: fixed;
+  inset: 0;
+  z-index: 2147483646;
+}
+
+[data-tour] {
+  scroll-margin-top: calc(var(--app-header-offset) + 10px);
 }
 
 .ui-tour-dim-full {
