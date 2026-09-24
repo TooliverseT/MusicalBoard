@@ -2472,6 +2472,52 @@ button.active {
   padding: 0;
 }
 
+.pitch-plot-fs-actions {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  width: 100%;
+  min-width: 0;
+  min-height: 2.5rem;
+  flex: 1 1 auto;
+}
+
+.pitch-plot-fs-actions .pitch-plot-fs-btn {
+  width: auto;
+  min-width: 0;
+}
+
+.pitch-plot-help-btn {
+  flex: 0 0 2.5rem;
+  width: 2.5rem;
+  min-width: 2.5rem;
+  height: auto;
+  align-self: stretch;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-left: 1px solid #2a3444;
+  border-radius: 0;
+  background: rgba(15, 20, 30, 0.65);
+  color: #d8deef;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pitch-plot-help-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+.pitch-plot-help-btn:hover,
+.pitch-plot-help-btn:focus-visible {
+  color: #ffffff;
+  background: rgba(123, 140, 255, 0.28);
+  outline: none;
+}
+
 /* Pitch / vocal-range 감도 슬라이더 — 트랙·채움·핸들(브라우저별 pseudo) */
 .pitch-plot-sens .pitch-plot-sens-range {
   --pitch-sens-fill-pct: 10%;
@@ -2799,6 +2845,14 @@ button.active {
   pointer-events: auto;
 }
 
+.pitch-plot-start-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
 .pitch-plot-start-copy {
   margin: 0;
   max-width: 22rem;
@@ -2810,24 +2864,14 @@ button.active {
   line-height: 1.45;
 }
 
-.pitch-plot-start-btn {
-  appearance: none;
-  border: 1px solid rgba(102, 126, 234, 0.55);
-  background: #667eea;
-  color: #ffffff;
-  font-family: "Quicksand", system-ui, -apple-system, sans-serif;
-  font-size: 14px;
-  font-weight: 600;
-  letter-spacing: 0.02em;
+.pitch-plot-start-actions .at-btn {
+  min-height: 34px;
   padding: 8px 16px;
-  border-radius: 0;
-  cursor: pointer;
+  font-family: "Quicksand", system-ui, -apple-system, sans-serif;
 }
 
-.pitch-plot-start-btn:hover,
-.pitch-plot-start-btn:focus-visible {
-  background: #7b8ef0;
-  outline: none;
+.at-action-row .pitch-plot-start-actions .at-btn {
+  flex: 0 0 auto;
 }
 
 .amplitude-visualizer {
@@ -2852,6 +2896,7 @@ button.active {
   container-name: vocal-range-panel;
 }
 .amplitude-visualizer .amp-spectrum-canvas-wrap {
+  position: relative;
   width: 100%;
   max-width: 100%;
   min-width: 0;
@@ -3045,6 +3090,7 @@ button.active {
   container-name: vocal-range-panel;
 }
 .vocal-range-gauge-root .vocal-range-canvas-wrap {
+  position: relative;
   width: 100%;
   max-width: 100%;
   min-width: 0;
@@ -3183,17 +3229,30 @@ button.active {
   border-bottom: 0;
   border-top: 0;
   min-height: 100%;
-  align-content: center;
-  /* SCORE/LIVE/RANGE/VOICE 2×2 */
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  gap: 8px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10.5px;
+  color: #8b92a5;
+}
+
+.vocal-range-plot-root .vrs-chips {
+  flex: 1 1 auto;
+  min-width: 0;
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   grid-template-rows: auto auto;
   column-gap: 12px;
   row-gap: 8px;
+  align-content: center;
   justify-items: stretch;
-  font-family: "JetBrains Mono", monospace;
-  font-size: 10.5px;
-  color: #8b92a5;
+}
+
+.vocal-range-plot-root .vocal-range-panel-stats .pitch-plot-help-btn {
+  flex: 0 0 2.5rem;
+  align-self: stretch;
 }
 
 .vocal-range-plot-root .vrs-chip,
@@ -3294,7 +3353,16 @@ button.active {
   flex: 1 1 0;
 }
 
-/* 상세 페이지(고정 vh 캔버스) — 브라우저 풀스크린에서 flex로 남는 공간 채움 */
+/* 상세 페이지(고정 vh 캔버스) — 브라우저 풀스크린에서 flex로 남는 공간 채움.
+   `.pitch-analyzer-direct .pitch-plot-stage { flex: 0 0 auto }` 가 남으면
+   캔버스 min-height:0 과 맞물려 그래프 높이가 0이 된다. */
+.main-content:fullscreen .pitch-analyzer-direct .pitch-plot-stage,
+.main-content:-webkit-full-screen .pitch-analyzer-direct .pitch-plot-stage {
+  flex: 1 1 0;
+  min-height: 0;
+  height: auto;
+}
+
 .main-content:fullscreen .pitch-analyzer-direct .pitch-plot-canvas,
 .main-content:-webkit-full-screen .pitch-analyzer-direct .pitch-plot-canvas {
   flex: 1 1 0 !important;
@@ -7333,12 +7401,7 @@ input[type=number] {
     grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 8px;
     align-items: stretch;
-    position: sticky;
-    top: 0;
-    z-index: 900;
     padding-bottom: 4px;
-    background: #0f1419;
-    box-shadow: 0 6px 12px rgba(15, 20, 25, 0.85);
   }
   .dashboard-mobile-top-actions {
     grid-column: 1/-1;
@@ -9075,6 +9138,23 @@ article.musicalboard-prose p.mb-blog-image img {
 
 .at-action-row .at-btn {
   flex: 0 0 auto;
+}
+
+.at-tour-example-note {
+  margin: 0;
+  padding: 8px 12px 0;
+  font-size: 12px;
+  line-height: 1.4;
+  color: #8b95b2;
+}
+
+.at-action-row .pitch-plot-help-btn {
+  margin-left: auto;
+  flex: 0 0 2.5rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  align-self: center;
+  border: 1px solid #2a3444;
 }
 
 .at-action-hint {
