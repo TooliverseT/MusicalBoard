@@ -2,6 +2,19 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
+  <script>
+    (function () {
+      function normalizedHost() {
+        var h = (location.hostname || '').toLowerCase();
+        if (h.length >= 2 && h.charAt(0) === '[' && h.charAt(h.length - 1) === ']') {
+          h = h.slice(1, -1);
+        }
+        return h;
+      }
+      var allowed = ['www.musicalboard.com', 'musicalboard.com'];
+      window.__mbProductionSite = allowed.indexOf(normalizedHost()) !== -1;
+    })();
+  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <meta name="google-site-verification" content="upoLjXjQ2igKXqJvnMon0CITWtN_Fjtiw4op30hdABg" />
   <meta name="robots" content="index, follow">
@@ -90,21 +103,26 @@ dispatchEvent(new CustomEvent("TrunkApplicationStarted", {detail: {wasm}}));
         return { timeZone, offset };
     }
   </script>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-M4ZR1QN3WB"></script>
+  <!-- Google Analytics: production host only (localhost / 127.0.0.1 / preview URLs excluded). -->
   <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'G-M4ZR1QN3WB');
+    (function () {
+      if (!window.__mbProductionSite) return;
+      var gtagJs = document.createElement('script');
+      gtagJs.async = true;
+      gtagJs.src = 'https://www.googletagmanager.com/gtag/js?id=G-M4ZR1QN3WB';
+      document.head.appendChild(gtagJs);
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      window.gtag = gtag;
+      gtag('js', new Date());
+      gtag('config', 'G-M4ZR1QN3WB');
+    })();
   </script>
-  <!-- AdSense: load after WASM remounts over prerendered HTML.
-       Head-async load fills snapshot <ins>, then Yew clears body, so
-       visible ads become a second (often unfilled) request. -->
+  <!-- AdSense: after WASM mount; production host only. -->
   <script>
     (function () {
       function loadAdSense() {
+        if (!window.__mbProductionSite) return;
         if (window.__mbAdSenseLoaded) return;
         window.__mbAdSenseLoaded = true;
         var s = document.createElement('script');
@@ -192,6 +210,6 @@ If you need to understand what the colors and SCORE mean in Vocal Range Test, or
 <li><a href="https://www.nngroup.com/articles/progressive-disclosure/">Progressive Disclosure — Nielsen Norman Group</a></li>
 </ul>
 <p><a href="https://www.musicalboard.com/"><strong>Open the MusicalBoard Home studio →</strong></a></p>
-</article><p class="mb-blog-back-wrap"><a href="/blog/" class="mb-blog-back-link">← All posts</a></p></div></div></main></div></div></body>
+</article><aside aria-labelledby="mb-blog-related-h" class="mb-blog-related"><h3 id="mb-blog-related-h" class="mb-blog-section-title">Related Posts</h3><ul class="mb-blog-related-list"><li><a href="/blog/2026-04-30-musicalboard-introduction/">The Complete MusicalBoard Guide — A Free Vocal Practice Platform and Dashboard You Can Use Right in Your Browser</a></li></ul></aside><p class="mb-blog-back-wrap"><a href="/blog/" class="mb-blog-back-link">← All posts</a></p></div></div></main></div></div></body>
 
 </html>
