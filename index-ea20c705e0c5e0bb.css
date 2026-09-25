@@ -7722,6 +7722,15 @@ input[type=number] {
   z-index: 20000;
 }
 
+/* Tool detail Help: wheel/touch scroll the page; only the card captures clicks */
+.ui-tour-root--scroll-through {
+  pointer-events: none;
+}
+
+.ui-tour-root--scroll-through .ui-tour-card {
+  pointer-events: auto;
+}
+
 .main-content:fullscreen .ui-tour-root--global,
 .main-content:-webkit-full-screen .ui-tour-root--global {
   position: fixed;
@@ -8214,6 +8223,26 @@ input[type=number] {
 
 .playback-help-btn {
   flex: 0 0 2.5rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 1px solid #2a3444;
+}
+
+.detail-help-overlay-host,
+.tool-detail-tour-wrap {
+  position: relative;
+}
+
+.tool-detail-tour-wrap {
+  width: 100%;
+}
+
+.detail-help-overlay-host > .tool-detail-tour-help-btn,
+.tool-detail-tour-wrap > .tool-detail-tour-help-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 40;
   width: 2.5rem;
   height: 2.5rem;
   border: 1px solid #2a3444;
