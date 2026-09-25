@@ -8212,6 +8212,13 @@ input[type=number] {
   flex: 1;
 }
 
+.playback-help-btn {
+  flex: 0 0 2.5rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 1px solid #2a3444;
+}
+
 /* `/pitch-controls` 상세 본문: 데스크톱에서 Controller 스트립을 본문 가로 가운데 (`.analyzer-container > * { width:100% }` 보정) */
 @media (min-width: 769px) {
   .analyzer-container > .controller-detail-pitch-controls {
@@ -8222,11 +8229,19 @@ input[type=number] {
   }
   .controller-detail-pitch-controls .navbar-controls-buttons {
     justify-content: center;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     gap: 8px 10px;
   }
-  .controller-detail-pitch-controls .playback-progress {
+  /* Main transport gauge only — same rule on `.playback-progress` inside the
+     session dropdown (column flex) makes flex-basis 300px act as height. */
+  .controller-detail-pitch-controls .navbar-controls-buttons > .playback-progress {
     margin-left: 0;
+    flex: 0 0 300px;
+    width: 300px;
+  }
+  .controller-detail-pitch-controls .playback-help-btn {
+    flex: 0 0 2.5rem;
+    margin-left: 2px;
   }
 }
 /* `/pitch-controls` 상세 본문: 모바일에서 헤더 슬라이드 패널(`.mobile-controls-content`)과 동일한 격자·터치 UI */
@@ -8316,19 +8331,29 @@ input[type=number] {
     grid-row: 3;
   }
   .controller-detail-pitch-controls .navbar-controls-buttons > .playback-progress {
+    grid-column: 1/18;
     min-width: 0;
+    width: auto;
     margin: 4px 0 0;
     gap: 6px;
     flex-direction: row;
     align-items: center;
   }
-  .controller-detail-pitch-controls .playback-progress .progress-bar {
+  .controller-detail-pitch-controls .navbar-controls-buttons > .playback-help-btn {
+    grid-column: 18/-1;
+    grid-row: 4;
+    justify-self: end;
+    align-self: center;
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+  .controller-detail-pitch-controls .navbar-controls-buttons > .playback-progress .progress-bar {
     width: 100%;
     min-width: 0;
     margin: 0;
     flex: 1;
   }
-  .controller-detail-pitch-controls .progress-bar-wrap {
+  .controller-detail-pitch-controls .navbar-controls-buttons > .playback-progress .progress-bar-wrap {
     width: 100%;
     min-width: 0;
   }
