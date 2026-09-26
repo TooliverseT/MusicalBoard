@@ -88,15 +88,15 @@ The mic disables during playback. If you want to record again after listening, s
 
 ### Step 6 — Download
 
-Clicking the download button opens a format menu. Choose from WebM, MP3, WAV, OGG, or M4A, then tap "Download" to save the file to your device.
+Clicking the download button opens a format menu. Choose WebM, MP3, WAV, OGG, or M4A, then tap "Download" to save the file to your device. WebM is the captured recording. The other four are encoded in the browser from the decoded audio.
 
 | Format | What it's good for |
 |--------|--------------------|
-| MP3 | Best compatibility. Sending to a teacher, posting online. |
-| WAV | Near-lossless quality. Larger file, but good for keeping long-term. |
-| WebM | Browser's native format. Fastest to save. |
-| M4A | Convenient on iPhone and iPad. |
-| OGG | Open-source format. Mostly for specific software use cases. |
+| MP3 | Best compatibility. Sending to a teacher, posting online. About 192 kbps, encoded locally. |
+| WAV | 16-bit PCM mono. Larger file, good for keeping long-term or opening in a DAW. |
+| WebM | Browser's native recording. Fastest to save. |
+| M4A | AAC-LC, about 128 kbps. Convenient on iPhone and iPad. |
+| OGG | Vorbis, encoded locally. Useful when you want an open format. |
 
 For most purposes: MP3 when sharing, WAV when archiving.
 

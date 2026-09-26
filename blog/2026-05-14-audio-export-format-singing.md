@@ -91,7 +91,7 @@ Instead of alphabet soup, map formats to what you’re actually doing.
 
 [Singing Recorder](https://www.musicalboard.com/singing-recorder/) keeps the whole path — record through send — inside the browser. Mic audio flows through the Web Audio API and MediaRecorder; on Chrome and Firefox it’s usually encoded live as **Opus/WebM** and buffered in memory.
 
-When you press download, you can choose WebM, MP3, WAV, OGG, or M4A. **WebM** is essentially the buffer you already have, so it’s the fastest path out. **MP3 and WAV** spend a little extra time in the browser being converted.
+When you press download, you can choose WebM, MP3, WAV, OGG, or M4A. **WebM** is the buffer you already have, so it’s the fastest path out. **WAV** is 16-bit PCM mono. **MP3** (about 192 kbps), **OGG Vorbis**, and **M4A** (AAC-LC, about 128 kbps) are encoded in the browser from the decoded take — the file bytes match the extension, rather than a renamed WebM.
 
 Takes sit in **IndexedDB for up to 24 hours**. Refreshing the page doesn’t instantly erase them, but after a day — or if you delete them yourself — they’re gone. **Nothing is uploaded to a server**; it all runs on your device.
 
