@@ -9323,6 +9323,29 @@ article.musicalboard-prose p.mb-blog-image img {
   background: rgba(80, 200, 100, 0.07);
 }
 
+.at-intonation-summary {
+  margin: 10px 12px 10px;
+  padding: 10px 12px;
+  border: 1px solid #2c3342;
+  border-radius: 6px;
+  background: rgba(100, 140, 255, 0.06);
+  font-size: 12px;
+  line-height: 1.45;
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.at-intonation-stats {
+  margin: 0 0 6px;
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-weight: 600;
+  color: #c8dcff;
+}
+
+.at-intonation-copy {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.78);
+}
+
 /* Compare area — side-by-side original vs tuned */
 .at-compare {
   display: flex;
