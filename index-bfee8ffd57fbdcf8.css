@@ -9623,7 +9623,11 @@ article.musicalboard-prose p.mb-blog-image img {
 .mic-diag-card {
   width: 100%;
   height: 100%;
-  overflow-y: auto;
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
   box-sizing: border-box;
 }
 
@@ -9632,7 +9636,9 @@ article.musicalboard-prose p.mb-blog-image img {
   flex-direction: column;
   gap: 0;
   width: 100%;
-  min-height: 100%;
+  flex: 1 1 auto;
+  min-height: 0;
+  height: 100%;
   font-family: "Quicksand", system-ui, -apple-system, sans-serif;
   color: #e4e7ec;
   box-sizing: border-box;
@@ -9644,6 +9650,15 @@ article.musicalboard-prose p.mb-blog-image img {
 
 .mic-diag-container {
   margin: 0;
+  align-items: stretch;
+  min-height: min(520px, 72vh);
+}
+.mic-diag-container > .mic-diag-root,
+.mic-diag-container > .mic-diag-card {
+  min-height: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .mic-diag-steps {
@@ -9652,6 +9667,7 @@ article.musicalboard-prose p.mb-blog-image img {
   padding: 0 16px;
   background: rgba(15, 20, 30, 0.6);
   border-bottom: 1px solid rgba(46, 56, 80, 0.6);
+  flex: 0 0 auto;
   flex-wrap: nowrap;
   overflow-x: auto;
   gap: 0;
@@ -9706,10 +9722,14 @@ article.musicalboard-prose p.mb-blog-image img {
 
 .mic-diag-panel {
   padding: 52px 20px 24px;
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
   display: flex;
   flex-direction: column;
   gap: 14px;
   animation: mic-diag-fadein 0.25s ease;
+  box-sizing: border-box;
 }
 @container (max-width: 380px) {
   .mic-diag-panel {
@@ -10605,4 +10625,335 @@ article.musicalboard-prose p.mb-blog-image img {
   flex: 0 1 auto;
   font-size: 12px;
   padding: 8px 14px;
+}
+
+.dashboard-window-bar--sightsing {
+  background: linear-gradient(90deg, rgba(102, 126, 234, 0.48) 0%, rgba(55, 30, 90, 0.9) 100%);
+  border-bottom-color: #667eea;
+}
+
+.ss-detail-container {
+  margin: 0;
+  min-height: 0;
+  height: auto;
+  align-items: stretch;
+}
+
+.ss-detail-container > .tool-detail-tour-wrap {
+  height: auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.ss-detail-container > .tool-detail-tour-wrap > .ss-tool-root {
+  flex: 0 1 auto;
+  height: auto;
+  min-height: 0;
+  overflow: visible;
+}
+
+.ss-detail-container .ss-tool-root {
+  min-height: 0;
+}
+
+.ss-detail-container .ss-tool-root .mic-diag-panel.ss-main-panel {
+  flex: 0 1 auto;
+  min-height: 0;
+  overflow-y: visible;
+  padding-top: 16px;
+  padding-bottom: 20px;
+}
+
+#mic-room-diagnostics .dashboard-item-content {
+  justify-content: flex-start;
+}
+
+/* 홈 창 높이가 낮을 때 설정·버튼이 잘리지 않도록 본문 세로 스크롤 */
+#sight-singing .dashboard-window-content,
+#sight-singing .dashboard-item-content {
+  justify-content: flex-start;
+  overflow-x: hidden;
+  overflow-y: auto;
+  min-height: 0;
+  -webkit-overflow-scrolling: touch;
+}
+#sight-singing .mic-diag-card {
+  overflow: visible;
+  height: auto;
+  min-height: 100%;
+}
+#sight-singing .mic-diag-root {
+  height: auto;
+  min-height: 100%;
+}
+#sight-singing .mic-diag-panel {
+  overflow-y: visible;
+}
+
+.ss-tool-root {
+  display: flex;
+  flex-direction: column;
+  min-height: 320px;
+  --sg-text: #e4e7ec;
+}
+
+.ss-setup-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  margin-top: 4px;
+  margin-bottom: 4px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-top: 1px solid rgba(46, 56, 80, 0.45);
+  border-bottom: 1px solid rgba(46, 56, 80, 0.45);
+}
+
+.ss-setup-range,
+.ss-setup-presets {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.ss-settings-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+.ss-settings-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  padding: 10px 8px;
+  box-sizing: border-box;
+}
+.ss-settings-col:not(:last-child) {
+  border-right: 1px solid #2a3444;
+}
+
+.ss-settings-range {
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.ss-range-dash {
+  color: #5c6578;
+  user-select: none;
+  flex-shrink: 0;
+}
+
+.ss-preset-group {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 4px;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+}
+.ss-preset-group .sg-seg-btn {
+  flex: 0 1 auto;
+  padding: 5px 10px;
+  font-size: 12px;
+  white-space: nowrap;
+}
+.ss-preset-group .ss-voice-preset-btn {
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 6px 8px;
+  min-width: 7.5rem;
+  white-space: normal;
+  line-height: 1.2;
+  text-align: center;
+}
+.ss-preset-group .ss-preset-voice {
+  font-size: 11px;
+  font-weight: 600;
+}
+.ss-preset-group .ss-preset-range {
+  font-size: 10px;
+  font-weight: 500;
+  color: rgba(196, 204, 220, 0.85);
+}
+.ss-preset-group .ss-voice-preset-btn.is-on .ss-preset-range {
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.ss-tool-root .mic-diag-panel.ss-main-panel {
+  /* 남는 세로 공간을 먹지 않음 — 창을 키워도 버튼이 콘텐츠 바로 아래 유지 */
+  flex: 0 1 auto;
+}
+
+.ss-main-panel {
+  padding-top: 20px;
+}
+.ss-main-panel .mic-diag-action-row.ss-actions-below-status {
+  padding-top: 0;
+  margin-top: 4px;
+  margin-bottom: 8px;
+}
+
+.ss-status-wrap {
+  width: 100%;
+}
+
+.ss-status-warn {
+  color: #fbbf24;
+}
+
+.ss-hold-zone {
+  width: 100%;
+  min-height: 2rem;
+}
+
+.ss-hold-hint {
+  margin: 0;
+  opacity: 0.72;
+  font-size: 12px;
+}
+
+.ss-tour-example-tag {
+  margin: 0;
+  align-self: flex-start;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #c5d0ff;
+}
+
+.ss-session-end {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.ss-session-report {
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.18);
+}
+
+.ss-round-list-section {
+  margin-top: 18px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(102, 126, 234, 0.38);
+  width: 100%;
+}
+
+.ss-round-list-heading {
+  margin: 0 0 12px;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: rgba(160, 175, 200, 0.78);
+}
+
+.ss-round-list {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 0;
+}
+
+.ss-round-card {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 12px;
+  border: 1px solid rgba(46, 56, 80, 0.55);
+  border-radius: 8px;
+  background: rgba(12, 16, 28, 0.45);
+}
+.ss-round-card .uc-row {
+  grid-template-columns: minmax(7.2rem, 9.2rem) 1fr 2rem;
+}
+
+.ss-round-card-lead {
+  margin-bottom: 12px;
+}
+
+.ss-hold-review {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 10px;
+  margin-top: 4px;
+}
+.ss-hold-review .at-roadmap {
+  width: 100%;
+  margin: 0;
+}
+
+.ss-result {
+  display: grid;
+  gap: 6px;
+  margin: 0;
+  padding: 12px 14px;
+  background: rgba(15, 20, 30, 0.55);
+  border: 1px solid rgba(46, 56, 80, 0.55);
+  border-radius: 8px;
+}
+.ss-result div {
+  display: grid;
+  grid-template-columns: 9.5em 1fr;
+  gap: 8px;
+}
+.ss-result dt {
+  margin: 0;
+  color: rgba(180, 190, 210, 0.75);
+  font-size: 12px;
+}
+.ss-result dd {
+  margin: 0;
+  font-weight: 600;
+}
+
+.ss-session {
+  margin: 0;
+  padding: 12px 14px;
+  background: rgba(15, 20, 30, 0.55);
+  border: 1px solid rgba(102, 126, 234, 0.25);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.ss-session .ss-session-score {
+  margin-bottom: 0;
+}
+.ss-session .mic-diag-result-title {
+  margin: 0;
+  text-align: center;
+}
+.ss-session .uc-row,
+.ss-session .ss-round-card .uc-row {
+  grid-template-columns: minmax(7.2rem, 9.2rem) 1fr 2rem;
+}
+.ss-session p {
+  margin: 0 0 6px;
+  font-weight: 600;
+  font-size: 14px;
+}
+.ss-session p:last-child {
+  margin-bottom: 0;
+}
+.ss-session .ss-session-meta {
+  font-weight: 500;
+  font-size: 12px;
+  color: rgba(180, 190, 210, 0.85);
 }
