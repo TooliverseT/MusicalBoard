@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <script>
+    (function () {
+      function normalizedHost() {
+        var h = (location.hostname || '').toLowerCase();
+        if (h.length >= 2 && h.charAt(0) === '[' && h.charAt(h.length - 1) === ']') {
+          h = h.slice(1, -1);
+        }
+        return h;
+      }
+      var allowed = ['www.musicalboard.com', 'musicalboard.com'];
+      window.__mbProductionSite = allowed.indexOf(normalizedHost()) !== -1;
+    })();
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="google-site-verification" content="upoLjXjQ2igKXqJvnMon0CITWtN_Fjtiw4op30hdABg" />
+  <meta name="robots" content="index, follow">
+
+  <link rel="canonical" href="https://www.musicalboard.com/blog/2026-09-30-match-a-note-you-just-heard/">
+
+  <meta name="description" content="Median cents alone is not enough to call a sight-singing round “matched.” This guide explains why the ±15-cent percentage on a 3-second hold differs from what Vocal Pitch Monitor’s live graph shows, and how to read both numbers together.">
+  <meta name="keywords" content="MusicalBoard blog, vocal intonation, singing pitch, ear training, browser vocal tools, practice tips for singers">
+  <meta name="author" content="MusicalBoard">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="MusicalBoard">
+  <meta property="og:url" content="https://www.musicalboard.com/blog/2026-09-30-match-a-note-you-just-heard/">
+  <meta property="og:title" content="Match a Note You Just Heard: What ±15 Cents Means in a 3-Second Hold | MusicalBoard Blog">
+  <meta property="og:description" content="Median cents alone is not enough to call a sight-singing round “matched.” This guide explains why the ±15-cent percentage on a 3-second hold differs from what Vocal Pitch Monitor’s live graph shows, and how to read both numbers together.">
+  <meta property="og:image" content="https://www.musicalboard.com/blog/assets/sight_singing/median_vs_within_15_examples.png">
+  <meta property="og:image:height" content="607">
+  <meta property="og:image:width" content="607">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Match a Note You Just Heard: What ±15 Cents Means in a 3-Second Hold | MusicalBoard Blog">
+  <meta name="twitter:description" content="Median cents alone is not enough to call a sight-singing round “matched.” This guide explains why the ±15-cent percentage on a 3-second hold differs from what Vocal Pitch Monitor’s live graph shows, and how to read both numbers together.">
+  <meta name="twitter:image" content="https://www.musicalboard.com/blog/assets/sight_singing/median_vs_within_15_examples.png">
+
+  <title>Match a Note You Just Heard: What ±15 Cents Means in a 3-Second Hold | MusicalBoard Blog</title>
+
+  <script type="application/ld+json">
+  {"@context": "https://schema.org", "@type": "BlogPosting", "headline": "Match a Note You Just Heard: What ±15 Cents Means in a 3-Second Hold", "description": "Median cents alone is not enough to call a sight-singing round “matched.” This guide explains why the ±15-cent percentage on a 3-second hold differs from what Vocal Pitch Monitor’s live graph shows, and how to read both numbers together.", "url": "https://www.musicalboard.com/blog/2026-09-30-match-a-note-you-just-heard/", "image": ["https://www.musicalboard.com/blog/assets/sight_singing/median_vs_within_15_examples.png"], "author": {"@type": "Organization", "name": "MusicalBoard", "url": "https://www.musicalboard.com"}, "publisher": {"@type": "Organization", "name": "MusicalBoard", "logo": {"@type": "ImageObject", "url": "https://www.musicalboard.com/logo.png"}}, "mainEntityOfPage": {"@type": "WebPage", "@id": "https://www.musicalboard.com/blog/2026-09-30-match-a-note-you-just-heard/"}, "datePublished": "2026-09-30", "dateModified": "2026-09-30"}
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Quicksand (nav / SEO / theme), Inter (content), JetBrains Mono (figures) — SIL OFL -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;600;700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <script>
+    (function() {
+      try {
+        if (window.localStorage && localStorage.getItem('mb-sidebar-collapsed') === '1') {
+          document.documentElement.classList.add('mb-sidebar-collapsed-bootstrap');
+        }
+      } catch (_) {
+        // Storage can be unavailable in privacy modes; the app falls back to the default layout.
+      }
+    })();
+  </script>
+
+  <link rel="stylesheet" href="/index-bfee8ffd57fbdcf8.css" integrity="sha384-yLMLC5n5Cci0UIWWmNsnTgVwBZsXk2wkbSbztWXZypG2yk/X+ckr4pmFXz3vf5+R"/>
+  
+  
+<script type="module">
+import init, * as bindings from '/musical-mind-871c3e5458ae4829.js';
+const wasm = await init({ module_or_path: '/musical-mind-871c3e5458ae4829_bg.wasm' });
+
+
+window.wasmBindings = bindings;
+
+
+dispatchEvent(new CustomEvent("TrunkApplicationStarted", {detail: {wasm}}));
+
+</script>
+
+  
+  
+  
+  
+  
+  
+  
+
+  <link rel="icon" href="/favicon-f5b0a6244ae522b3.ico" integrity="sha384-vk49OdTw2Y8zo0VMA6kTstQmT2np58P5DtAxu+vhE/ZpXGg425GXffy0ht6NE+i9"/>
+
+  <script>
+      (function() {
+          const redirect = sessionStorage.redirect;
+          delete sessionStorage.redirect;
+          if (redirect && redirect !== window.location.href) {
+              history.replaceState(null, null, redirect);
+          }
+      })();
+  </script>
+  <script>
+    function getTimeZoneOffset() {
+        const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+        const offset = new Date().getTimezoneOffset();
+        return { timeZone, offset };
+    }
+  </script>
+  <!-- Google Analytics: production host only (localhost / 127.0.0.1 / preview URLs excluded). -->
+  <script>
+    (function () {
+      if (!window.__mbProductionSite) return;
+      var gtagJs = document.createElement('script');
+      gtagJs.async = true;
+      gtagJs.src = 'https://www.googletagmanager.com/gtag/js?id=G-M4ZR1QN3WB';
+      document.head.appendChild(gtagJs);
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      window.gtag = gtag;
+      gtag('js', new Date());
+      gtag('config', 'G-M4ZR1QN3WB');
+    })();
+  </script>
+  <!-- AdSense: after WASM mount; production host only. -->
+  <script>
+    (function () {
+      function loadAdSense() {
+        if (!window.__mbProductionSite) return;
+        if (window.__mbAdSenseLoaded) return;
+        window.__mbAdSenseLoaded = true;
+        var s = document.createElement('script');
+        s.async = true;
+        s.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9424100257975478';
+        s.crossOrigin = 'anonymous';
+        document.head.appendChild(s);
+      }
+      window.addEventListener('TrunkApplicationStarted', loadAdSense);
+      if (window.wasmBindings) loadAdSense();
+    })();
+  </script>
+<link rel="modulepreload" href="/musical-mind-871c3e5458ae4829.js" crossorigin="anonymous" integrity="sha384-ltnMz8lPNwbZcLYIxhizyc22EBDGn8dk9j6kUR2hfwSJ7ty9gyhQaDQbutWfadT+"><link rel="preload" href="/musical-mind-871c3e5458ae4829_bg.wasm" crossorigin="anonymous" integrity="sha384-w32nt1hriTjU+Yvy5VyATD02lx7osexHei83xuf9/J47wFjADMEhtxhMkEHEA1BZ" as="fetch" type="application/wasm"></head>
+
+<body><div class="app-layout"><div data-tour="nav-sidebar" class="sidebar"><div class="sidebar-header"><a href="/" class="logo"><img src="/logo.png" alt="MusicalBoard Logo" class="logo-image"><div class="logo-text">MusicalBoard</div></a></div><nav class="sidebar-nav"><div aria-label="Practice tools" class="sidebar-nav-group"><div title="MusicalBoard" class="nav-item"><span class="nav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="3" width="8" height="10" rx="2" fill="currentColor" opacity="0.95"></rect><rect x="4.5" y="4.5" width="5" height="7" fill="#f8fafc" stroke="#1f2937" stroke-width="0.7"></rect><rect x="13" y="3" width="8" height="5" rx="2" fill="currentColor" opacity="0.82"></rect><rect x="14.5" y="4.5" width="5" height="2" fill="#f8fafc" stroke="#1f2937" stroke-width="0.7"></rect><rect x="3" y="15" width="8" height="6" rx="2" fill="currentColor" opacity="0.82"></rect><rect x="4.5" y="16.5" width="5" height="3" fill="#f8fafc" stroke="#1f2937" stroke-width="0.7"></rect><rect x="13" y="10" width="8" height="11" rx="2" fill="currentColor" opacity="0.95"></rect><rect x="14.5" y="11.5" width="5" height="8" fill="#f8fafc" stroke="#1f2937" stroke-width="0.7"></rect></svg></span><span class="nav-text">MusicalBoard</span></div><div title="Singing recorder — mic, monitor, record, export" class="nav-item"><span class="nav-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none"><line x1="4" y1="6" x2="20" y2="6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></line><circle cx="14" cy="6" r="2" fill="currentColor"></circle><line x1="4" y1="12" x2="20" y2="12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></line><circle cx="10" cy="12" r="2" fill="currentColor"></circle><line x1="4" y1="18" x2="20" y2="18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></line><circle cx="7" cy="18" r="2" fill="currentColor"></circle></svg></span><span class="nav-text">Singing recorder</span></div><div title="Vocal pitch monitor — real-time intonation graph" class="nav-item"><span class="nav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="2.5" stroke="currentColor" stroke-width="1.8"></rect><path d="M7 17V8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path><path d="M7 17H17" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path><path d="M8.5 14.5L11 12L13.2 13.4L16 9.6" stroke="#f8fafc" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"></path><circle cx="11" cy="12" r="1.1" fill="#f8fafc"></circle><circle cx="13.2" cy="13.4" r="1.1" fill="#f8fafc"></circle><circle cx="16" cy="9.6" r="1.1" fill="#f8fafc"></circle></svg></span><span class="nav-text">Pitch monitor</span></div><div title="Vocal range test — intonation map and session score" class="nav-item"><span class="nav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="2.5" y="3.5" width="3" height="17" rx="1.5" fill="currentColor" opacity="0.22"></rect><rect x="6.5" y="3.5" width="3" height="17" rx="1.5" fill="currentColor" opacity="0.38"></rect><rect x="10.5" y="3.5" width="3" height="17" rx="1.5" fill="currentColor" opacity="0.55"></rect><rect x="14.5" y="3.5" width="3" height="17" rx="1.5" fill="currentColor" opacity="0.74"></rect><rect x="18.5" y="3.5" width="3" height="17" rx="1.5" fill="currentColor" opacity="0.95"></rect></svg></span><span class="nav-text">Range test</span></div><div title="Vocal scales — optional pitch feedback" class="nav-item"><span class="nav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z" fill="currentColor" opacity="0.94"></path><circle cx="10" cy="17" r="1.5" fill="#f8fafc"></circle></svg></span><span class="nav-text">Vocal scales</span></div><div title="Virtual piano — reference notes and chords" class="nav-item"><span class="nav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><rect x="4" y="4" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"></rect><rect x="4" y="4" width="5.33" height="16" fill="#f8fafc" stroke="#1f2937" stroke-width="1"></rect><rect x="9.33" y="4" width="5.33" height="16" fill="#f8fafc" stroke="#1f2937" stroke-width="1"></rect><rect x="14.67" y="4" width="5.33" height="16" fill="#f8fafc" stroke="#1f2937" stroke-width="1"></rect><rect x="7" y="4" width="4" height="10" fill="#111827"></rect><rect x="12.5" y="4" width="4" height="10" fill="#111827"></rect></svg></span><span class="nav-text">Virtual piano</span></div><div title="Online metronome — tap tempo, meters, subdivisions" class="nav-item"><span class="nav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 20h16L18 17H6L4 20z" fill="currentColor" stroke="currentColor" stroke-width="1.1"></path><path d="M6 17L12 4L18 17" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linejoin="round" stroke-linecap="round"></path><path d="M9 13h6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path><path d="M12 13L16 5" stroke="#f8fafc" stroke-width="1.6" stroke-linecap="round"></path><circle cx="16" cy="5" r="1" stroke="currentColor" stroke-width="1.5" fill="none"></circle><circle cx="16" cy="5" r="0.8" fill="#f8fafc"></circle></svg></span><span class="nav-text">Online metronome</span></div><div title="Vocal Spectrum — vocal frequency analyzer" class="nav-item"><span class="nav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="2" y="10" width="1.5" height="4" rx="0.75" fill="currentColor" opacity="0.35"></rect><rect x="4.5" y="8" width="1.5" height="8" rx="0.75" fill="currentColor" opacity="0.5"></rect><rect x="7" y="6" width="1.5" height="12" rx="0.75" fill="currentColor" opacity="0.65"></rect><rect x="9.5" y="4" width="1.5" height="16" rx="0.75" fill="currentColor" opacity="0.8"></rect><rect x="12" y="2" width="1.5" height="20" rx="0.75" fill="currentColor" opacity="0.98"></rect><rect x="14.5" y="4" width="1.5" height="16" rx="0.75" fill="currentColor" opacity="0.8"></rect><rect x="17" y="6" width="1.5" height="12" rx="0.75" fill="currentColor" opacity="0.65"></rect><rect x="19.5" y="8" width="1.5" height="8" rx="0.75" fill="currentColor" opacity="0.5"></rect><rect x="22" y="10" width="1.5" height="4" rx="0.75" fill="currentColor" opacity="0.35"></rect></svg></span><span class="nav-text">Vocal Spectrum</span></div><div title="Auto-Tune — pitch correction while preserving vocal timbre" class="nav-item"><span class="nav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><line x1="6" y1="3" x2="6" y2="21" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" opacity="0.55"></line><line x1="12" y1="3" x2="12" y2="21" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" opacity="0.55"></line><line x1="18" y1="3" x2="18" y2="21" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" opacity="0.55"></line><rect x="3" y="7" width="6" height="3" rx="1.4" fill="currentColor"></rect><rect x="9" y="13" width="6" height="3" rx="1.4" fill="currentColor"></rect><rect x="15" y="9" width="6" height="3" rx="1.4" fill="currentColor"></rect></svg></span><span class="nav-text">Auto-Tune</span></div><div title="Mic Room Diagnostics — 3-step recording quality check" class="nav-item"><span class="nav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="9" y="2" width="6" height="11" rx="3" stroke="currentColor" stroke-width="1.7"></rect><path d="M5 10a7 7 0 0 0 14 0" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"></path><line x1="12" y1="17" x2="12" y2="20" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"></line><line x1="9" y1="20" x2="15" y2="20" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"></line><circle cx="18.5" cy="18.5" r="4" fill="currentColor" opacity="0.85"></circle><path d="M16.5 18.5l1.5 1.5 2.5-2.5" stroke="#f8fafc" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path></svg></span><span class="nav-text">Mic Diagnostics</span></div><div title="Sight singing — match a played note and see your cents" class="nav-item"><span class="nav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z" fill="currentColor" opacity="0.94"></path><circle cx="10" cy="17" r="1.5" fill="#f8fafc"></circle><circle cx="18.5" cy="18.5" r="4" fill="currentColor" opacity="0.85"></circle><path d="M16.5 18.5l1.5 1.5 2.5-2.5" stroke="#f8fafc" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path></svg></span><span class="nav-text">Sight singing</span></div></div><hr class="sidebar-nav-divider"><div aria-label="Blog" class="sidebar-nav-group sidebar-nav-group--blog"><div title="Blog" class="nav-item active"><span class="nav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M7 3h10a2 2 0 0 1 2 2v16l-4-2-4 2-4-2-4 2V5a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round"></path><path d="M8 8h8M8 12h8M8 16h5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg></span><span class="nav-text">Blog</span></div></div></nav><div class="sidebar-footer-legal"><a href="/about/" class="sidebar-legal-link">About</a><a href="/privacy/" class="sidebar-legal-link">Privacy</a><a href="/terms/" class="sidebar-legal-link">Terms</a><a href="/contact/" class="sidebar-legal-link">Contact</a></div></div><button type="button" title="Collapse sidebar" aria-label="Collapse navigation sidebar" aria-expanded="true" class="sidebar-edge-toggle"><span aria-hidden="true" class="sidebar-edge-toggle-glyph">«</span></button><div id="app-main-content" class="main-content"><div class="top-header-container"><div class="top-header"><div class="header-left"><button type="button" data-tour="nav-menu" aria-label="Open navigation menu" aria-expanded="false" class="mobile-menu-btn"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="menu-icon-svg"><line x1="4" y1="6" x2="20" y2="6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" class="menu-bar menu-bar--top"></line><line x1="4" y1="12" x2="20" y2="12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" class="menu-bar menu-bar--mid"></line><line x1="4" y1="18" x2="20" y2="18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" class="menu-bar menu-bar--bot"></line></svg></button><p class="page-title">Match a Note You Just Heard: What ±15 Cents Means in a 3-Second Hold | MusicalBoard</p></div><div class="header-right"></div></div></div><main class="content-area no-min-width"><div class="detail-page mb-blog-page"><div class="mb-blog-inner mb-blog-article-wrap"><nav aria-label="Breadcrumb" class="mb-blog-breadcrumb"><a href="/blog/">Blog</a><span aria-hidden="true" class="mb-blog-bc-sep">/</span><span>Match a Note You Just Heard: What ±15 Cents Means in a 3-Second Hold</span></nav><header class="mb-blog-article-header"><h1 class="mb-blog-article-title">Match a Note You Just Heard: What ±15 Cents Means in a 3-Second Hold</h1><p class="mb-blog-article-date">30 September 2026</p><p class="mb-blog-article-excerpt">Median cents alone is not enough to call a sight-singing round “matched.” This guide explains why the ±15-cent percentage on a 3-second hold differs from what Vocal Pitch Monitor’s live graph shows, and how to read both numbers together.</p><div class="mb-blog-article-tags"><a href="/sight-singing" class="mb-blog-article-tag">Sight Singing</a></div></header><article class="musicalboard-prose mb-blog-article-body"><p>If you have ever sung back a single piano note and then stared at <strong>±15 cents</strong> and <strong>3-second hold</strong> on screen wondering, “So did I actually match it?” this article is for that moment. A <strong>cent</strong> splits a semitone into 100 tiny steps — a standard way to say how close you are to a target pitch in numbers. Definitions like <a href="https://en.wikipedia.org/wiki/Cent_(music)">Cent (music) — Wikipedia</a> help turn a vague “a little low” into plus or minus a few cents. On <a href="https://www.musicalboard.com/sight-singing/">Sight Singing</a>, the reference plays as a <strong>local piano sample in the browser</strong>, your voice is <strong>not sent to a server</strong>, and after you hold the note for three seconds you see <strong>median cents</strong> and the <strong>percentage of time within ±15 cents</strong>. This is closer to <a href="https://en.wikipedia.org/wiki/Ear_training">ear training</a> on <strong>the note you just heard</strong>, not an absolute-pitch exam. Below: how many cents and what percentage count as “matched” in one round, and what to adjust after five rounds.</p>
+<h2>A live graph and a 3-second hold score different tasks</h2>
+<p><a href="https://www.musicalboard.com/vocal-pitch-monitor/">Vocal Pitch Monitor</a> keeps the pitch line moving while you sing. It is strong for <strong>patterns</strong> — a tail that sags on long vowels, scooping up from below before a high note, the kinds of habits in <a href="https://www.musicalboard.com/blog/2026-05-03-sing-flat/">Why You Sing Flat</a>. Sight Singing is different: you hear <strong>one target</strong>, then sustain <strong>one vowel at that height for at least three seconds</strong>. Stop too soon and you only see “Hold at least 3 seconds” with no score. That mirrors choir rehearsal or sight-singing class when someone says, “Hold that pitch to the count of three.”</p>
+<p>With only a live graph, you might feel the line “mostly passes near the target.” Scoring asks whether <strong>each moment</strong> of those three seconds stayed inside ±15 cents. If the line <strong>skims</strong> the target or matches for half a second then slides flat, it can look “close enough” while <strong>steadiness</strong> scores stay low. On a G4 hold, the trace might cross the target line several times while cent values jump toward ±30 every second — your memory of “I hit it once” and the score can disagree.</p>
+<p>Before rehearsal, a director often plays one key and says, “Breathe at that height and sustain.” They are listening for a <strong>fixed tone</strong>, not lyrics or phrase rhythm. Sight Singing is built to repeat that moment alone; Vocal Pitch Monitor fits better when you want the <strong>whole phrase of a song</strong> from the same day. The tools complement each other: use Sight Singing to ask “Can I lock the note I just heard?” then Vocal Pitch Monitor to ask <strong>why</strong> it wobbled (breath, vowel, range).</p>
+<p>Headphones reduce the chance that the piano sample feeds the mic and shakes cent readings. With loud speakers, the mic may pick up the reference along with your voice, so numbers look <strong>unstable</strong> rather than “your voice was wrong.” The page states that the reference is <strong>local</strong> and analysis stays in the browser, but <strong>listening setup</strong> still affects practice quality.</p>
+<h2>Why median cents and the ±15-cent percentage belong together</h2>
+<p>When a round finishes, the Sight Singing card shows roughly four things: <strong>target note name</strong>, <strong>median cents</strong> (+ if sharp of target, − if flat), <strong>percent of the 3 seconds within ±15 cents</strong>, and a <strong>one-line reading</strong> (for example <em>in tune</em>, <em>a bit flat</em>). If you already link frequency and note names from <a href="https://www.musicalboard.com/blog/2026-05-12-what-is-pitch-in-music/">What Is Pitch in Music?</a>, “−8 cents” is easier to imagine.</p>
+<p>The <strong>median</strong> is the middle value among all cent samples during the hold. A spike or two does not dominate it the way an average might; it reflects <strong>where most of the time</strong> sat. <strong>Mean alone</strong> can hide poor steadiness: a section that matched briefly then wandered far can cancel against a long flat drift, so one number does not tell you about <strong>sustain</strong>.</p>
+<p>The <strong>±15-cent percentage</strong> summarizes how often you were inside the ±15-cent box during those three seconds. Like other MusicalBoard tools (including Vocal Range Test), pitch detection estimates <strong>fundamental frequency</strong>. Loud room noise or breath noise right before voicing can make cents jump briefly, so simple habits during the hold help: <strong>do not push air noisily through an open mouth</strong>, <strong>keep one vowel</strong>. If ±15 feels harsh, check measurement conditions before you change range. A round counts as <strong>Matched</strong> when absolute median cents is 15 or less. Reading labels follow the same bands as Vocal Pitch Monitor: about ±12 cents <em>in tune</em>, up to ±25 <em>a bit flat</em> / <em>a bit sharp</em>, beyond that <em>flat</em> / <em>sharp</em>. <strong>15 cents</strong> is the matched-round threshold; <strong>12 and 25</strong> are the bands for plain-language feedback.</p>
+<p>The <strong>Hold steadiness</strong> bar shows the same ±15-cent percentage again. Near 70% in the UI tour means “mostly inside the box”; below that, the tool may suggest <strong>steadiness</strong> practice. Median −6 cents with 45% inside the band means you <strong>sat slightly flat on average but left the box often</strong>. Median −18 cents with 90% means <strong>consistently flat but stable</strong> — a different fix. The first calls for “lock, then sustain”; the second for “hear the reference again and raise the center.”</p>
+<p>The 0–100 session score blends roughly <strong>40% matched rounds</strong>, <strong>35% accuracy from mean absolute median cents</strong>, and <strong>25% steadiness from ±15-cent percentages</strong>. Many Matched rounds with a large <strong>Mean |cents|</strong> still cap the overall score; good median with low percentage turns the <strong>Hold steadiness</strong> bar red first. Counting only “how many rounds matched” misses <strong>sustain</strong>.</p>
+<p>A common beginner mistake is <strong>getting louder to fill three seconds</strong>. Volume can feel closer to the target for a moment while the cent trace gets noisier. A 3-second hold assumes <strong>same level, same vowel</strong>. Practice “ah” twice for a second each, then attempt the full hold on the third try — you can see whether Vocal Pitch Monitor’s “sag at the end” and Sight Singing’s <strong>low percentage</strong> share one cause.</p>
+<h2>Two numbers, two stories: steady hold vs match-then-drift</h2>
+<p>Here are two round cards read side by side. Both can feel “not that bad,” but the next practice step differs.</p>
+<p>After scoring, the <strong>two-panel graph</strong> under the card (pitch and cents) shows <strong>where you were over time</strong> for those three seconds. After reading median and percentage, note <strong>whether drift happened at the start, middle, or end</strong> — that tells you whether to adjust breath timing or vowel lock on the next hold. You do not need to interpret a long Vocal Pitch Monitor trace every time; one <strong>short hold</strong> on the Sight Singing card is the focus.</p>
+<h3>Example 1 — median +10 cents, ±15-cent percentage 72%</h3>
+<p>Median +10 sits inside <em>in tune</em> and inside Matched (±15). At 72%, most of the three seconds stayed in the ±15 box. By ear it is “slightly sharp but one settled note.” Next time, use <strong>Hear again</strong>, keep the <strong>same vowel for the full three seconds</strong>, and nudge the center down by about a quarter-tone mentally. You may check the target key briefly on <a href="https://www.musicalboard.com/virtual-piano/">Virtual Piano</a> and return to Sight Singing — the goal is <strong>the height you just heard</strong>, not reading the key name.</p>
+<h3>Example 2 — median −8 cents, ±15-cent percentage 62%</h3>
+<p>By absolute median alone, this is closer to target than Example 1 (+10). At 62%, more of the three seconds spent <strong>outside</strong> ±15 than in Example 1. Typical shapes: <strong>correct for ~0.8 s then sliding flat as support drops</strong>, or <strong>vibrating around the target</strong> without settling. If Vocal Pitch Monitor shows the line falling toward the end, use Sight Singing’s <strong>Listen to this round</strong> (your hold mixed with the target), find where you left the band, then repeat the hold with <strong>support maintained</strong> rather than less breath.</p>
+<!-- Image: two round cards — A median +10¢·72%·Matched; B median −8¢·62%·lower hold steadiness; mini cents-vs-time graphs -->
+<p class="mb-blog-image">
+  <img src="/blog/assets/sight_singing/median_vs_within_15_examples.png" alt="Side-by-side Sight Singing cards: median +10 cents at 72% within ±15¢ versus median −8 cents at 62% — similar ‘almost matched’ feel, different reading">
+</p>
+<p align="center">
+  <em>A better-looking median with a lower percentage can still be a note you matched and then lost.</em>
+</p>
+<p>When you <strong>End session</strong>, you get <strong>Mean |cents|</strong> (mean of absolute median cents per round), <strong>Matched rounds</strong>, and bars for match, accuracy, and steadiness. Treat the <strong>four cells on each round card as one set</strong> instead of counting “matched” alone while the session average hides drift.</p>
+<p><strong>Practice again</strong> starts a new session in the same tab; hold clips live in memory until you leave or end the session — nothing is saved on the server. For trends across days, copy <strong>just the two numbers</strong> into a note or spreadsheet, as in the 15-minute routine below (“last Wednesday G4–G5 Mean 22, this week 17”) to decide whether to raise range or stay lower.</p>
+<p>Alternating Virtual Piano (seeing note names) with Sight Singing (names hidden) is deliberate. Names invite finger and visual memory; hiding them leaves <strong>the pitch you just heard</strong>. Before a sight-singing class, bias toward Sight Singing; when only the first pitch of a score is uncertain, confirm <strong>one note</strong> on Virtual Piano, then switch back for a round or two <strong>without the name</strong>. Same site, different training focus.</p>
+<h2>After five rounds: if mean absolute cents exceeds 25, drop the range one octave</h2>
+<p>At home, finishing <strong>five rounds</strong> and opening the session report is enough load. One practical rule: if <strong>mean absolute cents</strong> on the session (<strong>Mean |cents|</strong>) is <strong>above 25</strong>, switch the <strong>starting preset down one octave</strong> (for example C4–C5 to C3–C4) and run the same five rounds again instead of only “trying harder.”</p>
+<p>Twenty-five cents sits past the <em>a bit flat</em> / <em>a bit sharp</em> band toward plain <em>flat</em> / <em>sharp</em>. Higher presets make it easier to <strong>tense before you find the target</strong> or confuse <strong>heard pitch vs sung pitch</strong>. One octave down separates “relative pitch habit” from “I cannot track this height yet.” When mean absolute cents nears 15 on the lower preset, repeat the rule after you move up the next week. Readable numbers in a comfortable span beat ten rounds in a preset that only produces noise.</p>
+<p>If mic distance or room echo makes pitch jump, run <a href="https://www.musicalboard.com/mic-room-diagnostics/">Mic Room Diagnostics</a> first. Treat cent values as practice guidance only when <strong>measurement conditions</strong> are stable.</p>
+<p>Ten rounds can inflate <strong>Matched</strong> count while <strong>mean absolute cents</strong> stays flat — more “lucky” trips inside ±15 without a better <strong>center pitch</strong>. Log Mean |cents| and Matched after a five-round session and repeat the same preset the next day to see what is <strong>repeatable</strong>. If matches rise but the mean does not improve, do not raise range yet; loop <strong>Hear again → same vowel, three seconds</strong>.</p>
+<h2>A 15-minute home routine: log only two numbers</h2>
+<p>Sight Singing isolates “hold one pitch,” so it fits short days. Example: C4–C5, five rounds, notes limited to median and percentage.</p>
+<p><strong>0–2 min</strong> — Check mic and headphones. Open Sight Singing and skim the rules (local sample, no server upload). Vocal Pitch Monitor can stay closed this session.</p>
+<p><strong>2–10 min</strong> — <strong>Play note</strong> → 3-second hold, five times. From each card, write only <strong>median cents</strong> and <strong>Within ±15¢</strong> percent. Treat readings (<em>in tune</em>, etc.) as hints; decisions use <strong>the two-number set</strong>.</p>
+<p><strong>10–13 min</strong> — <strong>End session</strong>. If Mean |cents| is above 25, stop for the day and next time use the <strong>octave-lower preset</strong> with the same table. If 25 or below, pick one round with Matched below 3/5, use <strong>Listen to this round</strong>, and note one line: drift at <strong>start, middle, or end</strong>.</p>
+<p><strong>13–15 min</strong> — If any round had percentage under 70%, open Vocal Pitch Monitor at the target pitch from your notes and hold one vowel for three seconds twice. Watch whether the line <strong>wobbles less</strong>, not whether you “win” a number.</p>
+<p>You end with a <strong>table to compare</strong> next time you open the same preset, not a vague “good/bad sight-singing day.”</p>
+<h2>Practice with MusicalBoard Sight Singing</h2>
+<p>On <a href="https://www.musicalboard.com/sight-singing/">Sight Singing</a>, choose <strong>Low / High</strong> and a range preset, then <strong>Play note</strong> — the note name stays hidden during playback. Allow the mic, match the pitch you heard, and hold <strong>at least three seconds</strong> for a round card. Continue with <strong>Next note</strong> or <strong>End session</strong> after about five rounds for session scores. Repeat targets are limited so practice is not “always ascending”; you match <strong>random targets</strong> in the span.</p>
+<p>Short routine:</p>
+<ol>
+<li>C4–C5 preset, five rounds — log <strong>median</strong> and <strong>±15-cent percentage</strong> only.</li>
+<li>If two or more rounds fall below 70% inside ±15, open Vocal Pitch Monitor in another tab and repeat a 3-second hold on one vowel.</li>
+<li>If session <strong>Mean |cents|</strong> exceeds 25, drop to C3–C4 and repeat.</li>
+<li>Use <strong>Listen to this round</strong> and note whether drift was at the <strong>start or end</strong>.</li>
+</ol>
+<p><strong>Round N — …</strong> in the status line helps you track which hold you are on. You can chain <strong>Next note</strong> forever, but at first, <strong>End session</strong> and read Mean |cents| to learn the numbers. <strong>What to practice next</strong> points at the weakest of match, accuracy, or steadiness — worth reading even if you only log two numbers. If you see something like “You touch the pitch, then drift,” stay on the <strong>same target for another 3-second hold</strong> rather than raising range that day.</p>
+<p>This page and article are <strong>personal practice aids</strong>. If you have vocal strain, hearing loss, ear pain, or need sight-singing class or hearing tests interpreted for you, prioritize professional care and regular lessons. MusicalBoard does not replace medical or hearing diagnosis or official exam grading.</p>
+<p>Whether ±15 cents is “good enough” depends on <strong>goal</strong>. For choir-style “lock one pitch,” aim for both <strong>plenty of time inside ±15</strong> (percentage) and <strong>center within ±15</strong> (median / Matched). For <strong>whole phrases</strong> on a recorded solo, acceptable drift varies by song and genre — do not treat a 3-second hold score as a <strong>full-song grade</strong>. The hold answers one narrow question: <strong>Can you briefly fix the note you just heard?</strong> When the numbers answer yes reliably, extend into phrases with Vocal Pitch Monitor or Singing Recorder.</p>
+<h2>Further reading</h2>
+<ul>
+<li><a href="https://www.musicalboard.com/blog/2026-05-19-intonation-heatmap-accuracy-coverage/">The Vocal Intonation Map — What Accuracy and Coverage Each Mean</a> — reading <strong>accuracy and coverage</strong> separately on a range test</li>
+<li><a href="https://www.musicalboard.com/blog/2026-05-26-vocal-scales-live-pitch-feedback/">A Singer's Guide to Scale Practice with Live Pitch Feedback</a> — Vocal Scales with Vocal Pitch Monitor</li>
+<li><a href="https://www.musicalboard.com/sight-singing/">Sight Singing tool page</a> — measurement definitions, privacy, session report fields</li>
+</ul>
+<p>In practice, call a round “matched” when <strong>median stays within ±15 cents</strong> and confirm <strong>sustain</strong> with the <strong>percentage of the 3 seconds inside ±15</strong>. Only when both align should you say, “Today I can go deeper on holds in this range.” If they disagree, split the problem like the examples above — <strong>which line is weak</strong> — then pick the next action.</p>
+</article><p class="mb-blog-back-wrap"><a href="/blog/" class="mb-blog-back-link">← All posts</a></p></div></div></main></div></div></body>
+
+</html>
