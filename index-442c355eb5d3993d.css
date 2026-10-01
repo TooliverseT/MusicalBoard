@@ -9187,23 +9187,72 @@ article.musicalboard-prose p.mb-blog-image img {
 
 .auto-tune-root .at-control-slider {
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 6px 10px;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 4px;
   flex: 1 1 100%;
   min-width: min(100%, 14rem);
   margin: 0;
   cursor: default;
 }
 
+.auto-tune-root .at-slider-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+  min-width: 0;
+}
+
 .auto-tune-root .at-control-slider .pitch-plot-tag {
-  flex: 0 0 auto;
-  min-width: 7.5rem;
+  flex: 1 1 auto;
+  min-width: 0;
   white-space: nowrap;
 }
 
+.auto-tune-root .at-slider-role {
+  flex: 0 0 auto;
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #9aa6c2;
+}
+
+.auto-tune-root .at-slider-scale {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 10px;
+  line-height: 1.3;
+  color: #8b95b2;
+}
+
+.auto-tune-root .at-preset-row {
+  align-items: center;
+}
+
+.auto-tune-root .at-preset {
+  flex: 0 0 auto;
+  min-height: 2rem;
+  padding: 4px 10px;
+  font-size: 12px;
+}
+
+.auto-tune-root .at-dry-hint {
+  margin: 0;
+  padding: 0 12px 10px;
+  font-size: 12px;
+  line-height: 1.45;
+  color: #8b95b2;
+}
+
+.at-roadmap-canvas--seek {
+  cursor: pointer;
+}
+
 .auto-tune-root .at-control-slider .pitch-plot-sens-range {
-  flex: 1 1 8rem;
+  flex: 0 0 auto;
+  width: 100%;
   min-width: 0;
   max-width: 100%;
   height: 6px;

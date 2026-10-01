@@ -44,13 +44,13 @@ For a pop cover when you know the key, pick Major or the song’s minor. When th
 
 The three sliders are not just numbers. They shape the gap between **obvious robot correction** and **correction you can still sing along with**. Think in terms of what you hear, not the manual text alone.
 
-**Strength (0–100%)** — How hard pitch is pulled toward the target note. Near 100%, notes lock to the scale. Around 60–75%, correction is audible but small pitch motion remains. Below 40%, most listeners only notice that you sound a bit more in tune. A practical starting point is **75%**, then adjust by phrase.
+**Strength (0–100%)** — How far the center of the note moves toward the target. Near 100%, the center sits on the scale note. Vibrato is not removed by Strength. Around 60–75%, the center moves most of the way. Below 40%, most listeners only notice that you sound a bit more in tune. A practical starting point is **75%**.
 
-**Retune speed (0–100%)** — How quickly pitch reaches the target. Lower values snap almost instantly — closer to the hard, T-Pain-style effect. Around 50–70%, vibrato and natural pitch bends survive more often. For practice listening, avoid pushing Retune speed too low.
+**Retune speed (0–100%)** — How fast that center arrives, and how much vibrato stays. 0% snaps and removes vibrato — the hard, robotic sound. 100% glides and keeps vibrato and short ornaments. For practice listening, stay around 50–70%.
 
 **Tolerance (0–100¢)** — A dead zone around each target note. One cent is 1/100 of a semitone. Notes already inside the zone are left alone; only pitches farther out get corrected. For blues and jazz where slight flat inflection is intentional, try **30–50¢**.
 
-Recommended starting point (same as the tool UI): **Strength 75%, Retune speed 55%, Tolerance 25%**. Apply once, listen, and if it feels mechanical, raise Retune speed and lower Strength.
+The first visit starts at **Strength 75%, Retune speed 55%, Tolerance 25%**. The **Moderate (Default)** preset is those same three values, so you can return to them after moving the sliders. **Gentle** is lighter than Natural: Strength 30%, Retune speed 95%, Tolerance 20¢, a small nudge that leaves vibrato in place. **Tight** (Strength 95%, Retune speed 25%, Tolerance 10¢) sits between Moderate and Hard: notes land on pitch for a polished pop vocal, but note changes still glide instead of stepping like **Hard**. If this browser already saved sliders, those values load instead. Apply once, listen, and if it feels mechanical, raise Retune speed and lower Strength.
 
 <p class="mb-blog-image">
   <img src="/blog/assets/auto_tune/auto_tune_sliders.png" alt="Auto-Tune Strength, Retune speed, and Tolerance sliders near the recommended starting values 75%, 55%, and 25%">
@@ -63,8 +63,8 @@ Recommended starting point (same as the tool UI): **Strength 75%, Retune speed 5
 ## From Apply to A/B Compare — Step by Step
 
 1. Open [Auto-Tune](https://www.musicalboard.com/auto-tune/). In the header **Controller**, record with the mic the same way as [Singing Recorder](https://www.musicalboard.com/singing-recorder/), or use the upload icon to load a file. Until audio is loaded, **Apply Auto-Tune** stays disabled (gray).
-2. Set Key, Scale, and the sliders, then press **Apply Auto-Tune**. Processing finishes in the tab — slow internet does not mean waiting on a server.
-3. When processing completes, the **pitch roadmap** shows gray (original) and pink (corrected) lines together. The Y-axis is MIDI pitch; use the range control in the roadmap to zoom to your register. Passages where the lines diverge most point to where practice will pay off.
+2. Set Key, Scale, and the sliders, then press **Apply Auto-Tune**. A dry vocal is the right input — a full mix is pitch-shifted as a whole. Processing stays in the tab. A slow connection does not add queue time; a long take still takes longer to analyze.
+3. When processing completes, the **pitch roadmap** shows gray (original) and pink (pitch measured on the corrected file). Click the chart to move the playhead to that moment. Passages where the lines diverge most point to where practice will pay off.
 4. Use **Load Original** and **Load Auto-Tuned** to alternate playback on the same timeline. As in the [upload, replay, and compare workflow](https://www.musicalboard.com/blog/2026-05-18-upload-replay-compare-vocal-takes/), hearing both versions at the same position makes the difference obvious.
 5. Changed settings? Run **Apply Again**. Reprocessing always starts from the **original**, so corrections do not stack on top of each other.
 6. When you are happy with the result, download from the Controller as WAV, MP3, or other formats.
