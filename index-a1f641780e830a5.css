@@ -3106,6 +3106,7 @@ button.active {
 }
 
 .pitch-controls-take-slot {
+  position: relative;
   min-width: 2.75rem;
   display: inline-flex;
   flex-direction: column;
@@ -3113,6 +3114,19 @@ button.active {
   justify-content: center;
   gap: 1px;
   padding: 5px 8px;
+}
+
+.pitch-controls-take-slot.has-autotune::after {
+  content: "";
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #e87ab0;
+  box-shadow: 0 0 0 1px rgba(26, 31, 46, 0.85);
+  pointer-events: none;
 }
 
 .pitch-controls-take-slot.is-filled {
@@ -6999,7 +7013,7 @@ input[type=number] {
   top: 100%;
   right: 0;
   background: linear-gradient(135deg, #2a2f3e 0%, #1a1f2e 100%);
-  min-width: 160px;
+  min-width: 220px;
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4), 0 4px 8px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1);
   border-radius: 16px;
   z-index: 9999;
@@ -7037,6 +7051,94 @@ input[type=number] {
   margin-right: 8px;
   color: #667eea;
   font-weight: bold;
+}
+
+.download-field {
+  padding: 8px 12px 4px;
+}
+
+.download-field-label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #8b92a5;
+}
+
+.download-choice-row {
+  display: flex;
+  gap: 6px;
+}
+
+.download-choice {
+  flex: 1 1 0;
+  min-width: 0;
+  min-height: 2rem;
+  padding: 6px 8px;
+  border-radius: 8px;
+  border: 1px solid #3a3f4e;
+  background: transparent;
+  color: #c5cad6;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.download-choice.session-autotune-page-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  text-decoration: none;
+  text-align: center;
+  line-height: 1.25;
+  border-color: rgba(102, 126, 234, 0.45);
+  color: #a8b4ff;
+}
+.download-choice.session-autotune-page-link:hover {
+  border-color: #667eea;
+  color: #fff;
+  background: rgba(102, 126, 234, 0.12);
+}
+.download-choice.is-selected {
+  border-color: #667eea;
+  color: #fff;
+  background: rgba(102, 126, 234, 0.22);
+}
+.download-choice:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.session-take-recorded-time {
+  margin: 10px 0 0;
+  font-size: 12px;
+  line-height: 1.4;
+  color: #8b92a5;
+}
+
+.session-tour-example-note {
+  margin: 0 0 8px;
+  font-size: 11px;
+  line-height: 1.4;
+  color: #8b95b2;
+  font-style: italic;
+}
+
+.session-autotune-row {
+  margin-top: 10px;
+}
+.session-autotune-row > .download-choice {
+  display: flex;
+  width: 100%;
+  box-sizing: border-box;
+  justify-content: center;
+}
+.session-autotune-row .session-autotune-toggle.is-on {
+  border-color: #667eea;
+  color: #fff;
+  background: rgba(102, 126, 234, 0.22);
 }
 
 .download-separator {
@@ -9313,6 +9415,35 @@ article.musicalboard-prose p.mb-blog-image img {
 
 .at-action-row .at-btn {
   flex: 0 0 auto;
+}
+
+.at-action-row .at-download-actions {
+  display: flex;
+  flex: 0 0 auto;
+  flex-wrap: nowrap;
+  gap: 8px 10px;
+  align-items: center;
+}
+
+.at-action-row .at-download-format {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: 6px;
+  align-items: center;
+  margin: 0;
+}
+
+.at-action-row .at-download-format-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #a8b0c4;
+}
+
+.at-action-row .at-download-format .pitch-plot-select {
+  min-width: 5.5rem;
 }
 
 .at-tour-example-note {
