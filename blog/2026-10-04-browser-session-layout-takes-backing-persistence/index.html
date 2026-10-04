@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <script>
+    (function () {
+      function normalizedHost() {
+        var h = (location.hostname || '').toLowerCase();
+        if (h.length >= 2 && h.charAt(0) === '[' && h.charAt(h.length - 1) === ']') {
+          h = h.slice(1, -1);
+        }
+        return h;
+      }
+      var allowed = ['www.musicalboard.com', 'musicalboard.com'];
+      window.__mbProductionSite = allowed.indexOf(normalizedHost()) !== -1;
+    })();
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="google-site-verification" content="upoLjXjQ2igKXqJvnMon0CITWtN_Fjtiw4op30hdABg" />
+  <meta name="naver-site-verification" content="d4fa849a857dbdd47ed953b9cd1fb94a22b8164d" />
+  <meta name="yandex-verification" content="31b35f617f4d02c2" />
+  <meta name="robots" content="index, follow">
+
+  <link rel="canonical" href="https://www.musicalboard.com/blog/2026-10-04-browser-session-layout-takes-backing-persistence/">
+
+  <meta name="description" content="After a refresh on MusicalBoard, what keeps your layout, recording takes A–D, and loaded backing tracks? This article explains localStorage vs IndexedDB, the limits of the roughly 24-hour cache, and how to clear data yourself.">
+  <meta name="keywords" content="MusicalBoard blog, vocal intonation, singing pitch, ear training, browser vocal tools, practice tips for singers">
+  <meta name="author" content="MusicalBoard">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="MusicalBoard">
+  <meta property="og:url" content="https://www.musicalboard.com/blog/2026-10-04-browser-session-layout-takes-backing-persistence/">
+  <meta property="og:title" content="What Survives a Refresh: MusicalBoard Layout, Takes, Backing Tracks, and the 24-Hour Browser Cache | MusicalBoard Blog">
+  <meta property="og:description" content="After a refresh on MusicalBoard, what keeps your layout, recording takes A–D, and loaded backing tracks? This article explains localStorage vs IndexedDB, the limits of the roughly 24-hour cache, and how to clear data yourself.">
+  <meta property="og:image" content="https://www.musicalboard.com/blog/assets/musicalboard/musicalboard.png">
+  <meta property="og:image:height" content="607">
+  <meta property="og:image:width" content="607">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="What Survives a Refresh: MusicalBoard Layout, Takes, Backing Tracks, and the 24-Hour Browser Cache | MusicalBoard Blog">
+  <meta name="twitter:description" content="After a refresh on MusicalBoard, what keeps your layout, recording takes A–D, and loaded backing tracks? This article explains localStorage vs IndexedDB, the limits of the roughly 24-hour cache, and how to clear data yourself.">
+  <meta name="twitter:image" content="https://www.musicalboard.com/blog/assets/musicalboard/musicalboard.png">
+
+  <title>What Survives a Refresh: MusicalBoard Layout, Takes, Backing Tracks, and the 24-Hour Browser Cache | MusicalBoard Blog</title>
+
+  <script type="application/ld+json">
+  {"@context": "https://schema.org", "@type": "BlogPosting", "headline": "What Survives a Refresh: MusicalBoard Layout, Takes, Backing Tracks, and the 24-Hour Browser Cache", "description": "After a refresh on MusicalBoard, what keeps your layout, recording takes A–D, and loaded backing tracks? This article explains localStorage vs IndexedDB, the limits of the roughly 24-hour cache, and how to clear data yourself.", "url": "https://www.musicalboard.com/blog/2026-10-04-browser-session-layout-takes-backing-persistence/", "image": ["https://www.musicalboard.com/blog/assets/musicalboard/musicalboard.png"], "author": {"@type": "Organization", "name": "MusicalBoard", "url": "https://www.musicalboard.com"}, "publisher": {"@type": "Organization", "name": "MusicalBoard", "logo": {"@type": "ImageObject", "url": "https://www.musicalboard.com/logo.png"}}, "mainEntityOfPage": {"@type": "WebPage", "@id": "https://www.musicalboard.com/blog/2026-10-04-browser-session-layout-takes-backing-persistence/"}, "datePublished": "2026-10-04", "dateModified": "2026-10-04"}
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Quicksand (nav / SEO / theme), Inter (content), JetBrains Mono (figures) — SIL OFL -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;600;700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <script>
+    (function() {
+      try {
+        if (window.localStorage && localStorage.getItem('mb-sidebar-collapsed') === '1') {
+          document.documentElement.classList.add('mb-sidebar-collapsed-bootstrap');
+        }
+      } catch (_) {
+        // Storage can be unavailable in privacy modes; the app falls back to the default layout.
+      }
+    })();
+  </script>
+
+  <link rel="stylesheet" href="/index-a1f641780e830a5.css" integrity="sha384-+ec0e8lsdRlScJIkkTCzw2mK7EmlTxJuWWC9SEpNyi0XFO9i2ru65ZUUmhhKPTgS"/>
+  
+  
+<script type="module">
+import init, * as bindings from '/musical-mind-96a1f6d9cd2dded5.js';
+const wasm = await init({ module_or_path: '/musical-mind-96a1f6d9cd2dded5_bg.wasm' });
+
+
+window.wasmBindings = bindings;
+
+
+dispatchEvent(new CustomEvent("TrunkApplicationStarted", {detail: {wasm}}));
+
+</script>
+
+  
+  
+  
+  
+  
+  
+  
+
+  <link rel="icon" href="/favicon-f5b0a6244ae522b3.ico" integrity="sha384-vk49OdTw2Y8zo0VMA6kTstQmT2np58P5DtAxu+vhE/ZpXGg425GXffy0ht6NE+i9"/>
+
+  <script>
+      (function() {
+          const redirect = sessionStorage.redirect;
+          delete sessionStorage.redirect;
+          if (redirect && redirect !== window.location.href) {
+              history.replaceState(null, null, redirect);
+          }
+      })();
+  </script>
+  <script>
+    function getTimeZoneOffset() {
+        const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+        const offset = new Date().getTimezoneOffset();
+        return { timeZone, offset };
+    }
+  </script>
+  <!-- Google Analytics: production host only (localhost / 127.0.0.1 / preview URLs excluded). -->
+  <script>
+    (function () {
+      if (!window.__mbProductionSite) return;
+      var gtagJs = document.createElement('script');
+      gtagJs.async = true;
+      gtagJs.src = 'https://www.googletagmanager.com/gtag/js?id=G-M4ZR1QN3WB';
+      document.head.appendChild(gtagJs);
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      window.gtag = gtag;
+      gtag('js', new Date());
+      gtag('config', 'G-M4ZR1QN3WB');
+    })();
+  </script>
+  <!-- AdSense: after WASM mount; production host only. -->
+  <script>
+    (function () {
+      function loadAdSense() {
+        if (!window.__mbProductionSite) return;
+        if (window.__mbAdSenseLoaded) return;
+        window.__mbAdSenseLoaded = true;
+        var s = document.createElement('script');
+        s.async = true;
+        s.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9424100257975478';
+        s.crossOrigin = 'anonymous';
+        document.head.appendChild(s);
+      }
+      window.addEventListener('TrunkApplicationStarted', loadAdSense);
+      if (window.wasmBindings) loadAdSense();
+    })();
+  </script>
+<link rel="modulepreload" href="/musical-mind-96a1f6d9cd2dded5.js" crossorigin="anonymous" integrity="sha384-VkcR4C33L3MfqOi2OQxGPmC+urNWzwMdC/Ebf3nrBw/bpAkRRSlYQK3ZKZ3vuoh3"><link rel="preload" href="/musical-mind-96a1f6d9cd2dded5_bg.wasm" crossorigin="anonymous" integrity="sha384-SyCWs0xtohjGleoeSArcuVvaxFMMTy3IW2YJ/IBaoAtrTTGXxDHk1DpPw6gqEXTA" as="fetch" type="application/wasm"></head>
+
+<body><div class="app-layout"><div data-tour="nav-sidebar" class="sidebar"><div class="sidebar-header"><a href="/" class="logo"><img src="/logo.png" alt="MusicalBoard Logo" class="logo-image"><div class="logo-text">MusicalBoard</div></a></div><nav class="sidebar-nav"><div aria-label="Practice tools" class="sidebar-nav-group"><div title="MusicalBoard" class="nav-item"><span class="nav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="3" width="8" height="10" rx="2" fill="currentColor" opacity="0.95"></rect><rect x="4.5" y="4.5" width="5" height="7" fill="#f8fafc" stroke="#1f2937" stroke-width="0.7"></rect><rect x="13" y="3" width="8" height="5" rx="2" fill="currentColor" opacity="0.82"></rect><rect x="14.5" y="4.5" width="5" height="2" fill="#f8fafc" stroke="#1f2937" stroke-width="0.7"></rect><rect x="3" y="15" width="8" height="6" rx="2" fill="currentColor" opacity="0.82"></rect><rect x="4.5" y="16.5" width="5" height="3" fill="#f8fafc" stroke="#1f2937" stroke-width="0.7"></rect><rect x="13" y="10" width="8" height="11" rx="2" fill="currentColor" opacity="0.95"></rect><rect x="14.5" y="11.5" width="5" height="8" fill="#f8fafc" stroke="#1f2937" stroke-width="0.7"></rect></svg></span><span class="nav-text">MusicalBoard</span></div><div title="Singing recorder — mic, monitor, record, export" class="nav-item"><span class="nav-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none"><line x1="4" y1="6" x2="20" y2="6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></line><circle cx="14" cy="6" r="2" fill="currentColor"></circle><line x1="4" y1="12" x2="20" y2="12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></line><circle cx="10" cy="12" r="2" fill="currentColor"></circle><line x1="4" y1="18" x2="20" y2="18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></line><circle cx="7" cy="18" r="2" fill="currentColor"></circle></svg></span><span class="nav-text">Singing recorder</span></div><div title="Vocal pitch monitor — real-time intonation graph" class="nav-item"><span class="nav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="2.5" stroke="currentColor" stroke-width="1.8"></rect><path d="M7 17V8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path><path d="M7 17H17" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path><path d="M8.5 14.5L11 12L13.2 13.4L16 9.6" stroke="#f8fafc" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"></path><circle cx="11" cy="12" r="1.1" fill="#f8fafc"></circle><circle cx="13.2" cy="13.4" r="1.1" fill="#f8fafc"></circle><circle cx="16" cy="9.6" r="1.1" fill="#f8fafc"></circle></svg></span><span class="nav-text">Pitch monitor</span></div><div title="Vocal range test — intonation map and session score" class="nav-item"><span class="nav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="2.5" y="3.5" width="3" height="17" rx="1.5" fill="currentColor" opacity="0.22"></rect><rect x="6.5" y="3.5" width="3" height="17" rx="1.5" fill="currentColor" opacity="0.38"></rect><rect x="10.5" y="3.5" width="3" height="17" rx="1.5" fill="currentColor" opacity="0.55"></rect><rect x="14.5" y="3.5" width="3" height="17" rx="1.5" fill="currentColor" opacity="0.74"></rect><rect x="18.5" y="3.5" width="3" height="17" rx="1.5" fill="currentColor" opacity="0.95"></rect></svg></span><span class="nav-text">Range test</span></div><div title="Vocal scales — optional pitch feedback" class="nav-item"><span class="nav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z" fill="currentColor" opacity="0.94"></path><circle cx="10" cy="17" r="1.5" fill="#f8fafc"></circle></svg></span><span class="nav-text">Vocal scales</span></div><div title="Virtual piano — reference notes and chords" class="nav-item"><span class="nav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><rect x="4" y="4" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"></rect><rect x="4" y="4" width="5.33" height="16" fill="#f8fafc" stroke="#1f2937" stroke-width="1"></rect><rect x="9.33" y="4" width="5.33" height="16" fill="#f8fafc" stroke="#1f2937" stroke-width="1"></rect><rect x="14.67" y="4" width="5.33" height="16" fill="#f8fafc" stroke="#1f2937" stroke-width="1"></rect><rect x="7" y="4" width="4" height="10" fill="#111827"></rect><rect x="12.5" y="4" width="4" height="10" fill="#111827"></rect></svg></span><span class="nav-text">Virtual piano</span></div><div title="Online metronome — tap tempo, meters, subdivisions" class="nav-item"><span class="nav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 20h16L18 17H6L4 20z" fill="currentColor" stroke="currentColor" stroke-width="1.1"></path><path d="M6 17L12 4L18 17" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linejoin="round" stroke-linecap="round"></path><path d="M9 13h6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path><path d="M12 13L16 5" stroke="#f8fafc" stroke-width="1.6" stroke-linecap="round"></path><circle cx="16" cy="5" r="1" stroke="currentColor" stroke-width="1.5" fill="none"></circle><circle cx="16" cy="5" r="0.8" fill="#f8fafc"></circle></svg></span><span class="nav-text">Online metronome</span></div><div title="Vocal Spectrum — vocal frequency analyzer" class="nav-item"><span class="nav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="2" y="10" width="1.5" height="4" rx="0.75" fill="currentColor" opacity="0.35"></rect><rect x="4.5" y="8" width="1.5" height="8" rx="0.75" fill="currentColor" opacity="0.5"></rect><rect x="7" y="6" width="1.5" height="12" rx="0.75" fill="currentColor" opacity="0.65"></rect><rect x="9.5" y="4" width="1.5" height="16" rx="0.75" fill="currentColor" opacity="0.8"></rect><rect x="12" y="2" width="1.5" height="20" rx="0.75" fill="currentColor" opacity="0.98"></rect><rect x="14.5" y="4" width="1.5" height="16" rx="0.75" fill="currentColor" opacity="0.8"></rect><rect x="17" y="6" width="1.5" height="12" rx="0.75" fill="currentColor" opacity="0.65"></rect><rect x="19.5" y="8" width="1.5" height="8" rx="0.75" fill="currentColor" opacity="0.5"></rect><rect x="22" y="10" width="1.5" height="4" rx="0.75" fill="currentColor" opacity="0.35"></rect></svg></span><span class="nav-text">Vocal Spectrum</span></div><div title="Auto-Tune — pitch correction while preserving vocal timbre" class="nav-item"><span class="nav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><line x1="6" y1="3" x2="6" y2="21" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" opacity="0.55"></line><line x1="12" y1="3" x2="12" y2="21" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" opacity="0.55"></line><line x1="18" y1="3" x2="18" y2="21" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" opacity="0.55"></line><rect x="3" y="7" width="6" height="3" rx="1.4" fill="currentColor"></rect><rect x="9" y="13" width="6" height="3" rx="1.4" fill="currentColor"></rect><rect x="15" y="9" width="6" height="3" rx="1.4" fill="currentColor"></rect></svg></span><span class="nav-text">Auto-Tune</span></div><div title="Mic Room Diagnostics — 3-step recording quality check" class="nav-item"><span class="nav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="9" y="2" width="6" height="11" rx="3" stroke="currentColor" stroke-width="1.7"></rect><path d="M5 10a7 7 0 0 0 14 0" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"></path><line x1="12" y1="17" x2="12" y2="20" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"></line><line x1="9" y1="20" x2="15" y2="20" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"></line><circle cx="18.5" cy="18.5" r="4" fill="currentColor" opacity="0.85"></circle><path d="M16.5 18.5l1.5 1.5 2.5-2.5" stroke="#f8fafc" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path></svg></span><span class="nav-text">Mic Diagnostics</span></div><div title="Sight singing — match a played note and see your cents" class="nav-item"><span class="nav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z" fill="currentColor" opacity="0.94"></path><circle cx="10" cy="17" r="1.5" fill="#f8fafc"></circle><circle cx="18.5" cy="18.5" r="4" fill="currentColor" opacity="0.85"></circle><path d="M16.5 18.5l1.5 1.5 2.5-2.5" stroke="#f8fafc" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path></svg></span><span class="nav-text">Sight singing</span></div></div><hr class="sidebar-nav-divider"><div aria-label="Blog" class="sidebar-nav-group sidebar-nav-group--blog"><div title="Blog" class="nav-item active"><span class="nav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M7 3h10a2 2 0 0 1 2 2v16l-4-2-4 2-4-2-4 2V5a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round"></path><path d="M8 8h8M8 12h8M8 16h5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg></span><span class="nav-text">Blog</span></div></div></nav><div class="sidebar-footer-legal"><a href="/about/" class="sidebar-legal-link">About</a><a href="/privacy/" class="sidebar-legal-link">Privacy</a><a href="/terms/" class="sidebar-legal-link">Terms</a><a href="/contact/" class="sidebar-legal-link">Contact</a></div></div><button type="button" title="Collapse sidebar" aria-label="Collapse navigation sidebar" aria-expanded="true" class="sidebar-edge-toggle"><span aria-hidden="true" class="sidebar-edge-toggle-glyph">«</span></button><div id="app-main-content" class="main-content"><div class="top-header-container"><div class="top-header"><div class="header-left"><button type="button" data-tour="nav-menu" aria-label="Open navigation menu" aria-expanded="false" class="mobile-menu-btn"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="menu-icon-svg"><line x1="4" y1="6" x2="20" y2="6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" class="menu-bar menu-bar--top"></line><line x1="4" y1="12" x2="20" y2="12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" class="menu-bar menu-bar--mid"></line><line x1="4" y1="18" x2="20" y2="18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" class="menu-bar menu-bar--bot"></line></svg></button><p class="page-title">What Survives a Refresh: MusicalBoard Layout, Takes, Backing Tracks, and the 24-Hour Browser Cache | MusicalBoard</p></div><div class="header-right"></div></div></div><main class="content-area no-min-width"><div class="detail-page mb-blog-page"><div class="mb-blog-inner mb-blog-article-wrap"><nav aria-label="Breadcrumb" class="mb-blog-breadcrumb"><a href="/blog/">Blog</a><span aria-hidden="true" class="mb-blog-bc-sep">/</span><span>What Survives a Refresh: MusicalBoard Layout, Takes, Backing Tracks, and the 24-Hour Browser Cache</span></nav><header class="mb-blog-article-header"><h1 class="mb-blog-article-title">What Survives a Refresh: MusicalBoard Layout, Takes, Backing Tracks, and the 24-Hour Browser Cache</h1><p class="mb-blog-article-date">04 October 2026</p><p class="mb-blog-article-excerpt">After a refresh on MusicalBoard, what keeps your layout, recording takes A–D, and loaded backing tracks? This article explains localStorage vs IndexedDB, the limits of the roughly 24-hour cache, and how to clear data yourself.</p><div class="mb-blog-article-tags"><a href="/" class="mb-blog-article-tag">MusicalBoard</a></div></header><article class="musicalboard-prose mb-blog-article-body"><p>Sometimes when you practice vocals at home and hit refresh, the window arrangement stays put and the take you just recorded or the backing track you loaded shows up again. That does not mean those files were uploaded to a MusicalBoard server. MusicalBoard keeps layout and some tool settings in the browser’s <strong>localStorage</strong>, and keeps recorded or uploaded audio plus backing files for a while in the same browser’s <strong>IndexedDB</strong>. Before you use <a href="https://www.musicalboard.com/singing-recorder/">Singing Recorder</a>, it helps to know what persists, when it disappears, and how to clear it yourself — so an accidental refresh mid-practice is less of a shock.</p>
+<h2>First, separate screen settings from audio files</h2>
+<p>“Stored in the browser” is not one single thing. On MusicalBoard, lightweight settings and large audio files live in different places.</p>
+<p><strong>Layout and settings</strong> stay in localStorage. That is why, after you open and close windows on Home and adjust their size and position, the previous arrangement shows up first on your next visit. Settings you want to carry into the next session — mic sensitivity, display range, monitor volume — belong here too. The same idea applies when you apply a <a href="https://www.musicalboard.com/blog/2026-09-20-home-practice-layout-presets-four-workflows/">Practice layout on Home</a> once and tweak it bit by bit: that layout can still be there the next day.</p>
+<p><strong>Recorded or uploaded takes and backing files</strong> are kept in IndexedDB. IndexedDB is the storage web apps use when they need to keep relatively large data inside the browser. MusicalBoard stores the audio bytes there along with small details needed for restore — playback position, file format, save time, sensitivity, and the like. After a refresh, instead of fetching the file from a server again, the app can read the audio left in the browser and rebuild pitch and spectrum analysis.</p>
+<p>Both stores are tied to a specific browser and device. A take you record in Chrome on a laptop does not automatically appear in Safari on your phone or in a browser on another computer. MusicalBoard does not use login accounts or cloud sync for this.</p>
+<h2>What actually comes back after a refresh</h2>
+<p>During practice, these three restorations are usually the most visible.</p>
+<h3>Window layout on the Home workspace</h3>
+<p>If you place Vocal Pitch Monitor and Vocal Scales side by side on Home and later open Vocal Spectrum, that arrangement persists on the next visit in the same browser. This is not a feature that saves “today’s practice order.” It remembers workspace settings such as which windows are open and their size and position.</p>
+<p>For example, you might warm up in the Tone Check layout on Monday and start there again on Tuesday. Conversely, if someone else uses the same browser profile on the same computer, they might see your previous layout. On a shared machine, it is safer to clear site data after practice or use a separate profile.</p>
+<h3>Recent takes in Singing Recorder</h3>
+<p>After you record or upload a local file in <a href="https://www.musicalboard.com/singing-recorder/">Singing Recorder</a> and finish analysis, recent takes can be restored inside this browser. When you use Takes A–D, a new take becomes A and earlier takes shift back for comparison. If the analysis view does not return fully right after refresh, you may see a short restore step that reads the saved audio and rebuilds pitch and spectrum.</p>
+<p>The important point is that <strong>the app does not permanently store the analysis graphs themselves; it rebuilds what you need from the audio and minimal metadata</strong>. Refresh does not delete your takes, but you may wait briefly while analysis is prepared again. For how to compare takes A and B, see <a href="https://www.musicalboard.com/blog/2026-09-25-takes-a-d-compare-vocal-sessions-browser/">practicing the same phrase with A/B playback in the browser</a>.</p>
+<h3>Backing files, start position, and mix choices</h3>
+<p>If you loaded a backing track, more than the file name is kept. The backing file, cue position, backing volume, whether to play along while recording, and whether to mix the backing into the recording result are stored together, within what recent session restore needs. After refresh or a detour to another tool page, you can start again from the same backing if the retention window has not passed.</p>
+<p>This is not a music library feature. Do not treat it as long-term storage for large backing files or a stack of multi-day projects. For recordings you want to keep, do not rely on the browser cache alone — download the file after practice and keep it in a folder on your device.</p>
+<h2>“24-hour retention” is a short practice session, not a backup</h2>
+<p>MusicalBoard’s audio cache uses <strong>about 24 hours</strong> from when each item was stored. Takes or backing tracks past that window are removed on the next page load. Closing the tab does not always wipe them immediately, but cleanup also runs when the page is hidden or you navigate away. So there is no promise that everything will still be there tomorrow.</p>
+<p>That limit is meant to let you continue a practice session without keeping audio long term. It is useful when you record twice in the evening, step away for dinner, come back to compare A/B, or refresh the page by mistake. For audition demos, class submissions, or reference takes you will compare over several days, download first.</p>
+<p>Clearing site data in the browser, leaving private browsing, browser storage cleanup, or switching browsers can remove the cache sooner than 24 hours. Behavior depends on browser and device settings. For general behavior of browser storage and how to delete it, see MDN’s <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API">Web Storage API</a> and <a href="https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API">IndexedDB API</a> documentation.</p>
+<h2>When you want to keep data vs when you want to clear it</h2>
+<p>To keep a session going, think along these lines:</p>
+<ol>
+<li>If you will compare a take again today, reopen Singing Recorder in the same browser and check restored takes A–D.</li>
+<li>If you plan to reuse a backing track from the same position, confirm the backing tray restored and check the cue position before choosing the file again.</li>
+<li>If you need a recording through tomorrow, verify playback works, then download the file and save it in a folder on your device.</li>
+<li>If you need to listen on another device, move the downloaded file — not the local cache.</li>
+</ol>
+<p>If you practiced on a shared device or do not want leftover audio, use the trash (Delete) control in Recorder to remove the current take and its cached copy. You can also clear MusicalBoard site data in browser settings, but that may reset layout and other saved settings too. Download anything you need before you do that.</p>
+<h2>Using it in a practice flow</h2>
+<p>Imagine practicing one short phrase. Open the <strong>Record a Phrase</strong> layout on Home, check your starting pitch with Virtual Piano, then record Take A to Online Metronome or a backing track you prepared. On the next take, change only one thing — for example, “start the first note cleanly from below without sliding up.” Even if you need to refresh or look at another page for a while, within about 24 hours in the same browser you can load Take A and B again and compare.</p>
+<p>What the cache does here is bridge a gap in the middle of practice. It is not a long-term memory substitute or a cloud drive for sharing with others. Keeping files safe and quickly replaying and comparing inside the browser are two jobs worth keeping separate.</p>
+<h2>What MusicalBoard does and does not handle for privacy</h2>
+<p>MusicalBoard pitch, spectrum, and recording analysis run in your browser. Files you record or upload are not sent to MusicalBoard servers. Other services — such as ads and ordinary web traffic — are separate from audio processing; see the full scope in the <a href="https://www.musicalboard.com/privacy/">Privacy Policy</a>.</p>
+<p>In short, layout and settings stay in the same browser so the next session starts faster; takes and backing tracks stay in IndexedDB for about 24 hours to help comparison after refresh. Download important files, and use the trash for audio you do not want — those two habits make the in-browser practice environment easier to live with.</p>
+</article><p class="mb-blog-back-wrap"><a href="/blog/" class="mb-blog-back-link">← All posts</a></p></div></div></main></div></div></body>
+
+</html>
