@@ -29,6 +29,7 @@
   const GEN = CHUNK - 2 * TRIM;
   const MAX_WORKERS = 4;
   const IDLE_TERMINATE_MS = 60000;
+  const ENGINE_INIT_MS = 180000;
 
   let pool = [];
   let idleTimer = null;
@@ -138,16 +139,28 @@
   function spawnWorker(model) {
     return new Promise((resolve, reject) => {
       const worker = new Worker(BASE + 'worker.js');
+      const timer = setTimeout(() => {
+        worker.terminate();
+        reject(new Error('engine-init-timeout'));
+      }, ENGINE_INIT_MS);
+      const finish = (fn) => {
+        clearTimeout(timer);
+        fn();
+      };
       worker.onmessage = (e) => {
-        if (e.data.type === 'ready') resolve({ worker, busy: false });
+        if (e.data.type === 'ready') finish(() => resolve({ worker, busy: false }));
         else if (e.data.type === 'error') {
-          worker.terminate();
-          reject(new Error(e.data.message));
+          finish(() => {
+            worker.terminate();
+            reject(new Error(e.data.message));
+          });
         }
       };
       worker.onerror = (e) => {
-        worker.terminate();
-        reject(new Error((e && e.message) || 'worker-failed'));
+        finish(() => {
+          worker.terminate();
+          reject(new Error((e && e.message) || 'worker-failed'));
+        });
       };
       worker.postMessage({ type: 'init', model: model.slice(0) });
     });

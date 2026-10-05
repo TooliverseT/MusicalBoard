@@ -10,7 +10,12 @@
 
 const ORT_BASE = '/static/vocal-isolation/ort/';
 importScripts(ORT_BASE + 'ort.wasm.min.js');
+// Non-threaded SIMD build (onnxruntime-web 1.18). 1.19+ threaded wasm always
+// allocates shared WebAssembly.Memory and hangs on GitHub Pages (no COOP/COEP).
 ort.env.wasm.numThreads = 1;
+ort.env.wasm.simd = true;
+ort.env.wasm.proxy = false;
+ort.env.wasm.initTimeout = 120000;
 ort.env.wasm.wasmPaths = ORT_BASE;
 
 const N_FFT = 6144;
