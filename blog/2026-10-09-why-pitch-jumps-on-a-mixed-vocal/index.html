@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <script>
+    (function () {
+      function normalizedHost() {
+        var h = (location.hostname || '').toLowerCase();
+        if (h.length >= 2 && h.charAt(0) === '[' && h.charAt(h.length - 1) === ']') {
+          h = h.slice(1, -1);
+        }
+        return h;
+      }
+      var allowed = ['www.musicalboard.com', 'musicalboard.com'];
+      window.__mbProductionSite = allowed.indexOf(normalizedHost()) !== -1;
+    })();
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="google-site-verification" content="upoLjXjQ2igKXqJvnMon0CITWtN_Fjtiw4op30hdABg" />
+  <meta name="naver-site-verification" content="d4fa849a857dbdd47ed953b9cd1fb94a22b8164d" />
+  <meta name="yandex-verification" content="31b35f617f4d02c2" />
+  <meta name="robots" content="index, follow">
+
+  <link rel="canonical" href="https://www.musicalboard.com/blog/2026-10-09-why-pitch-jumps-on-a-mixed-vocal/">
+
+  <meta name="description" content="Load a finished song into a pitch monitor and the line drops to the bass or hops onto a guitar between phrases. This guide explains why pitch detection follows the clearest repeating sound rather than the singer, how to tell whether an isolated vocal is clean enough for intonation practice, and when the vocal range setting actually helps.">
+  <meta name="keywords" content="MusicalBoard blog, vocal intonation, singing pitch, ear training, browser vocal tools, practice tips for singers">
+  <meta name="author" content="MusicalBoard">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="MusicalBoard">
+  <meta property="og:url" content="https://www.musicalboard.com/blog/2026-10-09-why-pitch-jumps-on-a-mixed-vocal/">
+  <meta property="og:title" content="Why Your Pitch Trace Jumps to the Bass: Isolate the Vocal Before You Practice | MusicalBoard Blog">
+  <meta property="og:description" content="Load a finished song into a pitch monitor and the line drops to the bass or hops onto a guitar between phrases. This guide explains why pitch detection follows the clearest repeating sound rather than the singer, how to tell whether an isolated vocal is clean enough for intonation practice, and when the vocal range setting actually helps.">
+  <meta property="og:image" content="https://www.musicalboard.com/blog/assets/vocal_isolator/gap_level_two_examples.png">
+  <meta property="og:image:height" content="607">
+  <meta property="og:image:width" content="607">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Why Your Pitch Trace Jumps to the Bass: Isolate the Vocal Before You Practice | MusicalBoard Blog">
+  <meta name="twitter:description" content="Load a finished song into a pitch monitor and the line drops to the bass or hops onto a guitar between phrases. This guide explains why pitch detection follows the clearest repeating sound rather than the singer, how to tell whether an isolated vocal is clean enough for intonation practice, and when the vocal range setting actually helps.">
+  <meta name="twitter:image" content="https://www.musicalboard.com/blog/assets/vocal_isolator/gap_level_two_examples.png">
+
+  <title>Why Your Pitch Trace Jumps to the Bass: Isolate the Vocal Before You Practice | MusicalBoard Blog</title>
+
+  <script type="application/ld+json">
+  {"@context": "https://schema.org", "@type": "BlogPosting", "headline": "Why Your Pitch Trace Jumps to the Bass: Isolate the Vocal Before You Practice", "description": "Load a finished song into a pitch monitor and the line drops to the bass or hops onto a guitar between phrases. This guide explains why pitch detection follows the clearest repeating sound rather than the singer, how to tell whether an isolated vocal is clean enough for intonation practice, and when the vocal range setting actually helps.", "url": "https://www.musicalboard.com/blog/2026-10-09-why-pitch-jumps-on-a-mixed-vocal/", "image": ["https://www.musicalboard.com/blog/assets/vocal_isolator/mixed_pitch_trace_jumps.png", "https://www.musicalboard.com/blog/assets/vocal_isolator/gap_level_two_examples.png", "https://www.musicalboard.com/blog/assets/vocal_isolator/vocal_range_filter_band.png"], "author": {"@type": "Organization", "name": "MusicalBoard", "url": "https://www.musicalboard.com"}, "publisher": {"@type": "Organization", "name": "MusicalBoard", "logo": {"@type": "ImageObject", "url": "https://www.musicalboard.com/logo.png"}}, "mainEntityOfPage": {"@type": "WebPage", "@id": "https://www.musicalboard.com/blog/2026-10-09-why-pitch-jumps-on-a-mixed-vocal/"}, "datePublished": "2026-10-09", "dateModified": "2026-10-09"}
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Quicksand (nav / SEO / theme), Inter (content), JetBrains Mono (figures) — SIL OFL -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;600;700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <script>
+    (function() {
+      try {
+        if (window.localStorage && localStorage.getItem('mb-sidebar-collapsed') === '1') {
+          document.documentElement.classList.add('mb-sidebar-collapsed-bootstrap');
+        }
+      } catch (_) {
+        // Storage can be unavailable in privacy modes; the app falls back to the default layout.
+      }
+    })();
+  </script>
+
+  <link rel="stylesheet" href="/index-4d47cc18530bb974.css" integrity="sha384-hN/1phrQZDuD+71z1PUGJDVj6Yu/T99xlOfzQvpLeYysov6NnkxJqSUuo6FTUYQ2"/>
+  
+  
+<script type="module">
+import init, * as bindings from '/musical-mind-c6044ff9e79cea8c.js';
+const wasm = await init({ module_or_path: '/musical-mind-c6044ff9e79cea8c_bg.wasm' });
+
+
+window.wasmBindings = bindings;
+
+
+dispatchEvent(new CustomEvent("TrunkApplicationStarted", {detail: {wasm}}));
+
+</script>
+
+  
+  
+  
+  
+  
+  
+  
+  
+
+  <link rel="icon" href="/favicon-f5b0a6244ae522b3.ico" integrity="sha384-vk49OdTw2Y8zo0VMA6kTstQmT2np58P5DtAxu+vhE/ZpXGg425GXffy0ht6NE+i9"/>
+
+  <script>
+      (function() {
+          const redirect = sessionStorage.redirect;
+          delete sessionStorage.redirect;
+          if (redirect && redirect !== window.location.href) {
+              history.replaceState(null, null, redirect);
+          }
+      })();
+  </script>
+  <script>
+    function getTimeZoneOffset() {
+        const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+        const offset = new Date().getTimezoneOffset();
+        return { timeZone, offset };
+    }
+  </script>
+  <!-- Google Analytics: production host only (localhost / 127.0.0.1 / preview URLs excluded). -->
+  <script>
+    (function () {
+      if (!window.__mbProductionSite) return;
+      var gtagJs = document.createElement('script');
+      gtagJs.async = true;
+      gtagJs.src = 'https://www.googletagmanager.com/gtag/js?id=G-M4ZR1QN3WB';
+      document.head.appendChild(gtagJs);
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      window.gtag = gtag;
+      gtag('js', new Date());
+      gtag('config', 'G-M4ZR1QN3WB');
+    })();
+  </script>
+  <!-- AdSense: after WASM mount; production host only. -->
+  <script>
+    (function () {
+      function loadAdSense() {
+        if (!window.__mbProductionSite) return;
+        if (window.__mbAdSenseLoaded) return;
+        window.__mbAdSenseLoaded = true;
+        var s = document.createElement('script');
+        s.async = true;
+        s.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9424100257975478';
+        s.crossOrigin = 'anonymous';
+        document.head.appendChild(s);
+      }
+      window.addEventListener('TrunkApplicationStarted', loadAdSense);
+      if (window.wasmBindings) loadAdSense();
+    })();
+  </script>
+<link rel="modulepreload" href="/musical-mind-c6044ff9e79cea8c.js" crossorigin="anonymous" integrity="sha384-kF6QyEYQhAO+P8v6k0hrispeg5Aj/EsP3KYRUvsStTGV2eUNqSFYiJO4TIbPgY0q"><link rel="preload" href="/musical-mind-c6044ff9e79cea8c_bg.wasm" crossorigin="anonymous" integrity="sha384-uSknBPjJOxnfYsC8GjBjudgFV7TLGu2r60NXPNOV/LjABpr0tiWPLS+qIZcH+/+h" as="fetch" type="application/wasm"></head>
+
+<body><div class="app-layout"><div data-tour="nav-sidebar" class="sidebar"><div class="sidebar-header"><a href="/" class="logo"><img src="/logo.png" alt="MusicalBoard Logo" class="logo-image"><div class="logo-text">MusicalBoard</div></a></div><nav class="sidebar-nav"><div aria-label="Practice tools" class="sidebar-nav-group"><div title="MusicalBoard" class="nav-item"><span class="nav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="3" width="8" height="10" rx="2" fill="currentColor" opacity="0.95"></rect><rect x="4.5" y="4.5" width="5" height="7" fill="#f8fafc" stroke="#1f2937" stroke-width="0.7"></rect><rect x="13" y="3" width="8" height="5" rx="2" fill="currentColor" opacity="0.82"></rect><rect x="14.5" y="4.5" width="5" height="2" fill="#f8fafc" stroke="#1f2937" stroke-width="0.7"></rect><rect x="3" y="15" width="8" height="6" rx="2" fill="currentColor" opacity="0.82"></rect><rect x="4.5" y="16.5" width="5" height="3" fill="#f8fafc" stroke="#1f2937" stroke-width="0.7"></rect><rect x="13" y="10" width="8" height="11" rx="2" fill="currentColor" opacity="0.95"></rect><rect x="14.5" y="11.5" width="5" height="8" fill="#f8fafc" stroke="#1f2937" stroke-width="0.7"></rect></svg></span><span class="nav-text">MusicalBoard</span></div><div title="Singing recorder — mic, monitor, record, export" class="nav-item"><span class="nav-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none"><line x1="4" y1="6" x2="20" y2="6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></line><circle cx="14" cy="6" r="2" fill="currentColor"></circle><line x1="4" y1="12" x2="20" y2="12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></line><circle cx="10" cy="12" r="2" fill="currentColor"></circle><line x1="4" y1="18" x2="20" y2="18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></line><circle cx="7" cy="18" r="2" fill="currentColor"></circle></svg></span><span class="nav-text">Singing recorder</span></div><div title="Vocal pitch monitor — real-time intonation graph" class="nav-item"><span class="nav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="2.5" stroke="currentColor" stroke-width="1.8"></rect><path d="M7 17V8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path><path d="M7 17H17" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path><path d="M8.5 14.5L11 12L13.2 13.4L16 9.6" stroke="#f8fafc" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"></path><circle cx="11" cy="12" r="1.1" fill="#f8fafc"></circle><circle cx="13.2" cy="13.4" r="1.1" fill="#f8fafc"></circle><circle cx="16" cy="9.6" r="1.1" fill="#f8fafc"></circle></svg></span><span class="nav-text">Pitch monitor</span></div><div title="Vocal range test — intonation map and session score" class="nav-item"><span class="nav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="2.5" y="3.5" width="3" height="17" rx="1.5" fill="currentColor" opacity="0.22"></rect><rect x="6.5" y="3.5" width="3" height="17" rx="1.5" fill="currentColor" opacity="0.38"></rect><rect x="10.5" y="3.5" width="3" height="17" rx="1.5" fill="currentColor" opacity="0.55"></rect><rect x="14.5" y="3.5" width="3" height="17" rx="1.5" fill="currentColor" opacity="0.74"></rect><rect x="18.5" y="3.5" width="3" height="17" rx="1.5" fill="currentColor" opacity="0.95"></rect></svg></span><span class="nav-text">Range test</span></div><div title="Vocal scales — optional pitch feedback" class="nav-item"><span class="nav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z" fill="currentColor" opacity="0.94"></path><circle cx="10" cy="17" r="1.5" fill="#f8fafc"></circle></svg></span><span class="nav-text">Vocal scales</span></div><div title="Virtual piano — reference notes and chords" class="nav-item"><span class="nav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><rect x="4" y="4" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"></rect><rect x="4" y="4" width="5.33" height="16" fill="#f8fafc" stroke="#1f2937" stroke-width="1"></rect><rect x="9.33" y="4" width="5.33" height="16" fill="#f8fafc" stroke="#1f2937" stroke-width="1"></rect><rect x="14.67" y="4" width="5.33" height="16" fill="#f8fafc" stroke="#1f2937" stroke-width="1"></rect><rect x="7" y="4" width="4" height="10" fill="#111827"></rect><rect x="12.5" y="4" width="4" height="10" fill="#111827"></rect></svg></span><span class="nav-text">Virtual piano</span></div><div title="Online metronome — tap tempo, meters, subdivisions" class="nav-item"><span class="nav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 20h16L18 17H6L4 20z" fill="currentColor" stroke="currentColor" stroke-width="1.1"></path><path d="M6 17L12 4L18 17" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linejoin="round" stroke-linecap="round"></path><path d="M9 13h6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path><path d="M12 13L16 5" stroke="#f8fafc" stroke-width="1.6" stroke-linecap="round"></path><circle cx="16" cy="5" r="1" stroke="currentColor" stroke-width="1.5" fill="none"></circle><circle cx="16" cy="5" r="0.8" fill="#f8fafc"></circle></svg></span><span class="nav-text">Online metronome</span></div><div title="Vocal Spectrum — vocal frequency analyzer" class="nav-item"><span class="nav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="2" y="10" width="1.5" height="4" rx="0.75" fill="currentColor" opacity="0.35"></rect><rect x="4.5" y="8" width="1.5" height="8" rx="0.75" fill="currentColor" opacity="0.5"></rect><rect x="7" y="6" width="1.5" height="12" rx="0.75" fill="currentColor" opacity="0.65"></rect><rect x="9.5" y="4" width="1.5" height="16" rx="0.75" fill="currentColor" opacity="0.8"></rect><rect x="12" y="2" width="1.5" height="20" rx="0.75" fill="currentColor" opacity="0.98"></rect><rect x="14.5" y="4" width="1.5" height="16" rx="0.75" fill="currentColor" opacity="0.8"></rect><rect x="17" y="6" width="1.5" height="12" rx="0.75" fill="currentColor" opacity="0.65"></rect><rect x="19.5" y="8" width="1.5" height="8" rx="0.75" fill="currentColor" opacity="0.5"></rect><rect x="22" y="10" width="1.5" height="4" rx="0.75" fill="currentColor" opacity="0.35"></rect></svg></span><span class="nav-text">Vocal Spectrum</span></div><div title="Auto-Tune — pitch correction while preserving vocal timbre" class="nav-item"><span class="nav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><line x1="6" y1="3" x2="6" y2="21" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" opacity="0.55"></line><line x1="12" y1="3" x2="12" y2="21" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" opacity="0.55"></line><line x1="18" y1="3" x2="18" y2="21" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" opacity="0.55"></line><rect x="3" y="7" width="6" height="3" rx="1.4" fill="currentColor"></rect><rect x="9" y="13" width="6" height="3" rx="1.4" fill="currentColor"></rect><rect x="15" y="9" width="6" height="3" rx="1.4" fill="currentColor"></rect></svg></span><span class="nav-text">Auto-Tune</span></div><div title="Vocal Isolator — extract the vocal or the instrumental from a mix, or reduce room noise" class="nav-item"><span class="nav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="9" y="2" width="6" height="11" rx="3" stroke="currentColor" stroke-width="1.7"></rect><path d="M5 10a7 7 0 0 0 14 0" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"></path><line x1="12" y1="17" x2="12" y2="20" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"></line><line x1="9" y1="20" x2="15" y2="20" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"></line></svg></span><span class="nav-text">Vocal Isolator</span></div><div title="Mic Room Diagnostics — 3-step recording quality check" class="nav-item"><span class="nav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="9" y="2" width="6" height="11" rx="3" stroke="currentColor" stroke-width="1.7"></rect><path d="M5 10a7 7 0 0 0 14 0" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"></path><line x1="12" y1="17" x2="12" y2="20" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"></line><line x1="9" y1="20" x2="15" y2="20" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"></line><circle cx="18.5" cy="18.5" r="4" fill="currentColor" opacity="0.85"></circle><path d="M16.5 18.5l1.5 1.5 2.5-2.5" stroke="#f8fafc" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path></svg></span><span class="nav-text">Mic Diagnostics</span></div><div title="Sight singing — match a played note and see your cents" class="nav-item"><span class="nav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z" fill="currentColor" opacity="0.94"></path><circle cx="10" cy="17" r="1.5" fill="#f8fafc"></circle><circle cx="18.5" cy="18.5" r="4" fill="currentColor" opacity="0.85"></circle><path d="M16.5 18.5l1.5 1.5 2.5-2.5" stroke="#f8fafc" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path></svg></span><span class="nav-text">Sight singing</span></div></div><hr class="sidebar-nav-divider"><div aria-label="Blog" class="sidebar-nav-group sidebar-nav-group--blog"><div title="Blog" class="nav-item active"><span class="nav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M7 3h10a2 2 0 0 1 2 2v16l-4-2-4 2-4-2-4 2V5a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round"></path><path d="M8 8h8M8 12h8M8 16h5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg></span><span class="nav-text">Blog</span></div></div></nav><div class="sidebar-footer-legal"><a href="/about/" class="sidebar-legal-link">About</a><a href="/privacy/" class="sidebar-legal-link">Privacy</a><a href="/terms/" class="sidebar-legal-link">Terms</a><a href="/contact/" class="sidebar-legal-link">Contact</a></div></div><button type="button" title="Collapse sidebar" aria-label="Collapse navigation sidebar" aria-expanded="true" class="sidebar-edge-toggle"><span aria-hidden="true" class="sidebar-edge-toggle-glyph">«</span></button><div id="app-main-content" class="main-content"><div class="top-header-container"><div class="top-header"><div class="header-left"><button type="button" data-tour="nav-menu" aria-label="Open navigation menu" aria-expanded="false" class="mobile-menu-btn"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="menu-icon-svg"><line x1="4" y1="6" x2="20" y2="6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" class="menu-bar menu-bar--top"></line><line x1="4" y1="12" x2="20" y2="12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" class="menu-bar menu-bar--mid"></line><line x1="4" y1="18" x2="20" y2="18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" class="menu-bar menu-bar--bot"></line></svg></button><p class="page-title">Why Your Pitch Trace Jumps to the Bass: Isolate the Vocal Before You Practice | MusicalBoard</p></div><div class="header-right"></div></div></div><main class="content-area no-min-width"><div class="detail-page mb-blog-page"><div class="mb-blog-inner mb-blog-article-wrap"><nav aria-label="Breadcrumb" class="mb-blog-breadcrumb"><a href="/blog/">Blog</a><span aria-hidden="true" class="mb-blog-bc-sep">/</span><span>Why Your Pitch Trace Jumps to the Bass: Isolate the Vocal Before You Practice</span></nav><header class="mb-blog-article-header"><h1 class="mb-blog-article-title">Why Your Pitch Trace Jumps to the Bass: Isolate the Vocal Before You Practice</h1><p class="mb-blog-article-date">09 October 2026</p><p class="mb-blog-article-excerpt">Load a finished song into a pitch monitor and the line drops to the bass or hops onto a guitar between phrases. This guide explains why pitch detection follows the clearest repeating sound rather than the singer, how to tell whether an isolated vocal is clean enough for intonation practice, and when the vocal range setting actually helps.</p><div class="mb-blog-article-tags"><a href="/vocal-isolation" class="mb-blog-article-tag">Vocal Isolator</a></div></header><article class="musicalboard-prose mb-blog-article-body"><p>If you have ever loaded a favorite song into a pitch monitor to follow the singer’s intonation, you have probably seen the line behave strangely. It tracks the melody for a phrase, then suddenly drops two octaves to the bass, and the moment the singer takes a breath it climbs onto a guitar riff. Nothing is broken. <strong>Pitch detection</strong> looks for the clearest repeating pattern in each short slice of sound, and in a song with accompaniment that pattern is not always the voice. If you separate the lead vocal first, you hand the detector a signal where the voice is the main thing left. <a href="https://www.musicalboard.com/vocal-isolation/">Vocal Isolator</a> does this inside your browser and does not send the file to a server. This article walks through why the line jumps, how to judge whether an isolated vocal is good enough to practice against, and what the vocal range setting really does.</p>
+<h2>Pitch detection follows the clearest pitch, not the singer</h2>
+<p>A pitch detector does not know what a voice is. Every few hundredths of a second it cuts out a short window and asks only, “Which repeating period is strongest here?” The standard way to answer that is <a href="https://en.wikipedia.org/wiki/Autocorrelation">autocorrelation</a>: overlay the slice of sound on a slightly delayed copy of itself and find the delay at which the two line up best. That delay is one period, and its inverse is the <a href="https://en.wikipedia.org/wiki/Fundamental_frequency">fundamental frequency</a> shown on screen as a note name. Wikipedia’s <a href="https://en.wikipedia.org/wiki/Pitch_detection_algorithm">Pitch detection algorithm</a> article summarizes how the different methods compare, and how MusicalBoard measures pitch in the browser is covered separately in <a href="https://www.musicalboard.com/blog/2026-05-05-pitch-detection/">How Browser-Based Pitch Detection Works</a>.</p>
+<p>In a file with only a voice and no accompaniment, the strongest period is almost always the voice. In a full mix, though, every pitched instrument offers its own period at the same time, and the detector reports whichever one wins in that moment. So the pitch trace splits into two kinds of moments:</p>
+<ul>
+<li><strong>Moments the voice wins.</strong> A vowel held at a comfortable volume over a quiet accompaniment. The line follows the melody.</li>
+<li><strong>Moments an instrument wins.</strong> Gaps between phrases, soft breathy syllables, consonants, and short vocal notes over a long bass note. The line moves to the bass, a guitar, or a synth pad.</li>
+</ul>
+<p>The most common culprit is the bass. A bass note is steady, usually loud in modern mixes, and has a very regular waveform, so the detector latches onto it easily. On top of that, its <a href="https://en.wikipedia.org/wiki/Harmonic_series_(music)">harmonics</a> overlap the singing range. Take an A1 on the bass (55 Hz): its second harmonic lands on A2 (110 Hz) and its third near E3 (about 165 Hz) — a register where many male vocals sit. Errors where the line falls or rises by exactly one octave mostly come from this overlap.</p>
+<!-- Image: concept pitch graph, x-axis time, y-axis note names (C2–C5). A single pitch line follows the upper melody (vocal) during phrases, then drops vertically to bass notes (around A1–E2) in the gaps between phrases and on short consonants, and climbs back up. Segments where the voice wins in the accent color (#667eea), segments where an instrument wins in gray (#8b92a5), with short "voice wins" / "bass wins" labels above. A simple diagram, not a tool screenshot. -->
+<p class="mb-blog-image">
+  <img src="/blog/assets/vocal_isolator/mixed_pitch_trace_jumps.png" alt="Concept pitch graph of a song with accompaniment: the line follows the vocal melody during phrases and drops to bass notes in the gaps between phrases and on consonants">
+</p>
+<p align="center">
+  <em>In a mixed song, the pitch line belongs to whatever sound is clearest at that moment — often the voice during phrases and the bass in between.</em>
+</p>
+<p>The problem is that on the original song’s graph you cannot tell which dips are the singer going low and which are the detector switching to an instrument. Any intonation lesson you draw from that graph has noise mixed in. Separating the vocal does not make the detector smarter. It clears most of the competition out of the way.</p>
+<h2>“Sounds clean” is not the same as “good enough for intonation practice”</h2>
+<p>When people listen to the result of <a href="https://en.wikipedia.org/wiki/Signal_separation">source separation</a>, most put on the chorus and judge by ear. The voice is up front and the drums are gone, so it sounds convincing. For intonation practice, though, that is the wrong place to listen. In loud sung phrases the voice wins anyway. The real trouble spots are the <strong>gaps between phrases</strong>, because that is exactly where the detector goes looking for something else to report.</p>
+<p>That is precisely what Vocal Isolator checks. After processing, it measures two things in the isolated file: the level of the sung sections, and the level of the gaps where the original song is still playing but no voice is found. If the gaps are within 20 <a href="https://en.wikipedia.org/wiki/Decibel">dB</a> of the sung sections — meaning that much instrument is left — it treats the leftover as able to steal the pitch line and shows <strong>backing still audible</strong> on the result card. If the gaps are quieter than that, it shows <strong>good for pitch practice</strong>. Twenty decibels down means the leftover sound is about one tenth of the sung level in amplitude. Below that, the leftover instruments rarely produce a steady enough pitch to take over the line.</p>
+<p>Two other one-line results can appear ahead of these. A clip shorter than three seconds is <strong>too short to separate</strong>. A <strong>mono mix</strong>, where the left and right channels are nearly identical, gets a warning that separation quality may be low. This is common in older recordings and phone videos. The model has no left–right difference to work with; for why stereo placement helps, see the <a href="https://en.wikipedia.org/wiki/Stereophonic_sound">Stereophonic sound</a> article.</p>
+<p>The result card also shows two numbers. It helps to know what each one tells you and what it does not.</p>
+<ul>
+<li><strong>Vocal level</strong> compares the overall level of the isolated file with the original. −6 dB means the isolated vocal is about half the level of the full song, which is expected since the band has been taken out.</li>
+<li><strong>Removed energy</strong> compares the level of what was taken out (the original minus the isolated vocal) with the original. The closer it is to 0 dB, the more of the song’s sound was not voice.</li>
+</ul>
+<p>Neither number tells you whether the gaps are quiet. That is why there is a separate one-line result, and why you should read that line before the numbers.</p>
+<h2>Two examples: a quiet vocal that works, a big cut that does not</h2>
+<p>Here are two separation results that come out the opposite of what you might expect.</p>
+<h3>Example 1 — Vocal level −7 dB, quiet gaps</h3>
+<p>A ballad with piano, soft strings, and a lead vocal mixed fairly loud. After separation, Vocal level is around −7 dB and Removed energy around −5 dB. On the numbers alone, the isolated vocal is much quieter than the original and not much was removed. But the piano rang softly under the voice and stopped when the singer stopped, and the model took it out cleanly. The gaps are close to silent, so the card shows <em>good for pitch practice</em>.</p>
+<p>On the pitch roadmap, the isolated line stays on the melody through the whole verse. Where the line goes down, the singer really went down. Even though the numbers look modest, this is a file worth using as a practice reference.</p>
+<h3>Example 2 — Removed energy −2 dB, guitar left in the gaps</h3>
+<p>A rock song with distorted rhythm guitars spread wide left and right, bass, drums, and a vocal buried between the guitars. Removed energy is near −2 dB. That means most of the song was taken out, so the result looks good. But between every phrase the guitars hold power chords, and some of that survived in the isolated file at a level close to the sung sections. The card shows <em>backing still audible</em>.</p>
+<p>On the pitch roadmap, the isolated line still jumps in every gap, though less than on the original. As a result, where the singer lands the first note of each line gets blurred. The isolated file from this song is useful for hearing the vocal, but not for grading intonation.</p>
+<!-- Image: two stacked loudness (envelope) strips. Top row "Example 1": sung blocks high, gap blocks near the floor. Bottom row "Example 2": sung blocks high, gap blocks fairly high too (guitar left over). In both rows a dashed −20 dB line relative to the sung level, with Example 1's gaps below it and Example 2's gaps above it. Labels on the right: "good for pitch practice" / "backing still audible". Small mono-font labels at the left of each row: "Vocal level −7 dB" / "Removed energy −2 dB". A concept diagram, not a tool screen. -->
+<p class="mb-blog-image">
+  <img src="/blog/assets/vocal_isolator/gap_level_two_examples.png" alt="Two loudness strips: in Example 1 the gaps between phrases fall below the −20 dB line; in Example 2 leftover guitar keeps the gaps above it">
+</p>
+<p align="center">
+  <em>The verdict depends not on how much was removed overall, but on how quiet the gaps are compared with the sung sections.</em>
+</p>
+<p>What to do in each case is simple. In Example 1, use the isolated vocal as your practice reference as it is. In Example 2, it is better to try again on a thinner part of the arrangement — the verse instead of the chorus, for example — or to accept that this song will not give you a clean pitch reference. Running the same audio again gives the same result from the model.</p>
+<h2>The vocal range setting: when it helps, and what it does not do</h2>
+<p>Before processing you can choose the singer’s range: <strong>Auto</strong>, one of six range presets from Bass to Soprano, or a Custom range you set yourself. Choosing a range changes two things.</p>
+<ol>
+<li><strong>Pitch candidates are limited.</strong> Only pitches inside the chosen range, widened by two semitones above and below, can become the pitch line. A guitar note an octave above the singer or a bass note far below can no longer become the line.</li>
+<li><strong>Low rumble below the lowest note is removed.</strong> A <a href="https://en.wikipedia.org/wiki/High-pass_filter">high-pass filter</a> starts three semitones below the bottom of the range (it never goes below 60 Hz). For the Tenor preset (C3–C5) that is about 110 Hz, which removes most of the bass guitar’s fundamentals and the body of the kick drum without touching the voice.</li>
+</ol>
+<p>There are also things the range setting <strong>does not</strong> do. It does not speed up processing, and it does not make the separation itself better. The separation model runs exactly the same way; the range is applied only to its result. If you change the range after processing and press Apply new range, the model does not run again — only the filter and the pitch line are recalculated.</p>
+<!-- Image: concept diagram of a single horizontal frequency (or note-name) axis. Bass guitar notes (E1, A1) marked at the low end on the left, with a vertical high-pass cutoff line to their right labeled "cutoff = lowest note − 3 semitones (≥ 60 Hz)". The chosen range C3–C5 as a dark band in the middle, with lighter ±2-semitone bands on each side and a "pitch candidates kept" label. A few guitar harmonics outside the band on the high end marked with gray X's and "ignored". An explanatory diagram, not an app screen. -->
+<p class="mb-blog-image">
+  <img src="/blog/assets/vocal_isolator/vocal_range_filter_band.png" alt="Frequency axis concept: a high-pass cutoff three semitones below a C3–C5 vocal range, the range widened by two semitones on each side for pitch candidates, and bass and guitar notes outside the band ignored">
+</p>
+<p align="center">
+  <em>The range setting filters the result: low sound below the cutoff is removed, and pitches outside the band cannot become the pitch line.</em>
+</p>
+<p>So the range setting is a fix for one specific problem: <strong>leftover bass stealing the pitch</strong>. If the isolated line keeps dropping one or two octaves below the melody, choose a range. If, on the other hand, the gaps are full of guitar in the same register as the voice, choosing a range will not help much, because that guitar sits inside the range.</p>
+<p>Two cautions. First, what you choose is the range of <strong>the singer in this file</strong>, not your own. Even if you are a baritone practicing a soprano’s song, choose Soprano or Auto. Second, if 30% or more of the sung sections fall outside the range you chose, the result card warns you and shows a Switch to Auto button. That usually means the preset was a guess. If you are not sure, leave it on Auto, which estimates the range directly from the isolated vocal. If you need a starting point for Custom, Wikipedia’s <a href="https://en.wikipedia.org/wiki/Vocal_range">Vocal range</a> article lists the typical span of each voice type.</p>
+<h2>A short routine before you practice with a song</h2>
+<ol>
+<li>Open <a href="https://www.musicalboard.com/vocal-isolation/">Vocal Isolator</a>, upload only 30–60 seconds of the song — about one verse and one chorus — and choose <strong>Separate vocal from mix</strong>.</li>
+<li>Leave the range on Auto for the first run. After processing, read the <strong>one-line result before the numbers</strong>.</li>
+<li>If it says <em>good for pitch practice</em>, compare the original line and the isolated line on the pitch roadmap. Where the two lines disagree, the original line was following an instrument.</li>
+<li>If the isolated line still drops toward the bass, choose the singer’s range and press Apply new range. If it says <em>backing still audible</em>, switch to a part of the song with a thinner arrangement.</li>
+<li>Once the line looks right, save the isolated vocal as a take and sing along one phrase at a time in <a href="https://www.musicalboard.com/vocal-pitch-monitor/">Vocal Pitch Monitor</a>.</li>
+</ol>
+<p>The tool’s separation model is based on KUIELab’s MDX-Net. It is described in the paper <a href="https://arxiv.org/abs/2111.12203">KUIELab-MDX-Net: A Two-Stream Neural Network for Music Demixing</a> and was one of the systems entered in the <a href="https://arxiv.org/abs/2108.13559">Music Demixing Challenge 2021</a>. It runs on your own device with WebAssembly. The model (about 30 MB) is downloaded once and kept in your browser, and your audio is not sent anywhere. The same run also produces the instrumental — the song with the vocal removed — so if you want to sing over it, you can use it as in <a href="https://www.musicalboard.com/blog/2026-09-21-backing-track-under-vocal-take-browser/">Recording a Vocal Take with a Backing Track in Your Browser</a>.</p>
+<h2>What this tool does and does not do</h2>
+<p>Vocal Isolator is a practice aid. On a densely mixed, finished master it does not replace iZotope RX or a paid stem separation service. Some reverb tails, doubled vocals, and very sharp sibilance will always end up in the wrong file. For intonation practice, quiet gaps are enough — and that is exactly what the one-line result checks.</p>
+<p>Use it only on recordings you have the right to edit: takes you recorded yourself, songs you have licensed, or material a teacher or label shared for practice. Isolating a commercial track to study privately at home is a different matter from publishing the result.</p>
+<h2>Further reading</h2>
+<ul>
+<li><a href="https://www.musicalboard.com/blog/2026-05-03-sing-flat/">Why You Sing Flat</a> — what to do once you can trust the line and the remaining dips really are yours</li>
+<li><a href="https://www.musicalboard.com/blog/2026-05-05-pitch-detection/">How Browser-Based Pitch Detection Works</a> — the detection side in more depth</li>
+<li><a href="https://www.musicalboard.com/vocal-isolation/">Vocal Isolator tool page</a> — modes, result card fields, privacy, and limits</li>
+</ul>
+<p>A pitch line is only as honest as the sound underneath it. On a mixed song, every jump raises the question, “Was that the singer, or the bass?” Isolating the vocal and checking that the gaps are quiet answers most of those questions — and the dips that remain become the parts you practice.</p>
+</article><p class="mb-blog-back-wrap"><a href="/blog/" class="mb-blog-back-link">← All posts</a></p></div></div></main></div></div></body>
+
+</html>
