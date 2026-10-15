@@ -2,92 +2,92 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://www.musicalboard.com/</loc>
-    <lastmod>2026-04-27</lastmod>
+    <lastmod>2026-10-07</lastmod>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://www.musicalboard.com/singing-recorder/</loc>
-    <lastmod>2026-04-27</lastmod>
+    <lastmod>2026-10-15</lastmod>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.musicalboard.com/vocal-pitch-monitor/</loc>
-    <lastmod>2026-04-27</lastmod>
+    <lastmod>2026-10-14</lastmod>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.musicalboard.com/audio-spectrum-analyzer/</loc>
-    <lastmod>2026-04-27</lastmod>
+    <lastmod>2026-10-14</lastmod>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.musicalboard.com/online-metronome/</loc>
-    <lastmod>2026-04-27</lastmod>
+    <lastmod>2026-10-14</lastmod>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.musicalboard.com/vocal-scales/</loc>
-    <lastmod>2026-04-27</lastmod>
+    <lastmod>2026-10-15</lastmod>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.musicalboard.com/virtual-piano/</loc>
-    <lastmod>2026-04-27</lastmod>
+    <lastmod>2026-10-15</lastmod>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.musicalboard.com/vocal-range-test/</loc>
-    <lastmod>2026-04-27</lastmod>
+    <lastmod>2026-10-14</lastmod>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.musicalboard.com/auto-tune/</loc>
-    <lastmod>2026-05-21</lastmod>
+    <lastmod>2026-10-15</lastmod>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.musicalboard.com/vocal-isolation/</loc>
-    <lastmod>2026-10-04</lastmod>
+    <lastmod>2026-10-15</lastmod>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.musicalboard.com/mic-room-diagnostics/</loc>
-    <lastmod>2026-05-28</lastmod>
+    <lastmod>2026-10-14</lastmod>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.musicalboard.com/sight-singing/</loc>
-    <lastmod>2026-09-27</lastmod>
+    <lastmod>2026-10-15</lastmod>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.musicalboard.com/about/</loc>
-    <lastmod>2026-04-27</lastmod>
+    <lastmod>2026-10-15</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://www.musicalboard.com/privacy/</loc>
-    <lastmod>2026-04-27</lastmod>
+    <lastmod>2026-10-15</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://www.musicalboard.com/terms/</loc>
-    <lastmod>2026-04-27</lastmod>
+    <lastmod>2026-10-15</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://www.musicalboard.com/contact/</loc>
-    <lastmod>2026-04-27</lastmod>
+    <lastmod>2026-10-15</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://www.musicalboard.com/blog/</loc>
-    <lastmod>2026-04-25</lastmod>
+    <lastmod>2026-10-09</lastmod>
     <priority>0.65</priority>
   </url>
   <url>
     <loc>https://www.musicalboard.com/blog/2026-04-30-musicalboard-introduction/</loc>
-    <lastmod>2026-04-30</lastmod>
+    <lastmod>2026-05-09</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -107,22 +107,22 @@
   </url>
   <url>
     <loc>https://www.musicalboard.com/blog/2026-05-03-vibrato/</loc>
-    <lastmod>2026-05-03</lastmod>
+    <lastmod>2026-05-06</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.musicalboard.com/blog/2026-05-05-scales/</loc>
-    <lastmod>2026-05-05</lastmod>
+    <lastmod>2026-05-16</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.musicalboard.com/blog/2026-05-05-pitch-detection/</loc>
-    <lastmod>2026-05-05</lastmod>
+    <lastmod>2026-05-08</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.musicalboard.com/blog/2026-05-06-singing-recorder/</loc>
-    <lastmod>2026-05-06</lastmod>
+    <lastmod>2026-09-26</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -147,37 +147,37 @@
   </url>
   <url>
     <loc>https://www.musicalboard.com/blog/2026-05-11-time-signatures-explained/</loc>
-    <lastmod>2026-05-11</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.musicalboard.com/blog/2026-05-12-what-is-pitch-in-music/</loc>
-    <lastmod>2026-05-12</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.musicalboard.com/blog/2026-05-13-find-bpm-tap-tempo/</loc>
     <lastmod>2026-05-13</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.musicalboard.com/blog/2026-05-14-audio-export-format-singing/</loc>
+    <loc>https://www.musicalboard.com/blog/2026-05-12-what-is-pitch-in-music/</loc>
     <lastmod>2026-05-14</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.musicalboard.com/blog/2026-05-15-vocal-range-map-session-score/</loc>
-    <lastmod>2026-05-15</lastmod>
+    <loc>https://www.musicalboard.com/blog/2026-05-13-find-bpm-tap-tempo/</loc>
+    <lastmod>2026-05-14</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.musicalboard.com/blog/2026-05-16-how-to-use-metronome/</loc>
+    <loc>https://www.musicalboard.com/blog/2026-05-14-audio-export-format-singing/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.musicalboard.com/blog/2026-05-15-vocal-range-map-session-score/</loc>
     <lastmod>2026-05-16</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://www.musicalboard.com/blog/2026-05-16-how-to-use-metronome/</loc>
+    <lastmod>2026-05-18</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://www.musicalboard.com/blog/2026-05-17-piano-chord-basics/</loc>
-    <lastmod>2026-05-17</lastmod>
+    <lastmod>2026-05-18</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -197,12 +197,12 @@
   </url>
   <url>
     <loc>https://www.musicalboard.com/blog/2026-05-20-vocal-playback-progress-bar/</loc>
-    <lastmod>2026-05-20</lastmod>
+    <lastmod>2026-05-21</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.musicalboard.com/blog/2026-05-21-online-auto-tune-browser-pitch-correction/</loc>
-    <lastmod>2026-05-21</lastmod>
+    <lastmod>2026-10-01</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -217,7 +217,7 @@
   </url>
   <url>
     <loc>https://www.musicalboard.com/blog/2026-05-25-dashboard-20-minute-vocal-practice-session/</loc>
-    <lastmod>2026-05-25</lastmod>
+    <lastmod>2026-05-26</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
