@@ -23,17 +23,17 @@ Each cell in the strip represents one semitone. When you sing a note, that cell 
 
 ### SCORE — Overall Session Pitch Accuracy
 
-SCORE is **a composite score of pitch accuracy for every note sung during the current session**. It is expressed as a number between 0 and 100.
+SCORE is the **mean 0–100 score of accepted pitch frames**, measured against the **nearest equal-tempered note**. Frames must pass the heatmap’s signal and sustained-voicing checks, and their mapped notes must be inside Low–High. It is not a score against an uploaded song, a score, or the note currently played by Vocal Scales.
 
-A score closer to 100 means the notes you are producing land precisely on their target pitches; a lower score means your intonation drifts frequently or is unstable. SCORE stabilizes as more data accumulates over the session. The reliability of a SCORE after only a few notes is very different from one recorded after ten minutes of singing.
+A score closer to 100 means the accepted frames are close to equal-tempered note centers. A clean C#4 can score 100 even when the exercise called for C4. More samples can make the average less sensitive to one moment, but a longer recording does not automatically make it an assessment of musical accuracy, rhythm, breath support, or vocal technique.
 
 **Practical interpretation:**
-- 90 and above: Intonation is very stable. Time to focus on dynamics, tone color, and expression.
-- 70–89: Most notes are fine, but some wobble. Find the yellow-to-orange zones in the heatmap and drill them.
-- 50–69: Significant instability across many notes. Foundational pitch training is needed.
-- Below 50: Developing pitch sense should be the first priority. Starting with drone matching is an effective approach.
+- Use the score to compare the **same exercise under the same conditions**, not as a universal ability grade.
+- Listen and verify the intended notes against a piano or score before calling a high score “correct.”
+- Check the per-note colors and recording: one session average can hide a difficult note.
+- If the result changes after adjusting Low–High or Pitch gate, compare again with matching settings.
 
-Keeping a regular record of your SCORE lets you track improvement as a concrete number — especially when you measure the same song or the same pitch range repeatedly.
+Record SCORE together with the exercise, range, gate setting, and microphone setup. The number can help track nearest-note centering under comparable conditions; it cannot tell whether you selected the correct notes in a song.
 
 <p class="mb-blog-image">
   <img src="/blog/assets/vocal_range_test/vocal_range_test_indicators.png" alt="Vocal Range Test SCORE, LIVE, RANGE, and VOICE indicator display area">
@@ -45,27 +45,27 @@ Keeping a regular record of your SCORE lets you track improvement as a concrete 
 
 ### LIVE — Current Real-Time Pitch Status
 
-LIVE displays **the pitch accuracy of the sound you are producing right now** in real time. If SCORE is the session's overall average, LIVE is a snapshot of the present moment.
+LIVE is a **current nearest-note score**, with display smoothing. Its curve is more forgiving than the curve used for SCORE and Accuracy colors, so the two readings are not interchangeable. It reports distance from a detected pitch to its nearest equal-tempered note; it does not know your intended target.
 
-A high LIVE value while you hold a note means you are nailing it; a low value means you are drifting away from the target. As the note stabilizes, the LIVE value stabilizes with it.
+A high LIVE value means the detected pitch is near an equal-tempered note center. It can remain high on the wrong note or during movement between centered notes, so use the reference sound and trace to judge the intended exercise.
 
 **How to use it:**
 
-Try sustaining a specific note while watching the LIVE indicator. The higher LIVE stays, the more steadily you are holding the pitch. If LIVE starts low and climbs after the note begins, your note entry is unstable; if it fluctuates while you sustain, your breath support is insufficient.
+Hold a reference note and compare its name with the detected note before interpreting LIVE. A low reading can reflect pitch movement, weak input, noise, or a detection error. A fluctuating reading does not diagnose insufficient breath support. Look at the recording and graph before choosing a vocal adjustment.
 
 When using vibrato, periodic rises and falls in LIVE are normal. The vibrato center — its pitch center — should sit on the target note so that the average LIVE value stays high.
 
 ### RANGE — Lowest to Highest Note Detected in the Session
 
-RANGE shows **the lowest and highest notes the microphone detected during the session**. A display reading "C3 ~ A4," for example, means you sang notes spanning from C3 to A4 in that session.
+RANGE shows the **lowest and highest sustained notes that pass the range checks**. Those checks include signal strength, nearest-note score, continuous voicing, accumulated time, and edge cleanup. “C3 ~ A4” is the accepted span for this session, not every transient pitch heard by the microphone.
 
 Beyond simply measuring your range, logging RANGE after each session lets you track how your range shifts over time. Comparing RANGE on good voice days versus difficult ones also helps you understand your voice's variability.
 
 **Important caveat:**
 
-RANGE includes every pitch where sound was detected, regardless of accuracy. A strained high note or an out-of-tune pitch can still register in RANGE. Think of RANGE not as a ceiling of what you "can" sing, but as "the range detected during this session."
+A brief squeak, slide, or weak frame may color the heatmap without moving RANGE. The range gates are stricter than the heatmap gates. Conversely, a forced note may still qualify if it sustains and passes them: the tool cannot judge comfort. Treat RANGE as an observed, filtered span, not proof of usable vocal limits.
 
-Your practical working range (tessitura) is not the full RANGE but the segment of the heatmap that fills in solid green.
+Your **tessitura** needs comfortable sustained singing and listening over several sessions. A solid green column only describes this session’s accepted frames; it cannot establish comfort, timbre, or endurance.
 
 ### VOICE — Estimated Voice Type
 
@@ -75,7 +75,7 @@ VOICE displays **the voice type estimated from the RANGE detected in the session
 
 Voice type classification is not determined by range alone. Traditional classical voice classification weighs range alongside timbre, the passaggio (the register break between chest and head voice), volume, and tessitura (the range where the voice is most comfortable). The VOICE indicator is a quick reference based solely on range data.
 
-Even if VOICE reads "baritone," you may in fact be a high tenor; conversely, a soprano who has not yet reached her lower notes might be classified as "alto." Treat this indicator as a rough guide only — a voice teacher is the right resource for an accurate voice type determination.
+VOICE compares RANGE with six reference bands and chooses the largest semitone overlap. Ties go to the first matching band in the tool’s list. A limited exercise can produce a label different from your usual voice type without anything being wrong with your voice. Do not infer a specific classification change just from skipping high or low notes; a teacher is the right resource for an actual voice-type assessment.
 
 ## The Two Channels of the Heatmap — Accuracy and Frequency
 
@@ -83,15 +83,15 @@ How each cell in the chromatic strip is colored and how intensely it fills can b
 
 ### Accuracy Channel
 
-This reflects **how closely your pitch matched the target for each note**. The closer you were to the note's center frequency, the more favorable the color (green); the further away, the more unfavorable (red).
+Accuracy color summarizes each note’s **lower-quartile nearest-note score**: the lower 25% value, or the minimum when fewer than four samples are available. This makes rough moments more visible than a simple average would. SCORE uses the accepted-frame mean, so a high SCORE and a less favorable color can coexist.
 
-- **Green**: On target. Pitch is stable and well-centered.
+- **Green**: A favorable lower-quartile score near the nearest equal-tempered note, with no guarantee that it is the intended note.
 - **Yellow–Orange**: Slightly off. You are producing the note but landing a little flat or sharp.
-- **Red**: Significantly off target. Pitch is wandering considerably on this note, or it is being recognized as a neighboring pitch.
+- **Red**: A low lower-quartile nearest-note score. Check the pitch trace and recording before deciding whether drift, noise, or a detection error caused it.
 
 ### Frequency / Density Channel
 
-This reflects **how often each note appeared**, encoded in color intensity. A darker shade of green means you sang that note frequently and accurately. A thin, pale shade means you only passed through it briefly or sang it once.
+Coverage reflects **accepted frame count relative to the most-visited note** in the displayed map, shown by opacity. Darker means more samples relative to that session’s busiest note; it is not an absolute count or a taller bar. When Coverage is off, opacity is fixed. With Accuracy off, the columns use a neutral color.
 
 You need both dimensions together for the heatmap to be meaningful. Dark green means "sung often and accurately." Light green means "accurate but not sung much." Bright, intense red means "you hit this note often but intonation was consistently off" — a clear signal for targeted work.
 
@@ -99,9 +99,9 @@ You need both dimensions together for the heatmap to be meaningful. Dark green m
 
 After a session, scan the full strip and note these patterns.
 
-**1. The darkest green zone = your current tessitura**
+**1. The darkest green zone = frequently detected, well-centered notes in this session**
 
-Where the dark green clusters is where your voice is most stable and natural today. Use this as your reference point for song selection and for setting practice keys.
+A dark green cluster is a starting point for review: you spent time there and the lower-quartile score was favorable. Confirm that those notes feel comfortable and sound right before using the cluster for song-key decisions. Repeating one note for a long time can darken it without making it your tessitura.
 
 **2. Yellow / orange zones = your next practice targets**
 
@@ -109,18 +109,18 @@ The yellow and orange zones between green and red are "almost there but still un
 
 **3. Red zones = limit notes or weak spots**
 
-Red at the edges of your range marks notes near your current ceiling or floor. Rather than forcing them, expand gradually through vocal technique training. Red in the middle of your range points to a specific technical weak spot that needs targeted drilling.
+Red cells deserve a listening check. They do not establish a physical range limit or diagnose a technical fault: noise, pitch-candidate errors, and brief off-center moments can affect the color. Work comfortably and compare repeated attempts with a reference.
 
 **4. Empty cells = notes not yet attempted**
 
-Completely empty cells mean those notes were not detected in this session. Deliberately include them in your next session to fill in the map.
+Empty cells mean no frames for that note passed the current checks. The note may be unattempted, too brief, too quiet, outside the chosen window, or not reliably detected; emptiness does not prove you cannot sing it.
 
 <p class="mb-blog-image">
   <img src="/blog/assets/vocal_range_test/vocal_range_heatmap.png" alt="Vocal Range Test chromatic strip heatmap example — green, yellow, and red color zones">
 </p>
 
 <p align="center">
-  <em>Dark green = note sung often and accurately. Yellow / orange = slightly unstable. Red = significantly off pitch. Empty cells = notes not yet attempted.</em>
+  <em>Dark green = note sung often and accurately. Yellow / orange = slightly unstable. Red = significantly off pitch. Empty cells = no accepted frames for those notes.</em>
 </p>
 
 ## Practical Application — Identifying Weak Notes and Setting Practice Priorities
@@ -137,7 +137,7 @@ Open [Vocal Scales](https://www.musicalboard.com/vocal-scales/) and choose a sca
 
 ### Step 3: Drone Locking on a Specific Note
 
-Choose one of your weak notes and press it on [Virtual Piano](https://www.musicalboard.com/virtual-piano/) to sustain the tone. Match it with an "aah" or "ee" vowel and repeat. Keep Vocal Pitch Monitor open at the same time to confirm that your voice is landing precisely on the drone.
+Choose one of your weak notes and press it on [Virtual Piano](https://www.musicalboard.com/virtual-piano/) with Sustain enabled. Replay the finite sample when it fades. Match it with an "aah" or "ee" vowel and repeat. Keep Vocal Pitch Monitor open at the same time to confirm that your voice is landing on the intended reference note.
 
 ### Step 4: Re-measure to Confirm the Change
 
@@ -145,7 +145,7 @@ After focused practice, run Vocal Range Test again. You may see a previously ora
 
 ### Step 5: Range Extension Practice
 
-Check the yellow and orange cells near the edges of your RANGE — the notes just above your current highest pitch or just below your lowest. As these cells gradually turn green, your practical usable range has expanded. Rather than forcing notes, work through vocal technique so that edge notes stabilize naturally over time.
+Review edge notes with the same settings over several sessions. A better color supports a claim about detected nearest-note alignment; usable range also requires comfortable, repeatable singing and a listening check. Do not force a note merely to fill the map.
 
 ## Using It with a Metronome
 

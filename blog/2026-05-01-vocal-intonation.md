@@ -28,11 +28,11 @@ Intonation problems don't come from a single source. There are broadly three pla
 
 ### You're Not Hearing Your Own Voice Accurately
 
-The voice you hear while you're singing isn't the same voice everyone else hears. Bone conduction adds low-frequency resonance that makes your own voice sound richer and slightly lower to yourself than it actually is. This is why someone can feel entirely on pitch and still be singing flat — their internal reference is off. When that's the case, correcting by ear alone is really difficult. You need an external, visual tool to check what's actually happening.
+You hear your live voice through both air conduction and bone conduction, while a microphone captures airborne sound shaped by its placement and response. That can change perceived timbre, but it does not establish a systematic pitch error or prove why you sing flat. Use a comfortable reference note, listen back, and compare the pitch trace to that reference.
 
 ### Breath Support and Cord Control
 
-Not enough air support causes the vocal cords to stay thicker than they need to be, which pulls the pitch flat. Too much air pressure and you overshoot sharp. This is especially noticeable in the passaggio — the middle register transition zone that every voice goes through. The moment the balance between airflow, cord thickness, and vowel shape breaks down is usually the moment a note goes off. Starting to sing before you're properly warmed up doesn't help either; muscles that aren't flexible yet make clean interval movement harder.
+Pitch depends on interacting vocal-fold tension, vibration, airflow, and pressure. Running out of breath or adding strain can accompany drift, but a pitch graph cannot diagnose the underlying cause. Compare easy sustained notes and short phrases; keep effort comfortable rather than trying to fix every flat note by blowing harder.
 
 ### Ear Training Still Has Room to Grow
 
@@ -48,7 +48,7 @@ If you don't know where you're going wrong, you don't know what to fix. The fast
 
 [Vocal Pitch Monitor](https://www.musicalboard.com/vocal-pitch-monitor/) works as soon as you allow microphone access in your browser. No installation, no account, no cost. The vertical axis shows note names (C, D, E…) and the horizontal axis shows time, so you can immediately see whether the line stays flat when you hold a note or starts wandering.
 
-Once you've used the real-time graph to spot *where* things get unstable, the [Vocal Range Test](https://www.musicalboard.com/vocal-range-test/) is a good next step for tracking *how much* things have improved. It gives you a SCORE based on pitch accuracy alongside your vocal range, so you have an actual number to compare before and after practice sessions. If the graph shows you the pattern, the score summarizes how far that pattern has shifted.
+Once you have located an unstable passage, Vocal Range Test can summarize the accepted frames’ distance from the nearest equal-tempered note. Its SCORE does not know the intended melody: an accurately centered wrong note can score highly. Compare the same exercise and settings, and listen to the target separately.
 
 <p class="mb-blog-image">
   <img src="/blog/assets/vocal_pitch_monitor/pitch_monitor.png" alt="Real-time pitch graph on Vocal Pitch Monitor — vertical axis shows note names, horizontal axis shows time">
@@ -66,9 +66,9 @@ Specific things to look for:
 
 ### Step 2 — Tune Your Ear With a Drone
 
-A drone is a sustained single reference pitch played by a piano or an app that rings continuously underneath your voice. Singing over it trains both your ear and your voice to lock onto that pitch.
+A sustained reference can help you compare your voice against one pitch. MusicalBoard’s Virtual Piano plays a finite, decaying sample; enable Sustain to let it finish after release and replay it when it fades.
 
-Find a reference note like A4 in [Virtual Piano](https://www.musicalboard.com/virtual-piano/), click it, then try to match it with a sustained "ahh" vowel. Run the pitch monitor at the same time so you can see how close you're actually getting — deviations of just a few Hz show up clearly on the graph. The more you repeat this, the clearer your internal benchmark for each pitch becomes.
+Find a reference note comfortable for your voice in [Virtual Piano](https://www.musicalboard.com/virtual-piano/), click it, then try to match it with a sustained "ahh" vowel. Run the pitch monitor at the same time so you can see how close you're actually getting — deviations of just a few Hz show up clearly on the graph. The more you repeat this, the clearer your internal benchmark for each pitch becomes.
 
 ### Step 3 — Find Your Problem Notes in Scale Practice
 

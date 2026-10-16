@@ -63,7 +63,7 @@ After warmup, widen **Root range** or raise BPM for **vocal scales practice** pr
 
 Set **tempo** with [Online Metronome](https://www.musicalboard.com/online-metronome/) at about 60–70% of the song BPM, then enter a similar number in Vocal Scales. If rhythm slips, the graph shows the line **reaching the next note after the click**. Turn up volume less; **land the first vowel on the click** first ([How to Use a Metronome Effectively](https://www.musicalboard.com/blog/2026-05-16-how-to-use-metronome/)).
 
-Set **repeat count** to 2–3 so you are not restarting by hand. After each pass, **key gap** labels (gap 2/4, 3/4…) appear while the piano previews the next key. **Now** switches to gap text — separate **your sung line** from **what the tool is playing**. Breathing or swallowing during the gap is fine.
+Practice two or three passes, restarting playback as needed; the tool does not have a repetition-count input. Between roots, **key gap** labels appear while the piano previews the next key. **Now** switches to gap text, so separate your sung line from what the tool is playing. Use the gap to breathe and prepare the next entry.
 
 ### What to Watch Through Register Change (Chest to Head)
 

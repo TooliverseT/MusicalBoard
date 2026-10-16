@@ -45,15 +45,15 @@ For example, suppose you repeatedly enter late on the first line of a 92 BPM bal
 
 ## How to open Takes A–D in Singing Recorder
 
-After making a short recording in Singing Recorder, open **Takes and backing** in the Controller strip to see saved takes as A, B, C, and D. Each button also displays its duration, and selecting a letter makes that take the current one. Move the playback gauge to the problem area, then select another take and listen at the same point.
+Open **Takes and backing** to see four fixed slots A–D, with names and durations. Select empty A before recording your baseline, then select empty B before the next take. Recording into a filled selected slot replaces that slot. To compare, set the playhead in each take to the corresponding phrase: slots restore their own playback positions, not one common timestamp.
 
 For a first session, this is the simplest order.
 
-1. Record the same phrase as **Take A**.
+1. Select an empty **A** slot, then record the phrase as your baseline.
 2. Put the playback gauge 1–2 seconds before the phrase that feels problematic.
 3. Listen to A and write one sentence. For example: “The `y` consonant in `you` arrives behind the beat.”
-4. Choose one action to change, then record the same phrase as **Take B**.
-5. Alternate between the same point in A and B.
+4. Choose one action to change, select an empty **B** slot, then record the same phrase.
+5. Set the corresponding phrase position in each slot, then alternate A and B. Their playheads are stored independently.
 6. If you hear a difference, repeat the same action in C. If you do not, make the action smaller and more specific.
 
 You do not need to listen from beginning to end every time you select a take. If the problem section is 15 seconds, moving only through those 15 seconds is enough. Long playback tires the ear, and later you start filling in differences with memory. A short switch from two bars in A straight to the same two bars in B is more accurate.
@@ -110,7 +110,7 @@ On a day without much time, choose one line of a chorus and finish in 12 minutes
 
 ## Practise take comparison with MusicalBoard
 
-Record a short phrase in [Singing Recorder](https://www.musicalboard.com/singing-recorder/), then open **Takes and backing** to find the A–D buttons. Keep Take A as the baseline and choose the point to compare on the playback gauge. For Take B, change only one of pitch, consonant timing, or breathing, then record the same phrase. After alternating briefly between the two takes, return to Vocal Pitch Monitor if pitch is the problem, or to Online Metronome or the backing if the beat is the problem, and check just one more action.
+Select empty A and record the baseline in [Singing Recorder](https://www.musicalboard.com/singing-recorder/). Open **Takes and backing**, choose empty B, and record the same phrase with one deliberate change. Align each slot to the corresponding phrase before switching. If pitch is the problem, return to Vocal Pitch Monitor; for timing, check against the same metronome setting or backing track.
 
 Take comparison is not time to judge your voice. Rather than trying to prove a large difference between yesterday and today, it is time to find a small connection, such as “this breath preparation changed the first note.” As those connections accumulate, it becomes much clearer what to try first when you sing the same phrase again.
 

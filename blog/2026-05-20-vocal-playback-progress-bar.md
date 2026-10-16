@@ -125,7 +125,7 @@ Here is the complete practice cycle that integrates all the tools above. Apply i
 
 **Timing analysis.** Set [Online Metronome](https://www.musicalboard.com/online-metronome/) to the song's BPM, position the progress bar just before the problem section, and play back while listening to the click. Identify where syllables drift off the beat. For time signature and tap tempo, see the [metronome guide](https://www.musicalboard.com/blog/2026-05-16-how-to-use-metronome/) as well.
 
-**Isolation practice.** Activate the microphone and sing only the problem passage. Start at 60–70% of the target BPM to address timing and pitch together. When two or three consecutive repetitions are clean, raise the BPM by 5–10.
+**Isolation practice.** Select an empty A–D slot to preserve the earlier take, then activate the microphone and record the problem passage. Start at 60–70% of the target BPM to address timing and pitch together. When two or three consecutive repetitions are clean, raise the BPM by 5–10.
 
 **Re-record and compare.** When the isolated section feels improved, record the full section again and compare the pitch graph at the problem point with the earlier recording. Check whether the graph is more stable.
 
@@ -145,13 +145,13 @@ Here is a summary of [Singing Recorder](https://www.musicalboard.com/singing-rec
 
 **Skip ±10 seconds.** Double-arrow buttons on either side of play move the head ten seconds earlier or later. During playback, only the position changes — audio keeps playing.
 
-**Monitor toggle.** While recording, clicking the speaker icon routes the live microphone input to headphones in real time. There is approximately 30 ms of latency, so headphones are required — using speakers will cause a feedback loop. See the [vocal monitoring guide](https://www.musicalboard.com/blog/2026-05-10-vocal-monitoring/) for setup and safety. The monitor volume slider adjusts listening level from 0 to 100%, and the setting is saved in the browser's [localStorage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage) across sessions.
+**Monitor toggle.** While recording, clicking the speaker icon routes the live microphone input to headphones in real time. Monitoring delay varies by device and browser and is not measured here. Use headphones to avoid speaker feedback. See the [vocal monitoring guide](https://www.musicalboard.com/blog/2026-05-10-vocal-monitoring/) for setup and safety. The monitor volume slider adjusts listening level from 0 to 100%, and the setting is saved in the browser's [localStorage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage) across sessions.
 
 **Audio file upload.** Existing recordings on your device can be uploaded and analyzed with the same progress bar and pitch graph functionality as a live recording. Files up to 10 minutes and 50 MB are supported. For upload and compare workflows, see [upload and replay comparison](https://www.musicalboard.com/blog/2026-05-18-upload-replay-compare-vocal-takes/).
 
-**Download.** After recording, the download button offers WebM, MP3, WAV, OGG, and M4A format options. MP3 is commonly used for sharing; WAV is preferred for archiving. See the [audio export format guide](https://www.musicalboard.com/blog/2026-05-14-audio-export-format-singing/) for how to choose.
+**Download.** After recording, the download button offers Original, MP3, WAV, OGG, and M4A format options. MP3 is commonly used for sharing; Original preserves the source bytes for archiving; a converted WAV cannot restore quality lost in a compressed source. See the [audio export format guide](https://www.musicalboard.com/blog/2026-05-14-audio-export-format-singing/) for how to choose.
 
-**Delete.** The trash icon at the right end of the control strip deletes the current recording immediately. Reactivating the microphone and beginning a new recording overwrites it automatically.
+**Delete.** Open Takes and backing and use × on the unwanted slot, or Delete all for the bank. Select an empty slot before another recording to keep the first; recording or uploading into a filled slot asks for overwrite confirmation.
 
 ## Connecting with Other Tools for Greater Efficiency
 

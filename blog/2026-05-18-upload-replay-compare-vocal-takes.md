@@ -52,7 +52,7 @@ Once recording or uploading is complete, press the play button to listen. The mo
 
 Listening from the beginning to the end every time is often inefficient. When there is a passage you felt was problematic, you need to jump straight to it and listen closely. The progress bar displays a timestamp in minutes:seconds:milliseconds, so you can position yourself precisely wherever you need to be.
 
-The microphone is inactive during playback. To record again, stop or finish playback and press the microphone button again. Starting a new recording overwrites the previous take. For this reason, download any take you want to keep before beginning the next recording.
+The microphone is inactive during playback. Stop or finish playback before recording again. To keep the first take, open **Takes and backing** and select an empty slot such as B before the next recording. A–D are fixed slots: recording into a filled selected slot asks for overwrite confirmation and then replaces that take, without shifting the others.
 
 ## Comparison Workflow: Record the Same Phrase Twice and Alternate
 
@@ -60,20 +60,20 @@ One of the most powerful self-feedback methods is recording the same phrase twic
 
 The practical comparison workflow follows this sequence.
 
-**Step 1: Record and download the first take**
-Record a phrase that includes the passage you feel is problematic. When done, press the download button and save it as MP3 or WAV. Saving with a filename that includes the date and take number makes it easy to find later.
+**Step 1: Record in slot A**
+Open Takes and backing, select empty A, and record the phrase. Give the take a useful name when prompted. Download a copy too if you need it beyond the local practice cache.
 
-**Step 2: Identify specific problems**
-Play back the first take and identify which notes sound flat, where the rhythm wobbles, and where the diction is muddy. As [Throga](https://throga.com/three-reasons-to-record-yourself-singing-regularly/) emphasizes, focus on one element per listen.
+**Step 2: Choose one problem**
+Listen to A and write down the moment and what you heard. Move A’s playhead to the phrase you want to compare.
 
-**Step 3: Targeted practice on the problems**
-Work specifically on the issues found. If a note sounds flat, open [Vocal Pitch Monitor](https://www.musicalboard.com/vocal-pitch-monitor/) and drill that note while watching the real-time pitch graph. If rhythm is the issue, turn on [Online Metronome](https://www.musicalboard.com/online-metronome/) and practice in time with the click.
+**Step 3: Practice one change**
+Use Vocal Pitch Monitor or a reference note to work on that passage. Keep microphone distance, phrase, and backing conditions consistent.
 
-**Step 4: Record the second take**
-After practice, record the same phrase again.
+**Step 4: Select empty B, then record**
+Do not leave A selected when recording the second take. Choose B explicitly, record the same phrase, and name it.
 
-**Step 5: Comparative listening**
-Alternate between the first and second takes. Upload the first take file into Singing Recorder to compare, or play both in separate players side by side. Hearing an audible difference between the two takes is concrete evidence that improvement has actually occurred.
+**Step 5: Compare the same passage in each slot**
+Choose A, move to the phrase, and listen; choose B and set B’s playhead to the corresponding moment. Each slot restores its own position, so switching letters does not automatically align the two timelines. Keep or download the takes you need; no re-upload is necessary just to compare A with B.
 
 <!-- Image suggestion: A diagram showing two waveform graphs for the same phrase side by side, with a problem area marked. alt: "Diagram comparing the waveforms of two vocal takes" -->
 
@@ -91,8 +91,8 @@ The most efficient way to improve a specific passage is loop practice — repeat
 
 **Setup:**
 - Open Singing Recorder and grant microphone access.
-- Open Vocal Pitch Monitor in a second tab or window and grant microphone access.
-- Arrange both windows side by side. (If screen space is tight, you can alternate between them.)
+- Use the MusicalBoard Home workspace to open Vocal Pitch Monitor beside the shared recorder strip.
+- Keep recording, pitch history, and playback in that tab. Another tab has a separate live analysis state; it does not automatically share the current take or playhead.
 
 **Running the loop:**
 - Record two to four bars in Singing Recorder.
@@ -108,7 +108,7 @@ You can also use Singing Recorder's progress bar to loop a specific section for 
 
 Singing Recorder also has a real-time monitoring feature — the ability to hear your own voice through headphones as you sing. This is distinct in purpose and use from post-recording playback feedback.
 
-**Real-time monitoring** is useful for getting immediate pitch feedback while you are singing. Listening through headphones removes the bone conduction component, making pitch drift easier to notice in the moment. That said, browser-based monitoring introduces approximately 30 ms of latency. This is not a problem for slow passages, but at faster tempos the latency can disrupt your rhythmic feel — so it is best to disable monitoring when practicing fast phrases. Monitoring must only be used with headphones; enabling it through speakers will cause feedback (howling).
+**Real-time monitoring** adds the microphone signal to what you hear while singing; it does not remove bone-conducted sound from your own voice. Delay varies by device and browser and is not measured by this app. Use headphones at a comfortable level, and disable monitoring if the returned voice or delay disrupts your timing. Listening back after singing is a separate way to hear the recorded signal without simultaneous live self-voice.
 
 **Post-recording playback feedback** does what real-time monitoring cannot: listening carefully after the performance ends, looping specific sections, comparing two takes, and cross-referencing pitch graphs for analysis. Problems that are impossible to catch in real time surface in the playback.
 
@@ -124,15 +124,15 @@ Here is a summary of the main features of MusicalBoard [Singing Recorder](https:
 
 **Playback and Progress Bar**: Press play to listen to a recorded or uploaded take. Click or drag the progress bar to jump immediately to any point.
 
-**Monitoring toggle**: Click the speaker icon to enable real-time monitoring. There is approximately 30 ms of latency, so always use headphones — never speakers.
+**Monitoring toggle**: Click the speaker icon to enable real-time monitoring. Monitoring delay varies by device and browser and is not measured here. Use headphones to avoid speaker feedback.
 
 **Monitoring volume**: Adjust with the monitoring volume slider in a 0–100% range. Starting at 20–30% and adjusting to a comfortable level is recommended.
 
-**Download**: Clicking the download button opens a format selection dialog. Choose from WebM, MP3, WAV, OGG, and M4A. MP3 is suitable for sharing; WAV is recommended for archiving.
+**Download**: Clicking the download button opens a format selection dialog. Choose from Original, MP3, WAV, OGG, and M4A. MP3 is suitable for sharing; Original preserves the source bytes for archiving; a converted WAV cannot restore quality lost in a compressed source.
 
-**Delete**: Clicking the trash icon immediately deletes the current take. Deletion cannot be undone — download anything you want to keep before deleting.
+**Delete**: Open Takes and backing and use × on a slot, or Delete all to clear the bank. Deletion cannot be undone — download anything you want to keep before deleting.
 
-**Local cache storage**: Recorded or uploaded files are saved in the browser's [IndexedDB](https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API) and persist across page refreshes. Files are automatically deleted after 24 hours.
+**Local cache storage**: Recorded or uploaded files are saved in the browser's [IndexedDB](https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API) and persist across page refreshes. Expiry is checked on restoration, about 24 hours after the last save; saving can renew that timestamp. Page exit attempts to save the bank. Delete unwanted slots or clear site data.
 
 <p class="mb-blog-image">
   <img src="/blog/assets/singing_recorder/singing_recorder_controls.png" alt="Singing Recorder control bar — showing microphone, monitor, volume, play/pause, upload, download, and delete buttons">

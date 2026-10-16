@@ -83,7 +83,7 @@ This is a simple practice mix, not multitrack editing in a DAW. You cannot separ
 
 ## Backing-file storage and copyright: practice is different from sharing
 
-The loaded backing file, cue point, and playback or mix selections are stored with your takes in the browser's IndexedDB, so they can be restored after a refresh or a move between tool pages. This temporary cache expires after about 24 hours. Download any practice result you need to keep longer. For the browser-storage model itself, see [MDN's IndexedDB guide](https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API).
+The loaded backing file, cue point, and playback or mix selections are stored with your takes in the browser's IndexedDB, so they can be restored after a refresh or a move between tool pages. This temporary cache is checked for expiry on restore, about 24 hours after its last save; saving can renew that timestamp. Download any practice result you need to keep longer. For the browser-storage model itself, see [MDN's IndexedDB guide](https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API).
 
 Loading a file from your device for private practice is different from uploading or distributing a take that includes accompaniment. A file saved with Mix into take may contain the backing audio. The U.S. Copyright Office explains that a musical work and a sound recording can be separate rights, and that you should check the permissions or licences needed for your intended use of someone else's audio. See [What Musicians Should Know about Copyright](https://copyright.gov/engage/musicians/) for the underlying principles. Using a backing you made yourself, a track with a licence that expressly permits your use and sharing, or a file you have rights to is the simplest approach.
 

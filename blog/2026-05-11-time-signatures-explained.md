@@ -193,7 +193,7 @@ When you need to hear subdivisions inside each beat slot, choose **Off**, **×2*
 - **×3**: Each beat slot is divided into **three** equal clicks (triplet grid).
 - **×4**: Each beat slot is divided into **four** equal clicks.
 
-Example: in **6/8**, **Off** gives **six** clicks per bar, which lines up easily with six eighth-note pos2itions on the page. **×2** splits each of those six slots in half, so you hear **twelve** clicks per bar (a denser grid for inner-rhythm work). In **4/4**, **×3** can help you practice a shuffle- or swing-like feel by hearing each beat in three.
+Example: in **6/8**, **Off** gives **six** clicks per bar, which lines up easily with six eighth-note positions on the page. **×2** splits each of those six slots in half, so you hear **twelve** clicks per bar (a denser grid for inner-rhythm work). In **4/4**, **×3** can help you practice a shuffle- or swing-like feel by hearing each beat in three.
 
 <p class="mb-blog-image">
   <img src="/blog/assets/metronome/metronome_6_8_subdivision.png" alt="MusicalBoard Online Metronome — 6/8 time signature and Subdivide ×2">
@@ -209,14 +209,14 @@ When practicing a song, it's a good habit to identify the time signature first a
 
 1. Identify the time signature of the song you want to practice (check the score, or analyze the stress pattern by ear).
 2. Select that time signature in the Online Metronome.
-3. Use the tap tempo feature to find the song's BPM, or enter it directly if you know it.
+3. Match the tool’s beat unit before entering tempo or tapping. In 4/4, tap quarter-note beats. In 6/8, this tool counts eighth-note slots: a score marked dotted-quarter = 60 needs 180 BPM here. Tap each eighth note, not just the two dotted-quarter pulses.
 4. Turn on the Accent feature and confirm the downbeat position by ear.
 5. If needed, choose **Subdivide** (×2, ×3, or ×4) to hear finer rhythmic positions inside each beat slot.
 6. Start at a tempo 20% below your target BPM and build up gradually.
 
 If you also want to monitor pitch, keep [Vocal Pitch Monitor](https://www.musicalboard.com/vocal-pitch-monitor/) open alongside. You can run rhythm training and pitch training in parallel on the same screen.
 
-For more detail on finding BPM and using tap tempo, see [How to Find the BPM of a Song — Tap Tempo Guide](https://www.musicalboard.com/blog/2026-05-11-find-bpm-tap-tempo/).
+For more detail on finding BPM and using tap tempo, see [How to Find the BPM of a Song — Tap Tempo Guide](https://www.musicalboard.com/blog/2026-05-13-find-bpm-tap-tempo/).
 
 ## References
 

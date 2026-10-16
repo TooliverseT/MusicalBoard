@@ -40,7 +40,7 @@ That overlap rule is intentional: it mirrors how pedagogy charts draw broad rect
 
 The **Accuracy** and **Coverage** toggles on the strip answer “how in tune?” and “how often did I sing here?” ([The Vocal Intonation Map](https://www.musicalboard.com/blog/2026-05-19-intonation-heatmap-accuracy-coverage/)). **VOICE** ignores color. You can have a wide RANGE because you shouted red, unstable notes at the edges — still counted if they sustained long enough — while your comfortable green core sits much narrower.
 
-Before trusting VOICE, glance at Coverage: a **tall, opaque column** in the middle of the map is closer to your real tessitura than a faint edge you only hit once. Accuracy matters too: green-dominant steps in that middle band are the notes you can actually use in a song, not just detect.
+Before reading VOICE, glance at Coverage: a more opaque column means more accepted frames relative to the busiest note in this map. Column height is not the value. Combine that with Accuracy and your recording. A green cluster does not prove tessitura: comfort, timbre, and endurance need listening and your experience across sessions.
 
 <p class="mb-blog-image">
   <img src="/blog/assets/vocal_range_test/vocal_range_test.png" alt="Vocal range map with reference voice-type bands overlaid — session RANGE span and VOICE chip example">
@@ -72,11 +72,11 @@ If VOICE says **Tenor** but Coverage shows most of your time in a baritone-shape
 
 ### Step 5 — Log context, not just the label
 
-Write down date, RANGE, VOICE, SCORE, and how your voice felt. Choir directors and teachers often care about **tessitura** — where you can sing all evening — more than one heroic high note. Your map’s darkest green cluster is a better tessitura clue than VOICE alone.
+Write down date, RANGE, VOICE, SCORE, the exercise and gate settings, and how your voice felt. Tessitura is the register you can use comfortably over time. The map supplies nearest-note centering and relative coverage, but it does not measure effort or fatigue. Bring both the recording and those notes to a teacher when discussing voice type.
 
 ## When the Map Says One Thing and Your Ears Say Another
 
-**VOICE reads Alto but you identify as soprano.** Common if you skipped low notes in the test. Extend the downward pass with the same sustained holds; if RANGE widens downward and VOICE shifts, the first session was incomplete, not “wrong.”
+**VOICE differs from your usual classification.** The label depends on the sustained span and the overlap rule, not on your timbre or choir assignment. Repeat a comfortable, complete up-and-down exercise under the same conditions before comparing labels. Skipping lower notes does not predict that the result will become Alto; the direction of a label change depends on the full span.
 
 **VOICE reads Tenor but high notes only work in falsetto.** Classical tenor repertoire expects a connected upper register; the map cannot separate chest from falsetto timbre. Use [Vocal Pitch Monitor](https://www.musicalboard.com/vocal-pitch-monitor/) on the same dashboard to see whether your line breaks cleanly at the passaggio while RANGE still counts both registers.
 

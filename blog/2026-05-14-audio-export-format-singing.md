@@ -5,7 +5,7 @@ tags: ["Singing Recorder"]
 excerpt: "After you record in the browser, which format should you save? How WebM, MP3, and WAV feel in day-to-day use, what sets each format apart, and how to pick one for the way you actually practice."
 ---
 
-You finish a take, hit download, and suddenly you’re staring at a row of options: WebM, MP3, WAV, OGG, M4A. For a second you freeze. Part of you says, “Isn’t MP3 just fine?” Another voice, from some article you half remember, insists that *real* audio means WAV. In practice, both instincts can be right — it depends on **what this recording is for**. Below is a short tour of what happens when sound turns into a file, how each format tends to behave, and how the MusicalBoard [Singing Recorder](https://www.musicalboard.com/singing-recorder/) actually moves data inside the browser.
+You finish a take, hit download, and suddenly you’re staring at a row of options: Original, MP3, WAV, OGG, M4A. For a second you freeze. Part of you says, “Isn’t MP3 just fine?” Another voice, from some article you half remember, insists that *real* audio means WAV. In practice, both instincts can be right — it depends on **what this recording is for**. Below is a short tour of what happens when sound turns into a file, how each format tends to behave, and how the MusicalBoard [Singing Recorder](https://www.musicalboard.com/singing-recorder/) actually moves data inside the browser.
 
 ## When sound turns into numbers
 
@@ -77,7 +77,7 @@ Why does in-browser recording lean toward WebM? Because when the [MediaRecorder 
 
 Instead of alphabet soup, map formats to what you’re actually doing.
 
-**If you’ll listen once today and delete**, WebM or a low-bitrate MP3 is plenty. Saving is quick, and you don’t need archival fidelity.
+**If you’ll listen once today and delete**, Original or MP3 is usually sufficient. Saving is quick, and you don’t need archival fidelity.
 
 **If you’re sending something to a teacher or coach**, weigh size and compatibility together. MP3 at **192 kbps or higher** is usually enough for pitch and timbre feedback; if they’re all-in on Apple gear, M4A can save everyone a headache.
 
@@ -91,15 +91,17 @@ Instead of alphabet soup, map formats to what you’re actually doing.
 
 [Singing Recorder](https://www.musicalboard.com/singing-recorder/) keeps the whole path — record through send — inside the browser. Mic audio flows through the Web Audio API and MediaRecorder; on Chrome and Firefox it’s usually encoded live as **Opus/WebM** and buffered in memory.
 
-When you press download, you can choose WebM, MP3, WAV, OGG, or M4A. **WebM** is the buffer you already have, so it’s the fastest path out. **WAV** is 16-bit PCM mono. **MP3** (about 192 kbps), **OGG Vorbis**, and **M4A** (AAC-LC, about 128 kbps) are encoded in the browser from the decoded take — the file bytes match the extension, rather than a renamed WebM.
+At download time, choose a filled A–D slot, then **Original**, MP3, WAV, OGG, or M4A. Original preserves the source bytes and uses an extension matching the detected container: a Safari recording may be MP4/AAC rather than WebM. WAV is locally encoded 16-bit PCM mono; MP3 is about 192 kbps, OGG uses Vorbis, and M4A uses AAC-LC at about 128 kbps for this mono export.
 
-Takes sit in **IndexedDB for up to 24 hours**. Refreshing the page doesn’t instantly erase them, but after a day — or if you delete them yourself — they’re gone. **Nothing is uploaded to a server**; it all runs on your device.
+Takes are cached locally in **IndexedDB**. Restoration checks a roughly 24-hour expiry window from the last persistence timestamp; later saves can renew it. There is no guaranteed deletion exactly a day after capture or immediately on tab close. Delete a slot, use Delete all, or clear site data to remove cached audio deliberately. No take is uploaded for processing.
 
 You can also upload an existing file for analysis — **up to 10 minutes and 50 MB** — and anything the browser’s codecs can decode is fair game. If something won’t play, transcode to WAV or MP3 and try again.
 
 <p class="mb-blog-image">
-  <img src="/blog/assets/singing_recorder/singing_recorder_download_formats.png" alt="Singing Recorder — export format menu (WebM, MP3, WAV, OGG, M4A)">
+  <img src="/blog/assets/singing_recorder/singing_recorder_download_formats.png" alt="Singing Recorder — export format menu (Original, MP3, WAV, OGG, M4A)">
 </p>
+
+The illustration shows an older menu: its **WebM** entry is now **Original**, which preserves the actual source format. MP3, WAV, OGG, and M4A remain conversion options.
 
 <p align="center">
   <em>At download time, pick one of the five formats and you’re done.</em>
@@ -111,7 +113,7 @@ You can also upload an existing file for analysis — **up to 10 minutes and 50 
 
 ## One line to remember
 
-If you want a cheat sheet: **WebM when you only care about listening back in the browser right now, MP3 when you need the file to open anywhere, WAV when you might edit later.** Perfect format choices matter less than the habit of **recording yourself sometimes and actually listening**. Even once a week, saving your voice — whatever the extension — does more for growth than squeezing another half-step of codec optimization.
+If you want a cheat sheet: **Original for the unchanged capture/upload, MP3 for broad compatibility, WAV for later editing.** Perfect format choices matter less than the habit of **recording yourself sometimes and actually listening**. Even once a week, saving your voice — whatever the extension — does more for growth than squeezing another half-step of codec optimization.
 
 ## References
 

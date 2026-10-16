@@ -2,7 +2,7 @@
 title: "Bar, Line, and Circle Spectrum Views — Which Graph Shows Vocal Tone Changes More Clearly?"
 date: 22 May 2026
 tags: ["Vocal Spectrum"]
-excerpt: "Vocal Spectrum's Bar, Line, and Circle graphs visualize the same audio data in three distinct ways. This article compares which view works best for harmonic analysis, formant tracking, and overall tone distribution, and explains the peak hold line and PEAK/LEVEL/CENTROID/RMS metrics for each mode in the context of real practice."
+excerpt: "Vocal Spectrum's Bar, Line, and Circle graphs visualize the same audio data in three distinct ways. This article compares which view works best for harmonic analysis, vowel-related spectrum comparison, and overall tone distribution, and explains the peak hold line and PEAK/LEVEL/CENTROID/RMS metrics for each mode in the context of real practice."
 ---
 
 When you first open a spectrum analyzer, the thing that catches your eye is a bar or line graph jumping across the screen. It's easy to feel uncertain about which mode is the default, and what actually changes when you switch to a different view. [Vocal Spectrum](https://www.musicalboard.com/audio-spectrum-analyzer/) offers three graph modes — Bar, Line, and Circle — and each one visualizes the same underlying frequency data in a different way. None of them is universally better or worse; the right choice depends on what you are trying to see. This article explains how each graph works, what it shows well, what it shows less well, and which situations call for which view.
@@ -13,11 +13,11 @@ Before comparing the three views, it helps to be clear about why you would look 
 
 **Understanding harmonic structure.** The human voice does not produce a single, pure frequency. It produces a fundamental frequency (F0) along with a series of overtones at integer multiples of that fundamental — the harmonic series. A tenor singing C3 (131 Hz) simultaneously produces 262 Hz, 393 Hz, 524 Hz, and so on. The pattern and relative strength of these overtones determine the timbre of the voice. A spectrum graph shows this pattern in real time.
 
-**Tracking formants.** Formants are frequency bands that the vocal tract amplifies through resonance. The first formant (F1) is primarily related to the degree of mouth opening; the second formant (F2) is related to the front-to-back position of the tongue. Every vowel — "a," "e," "i" — has a distinct formant pattern. In a spectrum graph, formants appear as peaks where energy is concentrated in a particular frequency band. Watching how formant positions shift when you modify your vocal technique is one of the core uses of spectrum analysis for singing.
+**Tracking spectral shape.** Formants are resonances of the vocal tract; vowel changes can redistribute the strengths of harmonics near them. The displayed graph is a spectrum, not a formant tracker. A visible peak can be a harmonic, and identifying F1 or F2 precisely usually requires a suitable estimator and sufficient data. Use this view to compare envelopes while listening, not to assign every peak a formant label.
 
 **Understanding tone color.** The same pitch can be sung bright, dark, warm, or sharp depending on how energy is distributed across the frequency range. Strong high-frequency energy produces a bright, cutting sound; dominant low-frequency energy produces a dark, rounded sound. Comparing your intended tone with the actual spectrum and adjusting your production accordingly is the central work of tone shaping.
 
-The three purposes — harmonic structure, formants, tone color — each favor different views.
+The three purposes — harmonic structure, spectral shape, tone color — each favor different views.
 
 
 ## Bar Graph — The Most Intuitive View for Harmonic Pattern Analysis
@@ -43,24 +43,24 @@ Practice application: When transitioning between chest voice and head voice, wat
 ## Line Graph — Best for Overall Spectral Curve and Formant Identification
 
 <p class="mb-blog-image">
-  <img src="/blog/assets/vocal_spectrum/vocal_spectrum_line.png" alt="Vocal Spectrum Line view — continuous frequency–energy curve showing formant peaks and spectral tilt">
+  <img src="/blog/assets/vocal_spectrum/vocal_spectrum_line.png" alt="Vocal Spectrum Line view — continuous frequency–energy curve showing spectral peaks and spectral tilt">
 </p>
 
 <p align="center">
-  <em>The continuous curve makes formant peak position and width, and the low-to-high energy slope (spectral tilt), easy to read at a glance — ideal for tracking F2 movement when you change vowels.</em>
+  <em>The line view connects spectral magnitudes to help compare broad shape and tilt. It does not measure F1 or F2.</em>
 </p>
 
 The Line graph represents the same data as the Bar graph as a continuous curve, connecting each frequency point's energy value into a smooth line.
 
 **This view is best for reading the overall shape of the energy curve.** Formants appear in a spectrum as peaks — energy hills at particular frequencies. The position and width of these hills are much more legible in the Line graph than in the Bar graph, where the gaps between bars can make the peak shape ambiguous.
 
-**Formant movement during vowel transitions is more clearly visible in the Line graph.** Singing the same pitch while switching from "a" to "i," for example, causes the F2 formant to shift toward higher frequencies. The direction and extent of that shift can be tracked as the movement of a peak along the curve.
+**Vowel transitions can change the spectral envelope.** Keep pitch, level, microphone distance, and display settings fixed while alternating vowels. A line view can make changes in broad energy balance easier to see, but the app does not estimate F2, and a moving peak is not proof of a specific resonance moving.
 
 **Spectral tilt is also easiest to read in the Line graph.** In general, a voice's spectrum slopes downward from low to high frequencies — energy decreases as frequency rises. A steeper slope corresponds to a darker sound; a shallower slope, or one with significant high-frequency energy remaining, corresponds to a brighter sound. The line makes this gradient immediately visible.
 
 **The limitation is that precise comparison of individual harmonic bar heights is more difficult.** When you need to see exactly how strong a specific overtone is relative to its neighbors, Bar is the better choice.
 
-Practice application: Sing the vowels "ah," "eh," "ih," "oh," and "oo" on the same pitch in sequence and watch how the Line graph peaks shift position. If you can see the F2 peak moving rightward (toward higher frequencies) as you move from "ah" toward "ih," you are simultaneously training vocal tract acoustics through both sound and sight.
+Practice application: sing a few vowels on the same comfortable pitch, then compare the broad spectral shapes with the recording. Do not label a graph peak F2 simply because it moved to the right. At high fundamental frequencies, harmonics are widely spaced and the underlying resonance envelope is especially difficult to infer from this graph alone.
 
 ## Circle Graph — Seeing the Overall Frequency Distribution at a Glance
 
@@ -103,13 +103,13 @@ Based on the characteristics of each graph:
 **For harmonic pattern analysis → Bar graph.**
 Bar shows each harmonic bar individually, making it easy to see how harmonics are arranged and whether the Singer's Formant band (2500–3000 Hz) is sufficiently prominent.
 
-**For overall spectral curve and formant analysis → Line graph.**
-Line shows the shape of the energy curve, the positions of formant peaks, and spectral tilt most clearly. Use it for vowel transition practice and tracking formant movement when changing vocal technique.
+**For broad spectral shape and vowel comparison → Line graph.**
+Line connects the same spectrum bins into a curve. Compare its shape while changing vowels at the same pitch and level; visible peaks are not measured F1/F2 values.
 
 **For an at-a-glance overview of tone distribution → Circle graph.**
 Use Circle to quickly assess your vocal state at the start of a session, or to see immediately whether a technique change has shifted the overall energy distribution.
 
-**For diagnosing a vocal problem, the most effective approach is to use all three views in sequence.** Start with Circle to assess the overall energy distribution, move to Line to check formant positions, then use Bar to examine the strength of specific harmonic bands in detail.
+For a listening comparison, try Circle for an overview, Line for broad spectral shape, and Bar for individual peaks. These are views of the same data; changing view does not diagnose a vocal condition or add a formant estimator.
 
 ## How to Switch Views in Vocal Spectrum
 

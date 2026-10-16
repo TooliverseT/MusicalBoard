@@ -76,7 +76,7 @@ Scales are unglamorous but they work. Running the same interval patterns repeate
 
 The piece that makes it more than a playback tool is that the **Vocal Pitch Monitor runs alongside it**. You sing the scale while watching the graph, and you can immediately see which notes in the pattern you're consistently nailing and which ones you're not. That makes it easy to stop, isolate the problem note, and work on it before continuing.
 
-The **RPM feature** lets you set a number of repetitions so the pattern loops automatically. Once it's running you can focus on the singing rather than manually restarting anything.
+Choose a short root range, pattern, direction, and tempo to keep scale practice manageable. The current tool has no RPM or repetition-count control. To practice two or three passes, restart playback as needed and stop when you have completed your planned repetitions. Count-in and the gap between roots help you prepare for each key.
 
 ### Vocal Range Test — A Heat Map of Your Voice
 

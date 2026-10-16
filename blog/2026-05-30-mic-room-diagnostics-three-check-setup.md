@@ -77,7 +77,7 @@ For practice recording, watch the **Vocal Practice** bar; it is stricter than th
 4. Run Check 1 (silent) → Check 2 (one clap) → Check 3 (Pa Pi Pu…). Watch the **level meter** for approximate dBFS while each check runs.
 5. Read the report, fix one or two items, and re-run if you changed the mic or room.
 
-If Check 1 passes but Check 3 fails on plosives, use **Rerun** on Check 3 only (button on each result screen). If all three pass but **Vocal Pitch Monitor** still looks noisy, adjust Vocal Spectrum sensitivity — see [How to Set Frequency Range and Sensitivity in a Spectrum Analyzer](https://www.musicalboard.com/blog/2026-05-23-spectrum-frequency-range-sensitivity/).
+If Check 1 passes but Check 3 reports plosives, fix mic angle or distance and use **Rerun** on Check 3. If Vocal Pitch Monitor remains noisy, adjust its **Pitch gate**, check Low–High, and remove speaker bleed or background noise. Vocal Spectrum’s **Spectrum floor** changes a separate display and does not improve pitch detection.
 
 A **2–3 minute** slot at the start of a dashboard session works well — same slot as the opening of [A 20-Minute Vocal Practice Session on the MusicalBoard Dashboard](https://www.musicalboard.com/blog/2026-05-25-dashboard-20-minute-vocal-practice-session/) — before **Singing Recorder** or **Vocal Pitch Monitor**. Use headphones for monitoring; see [Hearing Your Own Voice While Recording](https://www.musicalboard.com/blog/2026-05-10-vocal-monitoring/).
 

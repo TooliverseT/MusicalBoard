@@ -53,7 +53,7 @@ Plenty of people prefer to skip monitoring entirely and just listen back after. 
 
 ### Step 3 — Record and stop
 
-Once the mic is on, singing starts recording automatically. The current recording time shows up on the left side of the progress bar. You can record up to 10 minutes in a single take.
+Choose an **empty A–D slot** in **Takes and backing** before starting a new take. Turning the mic on starts capture and recording; it does not wait for you to sing. The current time appears beside the progress bar, and a take stops automatically at 10 minutes. Recording into an already filled selected slot replaces that slot when the new take is saved.
 
 To stop recording, click the mic button again. The playback button will become active at that point.
 
@@ -84,17 +84,17 @@ While analysis is running, transport and edit controls are temporarily blocked a
 
 Hit the play button to hear your take — whether you captured it in Step 3 or brought it in via Step 4. You can click or drag anywhere on the progress bar to jump straight to that moment. The timestamp displays in minutes:seconds.milliseconds format, so finding a specific section you want to re-examine is pretty easy.
 
-The mic disables during playback. If you want to record again after listening, stop or let playback finish, then re-enable the mic. Starting a new recording will overwrite the previous take.
+The mic is inactive during playback. Stop or finish playback before recording again, and select an empty slot if you want to preserve the current take. Slots A–D stay in place: a new take does not automatically become A or shift earlier takes to B, C, and D.
 
 ### Step 6 — Download
 
-Clicking the download button opens a format menu. Choose WebM, MP3, WAV, OGG, or M4A, then tap "Download" to save the file to your device. WebM is the captured recording. The other four are encoded in the browser from the decoded audio.
+Click Download, choose the filled slot, and pick **Original**, MP3, WAV, OGG, or M4A. Original preserves the actual recording or uploaded file bytes: commonly WebM/Opus on Chrome or Firefox, and often MP4/AAC on Safari. The other four choices decode and re-encode the audio locally; they do not recover quality already lost in the source.
 
 | Format | What it's good for |
 |--------|--------------------|
 | MP3 | Best compatibility. Sending to a teacher, posting online. About 192 kbps, encoded locally. |
 | WAV | 16-bit PCM mono. Larger file, good for keeping long-term or opening in a DAW. |
-| WebM | Browser's native recording. Fastest to save. |
+| Original | The recording/upload in its actual container, such as WebM or MP4/AAC. No re-encoding. |
 | M4A | AAC-LC, about 128 kbps. Convenient on iPhone and iPad. |
 | OGG | Vorbis, encoded locally. Useful when you want an open format. |
 
@@ -104,15 +104,13 @@ For most purposes: MP3 when sharing, WAV when archiving.
 
 Once you record or upload something, Singing Recorder keeps the take in your browser so it survives a page reload — you can return later in the day and replay or re-export without re-uploading the file. Two things are worth knowing about how that works:
 
-- **Local cache only.** The audio bytes and a small metadata record are stored in your browser's IndexedDB on the device you're using. Nothing leaves your machine. Open a different browser or a different computer and the take won't be there.
-- **Auto-expiry after 1 day.** A cached take is kept for up to 24 hours from when it was saved. After that, it's discarded automatically the next time you open the page. The app also tries to clear the cache when you close the tab or browser window — that part is best-effort (some browsers cut JavaScript short on close), but the 1-day expiry is the hard guarantee.
+- **Expiry checked when restoring.** The cache uses roughly 24 hours from an item’s last persistence time. Expired items are removed when the app next reads the cache; there is no background timer that guarantees deletion at an exact wall-clock time. Saving again may renew the timestamp. Closing or hiding the page does not promise deletion: pagehide attempts to persist the current bank for restoration.
 
 If you want to clear a take right away without waiting for the timeout:
 
-- Tap the **trash icon** at the right end of the control strip. The button stays visible at all times so you always know where it is, and it only becomes active when there's a recording or upload to remove. Pressing it wipes the current take from the playback view and deletes the cached copy in the same step — there's no separate "clear cache" action to remember.
-- Starting a new recording with the mic button also overwrites the previous take, so if you simply want to redo a phrase you don't have to delete first.
+- Select an empty A–D slot to keep another take. Recording into the selected filled slot asks for overwrite confirmation and then replaces that slot; the other slots do not shift. Use the per-slot ×, Delete all, or the browser’s site-data controls for deliberate deletion.
 
-In short: takes survive a refresh, expire after a day, can be cleared instantly with the trash icon, and never travel beyond your device.
+A refresh can restore locally cached takes in the same browser. Expiry is checked on restore against the last saved timestamp, and browser cleanup can remove data sooner. Download recordings you need beyond a practice session; use the deletion controls when you want to clear them.
 
 ## What to Actually Listen For
 
@@ -120,7 +118,7 @@ There's a real difference between passively playing back a recording and listeni
 
 ### Pitch — where are you losing it?
 
-Pitch is usually the first thing that jumps out when you listen back. A passage that felt clean in the moment can sound flat or sharp on playback — again, because of that bone conduction effect that makes your voice sound better to yourself than it does to everyone else.
+Pitch is often easier to review after you stop singing and listen back. A phrase that felt centered may sound flat or sharp; compare it with a known reference and the pitch trace rather than attributing the difference to bone conduction.
 
 Things to listen for specifically:
 

@@ -25,7 +25,7 @@ The minimum can be set as low as 20 Hz and the maximum as high as 22000 Hz.
 
 The fundamental frequency (F0) of the human voice spans roughly 80 Hz to 1050 Hz depending on voice type — from the lowest note of a bass (E2, 82 Hz) to the highest note of a soprano (C6, 1047 Hz). The harmonics that define timbre and formants extend far above this, distributed at integer multiples of the fundamental.
 
-Sibilant consonants (S, Z, SH, etc.) and breath noise concentrate their energy primarily in the 4 kHz–12 kHz range. Setting the upper limit at 16 kHz captures this sibilance energy fully. Above 16 kHz, however, most recording environments are dominated by background noise, with almost nothing vocally relevant to observe.
+Sibilance and breath can spread across several high-frequency bands, depending on the consonant, voice, microphone, and recording settings. A 16 kHz upper limit is a useful starting view, not proof that every relevant component is included. The browser’s sample rate also limits the available spectrum to its Nyquist frequency.
 
 Below 80 Hz, the fundamental frequency of most voices does not reach, and the band is dominated by room noise and microphone handling noise. Setting the lower limit at 80 Hz prevents unnecessary low-frequency noise from crowding the left side of the graph.
 
@@ -55,7 +55,7 @@ Above 5 kHz, the spectrum captures phenomena other than the vocal fundamental an
 
 **Breath noise.** Breath sounds before and after phonation, as well as breath noise captured by the microphone, appear mainly in the 4–8 kHz range. If energy in this band rises sharply just before or after a sung note begins, it may be worth adjusting the microphone position or distance.
 
-**Air noise and ambient noise.** Above 12 kHz, there is almost no vocal content — the band is dominated by environmental and self-noise from the microphone. Persistent energy at these frequencies suggests that improving the recording environment or lowering the sensitivity setting would help.
+**High-frequency content and noise.** Energy above 12 kHz can include sibilance, breath, microphone noise, and other sounds; the spectrum alone cannot identify its source. Listen to the same moment and compare with a silent-room snapshot. Lowering Spectrum floor hides weak content on screen but does not remove it from the recording.
 
 ## Recommended Frequency Ranges by Purpose
 
@@ -77,13 +77,13 @@ Covers the entire range of human hearing at once. Useful for a quick check of wh
 
 If the frequency range sets the horizontal axis, the sensitivity slider sets how the vertical axis responds — specifically, how weak a signal still registers on the graph.
 
-Vocal Spectrum sensitivity is set with a **0% to 100%** slider. It uses the same 0–100% scale as [Vocal Pitch Monitor](https://www.musicalboard.com/vocal-pitch-monitor/), so matching the same percentage in both tools gives a similar response strength during practice. The default is about **50%**.
+Vocal Spectrum uses a **Spectrum floor** slider shown as **0–100%**, with a default near **50%**. It moves the display and statistics floor from about −30 dB at 0% to −75 dB at 100%. It is independent of Vocal Pitch Monitor’s **Pitch gate**, which changes detection thresholds; matching percentages does not match their response strengths.
 
 **High sensitivity (about 50–100%).** Even very low-level energy appears on the graph. Raise sensitivity when the signal is hard to see while singing quietly in a clean room. As you move the slider up, the bottom of the vertical axis (the display floor) drops to lower dB values, so weak harmonics and breath noise become visible. The drawback is that ambient noise, microphone self-noise, and other unwanted signals also grow prominent, making the actual vocal signal harder to read.
 
 **Low sensitivity (about 0–20%).** Only signals above a certain energy level appear. Lower sensitivity when background or microphone noise is cluttering the graph and you want to focus on the vocal signal. The drawback is that very soft passages or weak signal just before phonation may not register.
 
-**Relationship with Vocal Pitch Monitor sensitivity.** Both tools use 0–100% sensitivity. Find a percentage that works well in the pitch monitor (for example, 40%), then apply the same value in Vocal Spectrum for a fast, consistent setup.
+**Relationship with Vocal Pitch Monitor.** Set Spectrum floor so the frequency bands you need remain visible, and set Pitch gate so the detected pitch is usable. Adjust each from its own output. Spectrum floor does not change microphone gain, remove noise from a file, or fix the pitch detector.
 
 ## Practical Adjustment Scenarios
 
@@ -103,7 +103,7 @@ With the frequency range set to the sibilance band (3000–16000 Hz), fricative 
 
 A Vocal Spectrum configured with an optimized frequency range and sensitivity becomes even more powerful in combination with other tools.
 
-Keeping [Vocal Pitch Monitor](https://www.musicalboard.com/vocal-pitch-monitor/) open alongside Vocal Spectrum lets you monitor pitch accuracy and spectral content simultaneously. Because both tools use the same sensitivity scale, maintaining consistent settings across the two is straightforward.
+Keep [Vocal Pitch Monitor](https://www.musicalboard.com/vocal-pitch-monitor/) beside Vocal Spectrum to view pitch movement and spectral balance together. Set their sliders independently. If the pitch trace jumps, investigate Pitch gate, the selected note range, noise and speaker bleed rather than changing Spectrum floor.
 
 When you play back a recording made with [Singing Recorder](https://www.musicalboard.com/singing-recorder/), the spectrum graph syncs to the playback position. You can move the playback bar to a consonant where sibilance was heavy, raise the upper limit to 16000 Hz or 22000 Hz, and perform a focused analysis of the high-frequency energy at that moment.
 

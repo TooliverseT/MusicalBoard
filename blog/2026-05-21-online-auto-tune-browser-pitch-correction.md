@@ -50,10 +50,10 @@ The three sliders are not just numbers. They shape the gap between **obvious rob
 
 **Tolerance (0–100¢)** — A dead zone around each target note. One cent is 1/100 of a semitone. Notes already inside the zone are left alone; only pitches farther out get corrected. For blues and jazz where slight flat inflection is intentional, try **30–50¢**.
 
-The first visit starts at **Strength 75%, Retune speed 55%, Tolerance 25%**. The **Moderate (Default)** preset is those same three values, so you can return to them after moving the sliders. **Gentle** is lighter than Natural: Strength 30%, Retune speed 95%, Tolerance 20¢, a small nudge that leaves vibrato in place. **Tight** (Strength 95%, Retune speed 25%, Tolerance 10¢) sits between Moderate and Hard: notes land on pitch for a polished pop vocal, but note changes still glide instead of stepping like **Hard**. If this browser already saved sliders, those values load instead. Apply once, listen, and if it feels mechanical, raise Retune speed and lower Strength.
+The first visit starts at **Strength 75%, Retune speed 55%, Tolerance 25¢**. The **Moderate (Default)** preset is those same three values, so you can return to them after moving the sliders. **Gentle** is lighter than Natural: Strength 30%, Retune speed 95%, Tolerance 20¢, a small nudge that leaves vibrato in place. **Tight** (Strength 95%, Retune speed 25%, Tolerance 10¢) sits between Moderate and Hard: notes land on pitch for a polished pop vocal, but note changes still glide instead of stepping like **Hard**. If this browser already saved sliders, those values load instead. Apply once, listen, and if it feels mechanical, raise Retune speed and lower Strength.
 
 <p class="mb-blog-image">
-  <img src="/blog/assets/auto_tune/auto_tune_sliders.png" alt="Auto-Tune Strength, Retune speed, and Tolerance sliders near the recommended starting values 75%, 55%, and 25%">
+  <img src="/blog/assets/auto_tune/auto_tune_sliders.png" alt="Auto-Tune Strength, Retune speed, and Tolerance sliders near the recommended starting values 75%, 55%, and 25¢">
 </p>
 
 <p align="center">
@@ -67,7 +67,7 @@ The first visit starts at **Strength 75%, Retune speed 55%, Tolerance 25%**. The
 3. When processing completes, the **pitch roadmap** shows gray (original) and pink (pitch measured on the corrected file). Click the chart to move the playhead to that moment. Passages where the lines diverge most point to where practice will pay off.
 4. Use **Load Original** and **Load Auto-Tuned** to alternate playback on the same timeline. As in the [upload, replay, and compare workflow](https://www.musicalboard.com/blog/2026-05-18-upload-replay-compare-vocal-takes/), hearing both versions at the same position makes the difference obvious.
 5. Changed settings? Run **Apply Again**. Reprocessing always starts from the **original**, so corrections do not stack on top of each other.
-6. When you are happy with the result, download from the Controller as WAV, MP3, or other formats.
+6. Use **Download Auto-Tune** on the result card and choose MP3, WAV, OGG, or M4A. Or use **Save Auto-Tuned as Take**, choose a slot and name, then export that saved slot from the Controller. **Load Auto-Tuned** previews the result; it does not replace the slot’s original file, which the Controller download menu exports.
 
 If you close and reopen the Auto-Tune panel on the dashboard within the same session, the tuned result usually stays in place — handy for trying several **Apply Again** passes with different settings.
 
@@ -109,7 +109,7 @@ Auto-Tune here is less a magic substitute for skill and more a **mirror**. The c
 
 ## Getting Started with Auto-Tune on MusicalBoard
 
-For a first session on [Auto-Tune](https://www.musicalboard.com/auto-tune/), record or upload one short passage — eight to sixteen bars is enough. If Key is unknown, use Chromatic Scale and Apply with Strength 75%, Retune speed 55%, Tolerance 25%. Note where the pink line moves most on the roadmap, then alternate **Load Original** and **Load Auto-Tuned** at the same playhead and trust your ears. Re-sing those spots in [Vocal Pitch Monitor](https://www.musicalboard.com/vocal-pitch-monitor/); when you improve, re-record in Singing Recorder and **Apply Again**. Judge success by whether **your raw voice** is closer to the original take than before — not by whether the tuned file sounds flawless. Key, Scale, and slider values persist in browser localStorage (`auto_tune_settings_v1`) for your next visit. The point of free online auto-tune in the browser is not a perfect master — it is to **hear and see where you drift**, fast.
+For a first session on [Auto-Tune](https://www.musicalboard.com/auto-tune/), record or upload one short passage — eight to sixteen bars is enough. If Key is unknown, use Chromatic Scale and Apply with Strength 75%, Retune speed 55%, Tolerance 25¢. Note where the pink line moves most on the roadmap, then alternate **Load Original** and **Load Auto-Tuned** at the same playhead and trust your ears. Re-sing those spots in [Vocal Pitch Monitor](https://www.musicalboard.com/vocal-pitch-monitor/); when you improve, re-record in Singing Recorder and **Apply Again**. Judge success by whether **your raw voice** is closer to the original take than before — not by whether the tuned file sounds flawless. Key, Scale, and slider values persist in browser localStorage (`auto_tune_settings_v1`) for your next visit. The point of free online auto-tune in the browser is not a perfect master — it is to **hear and see where you drift**, fast.
 
 ## References
 

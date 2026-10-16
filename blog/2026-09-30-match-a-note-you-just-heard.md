@@ -25,7 +25,7 @@ The **median** is the middle value among all cent samples during the hold. A spi
 
 The **±15-cent percentage** summarizes how often you were inside the ±15-cent box during those three seconds. Like other MusicalBoard tools (including Vocal Range Test), pitch detection estimates **fundamental frequency**. Loud room noise or breath noise right before voicing can make cents jump briefly, so simple habits during the hold help: **do not push air noisily through an open mouth**, **keep one vowel**. If ±15 feels harsh, check measurement conditions before you change range. A round counts as **Matched** when absolute median cents is 15 or less. Reading labels follow the same bands as Vocal Pitch Monitor: about ±12 cents *in tune*, up to ±25 *a bit flat* / *a bit sharp*, beyond that *flat* / *sharp*. **15 cents** is the matched-round threshold; **12 and 25** are the bands for plain-language feedback.
 
-The **Hold steadiness** bar shows the same ±15-cent percentage again. Near 70% in the UI tour means “mostly inside the box”; below that, the tool may suggest **steadiness** practice. Median −6 cents with 45% inside the band means you **sat slightly flat on average but left the box often**. Median −18 cents with 90% means **consistently flat but stable** — a different fix. The first calls for “lock, then sustain”; the second for “hear the reference again and raise the center.”
+The **Hold steadiness** bar repeats the percentage of accepted samples inside ±15 cents. This combines centering and variation; it is not a spread measurement independent of the target. Median −6¢ with 45% inside can mean frequent excursions from the band. Median −18¢ with 10% inside and a nearly flat trace can mean a steady but offset hold. Read the graph too. Median −18¢ with 90% inside is impossible: when most samples are inside [−15,+15], their median must be inside that interval.
 
 The 0–100 session score blends roughly **40% matched rounds**, **35% accuracy from mean absolute median cents**, and **25% steadiness from ±15-cent percentages**. Many Matched rounds with a large **Mean |cents|** still cap the overall score; good median with low percentage turns the **Hold steadiness** bar red first. Counting only “how many rounds matched” misses **sustain**.
 
@@ -39,11 +39,11 @@ After scoring, the **two-panel graph** under the card (pitch and cents) shows **
 
 ### Example 1 — median +10 cents, ±15-cent percentage 72%
 
-Median +10 sits inside *in tune* and inside Matched (±15). At 72%, most of the three seconds stayed in the ±15 box. By ear it is “slightly sharp but one settled note.” Next time, use **Hear again**, keep the **same vowel for the full three seconds**, and nudge the center down by about a quarter-tone mentally. You may check the target key briefly on [Virtual Piano](https://www.musicalboard.com/virtual-piano/) and return to Sight Singing — the goal is **the height you just heard**, not reading the key name.
+Median +10¢ is inside both the reading’s “in tune” band and the Matched threshold. A 72% share means most accepted samples were inside ±15¢, but the graph is still needed to see how they moved. Listen to the captured round, then use Virtual Piano and Vocal Pitch Monitor if you want to practice that same note again. Aim for a small downward adjustment of about 10¢, not a quarter-tone: a quarter-tone is 50¢ and would overshoot to about −40¢. In the next Sight Singing hold, **Hear again** replays that round’s reference before it is scored.
 
 ### Example 2 — median −8 cents, ±15-cent percentage 62%
 
-By absolute median alone, this is closer to target than Example 1 (+10). At 62%, more of the three seconds spent **outside** ±15 than in Example 1. Typical shapes: **correct for ~0.8 s then sliding flat as support drops**, or **vibrating around the target** without settling. If Vocal Pitch Monitor shows the line falling toward the end, use Sight Singing’s **Listen to this round** (your hold mixed with the target), find where you left the band, then repeat the hold with **support maintained** rather than less breath.
+Median −8¢ is closer to center than +10¢, but a 62% share leaves more samples outside the band than 72%. It does not reveal when those samples occurred: the hold might alternate between in-band and out-of-band moments, or drift during a later segment. Use **Listen to this round** and the graph to locate the movement. Do not infer breath-support failure from these two numbers alone.
 
 <!-- Image: two round cards — A median +10¢·72%·Matched; B median −8¢·62%·lower hold steadiness; mini cents-vs-time graphs -->
 
@@ -57,19 +57,19 @@ By absolute median alone, this is closer to target than Example 1 (+10). At 62%,
 
 When you **End session**, you get **Mean |cents|** (mean of absolute median cents per round), **Matched rounds**, and bars for match, accuracy, and steadiness. Treat the **four cells on each round card as one set** instead of counting “matched” alone while the session average hides drift.
 
-**Practice again** starts a new session in the same tab; hold clips live in memory until you leave or end the session — nothing is saved on the server. For trends across days, copy **just the two numbers** into a note or spreadsheet, as in the 15-minute routine below (“last Wednesday G4–G5 Mean 22, this week 17”) to decide whether to raise range or stay lower.
+**End session** opens the summary and keeps completed round cards and their hold clips available for review. **Practice again** clears those cards and clips and returns to range setup; leaving the page or releasing its audio resources also clears them. Nothing is saved to a server. Copy your results before starting again if you want to compare sessions on different days.
 
 Alternating Virtual Piano (seeing note names) with Sight Singing (names hidden) is deliberate. Names invite finger and visual memory; hiding them leaves **the pitch you just heard**. Before a sight-singing class, bias toward Sight Singing; when only the first pitch of a score is uncertain, confirm **one note** on Virtual Piano, then switch back for a round or two **without the name**. Same site, different training focus.
 
-## After five rounds: if mean absolute cents exceeds 25, drop the range one octave
+## After Five Rounds: Review Error and Choose a Comfortable Range
 
-At home, finishing **five rounds** and opening the session report is enough load. One practical rule: if **mean absolute cents** on the session (**Mean |cents|**) is **above 25**, switch the **starting preset down one octave** (for example C4–C5 to C3–C4) and run the same five rounds again instead of only “trying harder.”
+After roughly five completed rounds, use **End session** to review the report. If **Mean |cents|** exceeds 25¢ and the high range felt uncomfortable, tap **Practice again** to unlock setup and choose a more comfortable range. Moving C4–C5 to C3–C4 can help some voices but is not a rule for every singer: an octave lower may itself be too low. If the range felt easy, check the reference and microphone conditions before changing it.
 
-Twenty-five cents sits past the *a bit flat* / *a bit sharp* band toward plain *flat* / *sharp*. Higher presets make it easier to **tense before you find the target** or confuse **heard pitch vs sung pitch**. One octave down separates “relative pitch habit” from “I cannot track this height yet.” When mean absolute cents nears 15 on the lower preset, repeat the rule after you move up the next week. Readable numbers in a comfortable span beat ten rounds in a preset that only produces noise.
+An individual round’s reading changes beyond ±25¢; a session Mean |cents| is a separate average, not that round verdict. An uncomfortable target can distract from matching the sound you heard. Use a comfortable span first, then widen it gradually if matching is repeatable and effort remains easy. A change in range alone cannot tell you why a round missed.
 
 If mic distance or room echo makes pitch jump, run [Mic Room Diagnostics](https://www.musicalboard.com/mic-room-diagnostics/) first. Treat cent values as practice guidance only when **measurement conditions** are stable.
 
-Ten rounds can inflate **Matched** count while **mean absolute cents** stays flat — more “lucky” trips inside ±15 without a better **center pitch**. Log Mean |cents| and Matched after a five-round session and repeat the same preset the next day to see what is **repeatable**. If matches rise but the mean does not improve, do not raise range yet; loop **Hear again → same vowel, three seconds**.
+Matched count can rise while Mean |cents| stays similar: some rounds cross the threshold while others remain farther away. Log both over several sessions in a comfortable range. After scoring, review the clip or practice that target separately with Virtual Piano and Vocal Pitch Monitor; Hear again is available during Listen or Hold.
 
 ## A 15-minute home routine: log only two numbers
 
@@ -79,7 +79,7 @@ Sight Singing isolates “hold one pitch,” so it fits short days. Example: C4�
 
 **2–10 min** — **Play note** → 3-second hold, five times. From each card, write only **median cents** and **Within ±15¢** percent. Treat readings (*in tune*, etc.) as hints; decisions use **the two-number set**.
 
-**10–13 min** — **End session**. If Mean |cents| is above 25, stop for the day and next time use the **octave-lower preset** with the same table. If 25 or below, pick one round with Matched below 3/5, use **Listen to this round**, and note one line: drift at **start, middle, or end**.
+**10–13 min** — **End session**. If Mean |cents| is above 25, stop for the day and next time use the **octave-lower preset** with the same table. If 25 or below, pick a round with absolute median above 15¢ or a low Within ±15¢ share, use **Listen to this round**, and note one line: drift at **start, middle, or end**.
 
 **13–15 min** — If any round had percentage under 70%, open Vocal Pitch Monitor at the target pitch from your notes and hold one vowel for three seconds twice. Watch whether the line **wobbles less**, not whether you “win” a number.
 
@@ -91,12 +91,12 @@ On [Sight Singing](https://www.musicalboard.com/sight-singing/), choose **Low / 
 
 Short routine:
 
-1. C4–C5 preset, five rounds — log **median** and **±15-cent percentage** only.
-2. If two or more rounds fall below 70% inside ±15, open Vocal Pitch Monitor in another tab and repeat a 3-second hold on one vowel.
-3. If session **Mean |cents|** exceeds 25, drop to C3–C4 and repeat.
+1. Choose a comfortable one-octave Low–High range, five rounds — log **median** and **±15-cent percentage** only.
+2. Note the target names first. If two or more rounds fall below 70% inside ±15, review their clips, then use Virtual Piano and Vocal Pitch Monitor on Home for short reference-note holds. The other view does not share Sight Singing’s round clips or score.
+3. If session **Mean |cents|** exceeds 25, tap Practice again and choose a more comfortable range before another session. C3–C4 is an option only if it is comfortable for your voice.
 4. Use **Listen to this round** and note whether drift was at the **start or end**.
 
-**Round N — …** in the status line helps you track which hold you are on. You can chain **Next note** forever, but at first, **End session** and read Mean |cents| to learn the numbers. **What to practice next** points at the weakest of match, accuracy, or steadiness — worth reading even if you only log two numbers. If you see something like “You touch the pitch, then drift,” stay on the **same target for another 3-second hold** rather than raising range that day.
+**Round N — …** in the status line helps you track which hold you are on. You can chain **Next note** forever, but at first, **End session** and read Mean |cents| to learn the numbers. **What to practice next** points at the weakest of match, accuracy, or steadiness — worth reading even if you only log two numbers. If you see something like “You touch the pitch, then drift,” review the clip and practice that note with Virtual Piano plus Vocal Pitch Monitor. A scored round offers Next note and End session, not a same-target retry button; Next note draws another target.
 
 This page and article are **personal practice aids**. If you have vocal strain, hearing loss, ear pain, or need sight-singing class or hearing tests interpreted for you, prioritize professional care and regular lessons. MusicalBoard does not replace medical or hearing diagnosis or official exam grading.
 

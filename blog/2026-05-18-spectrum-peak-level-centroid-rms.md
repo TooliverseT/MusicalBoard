@@ -41,23 +41,21 @@ LEVEL shows the energy magnitude, in dBFS, at the frequency PEAK identified — 
 
 A LEVEL value close to 0 dBFS means that frequency carries very high energy. A LEVEL deep in the negatives (for example, −50 dBFS) means the energy there is weak.
 
-Practically, LEVEL serves as a rough check on your microphone input level while singing. If LEVEL consistently approaches 0 dBFS, there is a risk of clipping (digital distortion) — move the microphone slightly farther away or reduce the sensitivity setting. A range of −20 dBFS to −6 dBFS is generally considered appropriate for recording.
+LEVEL is a selected FFT bin’s level, not a time-domain clipping detector. If a recording distorts or Mic Room Diagnostics detects near-full-scale samples, reduce the audio interface or OS **input gain**, or move farther from the microphone. Changing Spectrum floor only changes visible bins and statistics; it does not lower the captured level.
 
 ## Understanding dBFS: 0 Is the Maximum, Negative Values Are Quieter
 
 The vertical axis of the spectrum graph and both the LEVEL and RMS metrics use **dBFS (decibels relative to full scale)**. This is the standard unit for expressing signal levels in digital audio.
 
-- **0 dBFS**: The maximum level a digital system can handle. Exceeding it causes clipping (digital distortion).
-- **Negative dBFS**: Any level below the maximum. −6 dBFS is roughly half the amplitude of 0 dBFS; −20 dBFS is a much smaller signal.
-- **−60 dBFS**: Effectively silence. Ambient noise typically registers around this level.
+- **−60 dBFS**: A low signal relative to digital full scale. It may still be audible, and room or microphone noise can register above or below it. It is not a universal silence threshold.
 
-One important concept: dBFS expresses a ratio, not an absolute value. The difference between −6 dBFS and −12 dBFS is 6 dB, which represents roughly a four-fold difference in energy — perceived by the ear as approximately twice as loud. In music production, the master level is generally kept at −6 dBFS to −3 dBFS or below to preserve headroom.
+A 6 dB increase corresponds to about twice the amplitude and four times the energy under matching measurement conditions. It does **not** establish that a person hears twice the loudness: hearing also depends on frequency, duration, and listening level. Avoid treating a spectral bin level as a recommended recording peak or a mastering target.
 
 In vocal practice, you don't need to manage dBFS with precision. But understanding that "closer to 0 = stronger signal, larger negative number = weaker signal" lets you read the spectrum intuitively.
 
 ## CENTROID: The Energy Center of Gravity of the Spectrum (Hz)
 
-CENTROID is the most distinctive and revealing metric. It shows, in Hz, the frequency at which the entire spectrum's energy is balanced — the point where low-frequency energy and high-frequency energy are in equilibrium.
+CENTROID is the **linear-amplitude-weighted mean frequency** of FFT bins inside Min–Max that pass Spectrum floor. It can help describe the balance of the selected spectrum, but it is not a measurement of fundamental frequency or a formant estimate. Change the displayed band or floor and the centroid can change even for the same sound.
 
 A high CENTROID means energy is concentrated relatively toward the high-frequency end, which corresponds to a bright, sharp tonal character. A low CENTROID means energy is concentrated in the low-frequency range, corresponding to a dark, rounded sound.
 
@@ -65,11 +63,11 @@ In the field of Music Information Retrieval (MIR), spectral centroid is recogniz
 
 Here is how CENTROID behaves during singing:
 
-**Singing a high note**: As the fundamental frequency rises, the harmonics rise with it, shifting the energy center of gravity upward. The CENTROID value increases.
+**Changing pitch.** Harmonic frequencies move as the fundamental changes, but their relative strengths and the selected analysis band also matter. Centroid may rise or fall; the pitch monitor, rather than CENTROID, is the place to check the note name.
 
-**Head voice vs. chest voice**: Head voice tends to have relatively stronger upper harmonic content, so even at the same pitch, head voice often produces a higher CENTROID than chest voice.
+**Register changes.** Spectral balance can change when register, vowel, intensity, or microphone position changes. Head voice does not universally produce a higher centroid than chest voice. Compare the same pitch and vowel under matching recording and display settings, then listen before attributing a change to register.
 
-**Bright vowels vs. dark vowels**: The "ee" vowel has strong high-frequency energy due to its formant structure, producing a higher CENTROID. The "oo" vowel emphasizes low-frequency energy and tends to produce a lower CENTROID.
+**Changing vowels.** A vowel change redistributes spectral magnitude and can move the centroid. It does not identify a measured F1 or F2. Compare vowels at the same pitch and level, with unchanged Min–Max and Spectrum floor, and listen to the corresponding take.
 
 **Consonant production**: Fricatives such as "s," "sh," and "z" concentrate energy in the high-frequency range, causing CENTROID to spike sharply upward.
 
@@ -85,18 +83,18 @@ Here is how CENTROID behaves during singing:
   <em>As pitch rises, the energy center of gravity (CENTROID) moves upward. CENTROID quantifies the brightness of your sound.</em>
 </p>
 
-## RMS: Average Loudness Across the Full Display Range (dBFS)
+## RMS: Magnitude Summary of the Selected Spectrum (dBFS)
 
-RMS (Root Mean Square) represents the average energy level across the entire display range in dBFS. In everyday terms: "how loud am I singing right now?" Unlike LEVEL, which shows only the strongest single frequency, RMS integrates the whole spectrum.
+This RMS is the **root mean square of linear FFT magnitudes** for bins inside Min–Max that pass Spectrum floor, converted back to dB. It summarizes the retained spectrum rather than the original waveform. It is not the time-domain RMS of your recording, calibrated acoustic SPL, or perceptual loudness in LUFS.
 
 A high RMS (close to 0 dBFS) means the voice is producing a strong, energy-rich sound overall. A low RMS (−40 dBFS or below) means the sound is quiet or the voice is not yet registering strongly at the microphone.
 
-In audio engineering, RMS is recognized as the measure that best reflects the perceived loudness of a sound — it more accurately represents how loud something actually sounds than instantaneous peaks do. The broadcast standard LUFS (Loudness Units relative to Full Scale) is an evolution of the RMS concept.
+For a before-and-after comparison, keep Min–Max, Spectrum floor, microphone position, and capture settings fixed. Changing those settings changes the retained bins and can move RMS without any change in how you sang. Use a dedicated loudness meter if you need a delivery target in LUFS.
 
 Ways to use RMS in vocal practice:
 
-- Check whether RMS remains consistent throughout a phrase. A sudden drop in a particular passage often signals a loss of breath support or a weakening of tone.
-- Compare RMS before and after practicing a phrase on the same pitch — a rising RMS indicates that the voice is generating more energy.
+- Check whether RMS remains consistent throughout a phrase. A drop means the retained spectral magnitudes changed; listen and check pitch, vowel, distance, and settings before attributing it to technique.
+- Compare RMS before and after practicing a phrase on the same pitch — a rising value indicates larger retained spectral magnitudes under matching settings, not proof of stronger or healthier vocal production.
 - Play back a recorded take and watch RMS to understand how energy flows through the entire song.
 
 ## Peak Hold Lines: 1.7-Second Hold, Then Gradual Decay

@@ -11,7 +11,7 @@ Relying on your ears alone to understand "where your voice is" while you sing ha
 
 When you sing a single note, what travels through the air isn't just one frequency. Alongside the fundamental pitch (F0), a series of overtones at integer multiples — 2×, 3×, 4×, and so on — ring out simultaneously. These are called **harmonics**.
 
-Take a tenor singing C3 (131 Hz). On the spectrum graph, you'd see the tallest bar sitting at 131 Hz, followed by smaller bars lined up at 262 Hz, 393 Hz, 524 Hz, and beyond. The height pattern of those bars is essentially what we mean when we talk about the "color" or "timbre" of a voice.
+A tenor singing C3 has a fundamental near 131 Hz and harmonics near 262, 393, 524 Hz, and above. Their relative heights depend on vowel, voice, and microphone setup; the fundamental need not be the tallest bar. PEAK can identify a harmonic or noise instead of the note you intended to sing.
 
 A **spectrum analyzer** uses an algorithm called FFT (Fast Fourier Transform) to break this harmonic structure apart and plot it on a graph in real time. The horizontal axis shows frequency (Hz), and the vertical axis shows the energy level at each frequency (dBFS). As you sing, you can literally see which frequencies carry energy and how much.
 
@@ -35,7 +35,7 @@ Human hearing perceives frequency changes as **ratios**, not absolute Hz differe
 
 ### The Vertical Axis — dBFS, Where Higher Means Stronger
 
-The vertical axis is measured in **dBFS (decibels relative to full scale)**, where 0 is the maximum and values get weaker as you go down. Around −60 dBFS is close to silence.
+The vertical axis is measured in **dBFS (decibels relative to full scale)**, where 0 is the maximum and values get weaker as you go down. A value such as −60 dBFS is low relative to digital full scale, but it is not a universal silence threshold.
 
 A bar reaching near 0 means that frequency is carrying a lot of energy right now. A bar sitting low on the graph means that frequency is barely present in your voice. When a note feels quiet, you'll see the bars drop across the board — which makes sense.
 
@@ -67,7 +67,7 @@ Consonants like 's', 'z', and 'sh' generate sharp spikes in **frequencies above 
 
 If recordings of your voice sound harsh or piercing on those consonants, check the spectrum around 6–10 kHz to see how high those spikes are climbing. You can then experiment — pulling the mic back a little, angling it slightly off-axis, adjusting how you articulate the consonant — and use the spectrum to see whether the spikes come down.
 
-If the region above 10 kHz stays consistently elevated throughout your singing, there's a good chance the microphone is picking up too much breath noise. Try increasing the distance between your mouth and the mic, or repositioning the pop filter.
+Persistent energy above 10 kHz may be sibilance, breath, microphone noise, or another sound. Listen to the same moment and compare with silence before changing microphone position. The graph alone does not identify the cause or indicate that your breath technique is wrong.
 
 ## Practicing with Vocal Spectrum
 
@@ -79,7 +79,7 @@ Here's a quick rundown of what you'll see on screen:
 - **PEAK**: The frequency (Hz) with the strongest energy within the displayed range
 - **LEVEL**: The energy level at that frequency (dBFS)
 - **CENTROID**: The "center of gravity" of the energy — higher values tend to correspond to a brighter sound, lower values to a darker one
-- **RMS**: The overall average loudness level across the displayed range
+- **RMS**: The root mean square of retained FFT magnitudes inside Min–Max and above Spectrum floor; not waveform RMS, SPL, or LUFS
 
 **Graph styles**
 You can switch between Bar, Line, and Circle views. Bar is the most intuitive for looking at harmonic patterns. Line gives a smoother picture of the overall energy curve if that's what you're after.

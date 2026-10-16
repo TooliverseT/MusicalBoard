@@ -11,7 +11,7 @@ After finishing a [vocal range](https://en.wikipedia.org/wiki/Vocal_range) test,
 
 The [intonation](https://en.wikipedia.org/wiki/Intonation_(music)) heatmap summarizes data from every note produced during the vocal range test, organized along two dimensions.
 
-**Accuracy channel**: Indicates how small the pitch error was when you sang each note — essentially, how close you came to the exact target frequency for that note. A note with high accuracy landed precisely on the target pitch; a note with low accuracy deviated above or below.
+**Accuracy channel** summarizes distance from the **nearest equal-tempered note**, using the lower-quartile score for each note. **Coverage** shows relative accepted-frame count by opacity. Neither channel checks the melody’s intended notes: an accurately centered wrong semitone can look green.
 
 **Coverage channel**: Indicates how frequently each note was produced during the test — proportional to how many times (or for how long) that note was detected. A note with high coverage was sung often; a note with low coverage appeared rarely.
 
@@ -62,16 +62,16 @@ The "low coverage, high accuracy" zone is potential waiting to be used. Accuracy
 
 The two channels are not read the same way with "pale vs. dense."
 
-**Accuracy (hue)** — The closer pitch is to the target, the greener the cell; further off, the more yellow, orange, or red.
+**Accuracy (hue)** uses the lower 25% score for a note, or the lowest score with fewer than four samples. It emphasizes rough moments rather than simply copying the session mean. The reference is the nearest equal-tempered note, not an imported score or the intended melody.
 
-- **Green or yellow**: High pitch precision on that note — you reached close to the target frequency.
-- **Orange or red**: Low precision — significant deviation above or below the target.
+- **Green or yellow**: High pitch precision on that note — the lower-quartile score was favorable relative to the nearest equal-tempered note.
+- **Orange or red**: Low precision — a low lower-quartile nearest-note score; check the trace and audio for drift or detection errors.
 - **Empty cell**: You barely sang that note.
 
-**Coverage (opacity)** — Frequency is not shown by hue but by **how densely** each bar is filled.
+**Coverage (opacity)** is the note’s accepted-frame count relative to the most-visited note in the current map. Compare how densely columns are filled, not their height. Changing the exercise, Low–High, or Pitch gate can change that distribution even without a change in your voice.
 
 - **Densely filled**: That note was produced frequently during the test.
-- **Faint fill or empty**: Produced rarely or not at all.
+- **Faint fill or empty**: Few or no frames passed the current checks.
 
 When reading the heatmap, look at the big picture first: for accuracy, which registers are green vs. red; for coverage, which bands are filled densely vs. faintly.
 

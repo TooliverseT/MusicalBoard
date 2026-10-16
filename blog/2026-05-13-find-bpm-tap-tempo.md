@@ -39,7 +39,7 @@ For example, if the average interval between taps is 500ms, that gives 60,000 ÷
 
 ### Why You Need to Tap Multiple Times
 
-Tapping just once or twice leaves a lot of room for error. Even a slight early or late tap can throw the result off significantly. The MusicalBoard Online Metronome uses the **last 5 taps** to calculate the average. Once you've tapped more than 5 times, the oldest tap is automatically dropped and only the 5 most recent are kept. This means that even if your first tap is off, a few more taps will bring the reading closer and closer to the real value.
+The MusicalBoard Online Metronome stores the **last five tap timestamps**, giving at most **four intervals** for its rolling average. Two taps provide one interval; five provide four. Once another tap arrives, the oldest timestamp drops out. Continuing to tap lets early mistakes leave the buffer, but it does not average all eight or ten taps of a longer run.
 
 ### The 3-Second Reset Timer
 
@@ -51,11 +51,11 @@ Because tap tempo is such a simple mechanism, a little care goes a long way towa
 
 ### Tap at Least 4 Times
 
-As mentioned, more taps mean less error. You need at least 4–5 taps to get a stable reading. With only 2–3 taps, a single mistake has too much influence on the result. Tapping 8 or 10 times in a row gives an even more stable reading (and since MusicalBoard only uses the last 5, it's fine if the first few are slightly off).
+Tap several consecutive beats until the displayed value settles. Five taps fill the buffer with four intervals. Continuing for eight or ten beats is useful because your finger may settle into the pulse, but only the latest four intervals contribute to the displayed BPM.
 
-### Lock Onto the Downbeat
+### Tap Every Beat
 
-Rather than tapping on any beat, aim for the **downbeat** — the first beat of each measure. The downbeat is the most clearly felt moment in music, making it easier to time your finger press accurately. Use the moment the kick drum hits, or the instant a new lyric phrase begins, as your reference point.
+Tap every **beat**, not only the first beat of each bar. In 4/4, count “one, two, three, four” and tap on all four quarter-note beats. You can start on a downbeat to orient yourself, then keep tapping through the bar. Tapping only the first beat makes the tool measure bars per minute: a 120 BPM song in 4/4 would read 30 BPM. For 6/8, this tool clicks six eighth-note slots per bar, so tap the eighth-note pulse or convert a dotted-quarter tempo by multiplying it by three.
 
 ### Focus on the Rhythm Instruments
 
@@ -81,11 +81,11 @@ After tapping, play the metronome at that BPM and see how it lines up with the s
 
 ### Scenario 1 — Practicing a Pop Ballad
 
-You want to practice a favorite ballad but don't know the BPM. You play the song and tap 5 times on the downbeat during the chorus. The tap intervals come out at 750ms, 745ms, 748ms, 752ms, and 749ms. The average is 748.8ms. 60,000 ÷ 748.8 ≈ 80.1 BPM. The display shows 80 BPM. You play the metronome at 80 BPM — it fits perfectly.
+You want to practice a ballad but do not know the BPM. In 4/4, tap five consecutive quarter-note beats. The four intervals are 750 ms, 745 ms, 748 ms, and 752 ms. Their average is 748.75 ms, so 60,000 ÷ 748.75 ≈ 80.13 BPM and the display rounds to 80 BPM. Start the click and check it against several bars of the song.
 
 ### Scenario 2 — A Fast K-Pop Track
 
-You're practicing a fast-paced K-pop song. You tapped the first two times a bit too quickly, but after 3 more accurate taps the BPM display stabilized. As the rolling 5-tap average updated, the early mistakes were corrected. Result: 128 BPM.
+You are practicing a fast K-pop track. Your first two taps are rushed. Keep tapping consecutive beats: as those timestamps leave the five-tap buffer, the average reflects only the latest four intervals. Once it settles around 128 BPM, play the click and verify that it stays aligned rather than trusting a single reading.
 
 ### Scenario 3 — A Jazz Track with an Ambiguous Feel
 
@@ -123,7 +123,7 @@ Tap tempo only measures the speed of the beat — it doesn't tell you how many b
 
 ### How to Identify the Time Signature
 
-Listen to the song and count "one, two, three, four." If "one" comes back around every 4 counts, it's 4/4; every 3 counts means 3/4; every 6 could be 6/8. 6/8 and 3/4 can sound similar and be easy to confuse: 6/8 feels like two groups of three (strong-weak-weak-strong-weak-weak), while 3/4 feels like each beat is equally spaced. For a detailed breakdown of time signatures, see the [Complete Guide to Time Signatures](https://www.musicalboard.com/blog/2026-05-13-time-signatures-explained/).
+Listen to the song and count "one, two, three, four." If "one" comes back around every 4 counts, it's 4/4; every 3 counts means 3/4; every 6 could be 6/8. 6/8 and 3/4 can sound similar and be easy to confuse: 6/8 feels like two groups of three (strong-weak-weak-strong-weak-weak), while 3/4 feels like each beat is equally spaced. For a detailed breakdown of time signatures, see the [Complete Guide to Time Signatures](https://www.musicalboard.com/blog/2026-05-11-time-signatures-explained/).
 
 ### Getting the Time Signature Right Changes the Click
 

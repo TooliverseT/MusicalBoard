@@ -41,7 +41,7 @@ If you have a piano or keyboard nearby, start on middle C (C4). No instrument? O
 
 ### Step 2: Find your lower limit
 
-From C4, step down one semitone at a time: B3 → A3 → G3 → F3, and so on. Hold an "ah~" on each note. Keep going until the sound stops coming out naturally. The **note just above** where things fall apart is your current lower boundary.
+From C4, step down one semitone at a time: B3 → A#3/Bb3 → A3 → G#3/Ab3 → G3 → F#3/Gb3 → F3, and so on. Hold an "ah~" on each note. Keep going until the sound stops coming out naturally. The **note just above** where things fall apart is your current lower boundary.
 
 As you descend, watch for warning signs: the tone getting rough or crackly, a lot of air leaking through, or the sound cutting out entirely. Those are all signs you're approaching your limit.
 
@@ -53,7 +53,7 @@ The same rule applies here: if you're forcing it, it doesn't count.
 
 ### Step 4: Write it down
 
-Your lowest stable note and your highest stable note together define your current vocal range. If you can go from E2 to C5, that's your range. Within that range, there's a narrower zone — your **tessitura** — where your voice is most comfortable and resonant. That's typically a few notes in from both edges, and it's the range you'll actually rely on most in performance.
+Your lowest and highest comfortably sustained notes give a useful working span. Within it, **tessitura** is the register you can use comfortably for longer phrases, with the tone and effort the music needs. It cannot be found by trimming a fixed number of notes from the endpoints, and a heatmap alone does not measure comfort or fatigue.
 
 ## Voice Types — Soprano to Bass
 
@@ -78,11 +78,11 @@ Beyond the manual piano method, the [Vocal Range Test](https://www.musicalboard.
 
 What sets it apart from a basic pitch detector is that it **shows you accuracy note by note, in color**. As you sing through a range divided into semitone columns, each note fills in with color based on how consistently you're hitting the pitch:
 
-- **Green tones**: pitch was stable and on target for that note
+- **Green tones**: a favorable lower-quartile score near the nearest equal-tempered note
 - **Yellow to orange**: slightly off, but in the ballpark
 - **Red tones**: significant pitch deviation — these are the notes that need work
 
-Up in the top right, you'll see four readouts: **SCORE** (your average accuracy for the whole session), **LIVE** (your real-time score for the note you're currently singing), **RANGE** (the span of pitches detected this session), and **VOICE** (a voice type suggestion based on that range).
+The four readouts are **SCORE** (mean score over accepted pitch frames), **LIVE** (current nearest-note reading), **RANGE** (the sustained span that passes the range gates), and **VOICE** (a rough reference-band match). SCORE and LIVE compare detected pitch with the **nearest equal-tempered note**, not a melody or the note you intended to sing. If C4 is the exercise target, a clean C#4 can still receive a high nearest-note score. Check the reference note separately.
 
 <p class="mb-blog-image">
   <img src="/blog/assets/vocal_range_test/vocal_range_test.png" alt="Vocal Range Test heatmap — per-note accuracy shown in green, yellow, and red">
@@ -105,7 +105,7 @@ If you want an even more detailed view, open [Vocal Pitch Monitor](https://www.m
 
 ### Start with what already works
 
-The zone with the deepest, most consistent green in your heatmap is your current tessitura — where your voice is most naturally at home. Use that as your anchor when picking songs or keys. If a song you love sits a third too high or too low in its original key, try transposing by two or three semitones and see how it feels.
+The deepest green area shows notes that contributed many accepted frames with relatively small nearest-note error in this session. It is a useful place to review, but it is **not a measurement of tessitura**. You can make a column darker just by spending longer on that note. Compare the map with how comfortable the notes felt and how they sound across several sessions.
 
 ### Make the red zones your next goal
 
@@ -113,7 +113,7 @@ Red sections aren't "bad notes" — they're *not-yet-stable* notes. Open [Vocal 
 
 ### Check in regularly
 
-Running the test every two to three weeks and comparing results is one of the clearest ways to track real progress. Notes that were red become yellow, then eventually green. Your SCORE going up means your overall pitch accuracy is improving across the board. Seeing that shift visually makes a bigger difference to practice motivation than you might expect.
+Compare sessions with the same exercise, microphone position, display range, and gate settings. A rising SCORE means the accepted frames sat closer to their nearest equal-tempered notes under those conditions. It does not establish that you sang the melody’s correct notes or improved across every register. Use the recording and your reference notes alongside the map.
 
 ### Log data from your off days too
 

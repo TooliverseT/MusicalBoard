@@ -19,7 +19,7 @@ For practice, this has a real implication. If you're only going by what your ear
 
 Monitoring is a way to hear "what does my voice sound like right now" in real time. It's especially useful in these situations:
 
-**Catching pitch drift early.** Because bone conduction masks certain subtleties, small intonation problems — especially in the upper register, where you might be creeping sharp or flat — are easier to catch when you're only hearing the airborne signal through headphones.
+**Catching pitch drift early.** Headphone monitoring adds the microphone signal to your live self-voice; it does not remove bone conduction. It may help you hear drift, but delay or a distracting mix can make practice harder. Turn it off if it disrupts you, and use playback as a separate check.
 
 **Noticing breath noise.** Audible inhales, sibilance, and plosives can be louder in the recording than they feel while singing. With monitoring on, you can adjust your mic distance or angle on the spot rather than discovering the problem after the fact.
 
@@ -37,15 +37,15 @@ The most common complaint about monitoring is **latency** — the delay between 
 
 The signal chain goes like this: microphone captures sound → analog-to-digital conversion → software processing → digital-to-analog conversion → headphone output. Each stage takes a little time. Add them all up and you get the **round-trip latency**.
 
-When processing happens in the browser, the [Web Audio API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API)'s AudioContext targets the lowest possible delay with `latencyHint: "interactive"`. In practice, the actual round-trip latency in a web-based environment varies depending on the browser, OS, and audio driver — but it typically lands somewhere around **30ms**. The API exposes two separate measurements: `AudioContext.baseLatency` (processing delay) and `AudioContext.outputLatency` (output delay).
+Browser monitoring delay depends on the input device, driver, OS, browser, and output device. AudioContext’s `baseLatency` and, where supported, `outputLatency` describe parts of that path; neither alone measures the entire microphone-to-headphone round trip. MusicalBoard does not measure a fixed 30 ms monitoring delay. Test with your actual headphones and interface before using monitoring for timing practice.
 
-### What 30ms Actually Does to Your Singing
+### How Monitoring Delay Can Affect Practice
 
-Thirty milliseconds doesn't sound like much. But in a vocal performance context, it's noticeable. Professional recording engineers aim for **2ms or less** for vocal monitoring, and consider around 10ms workable. Thirty sits above that comfort zone.
+A delay of tens of milliseconds can be noticeable while singing, but tolerance varies by singer and task. A direct-monitoring audio interface can reduce the monitoring path compared with browser routing. If you hear a distracting echo or your timing changes, use direct monitoring if available or turn browser monitoring off and review the recording afterward.
 
 The reason it matters is that your brain predicts when it will hear your own voice and continuously compares that prediction against the actual incoming signal. When the timing is off, your sense of rhythm gets destabilized — particularly on fast passages or phrases where precise consonant timing is important.
 
-That doesn't mean browser-based monitoring is useless. For slow melodic lines, pitch checking, and breath habit review — tasks where timing precision matters less — 30ms is largely a non-issue. A practical approach: leave monitoring on, but if your rhythm starts feeling wobbly on a faster section, try turning the volume down or switching it off temporarily.
+Try browser monitoring first on a short, easy phrase at low volume. If the returned voice distracts you, turn monitoring down or off, even for a slow line. Wired headphones avoid the extra delay common with Bluetooth, but do not guarantee a particular round-trip time.
 
 <!-- Image suggestion: a simple line-art diagram of the round-trip latency chain (Mic → Audio Input → Software Processing → Audio Output → Headphones), with English labels at each stage. -->
 ![Round-trip latency flow diagram from microphone to headphones](placeholder)
