@@ -74,7 +74,7 @@ After tapping, play the metronome at that BPM and see how it lines up with the s
 </p>
 
 <p align="center">
-  <em>Dividing 60,000 by the average tap interval gives you the BPM. The more taps you make, the more accurate the result.</em>
+  <em>Dividing 60,000 by the average of the latest four tap intervals gives you the BPM once five timestamps fill the buffer. Continuing to tap replaces older intervals; it does not guarantee greater accuracy.</em>
 </p>
 
 ## Real-World Tap Tempo Scenarios
