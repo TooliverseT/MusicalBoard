@@ -51,15 +51,15 @@ Try sustaining a note and watching whether the bars hold their position without 
 
 One of the most consistently observed features in trained singers is something called the **singer's formant**. According to the Stanford Center for Computer Research in Music and Acoustics (CCRMA), trained singers produce a pronounced energy peak at around **2500–3000 Hz** that persists regardless of vowel or pitch ([CCRMA Singing Acoustics](https://ccrma.stanford.edu/CCRMA/Courses/152/singing.html)). That peak is what gives a singing voice its "ring" and carrying power.
 
-In practical terms, it's worth keeping an eye on whether the bars in the 2–3 kHz range are coming up to a healthy level. Try varying your approach on the same pitch — shifting the larynx position slightly, swapping vowels — and watch how that region responds. It's a useful way to physically discover what produces resonance in your own voice.
+In practical terms, you can watch how the bars in the 2–3 kHz range respond when you change something on the same pitch, such as the vowel. CCRMA attributes the singer's formant to a lowered larynx and widened pharynx in trained singers, and the graph cannot tell you whether your own larynx or pharynx is doing that. There is also no "healthy" bar height: it depends on your microphone, distance, and gain. Use it to compare your own takes under the same setup, and ask a teacher before deliberately changing how you produce sound.
 
 ### Chest-to-Head Voice Transition — Watching the Spectrum Shift
 
-At the **passaggio** — the transition zone between chest voice and head voice — the harmonic structure itself changes. As the vocal folds thin out and vibrate differently, the distribution of energy across the spectrum shifts visibly in that moment.
+At the **passaggio** — the transition zone between chest voice and head voice — the way the vocal folds vibrate changes. Stanford's CCRMA describes light (head) voice as having fewer harmonics than chest voice, so the distribution of energy across the spectrum can shift around that point.
 
-This is one of the harder things to catch by ear alone. Even when you feel like you've made a smooth transition, the spectrum might show a particular harmonic suddenly dropping or spiking. Conversely, when the shift is genuinely smooth, the changes in bar height are more gradual.
+A sudden change in the bars is easy to miss by ear alone, so a graph can be a useful second look. Treat it as a prompt to listen again, not a verdict: a bar can also jump because the vowel, loudness, or distance to the microphone changed, and a smooth-looking graph does not prove a smooth transition.
 
-So practicing the notes around your passaggio while watching the spectrum is worthwhile. The less the bar pattern lurches, the more evenly the transition is actually happening — and now you have visual confirmation of it.
+Practicing the notes around your passaggio while watching the spectrum can be worthwhile if you hold vowel, loudness, and microphone distance steady. If the bar pattern lurches at the same note every time, mention it to a voice teacher; the spectrum alone cannot tell you why.
 
 ### Sibilance — Spikes in the High-Frequency Range
 
@@ -92,7 +92,7 @@ If you're running Singing Recorder at the same time, your recorded spectrum hist
 ### A Short Practice Routine — Ways to Actually Use the Spectrum
 
 1. **Build a baseline**: Sustain a comfortable note and watch the spectrum. Get familiar with where your harmonic bars tend to sit and how tall they are.
-2. **Work the passaggio**: Slide from chest into head voice on a scale and watch for the moment the bar pattern gets unstable. Drill that specific note.
+2. **Work the passaggio**: Slide from chest into head voice on a scale and watch whether the bar pattern jumps at the same note each time (keeping vowel and loudness constant). If it does, bring that note to a teacher.
 3. **Check your consonants**: Sing through a phrase and see how high the high-frequency spikes get on certain consonants. If sibilance looks severe, adjust your articulation or mic position and compare.
 4. **A/B compare**: Record the same phrase twice, then use the playback timeline in [Singing Recorder](https://www.musicalboard.com/singing-recorder/) to switch back and forth and compare the spectrums directly.
 
@@ -105,6 +105,12 @@ The most realistic way to use the spectrum is to **decide with your ears what yo
 If you want to check pitch accuracy alongside everything else, leaving [Vocal Pitch Monitor](https://www.musicalboard.com/vocal-pitch-monitor/) open next to the spectrum is useful. Seeing whether pitch instability and spectral turbulence coincide can help you figure out the root cause. And if you haven't done it yet, taking a [Vocal Range Test](https://www.musicalboard.com/vocal-range-test/) first is a good way to get your bearings before diving into spectral analysis.
 
 You don't need to analyze the spectrum every time you sing. But when something feels off on a particular note, or when your voice has changed and you can't figure out why, the graph can surface information that's genuinely hard to access by ear alone.
+
+## The four spectrum guides, and which question each answers
+
+- [How to Read PEAK, LEVEL, CENTROID, and RMS](/blog/2026-05-18-spectrum-peak-level-centroid-rms/) — Exact definitions of PEAK, LEVEL, CENTROID, and RMS, including how the sensitivity floor changes them.
+- [Bar, Line, and Circle Spectrum Views](/blog/2026-05-22-spectrum-bar-line-circle-view/) — Choosing between the Bar, Line, and Circle views.
+- [Frequency Range and Sensitivity](/blog/2026-05-23-spectrum-frequency-range-sensitivity/) — Choosing the Min–Max range and sensitivity for the question you are asking.
 
 ## References
 

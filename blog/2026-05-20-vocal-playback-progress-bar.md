@@ -133,7 +133,7 @@ Here is the complete practice cycle that integrates all the tools above. Apply i
 
 ## Singing Recorder Feature Details
 
-Here is a summary of [Singing Recorder](https://www.musicalboard.com/singing-recorder/)'s key features and how they apply in practice.
+These are the playback controls this guide relies on.
 
 **Progress bar scrub.** After recording, click or drag the progress bar below the control strip to jump to any point instantly. Timestamps use mm:ss.cc (centiseconds). The bar can be dragged during playback to change position in real time. Hovering the bar briefly shows a **waveform minimap** of the full take.
 
@@ -145,13 +145,7 @@ Here is a summary of [Singing Recorder](https://www.musicalboard.com/singing-rec
 
 **Skip ±10 seconds.** Double-arrow buttons on either side of play move the head ten seconds earlier or later. During playback, only the position changes — audio keeps playing.
 
-**Monitor toggle.** While recording, clicking the speaker icon routes the live microphone input to headphones in real time. Monitoring delay varies by device and browser and is not measured here. Use headphones to avoid speaker feedback. See the [vocal monitoring guide](https://www.musicalboard.com/blog/2026-05-10-vocal-monitoring/) for setup and safety. The monitor volume slider adjusts listening level from 0 to 100%, and the setting is saved in the browser's [localStorage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage) across sessions.
-
-**Audio file upload.** Existing recordings on your device can be uploaded and analyzed with the same progress bar and pitch graph functionality as a live recording. Files up to 10 minutes and 50 MB are supported. For upload and compare workflows, see [upload and replay comparison](https://www.musicalboard.com/blog/2026-05-18-upload-replay-compare-vocal-takes/).
-
-**Download.** After recording, the download button offers Original, MP3, WAV, OGG, and M4A format options. MP3 is commonly used for sharing; Original preserves the source bytes for archiving; a converted WAV cannot restore quality lost in a compressed source. See the [audio export format guide](https://www.musicalboard.com/blog/2026-05-14-audio-export-format-singing/) for how to choose.
-
-**Delete.** Open Takes and backing and use × on the unwanted slot, or Delete all for the bank. Select an empty slot before another recording to keep the first; recording or uploading into a filled slot asks for overwrite confirmation.
+Recording, monitoring, upload limits, export formats, and deletion are covered in their own guides: [recording step by step](/blog/2026-05-06-singing-recorder/), [vocal monitoring](/blog/2026-05-10-vocal-monitoring/), [upload and compare](/blog/2026-05-18-upload-replay-compare-vocal-takes/), and [export formats](/blog/2026-05-14-audio-export-format-singing/).
 
 ## Connecting with Other Tools for Greater Efficiency
 
@@ -161,7 +155,7 @@ Progress-bar-based section practice becomes significantly more powerful when use
 
 [Online Metronome](https://www.musicalboard.com/online-metronome/) is essential for the timing check step described above. It provides the steady click reference that makes beat-level drift audible, and gives a fixed tempo base for the graduated tempo-increase method during isolation practice.
 
-[Vocal Spectrum](https://www.musicalboard.com/audio-spectrum-analyzer/) visualizes the harmonic structure of the voice. Navigate to the moment of a register transition using the progress bar and watch the spectrum change — the shift from chest to head voice is visible as a redistribution of spectral energy. This gives powerful visual feedback for register transition work.
+[Vocal Spectrum](https://www.musicalboard.com/audio-spectrum-analyzer/) visualizes the harmonic structure of the voice. Navigate to the moment of a register transition using the progress bar and compare the spectrum just before and after. The pattern may change, since light (head) voice has fewer harmonics than chest voice (Stanford CCRMA), but vowel, loudness, and distance change it too. Treat it as a pointer for listening back, not as a measurement of the transition.
 
 [Vocal Range Test](https://www.musicalboard.com/vocal-range-test/) can be used to identify the range of the day before a session, helping you decide which register to focus on. Then use Singing Recorder to drill within that range.
 

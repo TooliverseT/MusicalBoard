@@ -119,7 +119,7 @@ The monitoring feature in [Singing Recorder](https://www.musicalboard.com/singin
 
 - **With Vocal Pitch Monitor:** Hear through headphones, watch the graph on screen. You'd be surprised how often something that feels on pitch shows up as drifting on the graph.
 - **After Vocal Range Test:** Use [Vocal Range Test](https://www.musicalboard.com/vocal-range-test/) to find where your voice is stable today, then practice within that range with monitoring on. It's a good way to avoid pushing into territory that's going to cause strain.
-- **With Vocal Spectrum:** [Vocal Spectrum](https://www.musicalboard.com/audio-spectrum-analyzer/) visualizes how your harmonic content shifts at chest-to-head voice transitions. With monitoring running alongside it, you can hear and see that crossover point at the same time.
+- **With Vocal Spectrum:** [Vocal Spectrum](https://www.musicalboard.com/audio-spectrum-analyzer/) shows your harmonic content as bars. Around a chest-to-head transition the pattern may change (light voice has fewer harmonics than chest voice, per Stanford CCRMA), though vowel and loudness change it too. With monitoring running alongside it, you can hear the crossover while you look.
 - **After checking pitch on Virtual Piano:** Hit a reference note on [Virtual Piano](https://www.musicalboard.com/virtual-piano/), then run scales with monitoring active. It's a quick and pretty efficient way to drill pitch accuracy on a specific interval or range.
 
 Once you've finished a recording, you can drag the progress bar directly to any point to jump to a specific moment. If something sounded off around a particular bar, scrub to it, listen back, then flip monitoring on and sing through that section again. It's a tight loop for targeted pitch work.

@@ -30,7 +30,7 @@ The three purposes — harmonic structure, spectral shape, tone color — each f
   <em>Separate bars per frequency bin let you compare fundamental and overtone heights directly; the Singer's Formant region (around 2500–3000 Hz) shows up as bars that stand taller than their neighbors.</em>
 </p>
 
-The Bar graph represents the energy in each frequency bin as an independent vertical bar. The height of each bar is proportional to the sound pressure level (in dBFS) at that frequency band.
+The Bar graph represents the energy in each frequency bin as an independent vertical bar. The height of each bar follows the FFT magnitude (in dBFS, relative to digital full scale) of that bin. It is not a calibrated sound pressure level: dBFS depends on your microphone, input gain, and distance, so it tells you how strong a component is *in this recording*, not how loud it was in the room.
 
 **The reason Bar is the most intuitive view for harmonic pattern analysis is its discreteness.** Each bar stands separately, making it easy to compare energy levels across specific frequency bands at a glance. You can directly see where the fundamental frequency bar sits, how the harmonic bars are arranged alongside it, and whether any particular harmonic is unusually strong or weak.
 
@@ -38,9 +38,9 @@ The Bar graph represents the energy in each frequency bin as an independent vert
 
 **The limitation is that fine continuous changes in the spectral curve are harder to read.** The gaps between bars obscure the overall shape of the energy curve, so for reading broad spectral contour, the Line graph is more appropriate.
 
-Practice application: When transitioning between chest voice and head voice, watch the Bar graph to see how the harmonic pattern shifts. Chest voice typically raises the low-frequency bars; head voice raises the relative contribution of higher-frequency bars. A sudden, abrupt change in this pattern marks the passaggio.
+Practice application: when moving between chest voice and head voice on the same vowel, compare the Bar graph at a similar loudness and microphone distance. Stanford's CCRMA notes that in light (head) voice the glottis closes only briefly or not at all, so the sound has *fewer* harmonics than chest voice. In the Bar view that can show up as weaker upper harmonic bars, but the pattern also changes with vowel, pitch, and level, so treat it as something to listen for rather than a test. A sudden jump in the harmonic pattern near the same pitch every time is worth noting for a teacher; the graph cannot tell you where the passaggio is.
 
-## Line Graph — Best for Overall Spectral Curve and Formant Identification
+## Line Graph — Best for Overall Spectral Curve and Spectral Tilt
 
 <p class="mb-blog-image">
   <img src="/blog/assets/vocal_spectrum/vocal_spectrum_line.png" alt="Vocal Spectrum Line view — continuous frequency–energy curve showing spectral peaks and spectral tilt">
@@ -52,7 +52,7 @@ Practice application: When transitioning between chest voice and head voice, wat
 
 The Line graph represents the same data as the Bar graph as a continuous curve, connecting each frequency point's energy value into a smooth line.
 
-**This view is best for reading the overall shape of the energy curve.** Formants appear in a spectrum as peaks — energy hills at particular frequencies. The position and width of these hills are much more legible in the Line graph than in the Bar graph, where the gaps between bars can make the peak shape ambiguous.
+**This view is best for reading the overall shape of the energy curve.** Resonances of the vocal tract can lift the harmonics near them, so broad "hills" in the curve are often related to formants. The Line graph makes the width and slope of those hills easier to see than the Bar graph, where gaps between bars can hide the contour. It still shows harmonics, not resonances: with a high fundamental the harmonics are far apart and the curve between them is only an interpolation.
 
 **Vowel transitions can change the spectral envelope.** Keep pitch, level, microphone distance, and display settings fixed while alternating vowels. A line view can make changes in broad energy balance easier to see, but the app does not estimate F2, and a moving peak is not proof of a specific resonance moving.
 
@@ -76,13 +76,13 @@ The Circle graph uses polar coordinates. The direction from the center of the ci
 
 **The primary advantage is being able to see the entire frequency distribution simultaneously.** Where Bar and Line graphs are read left-to-right (low frequency to high), the Circle graph presents the full energy distribution as a single unified shape. Whether low-frequency energy dominates, high-frequency energy dominates, or energy is distributed evenly is apparent from the shape of the circle alone.
 
-**Circle is also useful for memorizing the overall "shape" of a particular vocal technique.** When the voice is in a strong, resonant state, you can note what the Circle graph looks like. When a similar shape appears in later practice, it confirms that the same resonant condition has been reproduced. Shape recognition is more immediate and intuitive in Circle than in the other two views.
+**Circle is also useful for a quick visual comparison between takes.** After a take you like, note what the Circle graph looks like. A similar shape later suggests the overall energy balance is similar, but it does not confirm that the same vocal technique or resonance was reproduced: the shape also changes with vowel, pitch, loudness, microphone position, and the Min–Max and sensitivity settings. Keep those fixed, and use your ears to decide whether the sound itself matches.
 
 **The limitation is that Circle is not suited for precise numerical analysis.** For reading the exact energy level at a specific frequency band, or for analyzing how harmonics are arranged in detail, Bar or Line is necessary. Circle shows the big picture; it is a low-resolution tool.
 
 **Circle is ideal for quick tone checks.** Use it to get a rapid sense of whether today's voice is tonally similar to yesterday's, or to immediately see whether changing a technique has shifted the overall energy distribution.
 
-Practice application: Sustain a note in chest voice, note the shape of the Circle graph, then switch to head voice and observe how the shape changes. Head voice tends to redistribute energy toward higher frequencies, changing the form of the circle. Training the transition to happen gradually, rather than abruptly, is the goal of register transition work — and the Circle graph makes the abruptness or smoothness of the shift immediately visible.
+Practice application: sustain a comfortable note on one vowel, note the Circle shape, then sing the same vowel in a lighter register at the same loudness and distance and compare. Expect the shape to change, but not in one fixed direction: per Stanford's CCRMA, light/head voice has fewer harmonics than chest voice, while louder singing adds higher-frequency energy, so register and loudness are mixed together unless you hold loudness steady. Use the graph to notice *whether* a transition is abrupt, then ask a teacher what it means.
 
 ## Peak Hold Lines: 1.7-Second Hold, Then Gradual Decay
 
@@ -94,7 +94,7 @@ Peak hold lines **hold the maximum for 1.7 seconds** before beginning to fall. T
 
 The peak hold line works identically in all three modes. Switching between modes does not reset it: you can check peak positions in Bar, then switch to Circle to assess the overall shape, with the peak information retained throughout.
 
-The top panel also displays four numerical metrics: **PEAK (Hz)** — the frequency currently carrying the most energy; **LEVEL (dBFS)** — the energy at that peak frequency; **CENTROID (Hz)** — the spectral center of gravity across the full range; and **RMS (dBFS)** — the average sound pressure across the full range. Reading these numbers alongside the peak hold line gives you a quantitative snapshot of the current vocal state.
+The top panel also displays four numerical metrics: **PEAK (Hz)** — the frequency currently carrying the most energy; **LEVEL (dBFS)** — the energy at that peak frequency; **CENTROID (Hz)** — the amplitude-weighted mean frequency of the bins inside your Min–Max range that are above the sensitivity floor; and **RMS (dBFS)** — the root mean square of those same retained FFT bin magnitudes. RMS is not waveform RMS, sound pressure (SPL), or LUFS, and both CENTROID and RMS move when you change Min–Max or sensitivity. Read them next to the peak hold line as a snapshot of the *current display settings*, and see [the metrics guide](/blog/2026-05-18-spectrum-peak-level-centroid-rms/) for the exact definitions.
 
 ## Recommended View by Practice Situation
 
@@ -115,7 +115,7 @@ For a listening comparison, try Circle for an overview, Line for broad spectral 
 
 Switching graph modes in [Vocal Spectrum](https://www.musicalboard.com/audio-spectrum-analyzer/) is straightforward: click the Bar, Line, or Circle button on screen and the view changes immediately.
 
-Adjusting the frequency range and sensitivity alongside the view selection extracts more information from each mode. The default range of 80 Hz to 16 kHz is appropriate for most vocal work. For intensive sibilance analysis, raising the upper limit to 22 kHz is useful. For inspecting the low register, lowering the floor to 20 Hz makes the bass fundamental visible. The sensitivity slider (0.001–0.1) should be set higher in quiet environments and lower in environments with background noise to maintain a clean signal.
+Adjusting the frequency range and sensitivity alongside the view selection extracts more information from each mode. The default range of 80 Hz to 16 kHz is appropriate for most vocal work. For intensive sibilance analysis, raising the upper limit to 22 kHz is useful. For inspecting the low register, lowering the floor to 20 Hz makes the bass fundamental visible. The sensitivity slider runs from 0% to 100%: 0% hides everything below about −30 dBFS, and 100% shows components down to about −75 dBFS. Raise it in a quiet room to see weak upper harmonics; lower it when background noise or room hiss fills the graph.
 
 ## Connecting with Other MusicalBoard Tools
 
@@ -131,7 +131,13 @@ Recording with [Singing Recorder](https://www.musicalboard.com/singing-recorder/
 
 Switching graph views is a single click. Peak hold lines operate automatically in every mode, holding the maximum for 1.7 seconds before descending. The PEAK, LEVEL, CENTROID, and RMS values in the top panel connect quantitative data to the visual graph in real time.
 
-A natural starting point: begin with the Bar graph to observe your fundamental harmonic pattern. As that becomes familiar, move to Line to track formant positions, and to Circle to assess overall tone distribution. Developing the ability to choose the right view for each situation transforms spectrum analysis from abstract number-watching into a practical instrument for improving your voice.
+A natural starting point: begin with the Bar graph to observe your fundamental harmonic pattern. As that becomes familiar, move to Line to compare the overall contour and tilt, and to Circle for a quick overall comparison between takes. None of the views measures formants or diagnoses technique; they give you something concrete to compare while you listen.
+
+## The four spectrum guides, and which question each answers
+
+- [What Is the Vocal Spectrum](/blog/2026-05-09-vocal-spectrum/) — Reading a spectrum from scratch: what the two axes and harmonics are.
+- [How to Read PEAK, LEVEL, CENTROID, and RMS](/blog/2026-05-18-spectrum-peak-level-centroid-rms/) — Exact definitions of PEAK, LEVEL, CENTROID, and RMS, including how the sensitivity floor changes them.
+- [Frequency Range and Sensitivity](/blog/2026-05-23-spectrum-frequency-range-sensitivity/) — Choosing the Min–Max range and sensitivity for the question you are asking.
 
 ## References
 

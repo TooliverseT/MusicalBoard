@@ -143,7 +143,7 @@ Things worth noticing:
 Tone is subjective, but there are some things you can assess fairly objectively.
 
 - **Unintended nasality.** "Singing through your nose" might be deliberate for a certain style, or it might be a habit you haven't noticed. High notes are where this tends to creep in most.
-- **Register transitions (chest to head voice).** Check for abrupt breaks or sudden tone changes where registers shift. [Vocal Spectrum](https://www.musicalboard.com/audio-spectrum-analyzer/) makes this visible with log-frequency FFT bars, so you can compare how harmonic energy reorganizes across the transition.
+- **Register transitions (chest to head voice).** Check for abrupt breaks or sudden tone changes where registers shift. [Vocal Spectrum](https://www.musicalboard.com/audio-spectrum-analyzer/) shows FFT bars on a log-frequency axis, so you can compare the harmonic pattern before and after the transition. Vowel, loudness, and distance change it as well, so use it as a prompt to listen again.
 - **Breathiness.** Sometimes intentional, sometimes not. If it's showing up only in certain phrases, that's usually a sign those are the spots where your vocal support is running thin.
 
 ### Rhythm and diction — are notes landing where you expect them?

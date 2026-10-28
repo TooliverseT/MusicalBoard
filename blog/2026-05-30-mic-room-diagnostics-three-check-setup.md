@@ -25,7 +25,7 @@ If this fails, room tone bleeds into quiet lines and decays. Try moving away fro
 
 ### Check 2 — Space ring (one clap)
 
-After you press start, **clap once** near the mic. The tool estimates **decay time in milliseconds** — how long energy hangs in the room. Under about **500 ms** passes; longer decay reads as a ringy space for vocals.
+After you press start, **clap once** near the mic. The tool estimates **decay time in milliseconds** — how long energy hangs in the room. Under about **500 ms** passes; longer decay reads as a ringy space for vocals. The figure comes from a 50 ms-step level curve of a single clap, so it is a rough practice-room indicator rather than a standards-grade reverberation measurement.
 
 Re-run after blankets, curtains, carpet, or a mic move and compare the number. **Retry needed** means the clap was not clear — try one louder clap.
 
@@ -38,6 +38,25 @@ Say **“Pa Pi Pu Pe Po”** at a normal-to-loud practice volume.
 - **Clipping** — samples near **0.98 full scale** (−0.2 dBFS) → lower gain.
 
 After a pass, move on to [Vocal Spectrum](https://www.musicalboard.com/audio-spectrum-analyzer/) or recording.
+
+### What the clap number can and cannot tell you
+
+The decay figure is easy to over-trust, so we ran the tool's own decay routine (copied unchanged from the source) on idealised claps. Each simulated clap's level curve peaks at −10 dBFS (an assumption; a real clap can measure lower), then falls at a rate that corresponds to a known reverberation time. The routine samples level every 50 ms for 3 seconds, as the tool does, and we varied where the clap lands between two samples. This is a simulation of the calculation, not a measurement of a real room.
+
+| Room noise floor | Gap between clap peak and noise | Simulated true decay 300 ms | Simulated true decay 500 ms |
+|---|---:|---|---|
+| −70 dBFS | 60 dB | reads 300 ms | reads 600 ms |
+| −50 dBFS | 40 dB | reads 300 ms | reads 600 ms |
+| −40 dBFS | 30 dB | 300 ms, or 8000 ms depending on timing | 600 ms, or about 7000 ms |
+| −30 dBFS | 20 dB | reads 8000 ms | reads 8000 ms |
+
+Three things follow from the table:
+
+- **The tool is quantised to 50 ms steps.** A room that decays in 500 ms is reported as 600 ms, because the routine looks for the first 50 ms sample below the threshold. Compare runs against each other, not against a published figure.
+- **A noisy room can make the number meaningless, not just worse.** The routine looks for the point where the clap's level has fallen 25 dB below its peak. If the room noise is less than about 25 dB under the clap, the level stops falling before it gets there, and the tool falls back to a rough extrapolation that can report a very long decay (8000 ms is its upper limit). In our runs the fallback was certain at a 20 dB gap (and at 15 and 10 dB, not shown), and at a 25–30 dB gap it depended on exactly when the clap landed between two samples. The tool starts measuring once a clap peaks above 0.15 of full scale (about −16.5 dBFS), and the level it tracks is an RMS value, which sits below the peak. A room that only just passes the noise check (−45 dBFS) therefore leaves a smaller gap than the table's top rows assume, which is why fixing noise first matters. The table shows the shape of the problem; your own gap depends on how loud your clap measures.
+- **Clap loudness matters.** If the clap peaks higher, the gap grows; if you clap quietly, it shrinks. Clap firmly, from the same distance, each time.
+
+So a result like "decay 7000 ms" in a quiet-sounding room is more likely a noisy-floor artifact than a cathedral. Re-run Check 1 first, then clap again.
 
 <p class="mb-blog-image">
   <img src="/blog/assets/mic_room_diagnostics/three_check_flow.png" alt="Mic Room Diagnostics — Noise, Reverb, and Plosive check screens">

@@ -44,6 +44,27 @@ Upload constraints:
 - Maximum file size: 50 MB
 - Supported formats: any audio format the browser supports. If a file does not open, try converting it to WAV or MP3 first.
 
+### How long analysis takes, and which limit you hit first
+
+The two limits are checked separately, and the file-size check comes first. To see what that means in practice, we generated synthetic WAV files (a repeating five-note tone phrase, no voice) and uploaded each one to the Singing Recorder in Chromium on Linux, timing how long it took for the take-naming prompt to appear. One desktop machine, one run per file, with ad requests blocked; the times are an indication, not a benchmark, and a phone or a busy tab will be slower.
+
+| File | Size | Result | Time until the take prompt |
+|---|---:|---|---:|
+| 1 min, 48 kHz mono WAV | 5.5 MiB | analyzed | 5.5 s |
+| 3 min, 48 kHz mono WAV | 16.5 MiB | analyzed | 14.7 s |
+| 9 min, 48 kHz mono WAV | 49.4 MiB | analyzed | 43.1 s |
+| 5 min, 44.1 kHz **stereo** WAV | 50.5 MiB | refused: "File size limit exceeded (maximum 50 MB)." | immediate |
+| 10 min, 48 kHz mono WAV | 54.9 MiB | refused: same size message | immediate |
+| 10 min 30 s, 16 kHz mono WAV | 19.2 MiB | refused: "Upload time limit exceeded (maximum 600 seconds)." | under 1 s |
+
+What this shows:
+
+- **Analysis takes roughly 5 seconds per minute of audio** on this machine, so a nine-minute file keeps the progress window open for most of a minute. Use **Cancel** if you uploaded the wrong file.
+- **Uncompressed WAV hits the 50 MB limit well before 10 minutes.** At 48 kHz mono, 16-bit (96,000 bytes per second), 50 MiB is reached at about 9.1 minutes, and a 5-minute 44.1 kHz stereo file already exceeds it. A 10-minute limit is only reachable with compressed audio such as MP3 or M4A. If you export from a phone as WAV, convert it first or trim it to the passage you want to practice.
+- **The error message names which limit you hit.** A file that is small but long (the 16 kHz case) trips the duration limit instead.
+
+The limits and messages above are what the tool did on these files. Other browsers decode audio differently, so a file one browser refuses may open in another.
+
 Uploaded files are treated identically to directly recorded takes. You can drag the progress bar, loop specific sections, choose a download format — all features work the same way. While analysis runs, a status window displays progress, and a cancel button stops the process if needed.
 
 ## Playback: Dragging the Progress Bar to Jump to Any Point
@@ -114,25 +135,14 @@ Singing Recorder also has a real-time monitoring feature — the ability to hear
 
 Using both approaches is ideal. Real-time monitoring maintains a broad sense of pitch while singing; post-recording playback provides the detailed analysis.
 
-## MusicalBoard Singing Recorder: Complete Feature Overview
+## Where the Other Controls Are Explained
 
-Here is a summary of the main features of MusicalBoard [Singing Recorder](https://www.musicalboard.com/singing-recorder/).
+This article stays on the upload, replay, and compare workflow. For recording, monitoring, format choice, and how long takes stay in the browser, use the guide that covers each one instead of repeating it here:
 
-**Microphone recording**: Click the microphone icon to begin recording. Maximum take length is 10 minutes. Clicking the microphone button again stops recording and activates the play button.
-
-**Audio file upload**: Click the upload icon to load an audio file stored on your device. The file is analyzed locally, and once analysis completes, it appears on the playback timeline.
-
-**Playback and Progress Bar**: Press play to listen to a recorded or uploaded take. Click or drag the progress bar to jump immediately to any point.
-
-**Monitoring toggle**: Click the speaker icon to enable real-time monitoring. Monitoring delay varies by device and browser and is not measured here. Use headphones to avoid speaker feedback.
-
-**Monitoring volume**: Adjust with the monitoring volume slider in a 0–100% range. Starting at 20–30% and adjusting to a comfortable level is recommended.
-
-**Download**: Clicking the download button opens a format selection dialog. Choose from Original, MP3, WAV, OGG, and M4A. MP3 is suitable for sharing; Original preserves the source bytes for archiving; a converted WAV cannot restore quality lost in a compressed source.
-
-**Delete**: Open Takes and backing and use × on a slot, or Delete all to clear the bank. Deletion cannot be undone — download anything you want to keep before deleting.
-
-**Local cache storage**: Recorded or uploaded files are saved in the browser's [IndexedDB](https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API) and persist across page refreshes. Expiry is checked on restoration, about 24 hours after the last save; saving can renew that timestamp. Page exit attempts to save the bank. Delete unwanted slots or clear site data.
+- Recording step by step, including slot selection: [Recording Your Voice in the Browser](/blog/2026-05-06-singing-recorder/)
+- Original, MP3, WAV, OGG, and M4A: [Choosing an Audio Export Format](/blog/2026-05-14-audio-export-format-singing/)
+- What survives a refresh and when the cache expires: [What Survives a Refresh](/blog/2026-10-04-browser-session-layout-takes-backing-persistence/)
+- Dragging the progress bar and looping a section: [Using the Playback Bar](/blog/2026-05-20-vocal-playback-progress-bar/)
 
 <p class="mb-blog-image">
   <img src="/blog/assets/singing_recorder/singing_recorder_controls.png" alt="Singing Recorder control bar — showing microphone, monitor, volume, play/pause, upload, download, and delete buttons">

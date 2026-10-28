@@ -89,6 +89,16 @@ This RMS is the **root mean square of linear FFT magnitudes** for bins inside Mi
 
 A high RMS (close to 0 dBFS) means the voice is producing a strong, energy-rich sound overall. A low RMS (−40 dBFS or below) means the sound is quiet or the voice is not yet registering strongly at the microphone.
 
+**A worked example: the same sound, three sensitivity settings.** To see how much the floor alone matters, we took the second note of the home-page [sample phrase](/static/samples/known-offsets-phrase.wav) (a synthetic E4, 30 cents flat, about 323.97 Hz, with second and third harmonics), windowed 4096 samples with a Hann window, and applied the same rules the tool describes: bins between 80 Hz and 16 kHz, kept only when their level is at or above the floor, then PEAK, CENTROID, and RMS from the retained bins. We used the two ends of the sensitivity slider (floors of about −30 and −75 dBFS) and the midpoint. This is our own NumPy calculation with the same definitions, not a screenshot of the tool, and the exact numbers depend on the window and frame, so treat them as an illustration.
+
+| Sensitivity (floor) | Bins kept | PEAK | LEVEL | CENTROID | RMS |
+|---|---:|---:|---:|---:|---:|
+| 0% (−30 dBFS) | 6 | 328 Hz | −12.2 dBFS | 432 Hz | −17.0 dBFS |
+| 50% (−52.5 dBFS) | 14 | 328 Hz | −12.2 dBFS | 462 Hz | −20.6 dBFS |
+| 100% (−75 dBFS) | 30 | 328 Hz | −12.2 dBFS | 462 Hz | −23.9 dBFS |
+
+PEAK and LEVEL never move, because the strongest bin is always kept. RMS falls by almost 7 dB purely because more weak bins join the average, and CENTROID moves by about 30 Hz. Nothing about the sound changed. (PEAK reads 328 Hz rather than 324 Hz because the FFT bin spacing at this window length is about 12 Hz; it is a bin center, not a precise pitch.) That is why the advice below, to fix the floor before comparing takes, is the single most important habit with these two numbers.
+
 For a before-and-after comparison, keep Min–Max, Spectrum floor, microphone position, and capture settings fixed. Changing those settings changes the retained bins and can move RMS without any change in how you sang. Use a dedicated loudness meter if you need a delivery target in LUFS.
 
 Ways to use RMS in vocal practice:
@@ -117,7 +127,7 @@ Here is a scenario-by-scenario look at how the four metrics move in real practic
 
 **Producing an "s" consonant**: CENTROID jumps dramatically upward (energy concentrates between 4 kHz and 10 kHz). PEAK also moves into the high-frequency range. RMS can briefly rise during the consonant burst.
 
-**Transitioning from chest to head voice (passaggio)**: CENTROID shifts at the transition point. The rich lower harmonics of chest voice diminish, and the spectral energy redistribution is visible in the graph. If LEVEL and RMS are unstable through the passaggio, the register transition is not yet smooth.
+**Transitioning from chest to head voice (passaggio)**: CENTROID may shift near the transition, because light (head) voice has fewer harmonics than chest voice (Stanford CCRMA). Vowel, loudness, and microphone distance also move CENTROID, so compare takes with those held constant. Unstable LEVEL or RMS through the passaggio is a reason to listen back and ask a teacher, not proof that the transition is not smooth.
 
 **An unstable or wavering tone**: PEAK and LEVEL fluctuate rapidly. CENTROID oscillates. The gap between the peak hold line and the real-time bar widens.
 
@@ -129,7 +139,7 @@ Here are concrete ways to practice using the four metrics:
 
 **Record CENTROID by register**: Sing a comfortable low note, a mid-range note, and a high note, and note the CENTROID value for each. Tracking how much CENTROID rises as pitch climbs builds intuitive awareness of how your voice shifts character across registers.
 
-**Check RMS consistency across a phrase**: Sing through a phrase and watch whether RMS stays relatively stable. A sharp drop in one section points to where breath support or tone needs work.
+**Check RMS consistency across a phrase**: Sing through a phrase and watch whether RMS stays relatively stable. A sharp drop in one section is worth listening back to; it can reflect breath support, but also vowel, distance, or the display settings.
 
 **Adjust microphone distance using LEVEL**: If LEVEL approaches −3 dBFS, move back from the microphone. If LEVEL is below −40 dBFS, move closer or increase the sensitivity setting.
 
@@ -144,6 +154,12 @@ Using [Vocal Pitch Monitor](https://www.musicalboard.com/vocal-pitch-monitor/) a
 <p align="center">
   <em>Opening Vocal Pitch Monitor and Vocal Spectrum side by side lets you check pitch accuracy and tonal character at the same time.</em>
 </p>
+
+## The four spectrum guides, and which question each answers
+
+- [What Is the Vocal Spectrum](/blog/2026-05-09-vocal-spectrum/) — Reading a spectrum from scratch: what the two axes and harmonics are.
+- [Bar, Line, and Circle Spectrum Views](/blog/2026-05-22-spectrum-bar-line-circle-view/) — Choosing between the Bar, Line, and Circle views.
+- [Frequency Range and Sensitivity](/blog/2026-05-23-spectrum-frequency-range-sensitivity/) — Choosing the Min–Max range and sensitivity for the question you are asking.
 
 ## References
 

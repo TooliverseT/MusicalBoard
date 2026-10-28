@@ -58,7 +58,7 @@ There's a sensitivity control that handles different recording environments reas
 
 The [Vocal Spectrum](https://www.musicalboard.com/audio-spectrum-analyzer/) tool visualizes your voice with FFT bars on a logarithmic frequency axis (80 Hz-16 kHz) and a dBFS scale (-60 to 0). In practice, it tells you where energy is concentrating across low, mid, and high bands while you sing.
 
-The most practical use for this is **working on register transitions**. Moving between chest voice and head voice changes harmonic structure, and that shift is visible as a changing peak pattern. If you've been trying to smooth your passaggio by ear alone, this gives you a concrete visual target.
+One use is **looking at register transitions**. Stanford's CCRMA notes that light (head) voice has fewer harmonics than chest voice, so the peak pattern can change around your break. Vowel, loudness, and microphone distance change the pattern too, so hold those steady, and treat what you see as something to listen back to and bring to a teacher rather than a target to hit.
 
 It is also useful for **sibilance and breath-noise checks**. High-frequency spikes during consonants and sustained 10 kHz+ energy are easy to spot, so you can quickly test mic angle, distance, and articulation changes. During playback, the recorded spectrum history is synced to the timeline, which makes section-by-section A/B comparison straightforward.
 
@@ -131,7 +131,7 @@ The reason the dashboard format is worth highlighting is that having all 7 tools
 
 **Targeting weak spots:** Once you've identified the red zones in the Vocal Range Test, use those exact notes as the starting point in Vocal Scales. Run narrow patterns centered around the problem notes. The heat map is a direct readout of whether the work is paying off — red turning to yellow to green over a few sessions.
 
-**Working the passaggio:** Park in the notes around your chest-to-head break and watch the Vocal Spectrum carefully. The spectral shift that happens across the transition is visible on screen, which gives you something specific to focus on rather than just trying to sense it by feel.
+**Looking at the passaggio:** Sing the notes around your chest-to-head break on one vowel at a steady volume and watch the Vocal Spectrum. If the bar pattern jumps at the same note each time, that is worth noting for your teacher. The graph shows that something changed, not why.
 
 **Tempo increments:** Start the Online Metronome slow enough that the pitch graph looks clean, then bring the tempo up gradually. Stay at any tempo where the graph gets choppy until it stabilizes before moving on.
 

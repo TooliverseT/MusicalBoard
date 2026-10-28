@@ -117,6 +117,12 @@ If this is your first time, start with the default (80 Hz–16 kHz, sensitivity 
 
 Next, experiment with switching ranges for different purposes. Switch to 80–8000 Hz for harmonic analysis, or 3000–16000 Hz for sibilance inspection. After a few attempts you will develop an intuitive sense of which settings suit your environment and goals. Once you find those settings, you can minimize setup time in future sessions and spend more time actually practicing.
 
+## The four spectrum guides, and which question each answers
+
+- [What Is the Vocal Spectrum](/blog/2026-05-09-vocal-spectrum/) — Reading a spectrum from scratch: what the two axes and harmonics are.
+- [How to Read PEAK, LEVEL, CENTROID, and RMS](/blog/2026-05-18-spectrum-peak-level-centroid-rms/) — Exact definitions of PEAK, LEVEL, CENTROID, and RMS, including how the sensitivity floor changes them.
+- [Bar, Line, and Circle Spectrum Views](/blog/2026-05-22-spectrum-bar-line-circle-view/) — Choosing between the Bar, Line, and Circle views.
+
 ## References
 
 - [Singing Voice Acoustics — CCRMA, Stanford University](https://ccrma.stanford.edu/CCRMA/Courses/152/singing.html)
