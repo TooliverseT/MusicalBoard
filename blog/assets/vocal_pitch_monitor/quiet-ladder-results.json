@@ -1,0 +1,106 @@
+{
+  "generated": "scripts/make_quiet_level_ladder_wavs.py",
+  "sample_rate": 48000,
+  "duration_s": 3.0,
+  "fundamental_hz": 220.0,
+  "upload_rms_gate": 8e-05,
+  "upload_peak_threshold": 0.12,
+  "levels": [
+    {
+      "nominal_dbfs": -20,
+      "nominal_peak": 0.1,
+      "measured_peak_dbfs": -22.02,
+      "stored_slices": 119,
+      "median_hz": 220.183,
+      "visible_at_gate": {
+        "0": 0,
+        "50": 119,
+        "100": 119
+      }
+    },
+    {
+      "nominal_dbfs": -26,
+      "nominal_peak": 0.05011872336272722,
+      "measured_peak_dbfs": -28.02,
+      "stored_slices": 119,
+      "median_hz": 220.183,
+      "visible_at_gate": {
+        "0": 0,
+        "50": 119,
+        "100": 119
+      }
+    },
+    {
+      "nominal_dbfs": -32,
+      "nominal_peak": 0.025118864315095794,
+      "measured_peak_dbfs": -34.02,
+      "stored_slices": 119,
+      "median_hz": 220.183,
+      "visible_at_gate": {
+        "0": 0,
+        "50": 119,
+        "100": 119
+      }
+    },
+    {
+      "nominal_dbfs": -38,
+      "nominal_peak": 0.012589254117941675,
+      "measured_peak_dbfs": -40.02,
+      "stored_slices": 119,
+      "median_hz": 220.183,
+      "visible_at_gate": {
+        "0": 0,
+        "50": 119,
+        "100": 119
+      }
+    },
+    {
+      "nominal_dbfs": -44,
+      "nominal_peak": 0.00630957344480193,
+      "measured_peak_dbfs": -46.02,
+      "stored_slices": 119,
+      "median_hz": 220.183,
+      "visible_at_gate": {
+        "0": 0,
+        "50": 119,
+        "100": 119
+      }
+    },
+    {
+      "nominal_dbfs": -50,
+      "nominal_peak": 0.0031622776601683794,
+      "measured_peak_dbfs": -52.02,
+      "stored_slices": 119,
+      "median_hz": 220.183,
+      "visible_at_gate": {
+        "0": 0,
+        "50": 119,
+        "100": 119
+      }
+    },
+    {
+      "nominal_dbfs": -56,
+      "nominal_peak": 0.001584893192461114,
+      "measured_peak_dbfs": -58.02,
+      "stored_slices": 119,
+      "median_hz": 220.183,
+      "visible_at_gate": {
+        "0": 0,
+        "50": 119,
+        "100": 119
+      }
+    },
+    {
+      "nominal_dbfs": -60,
+      "nominal_peak": 0.001,
+      "measured_peak_dbfs": -62.02,
+      "stored_slices": 119,
+      "median_hz": 220.183,
+      "visible_at_gate": {
+        "0": 0,
+        "50": 119,
+        "100": 119
+      }
+    }
+  ]
+}
