@@ -47,10 +47,6 @@ The reason it matters is that your brain predicts when it will hear your own voi
 
 Try browser monitoring first on a short, easy phrase at low volume. If the returned voice distracts you, turn monitoring down or off, even for a slow line. Wired headphones avoid the extra delay common with Bluetooth, but do not guarantee a particular round-trip time.
 
-<!-- Image suggestion: a simple line-art diagram of the round-trip latency chain (Mic → Audio Input → Software Processing → Audio Output → Headphones), with English labels at each stage. -->
-![Round-trip latency flow diagram from microphone to headphones](placeholder)
-<em>Round-trip latency is the sum of input delay, software processing time, and output delay.</em>
-
 <p class="mb-blog-image">
   <img src="/blog/assets/singing_recorder/monitoring_latency.png" alt="Singing Recorder control bar showing mic, monitor, monitor volume, playback, upload, download, and delete buttons">
 </p>
