@@ -1,0 +1,235 @@
+{
+  "generated": "scripts/make_spectrum_harmonic_fixture_wavs.py",
+  "fundamental_hz": 220.0,
+  "note": "Upload/replay spectrum uses 2048-point FFT in analyze_uploaded_file (main.rs). Live mic uses AnalyserNode fftSize 4096.",
+  "fixtures": [
+    {
+      "slug": "balanced-h2-h3",
+      "filename": "balanced-h2-h3.wav",
+      "harmonic_amplitudes": {
+        "1": 1.0,
+        "2": 0.35,
+        "3": 0.15
+      },
+      "fft_size": 2048,
+      "sample_rate": 48000,
+      "bin_hz": 23.4375,
+      "spectrum_floor_db": -37.878787878787875,
+      "band_hz": [
+        80.0,
+        16000.0
+      ],
+      "stats_default_band": {
+        "peak_hz": 222.66,
+        "level_db": -16.37,
+        "centroid_hz": 319.25,
+        "rms": 0.073028
+      },
+      "harmonics": [
+        {
+          "harmonic": 1,
+          "target_hz": 220.0,
+          "strongest_bin_index": 9,
+          "strongest_bin_center_hz": 222.656,
+          "strongest_bin_db": -16.37,
+          "offset_hz_from_target": 2.656
+        },
+        {
+          "harmonic": 2,
+          "target_hz": 440.0,
+          "strongest_bin_index": 19,
+          "strongest_bin_center_hz": 457.031,
+          "strongest_bin_db": -24.93,
+          "offset_hz_from_target": 17.031
+        },
+        {
+          "harmonic": 3,
+          "target_hz": 660.0,
+          "strongest_bin_index": 28,
+          "strongest_bin_center_hz": 667.969,
+          "strongest_bin_db": -32.15,
+          "offset_hz_from_target": 7.969
+        },
+        {
+          "harmonic": 4,
+          "target_hz": 880.0,
+          "strongest_bin_index": 37,
+          "strongest_bin_center_hz": 878.906,
+          "strongest_bin_db": -90.0,
+          "offset_hz_from_target": -1.094
+        }
+      ]
+    },
+    {
+      "slug": "strong-second",
+      "filename": "strong-second.wav",
+      "harmonic_amplitudes": {
+        "1": 1.0,
+        "2": 0.95,
+        "3": 0.12
+      },
+      "fft_size": 2048,
+      "sample_rate": 48000,
+      "bin_hz": 23.4375,
+      "spectrum_floor_db": -37.878787878787875,
+      "band_hz": [
+        80.0,
+        16000.0
+      ],
+      "stats_default_band": {
+        "peak_hz": 457.03,
+        "level_db": -19.06,
+        "centroid_hz": 347.43,
+        "rms": 0.072576
+      },
+      "harmonics": [
+        {
+          "harmonic": 1,
+          "target_hz": 220.0,
+          "strongest_bin_index": 9,
+          "strongest_bin_center_hz": 222.656,
+          "strongest_bin_db": -19.17,
+          "offset_hz_from_target": 2.656
+        },
+        {
+          "harmonic": 2,
+          "target_hz": 440.0,
+          "strongest_bin_index": 19,
+          "strongest_bin_center_hz": 457.031,
+          "strongest_bin_db": -19.06,
+          "offset_hz_from_target": 17.031
+        },
+        {
+          "harmonic": 3,
+          "target_hz": 660.0,
+          "strongest_bin_index": 28,
+          "strongest_bin_center_hz": 667.969,
+          "strongest_bin_db": -36.88,
+          "offset_hz_from_target": 7.969
+        },
+        {
+          "harmonic": 4,
+          "target_hz": 880.0,
+          "strongest_bin_index": 37,
+          "strongest_bin_center_hz": 878.906,
+          "strongest_bin_db": -90.0,
+          "offset_hz_from_target": -1.094
+        }
+      ]
+    },
+    {
+      "slug": "weak-fundamental",
+      "filename": "weak-fundamental.wav",
+      "harmonic_amplitudes": {
+        "1": 0.25,
+        "2": 1.0,
+        "3": 0.35
+      },
+      "fft_size": 2048,
+      "sample_rate": 48000,
+      "bin_hz": 23.4375,
+      "spectrum_floor_db": -37.878787878787875,
+      "band_hz": [
+        80.0,
+        16000.0
+      ],
+      "stats_default_band": {
+        "peak_hz": 457.03,
+        "level_db": -16.38,
+        "centroid_hz": 472.09,
+        "rms": 0.07381
+      },
+      "harmonics": [
+        {
+          "harmonic": 1,
+          "target_hz": 220.0,
+          "strongest_bin_index": 9,
+          "strongest_bin_center_hz": 222.656,
+          "strongest_bin_db": -28.97,
+          "offset_hz_from_target": 2.656
+        },
+        {
+          "harmonic": 2,
+          "target_hz": 440.0,
+          "strongest_bin_index": 19,
+          "strongest_bin_center_hz": 457.031,
+          "strongest_bin_db": -16.38,
+          "offset_hz_from_target": 17.031
+        },
+        {
+          "harmonic": 3,
+          "target_hz": 660.0,
+          "strongest_bin_index": 28,
+          "strongest_bin_center_hz": 667.969,
+          "strongest_bin_db": -25.35,
+          "offset_hz_from_target": 7.969
+        },
+        {
+          "harmonic": 4,
+          "target_hz": 880.0,
+          "strongest_bin_index": 37,
+          "strongest_bin_center_hz": 878.906,
+          "strongest_bin_db": -90.0,
+          "offset_hz_from_target": -1.094
+        }
+      ]
+    },
+    {
+      "slug": "second-dominant",
+      "filename": "second-dominant.wav",
+      "harmonic_amplitudes": {
+        "1": 0.08,
+        "2": 1.0,
+        "3": 0.22
+      },
+      "fft_size": 2048,
+      "sample_rate": 48000,
+      "bin_hz": 23.4375,
+      "spectrum_floor_db": -37.878787878787875,
+      "band_hz": [
+        80.0,
+        16000.0
+      ],
+      "stats_default_band": {
+        "peak_hz": 457.03,
+        "level_db": -14.57,
+        "centroid_hz": 484.67,
+        "rms": 0.091602
+      },
+      "harmonics": [
+        {
+          "harmonic": 1,
+          "target_hz": 220.0,
+          "strongest_bin_index": 9,
+          "strongest_bin_center_hz": 222.656,
+          "strongest_bin_db": -37.07,
+          "offset_hz_from_target": 2.656
+        },
+        {
+          "harmonic": 2,
+          "target_hz": 440.0,
+          "strongest_bin_index": 19,
+          "strongest_bin_center_hz": 457.031,
+          "strongest_bin_db": -14.57,
+          "offset_hz_from_target": 17.031
+        },
+        {
+          "harmonic": 3,
+          "target_hz": 660.0,
+          "strongest_bin_index": 28,
+          "strongest_bin_center_hz": 667.969,
+          "strongest_bin_db": -27.58,
+          "offset_hz_from_target": 7.969
+        },
+        {
+          "harmonic": 4,
+          "target_hz": 880.0,
+          "strongest_bin_index": 37,
+          "strongest_bin_center_hz": 878.906,
+          "strongest_bin_db": -90.0,
+          "offset_hz_from_target": -1.094
+        }
+      ]
+    }
+  ]
+}

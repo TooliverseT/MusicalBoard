@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <script>
+    (function () {
+      function normalizedHost() {
+        var h = (location.hostname || '').toLowerCase();
+        if (h.length >= 2 && h.charAt(0) === '[' && h.charAt(h.length - 1) === ']') {
+          h = h.slice(1, -1);
+        }
+        return h;
+      }
+      var allowed = ['www.musicalboard.com', 'musicalboard.com'];
+      window.__mbProductionSite = allowed.indexOf(normalizedHost()) !== -1;
+    })();
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="google-site-verification" content="upoLjXjQ2igKXqJvnMon0CITWtN_Fjtiw4op30hdABg" />
+  <meta name="naver-site-verification" content="d4fa849a857dbdd47ed953b9cd1fb94a22b8164d" />
+  <meta name="yandex-verification" content="31b35f617f4d02c2" />
+  <meta name="robots" content="index, follow">
+
+  <link rel="canonical" href="https://www.musicalboard.com/blog/2026-11-04-spectrum-harmonic-bin-alignment-test/">
+
+  <meta name="description" content="Four synthetic 220 Hz tones with fixed harmonic amplitudes show how Vocal Spectrum’s FFT bins line up with true overtones, why PEAK can read 457 Hz instead of 440 Hz, and when the second harmonic wins the display.">
+  <meta name="keywords" content="MusicalBoard blog, vocal intonation, singing pitch, ear training, browser vocal tools, practice tips for singers">
+  <meta name="author" content="MusicalBoard">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="MusicalBoard">
+  <meta property="og:url" content="https://www.musicalboard.com/blog/2026-11-04-spectrum-harmonic-bin-alignment-test/">
+  <meta property="og:title" content="Reading the Spectrum of a Known Signal: Where the Harmonics Land | MusicalBoard Blog">
+  <meta property="og:description" content="Four synthetic 220 Hz tones with fixed harmonic amplitudes show how Vocal Spectrum’s FFT bins line up with true overtones, why PEAK can read 457 Hz instead of 440 Hz, and when the second harmonic wins the display.">
+  <meta property="og:image" content="https://www.musicalboard.com/blog/assets/vocal_spectrum/harmonic-bin-grid.png">
+  <meta property="og:image:height" content="607">
+  <meta property="og:image:width" content="607">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Reading the Spectrum of a Known Signal: Where the Harmonics Land | MusicalBoard Blog">
+  <meta name="twitter:description" content="Four synthetic 220 Hz tones with fixed harmonic amplitudes show how Vocal Spectrum’s FFT bins line up with true overtones, why PEAK can read 457 Hz instead of 440 Hz, and when the second harmonic wins the display.">
+  <meta name="twitter:image" content="https://www.musicalboard.com/blog/assets/vocal_spectrum/harmonic-bin-grid.png">
+
+  <title>Reading the Spectrum of a Known Signal: Where the Harmonics Land | MusicalBoard Blog</title>
+
+  <script type="application/ld+json">
+  {"@context": "https://schema.org", "@type": "BlogPosting", "headline": "Reading the Spectrum of a Known Signal: Where the Harmonics Land", "description": "Four synthetic 220 Hz tones with fixed harmonic amplitudes show how Vocal Spectrum’s FFT bins line up with true overtones, why PEAK can read 457 Hz instead of 440 Hz, and when the second harmonic wins the display.", "url": "https://www.musicalboard.com/blog/2026-11-04-spectrum-harmonic-bin-alignment-test/", "image": ["https://www.musicalboard.com/blog/assets/vocal_spectrum/harmonic-bin-grid.png"], "author": {"@type": "Organization", "name": "MusicalBoard", "url": "https://www.musicalboard.com"}, "publisher": {"@type": "Organization", "name": "MusicalBoard", "logo": {"@type": "ImageObject", "url": "https://www.musicalboard.com/logo.png"}}, "mainEntityOfPage": {"@type": "WebPage", "@id": "https://www.musicalboard.com/blog/2026-11-04-spectrum-harmonic-bin-alignment-test/"}, "datePublished": "2026-11-04", "dateModified": "2026-11-04"}
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Quicksand (nav / SEO / theme), Inter (content), JetBrains Mono (figures) — SIL OFL -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;600;700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <script>
+    (function() {
+      try {
+        if (window.localStorage && localStorage.getItem('mb-sidebar-collapsed') === '1') {
+          document.documentElement.classList.add('mb-sidebar-collapsed-bootstrap');
+        }
+      } catch (_) {
+        // Storage can be unavailable in privacy modes; the app falls back to the default layout.
+      }
+    })();
+  </script>
+
+  <link rel="stylesheet" href="/index-80fd7064dfe1e9a2.css" integrity="sha384-we7EToV2xtepDlctncHiTUQczI6SQIVRLvl1tUCrYZv+b6p33CEIgJl27CHwWWLl"/>
+  
+  
+<script type="module">
+import init, * as bindings from '/musical-mind-1d319eb5bd0dc083.js';
+const wasm = await init({ module_or_path: '/musical-mind-1d319eb5bd0dc083_bg.wasm' });
+
+
+window.wasmBindings = bindings;
+
+
+dispatchEvent(new CustomEvent("TrunkApplicationStarted", {detail: {wasm}}));
+
+</script>
+
+  
+  
+  
+  
+  
+  
+  
+  
+
+  <link rel="icon" href="/favicon-f5b0a6244ae522b3.ico" integrity="sha384-vk49OdTw2Y8zo0VMA6kTstQmT2np58P5DtAxu+vhE/ZpXGg425GXffy0ht6NE+i9"/>
+
+  <script>
+      (function() {
+          const redirect = sessionStorage.redirect;
+          delete sessionStorage.redirect;
+          if (redirect && redirect !== window.location.href) {
+              history.replaceState(null, null, redirect);
+          }
+      })();
+  </script>
+  <script>
+    function getTimeZoneOffset() {
+        const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+        const offset = new Date().getTimezoneOffset();
+        return { timeZone, offset };
+    }
+  </script>
+  <!-- Google Analytics: production host only (localhost / 127.0.0.1 / preview URLs excluded). -->
+  <script>
+    (function () {
+      if (!window.__mbProductionSite) return;
+      var gtagJs = document.createElement('script');
+      gtagJs.async = true;
+      gtagJs.src = 'https://www.googletagmanager.com/gtag/js?id=G-M4ZR1QN3WB';
+      document.head.appendChild(gtagJs);
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      window.gtag = gtag;
+      gtag('js', new Date());
+      gtag('config', 'G-M4ZR1QN3WB');
+    })();
+  </script>
+  <!-- AdSense: after WASM mount; production host only. -->
+  <script>
+    (function () {
+      function loadAdSense() {
+        if (!window.__mbProductionSite) return;
+        if (window.__mbAdSenseLoaded) return;
+        window.__mbAdSenseLoaded = true;
+        var s = document.createElement('script');
+        s.async = true;
+        s.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9424100257975478';
+        s.crossOrigin = 'anonymous';
+        document.head.appendChild(s);
+      }
+      window.addEventListener('TrunkApplicationStarted', loadAdSense);
+      if (window.wasmBindings) loadAdSense();
+    })();
+  </script>
+<link rel="modulepreload" href="/musical-mind-1d319eb5bd0dc083.js" crossorigin="anonymous" integrity="sha384-9ao609/5Q6NuM5TvAKtd2nzQzy+pDcKP3/MWVa0d4aYdWFR/V2vMPb8klDi9vTmT"><link rel="preload" href="/musical-mind-1d319eb5bd0dc083_bg.wasm" crossorigin="anonymous" integrity="sha384-S8BQfQKclSO95muYrchdKhQMbJAK8IJajybOfRR1B0VRkww2tJGo3unky/8eIkNu" as="fetch" type="application/wasm"></head>
+
+<body><div class="app-layout"><div data-tour="nav-sidebar" class="sidebar"><div class="sidebar-header"><a href="/" class="logo"><img src="/logo.png" alt="MusicalBoard Logo" class="logo-image"><div class="logo-text">MusicalBoard</div></a></div><nav class="sidebar-nav"><div aria-label="Practice tools" class="sidebar-nav-group"><a title="MusicalBoard" href="/" class="nav-item"><span class="nav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="3" width="8" height="10" rx="2" fill="currentColor" opacity="0.95"></rect><rect x="4.5" y="4.5" width="5" height="7" fill="#f8fafc" stroke="#1f2937" stroke-width="0.7"></rect><rect x="13" y="3" width="8" height="5" rx="2" fill="currentColor" opacity="0.82"></rect><rect x="14.5" y="4.5" width="5" height="2" fill="#f8fafc" stroke="#1f2937" stroke-width="0.7"></rect><rect x="3" y="15" width="8" height="6" rx="2" fill="currentColor" opacity="0.82"></rect><rect x="4.5" y="16.5" width="5" height="3" fill="#f8fafc" stroke="#1f2937" stroke-width="0.7"></rect><rect x="13" y="10" width="8" height="11" rx="2" fill="currentColor" opacity="0.95"></rect><rect x="14.5" y="11.5" width="5" height="8" fill="#f8fafc" stroke="#1f2937" stroke-width="0.7"></rect></svg></span><span class="nav-text">MusicalBoard</span></a><a title="Singing recorder — mic, monitor, record, export" href="/singing-recorder/" class="nav-item"><span class="nav-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none"><line x1="4" y1="6" x2="20" y2="6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></line><circle cx="14" cy="6" r="2" fill="currentColor"></circle><line x1="4" y1="12" x2="20" y2="12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></line><circle cx="10" cy="12" r="2" fill="currentColor"></circle><line x1="4" y1="18" x2="20" y2="18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></line><circle cx="7" cy="18" r="2" fill="currentColor"></circle></svg></span><span class="nav-text">Singing recorder</span></a><a title="Vocal pitch monitor — real-time intonation graph" href="/vocal-pitch-monitor/" class="nav-item"><span class="nav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="2.5" stroke="currentColor" stroke-width="1.8"></rect><path d="M7 17V8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path><path d="M7 17H17" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path><path d="M8.5 14.5L11 12L13.2 13.4L16 9.6" stroke="#f8fafc" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"></path><circle cx="11" cy="12" r="1.1" fill="#f8fafc"></circle><circle cx="13.2" cy="13.4" r="1.1" fill="#f8fafc"></circle><circle cx="16" cy="9.6" r="1.1" fill="#f8fafc"></circle></svg></span><span class="nav-text">Pitch monitor</span></a><a title="Vocal range test — intonation map and session score" href="/vocal-range-test/" class="nav-item"><span class="nav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="2.5" y="3.5" width="3" height="17" rx="1.5" fill="currentColor" opacity="0.22"></rect><rect x="6.5" y="3.5" width="3" height="17" rx="1.5" fill="currentColor" opacity="0.38"></rect><rect x="10.5" y="3.5" width="3" height="17" rx="1.5" fill="currentColor" opacity="0.55"></rect><rect x="14.5" y="3.5" width="3" height="17" rx="1.5" fill="currentColor" opacity="0.74"></rect><rect x="18.5" y="3.5" width="3" height="17" rx="1.5" fill="currentColor" opacity="0.95"></rect></svg></span><span class="nav-text">Range test</span></a><a title="Vocal scales — optional pitch feedback" href="/vocal-scales/" class="nav-item"><span class="nav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z" fill="currentColor" opacity="0.94"></path><circle cx="10" cy="17" r="1.5" fill="#f8fafc"></circle></svg></span><span class="nav-text">Vocal scales</span></a><a title="Virtual piano — reference notes and chords" href="/virtual-piano/" class="nav-item"><span class="nav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><rect x="4" y="4" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"></rect><rect x="4" y="4" width="5.33" height="16" fill="#f8fafc" stroke="#1f2937" stroke-width="1"></rect><rect x="9.33" y="4" width="5.33" height="16" fill="#f8fafc" stroke="#1f2937" stroke-width="1"></rect><rect x="14.67" y="4" width="5.33" height="16" fill="#f8fafc" stroke="#1f2937" stroke-width="1"></rect><rect x="7" y="4" width="4" height="10" fill="#111827"></rect><rect x="12.5" y="4" width="4" height="10" fill="#111827"></rect></svg></span><span class="nav-text">Virtual piano</span></a><a title="Online metronome — tap tempo, meters, subdivisions" href="/online-metronome/" class="nav-item"><span class="nav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 20h16L18 17H6L4 20z" fill="currentColor" stroke="currentColor" stroke-width="1.1"></path><path d="M6 17L12 4L18 17" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linejoin="round" stroke-linecap="round"></path><path d="M9 13h6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path><path d="M12 13L16 5" stroke="#f8fafc" stroke-width="1.6" stroke-linecap="round"></path><circle cx="16" cy="5" r="1" stroke="currentColor" stroke-width="1.5" fill="none"></circle><circle cx="16" cy="5" r="0.8" fill="#f8fafc"></circle></svg></span><span class="nav-text">Online metronome</span></a><a title="Vocal Spectrum — vocal frequency analyzer" href="/audio-spectrum-analyzer/" class="nav-item"><span class="nav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="2" y="10" width="1.5" height="4" rx="0.75" fill="currentColor" opacity="0.35"></rect><rect x="4.5" y="8" width="1.5" height="8" rx="0.75" fill="currentColor" opacity="0.5"></rect><rect x="7" y="6" width="1.5" height="12" rx="0.75" fill="currentColor" opacity="0.65"></rect><rect x="9.5" y="4" width="1.5" height="16" rx="0.75" fill="currentColor" opacity="0.8"></rect><rect x="12" y="2" width="1.5" height="20" rx="0.75" fill="currentColor" opacity="0.98"></rect><rect x="14.5" y="4" width="1.5" height="16" rx="0.75" fill="currentColor" opacity="0.8"></rect><rect x="17" y="6" width="1.5" height="12" rx="0.75" fill="currentColor" opacity="0.65"></rect><rect x="19.5" y="8" width="1.5" height="8" rx="0.75" fill="currentColor" opacity="0.5"></rect><rect x="22" y="10" width="1.5" height="4" rx="0.75" fill="currentColor" opacity="0.35"></rect></svg></span><span class="nav-text">Vocal Spectrum</span></a><a title="Auto-Tune — pitch correction while preserving vocal timbre" href="/auto-tune/" class="nav-item"><span class="nav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><line x1="6" y1="3" x2="6" y2="21" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" opacity="0.55"></line><line x1="12" y1="3" x2="12" y2="21" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" opacity="0.55"></line><line x1="18" y1="3" x2="18" y2="21" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" opacity="0.55"></line><rect x="3" y="7" width="6" height="3" rx="1.4" fill="currentColor"></rect><rect x="9" y="13" width="6" height="3" rx="1.4" fill="currentColor"></rect><rect x="15" y="9" width="6" height="3" rx="1.4" fill="currentColor"></rect></svg></span><span class="nav-text">Auto-Tune</span></a><a title="Vocal Isolator — extract the vocal or the instrumental from a mix, or reduce room noise" href="/vocal-isolation/" class="nav-item"><span class="nav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="9" y="2" width="6" height="11" rx="3" stroke="currentColor" stroke-width="1.7"></rect><path d="M5 10a7 7 0 0 0 14 0" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"></path><line x1="12" y1="17" x2="12" y2="20" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"></line><line x1="9" y1="20" x2="15" y2="20" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"></line></svg></span><span class="nav-text">Vocal Isolator</span></a><a title="Mic Room Diagnostics — 3-step recording quality check" href="/mic-room-diagnostics/" class="nav-item"><span class="nav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="9" y="2" width="6" height="11" rx="3" stroke="currentColor" stroke-width="1.7"></rect><path d="M5 10a7 7 0 0 0 14 0" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"></path><line x1="12" y1="17" x2="12" y2="20" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"></line><line x1="9" y1="20" x2="15" y2="20" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"></line><circle cx="18.5" cy="18.5" r="4" fill="currentColor" opacity="0.85"></circle><path d="M16.5 18.5l1.5 1.5 2.5-2.5" stroke="#f8fafc" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path></svg></span><span class="nav-text">Mic Diagnostics</span></a><a title="Sight singing — match a played note and see your cents" href="/sight-singing/" class="nav-item"><span class="nav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z" fill="currentColor" opacity="0.94"></path><circle cx="10" cy="17" r="1.5" fill="#f8fafc"></circle><circle cx="18.5" cy="18.5" r="4" fill="currentColor" opacity="0.85"></circle><path d="M16.5 18.5l1.5 1.5 2.5-2.5" stroke="#f8fafc" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path></svg></span><span class="nav-text">Sight singing</span></a></div><hr class="sidebar-nav-divider"><div aria-label="Blog" class="sidebar-nav-group sidebar-nav-group--blog"><a title="Blog" href="/blog/" aria-current="page" class="nav-item active"><span class="nav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M7 3h10a2 2 0 0 1 2 2v16l-4-2-4 2-4-2-4 2V5a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round"></path><path d="M8 8h8M8 12h8M8 16h5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg></span><span class="nav-text">Blog</span></a></div></nav><div class="sidebar-footer-legal"><a href="/about/" class="sidebar-legal-link">About</a><a href="/privacy/" class="sidebar-legal-link">Privacy</a><a href="/terms/" class="sidebar-legal-link">Terms</a><a href="/contact/" class="sidebar-legal-link">Contact</a></div></div><button type="button" title="Collapse sidebar" aria-label="Collapse navigation sidebar" aria-expanded="true" class="sidebar-edge-toggle"><span aria-hidden="true" class="sidebar-edge-toggle-glyph">«</span></button><div id="app-main-content" class="main-content"><div class="top-header-container"><div class="top-header"><div class="header-left"><button type="button" data-tour="nav-menu" aria-label="Open navigation menu" aria-expanded="false" class="mobile-menu-btn"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="menu-icon-svg"><line x1="4" y1="6" x2="20" y2="6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" class="menu-bar menu-bar--top"></line><line x1="4" y1="12" x2="20" y2="12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" class="menu-bar menu-bar--mid"></line><line x1="4" y1="18" x2="20" y2="18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" class="menu-bar menu-bar--bot"></line></svg></button><p class="page-title">Reading the Spectrum of a Known Signal: Where the Harmonics Land | MusicalBoard</p></div><div class="header-right"></div></div></div><main class="content-area no-min-width"><div class="detail-page mb-blog-page"><div class="mb-blog-inner mb-blog-article-wrap"><nav aria-label="Breadcrumb" class="mb-blog-breadcrumb"><a href="/blog/">Blog</a><span aria-hidden="true" class="mb-blog-bc-sep">/</span><span>Reading the Spectrum of a Known Signal: Where the Harmonics Land</span></nav><header class="mb-blog-article-header"><h1 class="mb-blog-article-title">Reading the Spectrum of a Known Signal: Where the Harmonics Land</h1><p class="mb-blog-article-date">04 November 2026</p><p class="mb-blog-article-excerpt">Four synthetic 220 Hz tones with fixed harmonic amplitudes show how Vocal Spectrum’s FFT bins line up with true overtones, why PEAK can read 457 Hz instead of 440 Hz, and when the second harmonic wins the display.</p><div class="mb-blog-article-tags"><a href="/audio-spectrum-analyzer/" class="mb-blog-article-tag">Vocal Spectrum</a></div></header><article class="musicalboard-prose mb-blog-article-body"><p>When you look at <a href="/audio-spectrum-analyzer/">Vocal Spectrum</a> during practice, the bars feel like they should sit exactly on the harmonics you are singing. They do not — not because the graph is “wrong,” but because the tool draws <strong>FFT bins</strong> on a <strong>log frequency axis</strong>, not a physics textbook list of overtone frequencies. This article uses <strong>four reproducible WAV files</strong> (220 Hz fundamental, known harmonic levels) to answer one question: <strong>where do those harmonics actually show up on upload, and when does the PEAK readout disagree with the note you think you sang?</strong></p>
+<p>The tones are not a voice. They are three-second, 48 kHz, 16-bit mono signals with 20 ms fades, the same family as the <a href="/blog/2026-10-28-quiet-pitch-detection-level-ladder-test/">quiet level ladder</a> and <a href="/blog/2026-10-20-upload-pitch-gate-reanalysis-test/">Pitch gate upload test</a>. We generated them with <code>scripts/make_spectrum_harmonic_fixture_wavs.py</code> and simulated the <strong>upload analysis path</strong> in <code>analyze_uploaded_file</code> (2048-point FFT, Hann window, 25 ms hop) as implemented in the site code. Numbers below come from <a href="/blog/assets/vocal_spectrum/harmonic-fixture-results.json"><code>harmonic-fixture-results.json</code></a>.</p>
+<p><strong>Download WAV</strong> (upload from Vocal Pitch Monitor or Vocal Spectrum, then scrub playback to the steady middle):</p>
+<p>
+<a href="/static/samples/spectrum-harmonics/balanced-h2-h3.wav" download="balanced-h2-h3.wav">balanced (1.0 / 0.35 / 0.15)</a> ·
+<a href="/static/samples/spectrum-harmonics/strong-second.wav" download="strong-second.wav">strong 2nd</a> ·
+<a href="/static/samples/spectrum-harmonics/weak-fundamental.wav" download="weak-fundamental.wav">weak fundamental</a> ·
+<a href="/static/samples/spectrum-harmonics/second-dominant.wav" download="second-dominant.wav">2nd dominant</a>
+</p>
+<h2>What the tool is actually plotting</h2>
+<p><a href="/audio-spectrum-analyzer/">Vocal Spectrum</a> shows <strong>short-window FFT magnitude in dBFS</strong>. Each vertical bar (in Bar mode) is the <strong>maximum dB</strong> among the raw FFT bins that fall inside that bar’s log-spaced frequency interval between your Low and High settings. The four chips above the graph summarize the <strong>current frame</strong> inside the same band after the <strong>Spectrum floor</strong> (sensitivity) filter:</p>
+<ul>
+<li><strong>PEAK</strong> — frequency label of the <strong>single strongest bin</strong> in the band (not a sub-bin interpolation).</li>
+<li><strong>LEVEL</strong> — that bin’s dBFS.</li>
+<li><strong>CENTROID</strong> — amplitude-weighted mean frequency of bins above the floor.</li>
+<li><strong>RMS</strong> — root mean square of linear amplitudes of those bins; not loudness in LUFS or SPL.</li>
+</ul>
+<p>That definition matters for harmonics. A pure 440 Hz sine would still be reported at the <strong>center frequency of whichever FFT bin won</strong>, which is spaced every <strong>Δf = sample_rate / FFT_size</strong> on the upload path. For 48 kHz and a 2048-point transform, <strong>Δf ≈ 23.44 Hz</strong>, so bin centers step 222.66 Hz, 246.09 Hz, 269.53 Hz, … — not “every harmonic of 220 Hz.”</p>
+<p><strong>Live microphone</strong> analysis uses the browser <code>AnalyserNode</code> at <strong>4096</strong> FFT size (finer bins, ~11.72 Hz at 48 kHz). <strong>Uploaded takes</strong> stored for replay use the <strong>2048</strong> pipeline above. Comparing a mic screenshot to an uploaded WAV without noticing that split will look like a disagreement even on the same tone.</p>
+<p>For background on reading the graph in practice, see <a href="/blog/2026-05-09-vocal-spectrum/">What Is the Vocal Spectrum</a> and <a href="/blog/2026-05-18-spectrum-peak-level-centroid-rms/">PEAK, LEVEL, CENTROID, RMS</a>. Pitch tracking is a separate path; use <a href="/vocal-pitch-monitor/">Vocal Pitch Monitor</a> for note accuracy, not PEAK alone.</p>
+<h2>Four fixtures: same pitch, different harmonic balance</h2>
+<p>All four files share <strong>F0 = 220 Hz (A3 at A4 = 440 Hz)</strong>. Relative harmonic amplitudes before normalization:</p>
+<table><thead><tr><th>Fixture</th><th style="text-align: right">1× (220 Hz)</th><th style="text-align: right">2× (440 Hz)</th><th style="text-align: right">3× (660 Hz)</th></tr></thead><tbody>
+<tr><td>balanced-h2-h3</td><td style="text-align: right">1.00</td><td style="text-align: right">0.35</td><td style="text-align: right">0.15</td></tr>
+<tr><td>strong-second</td><td style="text-align: right">1.00</td><td style="text-align: right">0.95</td><td style="text-align: right">0.12</td></tr>
+<tr><td>weak-fundamental</td><td style="text-align: right">0.25</td><td style="text-align: right">1.00</td><td style="text-align: right">0.35</td></tr>
+<tr><td>second-dominant</td><td style="text-align: right">0.08</td><td style="text-align: right">1.00</td><td style="text-align: right">0.22</td></tr>
+</tbody></table>
+<p>Peak sample value is 0.4 full scale in each file. Only the <strong>first three</strong> harmonics are in the waveform; there is no energy at 880 Hz in the generator, so energy near 880 Hz in the table is leakage and noise floor, not a fourth harmonic we added.</p>
+<p>We analyzed the <strong>middle analysis frame</strong> of each upload (after the same 0.8/0.2 temporal smoothing used during file import). Default stats band <strong>80 Hz–16 kHz</strong> and default sensitivity (~50% slider position, floor about <strong>−37.9 dBFS</strong>) match a fresh Vocal Spectrum panel unless you changed Low–High or Spectrum floor.</p>
+<h2>Where harmonics land in FFT bins (upload path)</h2>
+<p>True harmonic frequencies are exact multiples: 220, 440, 660, 880 Hz. Each bin is labeled at its <strong>center</strong> frequency: (bin index + ½) × 23.4375 Hz at 48 kHz upload analysis. The table lists, for each harmonic, the <strong>strongest bin within ±2 neighbors</strong> of the expected index.</p>
+<table><thead><tr><th>Fixture</th><th>H1 target 220 Hz → bin center (dBFS)</th><th>H2 target 440 Hz → bin center (dBFS)</th><th>H3 target 660 Hz → bin center (dBFS)</th></tr></thead><tbody>
+<tr><td>balanced-h2-h3</td><td><strong>222.66 Hz</strong> (−16.4)</td><td><strong>457.03 Hz</strong> (−24.9)</td><td><strong>667.97 Hz</strong> (−32.2)</td></tr>
+<tr><td>strong-second</td><td>222.66 Hz (−19.2)</td><td><strong>457.03 Hz</strong> (−19.1)</td><td>667.97 Hz (−36.9)</td></tr>
+<tr><td>weak-fundamental</td><td>222.66 Hz (−29.0)</td><td><strong>457.03 Hz</strong> (−16.4)</td><td>667.97 Hz (−25.4)</td></tr>
+<tr><td>second-dominant</td><td>222.66 Hz (−37.1)</td><td><strong>457.03 Hz</strong> (−14.6)</td><td>667.97 Hz (−27.6)</td></tr>
+</tbody></table>
+<p>Three patterns show up immediately:</p>
+<ol>
+<li><strong>The fundamental never reports as exactly 220 Hz.</strong> It clusters on the <strong>222.66 Hz</strong> bin center (~+2.7 Hz offset). That is normal bin snapping, not a tuning error in the file.</li>
+<li><strong>The second harmonic does not label as 440 Hz.</strong> Its energy peak sits on the <strong>457.03 Hz</strong> bin center (~+17 Hz vs 440). True 440 Hz falls <em>between</em> bin centers at this FFT size; the UI label is the <strong>bin center</strong>, not the continuous peak frequency you would get from a curve fit.</li>
+<li><strong>The third harmonic is closer in label space:</strong> <strong>667.97 Hz</strong> vs 660 Hz (~+8 Hz), still not exact.</li>
+</ol>
+<p>So the bars <strong>track the harmonic series in shape</strong> (energy at roughly 1×, 2×, 3×), but <strong>numeric PEAK and bar positions follow FFT grid + log bar grouping</strong>, not perfect Hz labels on the overtone list.</p>
+<p class="mb-blog-image">
+  <img src="/blog/assets/vocal_spectrum/harmonic-bin-grid.png" alt="True harmonics at 220, 440, and 660 Hz versus the 2048-point FFT bins used as PEAK labels (222.66, 457.03, 667.97 Hz) at 48 kHz upload analysis">
+</p>
+<p align="center">
+  <em>True harmonics at 220, 440, and 660 Hz versus the 2048-point FFT bins used as PEAK labels (222.66, 457.03, 667.97 Hz) at 48 kHz upload analysis</em>
+</p>
+<h2>When PEAK names the second harmonic instead of the fundamental</h2>
+<p>PEAK picks the <strong>loudest bin</strong> in the band, not “the fundamental by rule.” With the balanced fixture (weak 2nd and 3rd), PEAK reads <strong>222.66 Hz</strong> — the fundamental bin wins. As soon as the second harmonic is within a few dB of the first, PEAK jumps to the <strong>457.03 Hz</strong> bin:</p>
+<table><thead><tr><th>Fixture</th><th style="text-align: right">PEAK (Hz)</th><th style="text-align: right">LEVEL (dBFS)</th><th style="text-align: right">CENTROID (Hz)</th></tr></thead><tbody>
+<tr><td>balanced-h2-h3</td><td style="text-align: right"><strong>222.66</strong></td><td style="text-align: right">−16.4</td><td style="text-align: right">319</td></tr>
+<tr><td>strong-second</td><td style="text-align: right"><strong>457.03</strong></td><td style="text-align: right">−19.1</td><td style="text-align: right">347</td></tr>
+<tr><td>weak-fundamental</td><td style="text-align: right"><strong>457.03</strong></td><td style="text-align: right">−16.4</td><td style="text-align: right">472</td></tr>
+<tr><td>second-dominant</td><td style="text-align: right"><strong>457.03</strong></td><td style="text-align: right">−14.6</td><td style="text-align: right">485</td></tr>
+</tbody></table>
+<p>That matches what many singers see on a bright vowel or a close mic: <strong>the graph still shows a low stack of bars</strong>, but the <strong>PEAK chip names an overtone</strong> near the second harmonic. It does not mean you “sang an octave high” in pitch-tracker terms; it means <strong>more energy landed in that bin</strong> for this window. <a href="/vocal-pitch-monitor/">Vocal Pitch Monitor</a> uses autocorrelation on the same upload, not the FFT PEAK, which is why the two tools can disagree in label even on one file — a topic the planned A1 octave-error post addresses directly.</p>
+<p>CENTROID shifts upward when upper harmonics dominate (472–485 Hz on the weak-fundamental and second-dominant files) even though the fundamental is still present. CENTROID is a <strong>balance meter</strong>, not a note name.</p>
+<h2>Log-scale bars add another layer</h2>
+<p>Between 80 Hz and 16 kHz, Bar mode does not draw one bar per FFT bin. It divides the log axis into canvas-width bands and, for each band, takes the <strong>max dB</strong> among bins in that Hz interval. A narrow harmonic can <strong>share a bar</strong> with its neighbor or look “smeared” if the bar spans several bins. Zooming Low–High (for example 125–2000 Hz for a mid voice check) changes both <strong>which bins exist in view</strong> and <strong>how many bins each bar eats</strong>, so the same upload can look sharper or flatter without any change in the audio.</p>
+<p>For view-mode behavior, see <a href="/blog/2026-05-22-spectrum-bar-line-circle-view/">Bar, Line, and Circle</a>. Peak-hold keeps a recent maximum visible for ~1.7 s; a consonant spike can linger on the graph after the sound itself moved on.</p>
+<h2>Limits of this experiment</h2>
+<ul>
+<li><strong>Synthetic steady tones only.</strong> Vowels, formants, breath noise, vibrato, and reverb spread energy across many bins; PEAK can wander frame to frame.</li>
+<li><strong>Upload vs live mic FFT sizes differ</strong> (2048 vs 4096). Repeat the WAV test on upload; use live mic for room and performance conditions, not as a pixel match to the JSON table.</li>
+<li><strong>We did not tune Low–High or sensitivity</strong> per file. Raising the Spectrum floor can hide weak harmonics and change PEAK without changing your voice.</li>
+<li><strong>Harmonic amplitudes in real singing</strong> are not fixed ratios; comparing your voice to these WAVs is about <strong>mechanism</strong>, not target bar heights.</li>
+</ul>
+<h2>Repeat the test in MusicalBoard</h2>
+<ol>
+<li>Download one WAV above (or all four).</li>
+<li>Open <a href="/vocal-pitch-monitor/">Vocal Pitch Monitor</a> or <a href="/audio-spectrum-analyzer/">Vocal Spectrum</a> and <strong>upload</strong> the file (same analysis backend).</li>
+<li>After analysis finishes, <strong>play</strong> and pause near the <strong>middle second</strong> of the tone.</li>
+<li>With Low <strong>80 Hz</strong>, High <strong>16 kHz</strong>, and default sensitivity, read <strong>PEAK</strong> and compare to the table. Try <strong>125–2000 Hz</strong> and watch how bar density changes.</li>
+<li>Optionally regenerate numbers: <code>python3 -I scripts/make_spectrum_harmonic_fixture_wavs.py</code> from the project repository.</li>
+</ol>
+<p>If PEAK sits near <strong>457 Hz</strong> on a file you know is A3, check harmonic balance and FFT labeling before assuming an octave mistake. For mixed recordings where the line jumps register, start with <a href="/blog/2026-10-09-why-pitch-jumps-on-a-mixed-vocal/">Why Pitch Jumps on a Mixed Vocal</a> and separation on <a href="/vocal-isolation/">Vocal Isolator</a>.</p>
+<p><strong>Bottom line:</strong> On a known 220 Hz harmonic series, Vocal Spectrum places energy on the expected <strong>regions</strong> (1×, 2×, 3×), but <strong>reported frequencies are bin centers on a coarse grid</strong>, and <strong>PEAK follows the strongest bin</strong>, which is often the second harmonic when it is loud. That is the tool behaving as designed — useful for comparing takes at the same settings, not for reading exact overtone Hz without context.</p>
+</article><p class="mb-blog-back-wrap"><a href="/blog/" class="mb-blog-back-link">← All posts</a></p></div></div></main></div></div></body>
+
+</html>
