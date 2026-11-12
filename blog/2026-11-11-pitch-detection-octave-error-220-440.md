@@ -57,9 +57,13 @@ The counts below show how many of the 119 analysis windows had a selected main p
 | 440 Hz and 660 Hz, no fundamental | 0 : 1 : 0.35 | 119 | 0 | Selected A3 from the harmonics' shared period |
 
 <!-- Image: measured plots of selected frequency over time and window counts per file, drawn from the raw analysis data. This is not an app screenshot. -->
-![Selected frequencies for the 1/4 and 1/8 fundamental amplitude files, with counts of windows near 220 Hz and 440 Hz for all six WAVs](/blog/assets/vocal_pitch_monitor/octave-errors/measured-octave-errors.png)
+<p class="mb-blog-image">
+  <img src="/blog/assets/vocal_pitch_monitor/octave-errors/measured-octave-errors.png" alt="Selected frequencies for the 1/4 and 1/8 fundamental amplitude files, with counts of windows near 220 Hz and 440 Hz for all six WAVs">
+</p>
 
-<em>Top: the 1/4 file was read at about 220 Hz, and the 1/8 file at about 440 Hz. Bottom: counts from 119 windows analyzed under the same conditions. These plots show results from running the detection code, not screenshots of the browser app.</em>
+<p align="center">
+  <em>Top: the 1/4 file was read at about 220 Hz, and the 1/8 file at about 440 Hz. Bottom: counts from 119 windows analyzed under the same conditions. These plots show results from running the detection code, not screenshots of the browser app.</em>
+</p>
 
 Both the 1/4 and 1/8 files contain a 220 Hz component. In the 1/8 file, however, the 440 Hz candidate had a higher correlation value, so the detector chose the octave above. The result changed between these two conditions, but **1/8 is not a universal threshold for octave errors**. We did not test closely spaced ratios between them. Different phases, window lengths, or additional harmonics could also move the point where the result changes.
 
