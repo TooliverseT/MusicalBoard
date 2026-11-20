@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <script>
+    (function () {
+      function normalizedHost() {
+        var h = (location.hostname || '').toLowerCase();
+        if (h.length >= 2 && h.charAt(0) === '[' && h.charAt(h.length - 1) === ']') {
+          h = h.slice(1, -1);
+        }
+        return h;
+      }
+      var allowed = ['www.musicalboard.com', 'musicalboard.com'];
+      window.__mbProductionSite = allowed.indexOf(normalizedHost()) !== -1;
+    })();
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="google-site-verification" content="upoLjXjQ2igKXqJvnMon0CITWtN_Fjtiw4op30hdABg" />
+  <meta name="naver-site-verification" content="d4fa849a857dbdd47ed953b9cd1fb94a22b8164d" />
+  <meta name="yandex-verification" content="31b35f617f4d02c2" />
+  <meta name="robots" content="index, follow">
+
+  <link rel="canonical" href="https://www.musicalboard.com/blog/2026-11-20-auto-tune-retune-speed-step-response/">
+
+  <meta name="description" content="A synthetic A3-to-C4 jump compares five Retune speed settings with Strength and Tolerance held fixed. Download the original and corrected WAVs, see the settling times, and learn why the slider is not a simple delay in milliseconds.">
+  <meta name="keywords" content="MusicalBoard blog, vocal intonation, singing pitch, ear training, browser vocal tools, practice tips for singers">
+  <meta name="author" content="MusicalBoard">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="MusicalBoard">
+  <meta property="og:url" content="https://www.musicalboard.com/blog/2026-11-20-auto-tune-retune-speed-step-response/">
+  <meta property="og:title" content="Auto-Tune Retune Speed: What a 3-Semitone Jump Reveals | MusicalBoard Blog">
+  <meta property="og:description" content="A synthetic A3-to-C4 jump compares five Retune speed settings with Strength and Tolerance held fixed. Download the original and corrected WAVs, see the settling times, and learn why the slider is not a simple delay in milliseconds.">
+  <meta property="og:image" content="https://www.musicalboard.com/blog/assets/auto_tune/retune-step/measured-retune-step.png">
+  <meta property="og:image:height" content="607">
+  <meta property="og:image:width" content="607">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Auto-Tune Retune Speed: What a 3-Semitone Jump Reveals | MusicalBoard Blog">
+  <meta name="twitter:description" content="A synthetic A3-to-C4 jump compares five Retune speed settings with Strength and Tolerance held fixed. Download the original and corrected WAVs, see the settling times, and learn why the slider is not a simple delay in milliseconds.">
+  <meta name="twitter:image" content="https://www.musicalboard.com/blog/assets/auto_tune/retune-step/measured-retune-step.png">
+
+  <title>Auto-Tune Retune Speed: What a 3-Semitone Jump Reveals | MusicalBoard Blog</title>
+
+  <script type="application/ld+json">
+  {"@context": "https://schema.org", "@type": "BlogPosting", "headline": "Auto-Tune Retune Speed: What a 3-Semitone Jump Reveals", "description": "A synthetic A3-to-C4 jump compares five Retune speed settings with Strength and Tolerance held fixed. Download the original and corrected WAVs, see the settling times, and learn why the slider is not a simple delay in milliseconds.", "url": "https://www.musicalboard.com/blog/2026-11-20-auto-tune-retune-speed-step-response/", "image": ["https://www.musicalboard.com/blog/assets/auto_tune/retune-step/measured-retune-step.png"], "author": {"@type": "Organization", "name": "MusicalBoard", "url": "https://www.musicalboard.com"}, "publisher": {"@type": "Organization", "name": "MusicalBoard", "logo": {"@type": "ImageObject", "url": "https://www.musicalboard.com/logo.png"}}, "mainEntityOfPage": {"@type": "WebPage", "@id": "https://www.musicalboard.com/blog/2026-11-20-auto-tune-retune-speed-step-response/"}, "datePublished": "2026-11-20", "dateModified": "2026-11-20"}
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Quicksand (nav / SEO / theme), Inter (content), JetBrains Mono (figures) — SIL OFL -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;600;700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <script>
+    (function() {
+      try {
+        if (window.localStorage && localStorage.getItem('mb-sidebar-collapsed') === '1') {
+          document.documentElement.classList.add('mb-sidebar-collapsed-bootstrap');
+        }
+      } catch (_) {
+        // Storage can be unavailable in privacy modes; the app falls back to the default layout.
+      }
+    })();
+  </script>
+
+  <link rel="stylesheet" href="/index-80fd7064dfe1e9a2.css" integrity="sha384-we7EToV2xtepDlctncHiTUQczI6SQIVRLvl1tUCrYZv+b6p33CEIgJl27CHwWWLl"/>
+  
+  
+<script type="module">
+import init, * as bindings from '/musical-mind-58653356a8218435.js';
+const wasm = await init({ module_or_path: '/musical-mind-58653356a8218435_bg.wasm' });
+
+
+window.wasmBindings = bindings;
+
+
+dispatchEvent(new CustomEvent("TrunkApplicationStarted", {detail: {wasm}}));
+
+</script>
+
+  
+  
+  
+  
+  
+  
+  
+  
+
+  <link rel="icon" href="/favicon-f5b0a6244ae522b3.ico" integrity="sha384-vk49OdTw2Y8zo0VMA6kTstQmT2np58P5DtAxu+vhE/ZpXGg425GXffy0ht6NE+i9"/>
+
+  <script>
+      (function() {
+          const redirect = sessionStorage.redirect;
+          delete sessionStorage.redirect;
+          if (redirect && redirect !== window.location.href) {
+              history.replaceState(null, null, redirect);
+          }
+      })();
+  </script>
+  <script>
+    function getTimeZoneOffset() {
+        const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+        const offset = new Date().getTimezoneOffset();
+        return { timeZone, offset };
+    }
+  </script>
+  <!-- Google Analytics: production host only (localhost / 127.0.0.1 / preview URLs excluded). -->
+  <script>
+    (function () {
+      if (!window.__mbProductionSite) return;
+      var gtagJs = document.createElement('script');
+      gtagJs.async = true;
+      gtagJs.src = 'https://www.googletagmanager.com/gtag/js?id=G-M4ZR1QN3WB';
+      document.head.appendChild(gtagJs);
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      window.gtag = gtag;
+      gtag('js', new Date());
+      gtag('config', 'G-M4ZR1QN3WB');
+    })();
+  </script>
+  <!-- AdSense: after WASM mount; production host only. -->
+  <script>
+    (function () {
+      function loadAdSense() {
+        if (!window.__mbProductionSite) return;
+        if (window.__mbAdSenseLoaded) return;
+        window.__mbAdSenseLoaded = true;
+        var s = document.createElement('script');
+        s.async = true;
+        s.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9424100257975478';
+        s.crossOrigin = 'anonymous';
+        document.head.appendChild(s);
+      }
+      window.addEventListener('TrunkApplicationStarted', loadAdSense);
+      if (window.wasmBindings) loadAdSense();
+    })();
+  </script>
+<link rel="modulepreload" href="/musical-mind-58653356a8218435.js" crossorigin="anonymous" integrity="sha384-Zwn/luiB5F3H+nhefLoZbndTcwdJ1vpXjLDIV6p3SZATws1zYoIdGeywL2sWBSnn"><link rel="preload" href="/musical-mind-58653356a8218435_bg.wasm" crossorigin="anonymous" integrity="sha384-VIffsjmA0imt7UaP0B1dqSEX0Ia+zqbVtqvdXB54BGLgopO06E2jH58YWeFAeOnZ" as="fetch" type="application/wasm"></head>
+
+<body><div class="app-layout"><div data-tour="nav-sidebar" class="sidebar"><div class="sidebar-header"><a href="/" class="logo"><img src="/logo.png" alt="MusicalBoard Logo" class="logo-image"><div class="logo-text">MusicalBoard</div></a></div><nav class="sidebar-nav"><div aria-label="Practice tools" class="sidebar-nav-group"><a title="MusicalBoard" href="/" class="nav-item"><span class="nav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="3" width="8" height="10" rx="2" fill="currentColor" opacity="0.95"></rect><rect x="4.5" y="4.5" width="5" height="7" fill="#f8fafc" stroke="#1f2937" stroke-width="0.7"></rect><rect x="13" y="3" width="8" height="5" rx="2" fill="currentColor" opacity="0.82"></rect><rect x="14.5" y="4.5" width="5" height="2" fill="#f8fafc" stroke="#1f2937" stroke-width="0.7"></rect><rect x="3" y="15" width="8" height="6" rx="2" fill="currentColor" opacity="0.82"></rect><rect x="4.5" y="16.5" width="5" height="3" fill="#f8fafc" stroke="#1f2937" stroke-width="0.7"></rect><rect x="13" y="10" width="8" height="11" rx="2" fill="currentColor" opacity="0.95"></rect><rect x="14.5" y="11.5" width="5" height="8" fill="#f8fafc" stroke="#1f2937" stroke-width="0.7"></rect></svg></span><span class="nav-text">MusicalBoard</span></a><a title="Singing recorder — mic, monitor, record, export" href="/singing-recorder/" class="nav-item"><span class="nav-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none"><line x1="4" y1="6" x2="20" y2="6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></line><circle cx="14" cy="6" r="2" fill="currentColor"></circle><line x1="4" y1="12" x2="20" y2="12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></line><circle cx="10" cy="12" r="2" fill="currentColor"></circle><line x1="4" y1="18" x2="20" y2="18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></line><circle cx="7" cy="18" r="2" fill="currentColor"></circle></svg></span><span class="nav-text">Singing recorder</span></a><a title="Vocal pitch monitor — real-time intonation graph" href="/vocal-pitch-monitor/" class="nav-item"><span class="nav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="2.5" stroke="currentColor" stroke-width="1.8"></rect><path d="M7 17V8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path><path d="M7 17H17" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path><path d="M8.5 14.5L11 12L13.2 13.4L16 9.6" stroke="#f8fafc" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"></path><circle cx="11" cy="12" r="1.1" fill="#f8fafc"></circle><circle cx="13.2" cy="13.4" r="1.1" fill="#f8fafc"></circle><circle cx="16" cy="9.6" r="1.1" fill="#f8fafc"></circle></svg></span><span class="nav-text">Pitch monitor</span></a><a title="Vocal range test — intonation map and session score" href="/vocal-range-test/" class="nav-item"><span class="nav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="2.5" y="3.5" width="3" height="17" rx="1.5" fill="currentColor" opacity="0.22"></rect><rect x="6.5" y="3.5" width="3" height="17" rx="1.5" fill="currentColor" opacity="0.38"></rect><rect x="10.5" y="3.5" width="3" height="17" rx="1.5" fill="currentColor" opacity="0.55"></rect><rect x="14.5" y="3.5" width="3" height="17" rx="1.5" fill="currentColor" opacity="0.74"></rect><rect x="18.5" y="3.5" width="3" height="17" rx="1.5" fill="currentColor" opacity="0.95"></rect></svg></span><span class="nav-text">Range test</span></a><a title="Vocal scales — optional pitch feedback" href="/vocal-scales/" class="nav-item"><span class="nav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z" fill="currentColor" opacity="0.94"></path><circle cx="10" cy="17" r="1.5" fill="#f8fafc"></circle></svg></span><span class="nav-text">Vocal scales</span></a><a title="Virtual piano — reference notes and chords" href="/virtual-piano/" class="nav-item"><span class="nav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><rect x="4" y="4" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"></rect><rect x="4" y="4" width="5.33" height="16" fill="#f8fafc" stroke="#1f2937" stroke-width="1"></rect><rect x="9.33" y="4" width="5.33" height="16" fill="#f8fafc" stroke="#1f2937" stroke-width="1"></rect><rect x="14.67" y="4" width="5.33" height="16" fill="#f8fafc" stroke="#1f2937" stroke-width="1"></rect><rect x="7" y="4" width="4" height="10" fill="#111827"></rect><rect x="12.5" y="4" width="4" height="10" fill="#111827"></rect></svg></span><span class="nav-text">Virtual piano</span></a><a title="Online metronome — tap tempo, meters, subdivisions" href="/online-metronome/" class="nav-item"><span class="nav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 20h16L18 17H6L4 20z" fill="currentColor" stroke="currentColor" stroke-width="1.1"></path><path d="M6 17L12 4L18 17" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linejoin="round" stroke-linecap="round"></path><path d="M9 13h6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path><path d="M12 13L16 5" stroke="#f8fafc" stroke-width="1.6" stroke-linecap="round"></path><circle cx="16" cy="5" r="1" stroke="currentColor" stroke-width="1.5" fill="none"></circle><circle cx="16" cy="5" r="0.8" fill="#f8fafc"></circle></svg></span><span class="nav-text">Online metronome</span></a><a title="Vocal Spectrum — vocal frequency analyzer" href="/audio-spectrum-analyzer/" class="nav-item"><span class="nav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="2" y="10" width="1.5" height="4" rx="0.75" fill="currentColor" opacity="0.35"></rect><rect x="4.5" y="8" width="1.5" height="8" rx="0.75" fill="currentColor" opacity="0.5"></rect><rect x="7" y="6" width="1.5" height="12" rx="0.75" fill="currentColor" opacity="0.65"></rect><rect x="9.5" y="4" width="1.5" height="16" rx="0.75" fill="currentColor" opacity="0.8"></rect><rect x="12" y="2" width="1.5" height="20" rx="0.75" fill="currentColor" opacity="0.98"></rect><rect x="14.5" y="4" width="1.5" height="16" rx="0.75" fill="currentColor" opacity="0.8"></rect><rect x="17" y="6" width="1.5" height="12" rx="0.75" fill="currentColor" opacity="0.65"></rect><rect x="19.5" y="8" width="1.5" height="8" rx="0.75" fill="currentColor" opacity="0.5"></rect><rect x="22" y="10" width="1.5" height="4" rx="0.75" fill="currentColor" opacity="0.35"></rect></svg></span><span class="nav-text">Vocal Spectrum</span></a><a title="Auto-Tune — pitch correction while preserving vocal timbre" href="/auto-tune/" class="nav-item"><span class="nav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><line x1="6" y1="3" x2="6" y2="21" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" opacity="0.55"></line><line x1="12" y1="3" x2="12" y2="21" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" opacity="0.55"></line><line x1="18" y1="3" x2="18" y2="21" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" opacity="0.55"></line><rect x="3" y="7" width="6" height="3" rx="1.4" fill="currentColor"></rect><rect x="9" y="13" width="6" height="3" rx="1.4" fill="currentColor"></rect><rect x="15" y="9" width="6" height="3" rx="1.4" fill="currentColor"></rect></svg></span><span class="nav-text">Auto-Tune</span></a><a title="Vocal Isolator — extract the vocal or the instrumental from a mix, or reduce room noise" href="/vocal-isolation/" class="nav-item"><span class="nav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="9" y="2" width="6" height="11" rx="3" stroke="currentColor" stroke-width="1.7"></rect><path d="M5 10a7 7 0 0 0 14 0" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"></path><line x1="12" y1="17" x2="12" y2="20" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"></line><line x1="9" y1="20" x2="15" y2="20" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"></line></svg></span><span class="nav-text">Vocal Isolator</span></a><a title="Mic Room Diagnostics — 3-step recording quality check" href="/mic-room-diagnostics/" class="nav-item"><span class="nav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="9" y="2" width="6" height="11" rx="3" stroke="currentColor" stroke-width="1.7"></rect><path d="M5 10a7 7 0 0 0 14 0" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"></path><line x1="12" y1="17" x2="12" y2="20" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"></line><line x1="9" y1="20" x2="15" y2="20" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"></line><circle cx="18.5" cy="18.5" r="4" fill="currentColor" opacity="0.85"></circle><path d="M16.5 18.5l1.5 1.5 2.5-2.5" stroke="#f8fafc" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path></svg></span><span class="nav-text">Mic Diagnostics</span></a><a title="Sight singing — match a played note and see your cents" href="/sight-singing/" class="nav-item"><span class="nav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z" fill="currentColor" opacity="0.94"></path><circle cx="10" cy="17" r="1.5" fill="#f8fafc"></circle><circle cx="18.5" cy="18.5" r="4" fill="currentColor" opacity="0.85"></circle><path d="M16.5 18.5l1.5 1.5 2.5-2.5" stroke="#f8fafc" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path></svg></span><span class="nav-text">Sight singing</span></a></div><hr class="sidebar-nav-divider"><div aria-label="Blog" class="sidebar-nav-group sidebar-nav-group--blog"><a title="Blog" href="/blog/" aria-current="page" class="nav-item active"><span class="nav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M7 3h10a2 2 0 0 1 2 2v16l-4-2-4 2-4-2-4 2V5a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round"></path><path d="M8 8h8M8 12h8M8 16h5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg></span><span class="nav-text">Blog</span></a></div></nav><div class="sidebar-footer-legal"><a href="/about/" class="sidebar-legal-link">About</a><a href="/privacy/" class="sidebar-legal-link">Privacy</a><a href="/terms/" class="sidebar-legal-link">Terms</a><a href="/contact/" class="sidebar-legal-link">Contact</a></div></div><button type="button" title="Collapse sidebar" aria-label="Collapse navigation sidebar" aria-expanded="true" class="sidebar-edge-toggle"><span aria-hidden="true" class="sidebar-edge-toggle-glyph">«</span></button><div id="app-main-content" class="main-content"><div class="top-header-container"><div class="top-header"><div class="header-left"><button type="button" data-tour="nav-menu" aria-label="Open navigation menu" aria-expanded="false" class="mobile-menu-btn"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="menu-icon-svg"><line x1="4" y1="6" x2="20" y2="6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" class="menu-bar menu-bar--top"></line><line x1="4" y1="12" x2="20" y2="12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" class="menu-bar menu-bar--mid"></line><line x1="4" y1="18" x2="20" y2="18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" class="menu-bar menu-bar--bot"></line></svg></button><p class="page-title">Auto-Tune Retune Speed: What a 3-Semitone Jump Reveals | MusicalBoard</p></div><div class="header-right"></div></div></div><main class="content-area no-min-width"><div class="detail-page mb-blog-page"><div class="mb-blog-inner mb-blog-article-wrap"><nav aria-label="Breadcrumb" class="mb-blog-breadcrumb"><a href="/blog/">Blog</a><span aria-hidden="true" class="mb-blog-bc-sep">/</span><span>Auto-Tune Retune Speed: What a 3-Semitone Jump Reveals</span></nav><header class="mb-blog-article-header"><h1 class="mb-blog-article-title">Auto-Tune Retune Speed: What a 3-Semitone Jump Reveals</h1><p class="mb-blog-article-date">20 November 2026</p><p class="mb-blog-article-excerpt">A synthetic A3-to-C4 jump compares five Retune speed settings with Strength and Tolerance held fixed. Download the original and corrected WAVs, see the settling times, and learn why the slider is not a simple delay in milliseconds.</p><div class="mb-blog-article-tags"><a href="/auto-tune/" class="mb-blog-article-tag">Auto Tune</a></div></header><article class="musicalboard-prose mb-blog-article-body"><p><strong>Auto-Tune retune speed</strong> affects how pitch movement is corrected. A three-semitone jump shows why the slider cannot be read as a delay in milliseconds.</p>
+<p>We made a tone that jumps from A3 to C4, with both notes 35 cents sharp, and processed it at five Retune speed settings. With Strength at 100% and Tolerance at 0 cents, the measured output settled within ±10 cents of C4 after about 19 ms at Retune 0%, 211 ms at 55%, and 1,235 ms at 100%. At slower settings, the correction also changed before the jump.</p>
+<p><a href="/auto-tune/">Auto-Tune</a> works on a loaded recording and chooses targets from a scale. It does not know the melody you intended, and the Retune speed percentage is not a live monitoring latency setting. These results come from a native reproduction of the current Rust DSP pipeline, including pitch detection and audio resynthesis. We measured the generated WAVs; we did not measure the browser interface or its processing time.</p>
+<h2>Why a pitch jump alone is not enough</h2>
+<p>A3 is 220 Hz and C4 is about 261.626 Hz. Their ratio is <code>2^(3/12)</code>, making the interval three semitones, or 300 cents.</p>
+<p>If both notes already belong to the selected scale, a jump does not inherently require correction. To give the processor a clear tuning error on both sides, the main file adds 35 cents to each note. Its pitch is therefore +35 cents relative to A3 before the jump and +335 cents afterward. The desired note centers are 0 and +300 cents on that same axis.</p>
+<p>That separates two quantities: <strong>the melody moves by 300 cents, while the steady tuning error is 35 cents</strong>. A table calling the measured settling time “time to shift by three semitones” would confuse them.</p>
+<p>We also included a control that jumps between exact A3 and C4. It checks whether a slow setting can affect a transition even when the sustained input notes are already correct. It can, as the results below show. The earlier <a href="/blog/2026-10-17-auto-tune-synthetic-tone-before-after/">35-cent sustained-tone experiment</a> asks what happens to a steady offset; this test asks what happens around a note change.</p>
+<h2>The files and processing conditions</h2>
+<p>Both inputs are six-second, 48 kHz, mono, 16-bit PCM WAVs. The pitch changes at exactly 3.000 seconds. Oscillator phase stays continuous across the change; there is no silence or amplitude envelope reset there. Each file has 20 ms fades at its outer edges and a sample peak near −6.02 dBFS. There is no noise, accompaniment, or vibrato.</p>
+<p>For every main comparison, we used <strong>Key A, Scale Natural Minor, Strength 100%, Tolerance 0 cents</strong>. Only Retune speed changed: 0%, 25%, 55%, 80%, and 100%. A natural minor contains A, B, and C, so an intermediate pitch candidate can select B while the smoothed center crosses between A and C. The target is determined by the algorithm, not a supplied two-note score.</p>
+<p>The runner extracts the DSP helpers and target-building block from <code>src/tools/auto_tune.rs</code>. It makes the YIN and TD-PSOLA helpers synchronous and removes browser progress, cancellation, and scheduling hooks. The pitch calculations and synthesis operations remain those of the checkout. Browser audio decoding is replaced by reading the supplied PCM WAV.</p>
+<p>At 48 kHz, the analysis path downsamples by four to 12 kHz. YIN uses 512 analysis samples per window and a 128-sample hop: 42.67 ms windows spaced 10.67 ms apart. The pipeline repairs octave outliers, applies a narrow median filter, builds the target contour, and resynthesizes the audio with TD-PSOLA. We then encode PCM16 and run the same cleaned YIN analysis on that downloadable output. The table describes <strong>pitch measured from the corrected audio</strong>, rather than just the requested target curve.</p>
+<p>The <a href="https://doi.org/10.1121/1.1458024">YIN paper</a> describes the estimator family; <a href="https://en.wikipedia.org/wiki/PSOLA">PSOLA</a> explains the pitch-synchronous overlap-add approach. Neither source guarantees these particular results for another implementation.</p>
+<h2>What the Retune speed percentage controls</h2>
+<p>In this implementation, 0% disables smoothing of the pitch center. Higher percentages make that center smoother over a longer interval. The mapping for nonzero settings is:</p>
+<p><code>time constant in ms = 10 × 50^(Retune speed / 100)</code></p>
+<p>The corresponding smoothing coefficient depends on the analysis hop. A 100% setting gives a 500 ms time constant; 55% gives about 86 ms. These are internal filter parameters, not promises that an output note will arrive after exactly that many milliseconds. <a href="https://en.wikipedia.org/wiki/Exponential_smoothing">Exponential smoothing</a> provides background on how such coefficients work.</p>
+<p>The processor smooths forward and backward over each voiced segment. It corrects that slow center toward a held scale note, then adds back the difference between the detected pitch and the smoothed center. That difference contains vibrato and short ornaments, but it can also contain part of an abrupt note change.</p>
+<p>A held scale note changes only when another note becomes closer by more than the 40-cent hold margin. After building the targets, the pipeline also limits changes in the requested correction to 1,100 cents per second. This limit applies even at Retune 0%. An instantaneous center snap therefore does not guarantee an instantaneous, perfectly measured audio transition.</p>
+<h2>Measured settling times for the 35-cent-sharp jump</h2>
+<p>We call the output <strong>settled</strong> at the first frame after the jump for which that frame and every remaining frame through 5.5 seconds are voiced and within ±10 cents of C4. A brief crossing into the band does not qualify. The last column uses the plateau from 4.5 to 5.5 seconds.</p>
+<table><thead><tr><th>Retune speed</th><th style="text-align: right">Internal time constant</th><th style="text-align: right">Measured settling time after the jump</th><th style="text-align: right">Median late error from C4</th></tr></thead><tbody>
+<tr><td>0%</td><td style="text-align: right">Smoothing disabled</td><td style="text-align: right">19 ms</td><td style="text-align: right">−1.94 cents</td></tr>
+<tr><td>25%</td><td style="text-align: right">26.6 ms</td><td style="text-align: right">40 ms</td><td style="text-align: right">−1.94 cents</td></tr>
+<tr><td>55%</td><td style="text-align: right">86.0 ms</td><td style="text-align: right">211 ms</td><td style="text-align: right">−1.93 cents</td></tr>
+<tr><td>80%</td><td style="text-align: right">228.7 ms</td><td style="text-align: right">563 ms</td><td style="text-align: right">−1.93 cents</td></tr>
+<tr><td>100%</td><td style="text-align: right">500.0 ms</td><td style="text-align: right">1,235 ms</td><td style="text-align: right">−0.47 cents</td></tr>
+</tbody></table>
+<p>Times are rounded from a 10.67 ms analysis grid. They include the behavior of pitch estimation, target selection, synthesis, and output measurement. They are not estimates of playback delay, Apply-button processing duration, or a universal response time for singing.</p>
+<!-- Image: measured corrected-audio pitch and the requested correction around the synthetic A3-to-C4 jump. Native DSP experiment, not an Auto-Tune roadmap screenshot. -->
+<p class="mb-blog-image">
+  <img src="/blog/assets/auto_tune/retune-step/measured-retune-step.png" alt="Corrected WAV pitch and requested correction around a three-semitone A3-to-C4 jump, comparing Retune speed 0, 25, 55, 80, and 100 percent">
+</p>
+<p align="center">
+  <em>Top: pitch measured from the corrected WAVs; the dashed line is the known input and the horizontal reference at 300 cents is C4. Bottom: correction requested by the target contour. The vertical line marks the input jump at 3 seconds.</em>
+</p>
+<h2>Why slower correction can change the preceding note</h2>
+<p>The slow curves do not simply trace a smooth climb to C4. They bend, briefly land elsewhere, and can move before 3 seconds. Forward/backward smoothing uses samples from both sides of the transition when estimating the center. That is possible in an offline recording processor, but it makes a simple causal delay model misleading.</p>
+<p>The residual pitch movement is added back around the selected scale note. As the smoothed center passes intermediate scale targets, the held note can change, causing another adjustment. The correction slew limit spreads those adjustments over subsequent frames. Together, these operations explain why the output can overshoot or dip before finally settling.</p>
+<p>In the exact-note control, Retune 0% settled after about 19 ms, while 100% settled after about 1,192 ms. The latter also changed the pitch before the jump despite both input plateaus being on scale notes. A slow setting is therefore not a guarantee that every already-correct transition stays untouched. This does not show that sustained correct notes always move; it shows what happened around this continuous, abrupt transition under these settings.</p>
+<p>The main test used maximum Strength and zero Tolerance to expose the behavior. It does not establish the same settling times for Gentle, Natural, or Moderate presets, which change several settings together.</p>
+<h2>Listen to the same transition at five speeds</h2>
+<p>Begin at a low volume. Compare a short section spanning both sides of the three-second mark, then listen to the late C4 plateau.</p>
+<p>
+<a href="/blog/assets/auto_tune/retune-step/step-a3-c4-plus35c.wav" download="step-a3-c4-plus35c.wav">Original, 35 cents sharp</a> ·
+<a href="/blog/assets/auto_tune/retune-step/step-a3-c4-plus35c-retune-0.wav" download="step-a3-c4-plus35c-retune-0.wav">Retune 0%</a> ·
+<a href="/blog/assets/auto_tune/retune-step/step-a3-c4-plus35c-retune-25.wav" download="step-a3-c4-plus35c-retune-25.wav">Retune 25%</a> ·
+<a href="/blog/assets/auto_tune/retune-step/step-a3-c4-plus35c-retune-55.wav" download="step-a3-c4-plus35c-retune-55.wav">Retune 55%</a> ·
+<a href="/blog/assets/auto_tune/retune-step/step-a3-c4-plus35c-retune-80.wav" download="step-a3-c4-plus35c-retune-80.wav">Retune 80%</a> ·
+<a href="/blog/assets/auto_tune/retune-step/step-a3-c4-plus35c-retune-100.wav" download="step-a3-c4-plus35c-retune-100.wav">Retune 100%</a>
+</p>
+<p>
+<a href="/blog/assets/auto_tune/retune-step/step-a3-c4-on-note.wav" download="step-a3-c4-on-note.wav">Exact-note control</a> ·
+<a href="/blog/assets/auto_tune/retune-step/step-a3-c4-on-note-retune-0.wav" download="step-a3-c4-on-note-retune-0.wav">Control at 0%</a> ·
+<a href="/blog/assets/auto_tune/retune-step/step-a3-c4-on-note-retune-100.wav" download="step-a3-c4-on-note-retune-100.wav">Control at 100%</a>
+</p>
+<p>The <a href="/blog/assets/auto_tune/retune-step/results.json">results JSON</a> records source pitches, smoothed centers, requested targets, measured output pitches, settings, metrics, and hashes. To repeat one correction without the browser, save the <a href="/blog/assets/auto_tune/retune-step/native-reproduction.rs">native runner</a>, <a href="/blog/assets/auto_tune/retune-step/Cargo.toml">Cargo.toml</a>, and <a href="/blog/assets/auto_tune/retune-step/Cargo.lock">Cargo.lock</a> beside the input WAV. With Rust and Cargo installed, run:</p>
+<pre><code class="language-bash">cargo run --release --locked -- step-a3-c4-plus35c.wav 55 repeated-retune-55.wav
+</code></pre>
+<p>The runner prints frame time, source Hz, smoothed-center MIDI, target Hz, and measured output Hz. It supports these 48 kHz mono PCM16 files with 44-byte headers. To regenerate both experiments and plots from a checkout, use <code>python3 scripts/make_vibrato_retune_fixtures.py</code>; NumPy and Matplotlib are also required. Source and runner hashes identify the DSP version tested here.</p>
+<h2>Choosing a setting for a real phrase</h2>
+<p>Load the sharp input into <a href="/auto-tune/">Auto-Tune</a>, set A Natural Minor, Strength 100%, and Tolerance 0, and compare 0%, 55%, and 100%. Use <strong>Apply Again</strong> to process the original at each setting. The roadmap measures the corrected audio, so compare it with both the requested contour in the JSON and what you hear.</p>
+<p>For your own pop phrase, keep Strength and Tolerance fixed while changing Retune speed. Listen around the approach to a note, not only its middle. A slower setting may preserve a useful scoop or vibrato, but it can also disturb a short transition. A faster setting may suit one phrase and remove an ornament you wanted in another.</p>
+<p>The <a href="/blog/2026-11-15-known-vibrato-rate-extent-test/">known-vibrato experiment</a> helps distinguish pitch-trace measurement errors from actual movement. For practice feedback, listen to the original recording as well as the corrected one: a changed curve does not by itself diagnose a singing problem.</p>
+<h2>Where this experiment stops</h2>
+<p>A continuous sine wave with an abrupt jump is a controlled stress test. It has no consonant boundary, breath, changing harmonics, or expressive timing. A gap between notes would divide the voiced segments and could change the smoothing behavior. We tested one upward interval, one key and scale, and one level; downward jumps, other intervals, and other settings need their own measurements.</p>
+<p>Browser decoding may also resample the file, and this native run excludes browser scheduling and playback. The late error of a few cents includes synthesis and pitch-estimator behavior, so it should not be treated as an audible quality grade.</p>
+<p>What the comparison gives you is a concrete reason to audition transitions. In this implementation, moving Retune speed upward extends the smoothing interval and changes how short movement is retained. The result can include changes before the note boundary and a longer settling period afterward. Keep the same phrase and the other sliders fixed, compare both sides of the change, and choose by the recording you hear.</p>
+</article><p class="mb-blog-back-wrap"><a href="/blog/" class="mb-blog-back-link">← All posts</a></p></div></div></main></div></div></body>
+
+</html>

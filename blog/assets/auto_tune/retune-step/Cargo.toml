@@ -1,0 +1,9 @@
+[package]
+name = "retune-reproduction"
+version = "0.1.0"
+edition = "2021"
+[[bin]]
+name = "retune-reproduction"
+path = "native-reproduction.rs"
+[dependencies]
+rustfft = "=6.4.1"
