@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <script>
+    (function () {
+      function normalizedHost() {
+        var h = (location.hostname || '').toLowerCase();
+        if (h.length >= 2 && h.charAt(0) === '[' && h.charAt(h.length - 1) === ']') {
+          h = h.slice(1, -1);
+        }
+        return h;
+      }
+      var allowed = ['www.musicalboard.com', 'musicalboard.com'];
+      window.__mbProductionSite = allowed.indexOf(normalizedHost()) !== -1;
+    })();
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="google-site-verification" content="upoLjXjQ2igKXqJvnMon0CITWtN_Fjtiw4op30hdABg" />
+  <meta name="naver-site-verification" content="d4fa849a857dbdd47ed953b9cd1fb94a22b8164d" />
+  <meta name="yandex-verification" content="31b35f617f4d02c2" />
+  <meta name="robots" content="index, follow">
+
+  <link rel="canonical" href="https://www.musicalboard.com/blog/2026-11-23-quiet-room-clap-test-decay/">
+
+  <meta name="description" content="A −50 dBFS noise level can pass the room check while a weak clap produces an 8,000 ms decay estimate. Reproduce the calculation with downloadable level curves, compare noise-floor and timing effects, and learn when a long number needs a retry rather than an acoustic diagnosis.">
+  <meta name="keywords" content="MusicalBoard blog, vocal intonation, singing pitch, ear training, browser vocal tools, practice tips for singers">
+  <meta name="author" content="MusicalBoard">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="MusicalBoard">
+  <meta property="og:url" content="https://www.musicalboard.com/blog/2026-11-23-quiet-room-clap-test-decay/">
+  <meta property="og:title" content="Why a Quiet Room Can Still Fail the Clap Test | MusicalBoard Blog">
+  <meta property="og:description" content="A −50 dBFS noise level can pass the room check while a weak clap produces an 8,000 ms decay estimate. Reproduce the calculation with downloadable level curves, compare noise-floor and timing effects, and learn when a long number needs a retry rather than an acoustic diagnosis.">
+  <meta property="og:image" content="https://www.musicalboard.com/blog/assets/mic_room_diagnostics/clap-decay/quiet-floor-clap-margin.png">
+  <meta property="og:image:height" content="607">
+  <meta property="og:image:width" content="607">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Why a Quiet Room Can Still Fail the Clap Test | MusicalBoard Blog">
+  <meta name="twitter:description" content="A −50 dBFS noise level can pass the room check while a weak clap produces an 8,000 ms decay estimate. Reproduce the calculation with downloadable level curves, compare noise-floor and timing effects, and learn when a long number needs a retry rather than an acoustic diagnosis.">
+  <meta name="twitter:image" content="https://www.musicalboard.com/blog/assets/mic_room_diagnostics/clap-decay/quiet-floor-clap-margin.png">
+
+  <title>Why a Quiet Room Can Still Fail the Clap Test | MusicalBoard Blog</title>
+
+  <script type="application/ld+json">
+  {"@context": "https://schema.org", "@type": "BlogPosting", "headline": "Why a Quiet Room Can Still Fail the Clap Test", "description": "A −50 dBFS noise level can pass the room check while a weak clap produces an 8,000 ms decay estimate. Reproduce the calculation with downloadable level curves, compare noise-floor and timing effects, and learn when a long number needs a retry rather than an acoustic diagnosis.", "url": "https://www.musicalboard.com/blog/2026-11-23-quiet-room-clap-test-decay/", "image": ["https://www.musicalboard.com/blog/assets/mic_room_diagnostics/clap-decay/quiet-floor-clap-margin.png", "https://www.musicalboard.com/blog/assets/mic_room_diagnostics/clap-decay/sampling-and-two-slope.png"], "author": {"@type": "Organization", "name": "MusicalBoard", "url": "https://www.musicalboard.com"}, "publisher": {"@type": "Organization", "name": "MusicalBoard", "logo": {"@type": "ImageObject", "url": "https://www.musicalboard.com/logo.png"}}, "mainEntityOfPage": {"@type": "WebPage", "@id": "https://www.musicalboard.com/blog/2026-11-23-quiet-room-clap-test-decay/"}, "datePublished": "2026-11-23", "dateModified": "2026-11-23"}
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Quicksand (nav / SEO / theme), Inter (content), JetBrains Mono (figures) — SIL OFL -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;600;700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <script>
+    (function() {
+      try {
+        if (window.localStorage && localStorage.getItem('mb-sidebar-collapsed') === '1') {
+          document.documentElement.classList.add('mb-sidebar-collapsed-bootstrap');
+        }
+      } catch (_) {
+        // Storage can be unavailable in privacy modes; the app falls back to the default layout.
+      }
+    })();
+  </script>
+
+  <link rel="stylesheet" href="/index-80fd7064dfe1e9a2.css" integrity="sha384-we7EToV2xtepDlctncHiTUQczI6SQIVRLvl1tUCrYZv+b6p33CEIgJl27CHwWWLl"/>
+  
+  
+<script type="module">
+import init, * as bindings from '/musical-mind-58653356a8218435.js';
+const wasm = await init({ module_or_path: '/musical-mind-58653356a8218435_bg.wasm' });
+
+
+window.wasmBindings = bindings;
+
+
+dispatchEvent(new CustomEvent("TrunkApplicationStarted", {detail: {wasm}}));
+
+</script>
+
+  
+  
+  
+  
+  
+  
+  
+  
+
+  <link rel="icon" href="/favicon-f5b0a6244ae522b3.ico" integrity="sha384-vk49OdTw2Y8zo0VMA6kTstQmT2np58P5DtAxu+vhE/ZpXGg425GXffy0ht6NE+i9"/>
+
+  <script>
+      (function() {
+          const redirect = sessionStorage.redirect;
+          delete sessionStorage.redirect;
+          if (redirect && redirect !== window.location.href) {
+              history.replaceState(null, null, redirect);
+          }
+      })();
+  </script>
+  <script>
+    function getTimeZoneOffset() {
+        const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+        const offset = new Date().getTimezoneOffset();
+        return { timeZone, offset };
+    }
+  </script>
+  <!-- Google Analytics: production host only (localhost / 127.0.0.1 / preview URLs excluded). -->
+  <script>
+    (function () {
+      if (!window.__mbProductionSite) return;
+      var gtagJs = document.createElement('script');
+      gtagJs.async = true;
+      gtagJs.src = 'https://www.googletagmanager.com/gtag/js?id=G-M4ZR1QN3WB';
+      document.head.appendChild(gtagJs);
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      window.gtag = gtag;
+      gtag('js', new Date());
+      gtag('config', 'G-M4ZR1QN3WB');
+    })();
+  </script>
+  <!-- AdSense: after WASM mount; production host only. -->
+  <script>
+    (function () {
+      function loadAdSense() {
+        if (!window.__mbProductionSite) return;
+        if (window.__mbAdSenseLoaded) return;
+        window.__mbAdSenseLoaded = true;
+        var s = document.createElement('script');
+        s.async = true;
+        s.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9424100257975478';
+        s.crossOrigin = 'anonymous';
+        document.head.appendChild(s);
+      }
+      window.addEventListener('TrunkApplicationStarted', loadAdSense);
+      if (window.wasmBindings) loadAdSense();
+    })();
+  </script>
+<link rel="modulepreload" href="/musical-mind-58653356a8218435.js" crossorigin="anonymous" integrity="sha384-Zwn/luiB5F3H+nhefLoZbndTcwdJ1vpXjLDIV6p3SZATws1zYoIdGeywL2sWBSnn"><link rel="preload" href="/musical-mind-58653356a8218435_bg.wasm" crossorigin="anonymous" integrity="sha384-VIffsjmA0imt7UaP0B1dqSEX0Ia+zqbVtqvdXB54BGLgopO06E2jH58YWeFAeOnZ" as="fetch" type="application/wasm"></head>
+
+<body><div class="app-layout"><div data-tour="nav-sidebar" class="sidebar"><div class="sidebar-header"><a href="/" class="logo"><img src="/logo.png" alt="MusicalBoard Logo" class="logo-image"><div class="logo-text">MusicalBoard</div></a></div><nav class="sidebar-nav"><div aria-label="Practice tools" class="sidebar-nav-group"><a title="MusicalBoard" href="/" class="nav-item"><span class="nav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="3" width="8" height="10" rx="2" fill="currentColor" opacity="0.95"></rect><rect x="4.5" y="4.5" width="5" height="7" fill="#f8fafc" stroke="#1f2937" stroke-width="0.7"></rect><rect x="13" y="3" width="8" height="5" rx="2" fill="currentColor" opacity="0.82"></rect><rect x="14.5" y="4.5" width="5" height="2" fill="#f8fafc" stroke="#1f2937" stroke-width="0.7"></rect><rect x="3" y="15" width="8" height="6" rx="2" fill="currentColor" opacity="0.82"></rect><rect x="4.5" y="16.5" width="5" height="3" fill="#f8fafc" stroke="#1f2937" stroke-width="0.7"></rect><rect x="13" y="10" width="8" height="11" rx="2" fill="currentColor" opacity="0.95"></rect><rect x="14.5" y="11.5" width="5" height="8" fill="#f8fafc" stroke="#1f2937" stroke-width="0.7"></rect></svg></span><span class="nav-text">MusicalBoard</span></a><a title="Singing recorder — mic, monitor, record, export" href="/singing-recorder/" class="nav-item"><span class="nav-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none"><line x1="4" y1="6" x2="20" y2="6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></line><circle cx="14" cy="6" r="2" fill="currentColor"></circle><line x1="4" y1="12" x2="20" y2="12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></line><circle cx="10" cy="12" r="2" fill="currentColor"></circle><line x1="4" y1="18" x2="20" y2="18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></line><circle cx="7" cy="18" r="2" fill="currentColor"></circle></svg></span><span class="nav-text">Singing recorder</span></a><a title="Vocal pitch monitor — real-time intonation graph" href="/vocal-pitch-monitor/" class="nav-item"><span class="nav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="2.5" stroke="currentColor" stroke-width="1.8"></rect><path d="M7 17V8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path><path d="M7 17H17" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path><path d="M8.5 14.5L11 12L13.2 13.4L16 9.6" stroke="#f8fafc" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"></path><circle cx="11" cy="12" r="1.1" fill="#f8fafc"></circle><circle cx="13.2" cy="13.4" r="1.1" fill="#f8fafc"></circle><circle cx="16" cy="9.6" r="1.1" fill="#f8fafc"></circle></svg></span><span class="nav-text">Pitch monitor</span></a><a title="Vocal range test — intonation map and session score" href="/vocal-range-test/" class="nav-item"><span class="nav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="2.5" y="3.5" width="3" height="17" rx="1.5" fill="currentColor" opacity="0.22"></rect><rect x="6.5" y="3.5" width="3" height="17" rx="1.5" fill="currentColor" opacity="0.38"></rect><rect x="10.5" y="3.5" width="3" height="17" rx="1.5" fill="currentColor" opacity="0.55"></rect><rect x="14.5" y="3.5" width="3" height="17" rx="1.5" fill="currentColor" opacity="0.74"></rect><rect x="18.5" y="3.5" width="3" height="17" rx="1.5" fill="currentColor" opacity="0.95"></rect></svg></span><span class="nav-text">Range test</span></a><a title="Vocal scales — optional pitch feedback" href="/vocal-scales/" class="nav-item"><span class="nav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z" fill="currentColor" opacity="0.94"></path><circle cx="10" cy="17" r="1.5" fill="#f8fafc"></circle></svg></span><span class="nav-text">Vocal scales</span></a><a title="Virtual piano — reference notes and chords" href="/virtual-piano/" class="nav-item"><span class="nav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><rect x="4" y="4" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"></rect><rect x="4" y="4" width="5.33" height="16" fill="#f8fafc" stroke="#1f2937" stroke-width="1"></rect><rect x="9.33" y="4" width="5.33" height="16" fill="#f8fafc" stroke="#1f2937" stroke-width="1"></rect><rect x="14.67" y="4" width="5.33" height="16" fill="#f8fafc" stroke="#1f2937" stroke-width="1"></rect><rect x="7" y="4" width="4" height="10" fill="#111827"></rect><rect x="12.5" y="4" width="4" height="10" fill="#111827"></rect></svg></span><span class="nav-text">Virtual piano</span></a><a title="Online metronome — tap tempo, meters, subdivisions" href="/online-metronome/" class="nav-item"><span class="nav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 20h16L18 17H6L4 20z" fill="currentColor" stroke="currentColor" stroke-width="1.1"></path><path d="M6 17L12 4L18 17" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linejoin="round" stroke-linecap="round"></path><path d="M9 13h6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path><path d="M12 13L16 5" stroke="#f8fafc" stroke-width="1.6" stroke-linecap="round"></path><circle cx="16" cy="5" r="1" stroke="currentColor" stroke-width="1.5" fill="none"></circle><circle cx="16" cy="5" r="0.8" fill="#f8fafc"></circle></svg></span><span class="nav-text">Online metronome</span></a><a title="Vocal Spectrum — vocal frequency analyzer" href="/audio-spectrum-analyzer/" class="nav-item"><span class="nav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="2" y="10" width="1.5" height="4" rx="0.75" fill="currentColor" opacity="0.35"></rect><rect x="4.5" y="8" width="1.5" height="8" rx="0.75" fill="currentColor" opacity="0.5"></rect><rect x="7" y="6" width="1.5" height="12" rx="0.75" fill="currentColor" opacity="0.65"></rect><rect x="9.5" y="4" width="1.5" height="16" rx="0.75" fill="currentColor" opacity="0.8"></rect><rect x="12" y="2" width="1.5" height="20" rx="0.75" fill="currentColor" opacity="0.98"></rect><rect x="14.5" y="4" width="1.5" height="16" rx="0.75" fill="currentColor" opacity="0.8"></rect><rect x="17" y="6" width="1.5" height="12" rx="0.75" fill="currentColor" opacity="0.65"></rect><rect x="19.5" y="8" width="1.5" height="8" rx="0.75" fill="currentColor" opacity="0.5"></rect><rect x="22" y="10" width="1.5" height="4" rx="0.75" fill="currentColor" opacity="0.35"></rect></svg></span><span class="nav-text">Vocal Spectrum</span></a><a title="Auto-Tune — pitch correction while preserving vocal timbre" href="/auto-tune/" class="nav-item"><span class="nav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><line x1="6" y1="3" x2="6" y2="21" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" opacity="0.55"></line><line x1="12" y1="3" x2="12" y2="21" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" opacity="0.55"></line><line x1="18" y1="3" x2="18" y2="21" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" opacity="0.55"></line><rect x="3" y="7" width="6" height="3" rx="1.4" fill="currentColor"></rect><rect x="9" y="13" width="6" height="3" rx="1.4" fill="currentColor"></rect><rect x="15" y="9" width="6" height="3" rx="1.4" fill="currentColor"></rect></svg></span><span class="nav-text">Auto-Tune</span></a><a title="Vocal Isolator — extract the vocal or the instrumental from a mix, or reduce room noise" href="/vocal-isolation/" class="nav-item"><span class="nav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="9" y="2" width="6" height="11" rx="3" stroke="currentColor" stroke-width="1.7"></rect><path d="M5 10a7 7 0 0 0 14 0" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"></path><line x1="12" y1="17" x2="12" y2="20" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"></line><line x1="9" y1="20" x2="15" y2="20" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"></line></svg></span><span class="nav-text">Vocal Isolator</span></a><a title="Mic Room Diagnostics — 3-step recording quality check" href="/mic-room-diagnostics/" class="nav-item"><span class="nav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="9" y="2" width="6" height="11" rx="3" stroke="currentColor" stroke-width="1.7"></rect><path d="M5 10a7 7 0 0 0 14 0" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"></path><line x1="12" y1="17" x2="12" y2="20" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"></line><line x1="9" y1="20" x2="15" y2="20" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"></line><circle cx="18.5" cy="18.5" r="4" fill="currentColor" opacity="0.85"></circle><path d="M16.5 18.5l1.5 1.5 2.5-2.5" stroke="#f8fafc" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path></svg></span><span class="nav-text">Mic Diagnostics</span></a><a title="Sight singing — match a played note and see your cents" href="/sight-singing/" class="nav-item"><span class="nav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z" fill="currentColor" opacity="0.94"></path><circle cx="10" cy="17" r="1.5" fill="#f8fafc"></circle><circle cx="18.5" cy="18.5" r="4" fill="currentColor" opacity="0.85"></circle><path d="M16.5 18.5l1.5 1.5 2.5-2.5" stroke="#f8fafc" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path></svg></span><span class="nav-text">Sight singing</span></a></div><hr class="sidebar-nav-divider"><div aria-label="Blog" class="sidebar-nav-group sidebar-nav-group--blog"><a title="Blog" href="/blog/" aria-current="page" class="nav-item active"><span class="nav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M7 3h10a2 2 0 0 1 2 2v16l-4-2-4 2-4-2-4 2V5a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round"></path><path d="M8 8h8M8 12h8M8 16h5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg></span><span class="nav-text">Blog</span></a></div></nav><div class="sidebar-footer-legal"><a href="/about/" class="sidebar-legal-link">About</a><a href="/privacy/" class="sidebar-legal-link">Privacy</a><a href="/terms/" class="sidebar-legal-link">Terms</a><a href="/contact/" class="sidebar-legal-link">Contact</a></div></div><button type="button" title="Collapse sidebar" aria-label="Collapse navigation sidebar" aria-expanded="true" class="sidebar-edge-toggle"><span aria-hidden="true" class="sidebar-edge-toggle-glyph">«</span></button><div id="app-main-content" class="main-content"><div class="top-header-container"><div class="top-header"><div class="header-left"><button type="button" data-tour="nav-menu" aria-label="Open navigation menu" aria-expanded="false" class="mobile-menu-btn"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="menu-icon-svg"><line x1="4" y1="6" x2="20" y2="6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" class="menu-bar menu-bar--top"></line><line x1="4" y1="12" x2="20" y2="12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" class="menu-bar menu-bar--mid"></line><line x1="4" y1="18" x2="20" y2="18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" class="menu-bar menu-bar--bot"></line></svg></button><p class="page-title">Why a Quiet Room Can Still Fail the Clap Test | MusicalBoard</p></div><div class="header-right"></div></div></div><main class="content-area no-min-width"><div class="detail-page mb-blog-page"><div class="mb-blog-inner mb-blog-article-wrap"><nav aria-label="Breadcrumb" class="mb-blog-breadcrumb"><a href="/blog/">Blog</a><span aria-hidden="true" class="mb-blog-bc-sep">/</span><span>Why a Quiet Room Can Still Fail the Clap Test</span></nav><header class="mb-blog-article-header"><h1 class="mb-blog-article-title">Why a Quiet Room Can Still Fail the Clap Test</h1><p class="mb-blog-article-date">23 November 2026</p><p class="mb-blog-article-excerpt">A −50 dBFS noise level can pass the room check while a weak clap produces an 8,000 ms decay estimate. Reproduce the calculation with downloadable level curves, compare noise-floor and timing effects, and learn when a long number needs a retry rather than an acoustic diagnosis.</p><div class="mb-blog-article-tags"><a href="/mic-room-diagnostics/" class="mb-blog-article-tag">Mic Room Diagnostics</a></div></header><article class="musicalboard-prose mb-blog-article-body"><p>A <strong>quiet room can still fail a clap test</strong> if the captured clap is too weak to reveal enough decay above the background noise. A long number can reflect that missing measurement range.</p>
+<p><a href="/mic-room-diagnostics/">Mic Room Diagnostics</a> checks background noise first, then estimates room ring from a handclap. Those checks answer different questions. In the simulation below, a steady −50 dBFS background passed the noise-level threshold. With a strong recorded clap, the decay routine returned 300 ms. With a weaker clap over exactly the same background, it returned its maximum: 8,000 ms.</p>
+<p>We reproduced that calculation using the repository's unchanged Rust function and synthetic RMS-level curves. These are <strong>simulations of the estimator</strong>, not measurements of a room or the browser interface. Downloadable curves, code, and listening examples accompany the results so you can separate a weak measurement from a genuinely long sound tail.</p>
+<h2>Quiet background and a clear decay are different requirements</h2>
+<p>The noise-level part of Step 1 passes at <strong>−45 dBFS or lower</strong>. More negative means quieter relative to digital full scale; it does not tell you the sound pressure level in the room. <a href="https://en.wikipedia.org/wiki/DBFS">dBFS</a> describes that digital reference.</p>
+<p>Step 2 instead needs a useful gap between its captured clap RMS peak and the background. The current routine finds the highest recorded level, then looks for the first samples at least 5 dB and 25 dB below it. It returns:</p>
+<p><code>estimated decay = 3 × (time at −25 dB − time at −5 dB)</code></p>
+<p>For a straight decay in dB, that 20 dB span can be extrapolated to 60 dB. A floor only 20 dB below the captured peak prevents the second crossing. Being quiet enough to pass Step 1 does not ensure that the clap sits far enough above that floor.</p>
+<p>There are also two different “peaks.” Clap detection watches for an individual sample whose absolute amplitude exceeds 0.15, about −16.5 dBFS. The decay routine subsequently uses <strong>RMS levels</strong>. A short transient can clear the attack threshold while the later RMS snapshots are much weaker. Detecting a clap therefore does not prove that its recorded tail contains a clean 25 dB drop.</p>
+<h2>Same background, 300 ms or 8,000 ms</h2>
+<p>We first modeled a component that falls 60 dB in 300 ms. Its level is a straight line in dB until it reaches a constant floor. The first captured RMS level is either −10 or −30 dBFS, and the floor is −50 dBFS in both cases.</p>
+<table><thead><tr><th>Modeled captured RMS peak</th><th>Background floor</th><th style="text-align: right">Available gap</th><th>Calculation used</th><th style="text-align: right">Returned decay</th></tr></thead><tbody>
+<tr><td>−10 dBFS</td><td>−50 dBFS</td><td style="text-align: right">40 dB</td><td>Both crossings found</td><td style="text-align: right">300 ms</td></tr>
+<tr><td>−30 dBFS</td><td>−50 dBFS</td><td style="text-align: right">20 dB</td><td>Fallback extrapolation</td><td style="text-align: right">8,000 ms</td></tr>
+</tbody></table>
+<p>The stronger curve needs to reach −35 dBFS for its 25 dB crossing, comfortably above the floor. The weaker curve would need to reach −55 dBFS. It levels out at −50 instead, so that crossing never occurs.</p>
+<!-- Image: simulated RMS curves over the same −50 dBFS floor, with the required 25 dB drop marked for strong and weak captured peaks. This is not a browser screenshot or a room measurement. -->
+<p class="mb-blog-image">
+  <img src="/blog/assets/mic_room_diagnostics/clap-decay/quiet-floor-clap-margin.png" alt="Strong and weak modeled clap RMS levels over the same minus 50 dBFS floor, showing why the weak curve cannot reach a 25 dB drop">
+</p>
+<p align="center">
+  <em>Both backgrounds meet the noise-level threshold. The upper curve reaches the required 25 dB drop; the lower curve reaches the floor first. Dots are simulated level samples at 50 ms intervals.</em>
+</p>
+<p>When either crossing is missing, the function estimates decay from the recorded peak to the last sample:</p>
+<p><code>fallback decay = elapsed time × 60 / observed drop in dB</code></p>
+<p>Our samples run from 0 through 2,950 ms. With only a 20 dB drop, the uncapped estimate is <code>2950 × 60 / 20 = 8850 ms</code>, then clipped to 8,000 ms. The underlying decaying component still has a 300 ms slope. The long result comes from including the flat background in an extrapolation that assumes continued decay.</p>
+<p>The maximum is a numerical cap, not evidence of an eight-second room response. A truly reflective room can also return a long estimate, so the number alone cannot identify which explanation applies.</p>
+<h2>Does that depend on an artificial hard floor?</h2>
+<p>A hard floor is easy to follow, but real recorded level does not usually stop at a perfect corner. We repeated the calculation by adding the decaying component's power to a stationary background power:</p>
+<p><code>combined level = 10 × log10(10^(decay level / 10) + 10^(floor level / 10))</code></p>
+<p>That models uncorrelated components in an idealized RMS calculation. With a −30 dBFS component and a −50 dBFS background, it still returned 8,000 ms. The missing-crossing problem survived the smoother approach to the floor.</p>
+<p>A borderline case was more sensitive. A −20 dBFS component over a −45 dBFS background has only a nominal 25 dB gap. With the first sample at the component's onset, the additive-power model returned 600 ms. Starting the samples 25 ms into the same 300 ms decay reduced the captured peak enough to lose the crossing, and the result became 8,000 ms.</p>
+<p>That bare 25 dB gap is therefore not a reliable target for this estimator. Level near the floor and missed early energy can make the reading change substantially. Lowering the recording gain alone generally lowers both the clap and background; it does not necessarily improve their ratio.</p>
+<h2>Why sampling changes the number even in a clean model</h2>
+<p>The page requests a level snapshot every 50 ms for three seconds. Our simulation uses evenly spaced timestamps. Actual browser callbacks can arrive late, so these exact steps describe the simulation rather than guaranteed browser timing.</p>
+<p>For a clean component falling 60 dB in 500 ms, the ideal 5 dB crossing occurs at 41.67 ms and the 25 dB crossing at 208.33 ms. At 50 ms spacing, the first recorded crossings are 50 and 250 ms. The function therefore returns <code>(250 − 50) × 3 = 600 ms</code>.</p>
+<p>Changing only the simulated interval gave:</p>
+<table><thead><tr><th>Level-sample interval</th><th style="text-align: right">Returned decay for the same 500 ms model</th></tr></thead><tbody>
+<tr><td>10 ms</td><td style="text-align: right">480 ms</td></tr>
+<tr><td>25 ms</td><td style="text-align: right">525 ms</td></tr>
+<tr><td>50 ms, matching the page's requested interval</td><td style="text-align: right">600 ms</td></tr>
+<tr><td>100 ms</td><td style="text-align: right">600 ms</td></tr>
+</tbody></table>
+<p>These alternatives are offline comparisons, not settings available in the tool. When both crossings use a uniform 50 ms grid, their difference is a multiple of 50 ms, and the final T20-based estimate moves in <strong>150 ms steps</strong>. Fallback values and irregular callback times do not follow that same rule.</p>
+<p>We also tested a curved decay: 12 dB lost in the first 50 ms, followed by a slower slope of 60 dB per 900 ms. At 50 ms spacing, the routine returned 600 ms when the first sample captured the onset and 900 ms when it started 25 ms later. The sound model was unchanged. The measured span included different proportions of the fast and slow decay, which is why this curve has no single straight-line reference time.</p>
+<!-- Image: native estimator results at four simulated sampling intervals, plus the same two-slope decay sampled with two onset offsets. Drawn from the supplied level curves. -->
+<p class="mb-blog-image">
+  <img src="/blog/assets/mic_room_diagnostics/clap-decay/sampling-and-two-slope.png" alt="Returned decay for a known 500 ms model at 10, 25, 50, and 100 ms sample intervals, alongside a two-slope curve sampled from two different onset offsets">
+</p>
+<p align="center">
+  <em>Left: changing the sample interval changes the returned number. Right: starting 25 ms later changes which part of a two-slope tail contributes to the estimate. These are calculation experiments, not acoustic surveys.</em>
+</p>
+<h2>Download the curves and repeat the calculation</h2>
+<p>The <a href="/blog/assets/mic_room_diagnostics/clap-decay/level-curves.csv">level-curve CSV</a> contains 64 cases: eight scenarios, four sample intervals, and two onset offsets per interval. Each row records a case ID, elapsed milliseconds, and RMS dBFS. The <a href="/blog/assets/mic_room_diagnostics/clap-decay/results.json">results JSON</a> records the crossings, calculation branch, returned value, assumptions, compiler version, and source hashes.</p>
+<p>We extracted <code>compute_rt60</code> directly from <code>src/tools/mic_diagnostics.rs</code> and kept its calculations unchanged. The simulation starts each recorded curve at time zero; the onset offset means how old the modeled tail is at that first sample. It does not reconstruct clap detection or the browser's first callback. It also omits PCM snapshot averaging, device processing, and timer jitter.</p>
+<p>Download the <a href="/blog/assets/mic_room_diagnostics/clap-decay/decay-reproduction.rs">standalone Rust runner</a> beside the CSV, then run:</p>
+<pre><code class="language-bash">rustc --edition=2021 -O decay-reproduction.rs -o clap-decay
+./clap-decay level-curves.csv
+</code></pre>
+<p>The output is one case ID and returned decay per line. To regenerate the curves, WAVs, and plots in a checkout, run <code>python3 scripts/make_clap_decay_fixtures.py</code>. It requires NumPy, Matplotlib, and Rust. A <a href="/blog/assets/mic_room_diagnostics/clap-decay/make_clap_decay_fixtures.py">downloadable copy of the generator</a> is also available; save it in the checkout's <code>scripts</code> directory before running it. The script extracts the current function, so check hashes when comparing later revisions.</p>
+<p>Two WAVs illustrate a strong and weak decaying 3 kHz tone over the same steady 6 kHz background component. Each includes a separate short trigger pulse. They are deliberately synthetic listening examples; <strong>the table was calculated from the level curves, not these WAVs</strong>. Start at a low playback volume.</p>
+<p>
+<a href="/blog/assets/mic_room_diagnostics/clap-decay/strong-tail-quiet-floor.wav" download="strong-tail-quiet-floor.wav">Strong-tail listening WAV</a> ·
+<a href="/blog/assets/mic_room_diagnostics/clap-decay/weak-tail-quiet-floor.wav" download="weak-tail-quiet-floor.wav">Weak-tail listening WAV</a>
+</p>
+<h2>What to do when your room passes Noise but looks Very Ringy</h2>
+<p>In <a href="/mic-room-diagnostics/">Mic Room Diagnostics</a>, distinguish <strong>Retry Needed</strong> from a long <strong>Space Decay</strong> value. Retry Needed follows a clap-detection timeout. In the current code, a completed capture is marked reliable even when the decay function uses its fallback. A missing 25 dB crossing does not automatically produce a retry message.</p>
+<p>For a practice recording, use a repeatable setup: the same microphone, input gain, clap distance, and quiet background. Clap once firmly without clipping, stay still afterward, and compare several attempts. A large spread in results is a reason to question the capture before deciding that the room needs treatment. The <a href="/blog/2026-05-30-mic-room-diagnostics-three-check-setup/">three-check setup guide</a> covers the rest of that workflow.</p>
+<p>The code reads 1,024 time-domain samples per snapshot because it allocates the analyser's frequency-bin count, half its 2,048-point FFT size. At 48 kHz that covers about 21.3 ms, while polling occurs every 50 ms. A brief attack can fall awkwardly between snapshots. MDN documents how <a href="https://developer.mozilla.org/en-US/docs/Web/API/AnalyserNode/getFloatTimeDomainData">getFloatTimeDomainData</a> handles an array shorter than the FFT size.</p>
+<p>The page requests echo cancellation, noise suppression, and automatic gain control off. <a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaTrackConstraints">MediaTrackConstraints</a> describes those capture requests; they are not proof that every device produces an unprocessed signal. Keep the device and browser consistent when comparing runs.</p>
+<p>Mic Room Diagnostics listens to the microphone; it does not import these fixture WAVs. Playing them through speakers and recording them again adds the speakers, room, and microphone to the signal. For the exact numerical comparison, use the supplied CSV and runner.</p>
+<p>Finally, record a short voice-only phrase in <a href="/singing-recorder/">Singing Recorder</a> and listen between words and at the ends of held notes. That gives useful evidence about the recording you actually want to make. For a measured room reverberation time, use an appropriate acoustic measurement method; <a href="https://en.wikipedia.org/wiki/Reverberation">Reverberation</a> explains the broader concept. This quick clap estimate is best read alongside a repeatable capture and the recording itself.</p>
+</article><p class="mb-blog-back-wrap"><a href="/blog/" class="mb-blog-back-link">← All posts</a></p></div></div></main></div></div></body>
+
+</html>
