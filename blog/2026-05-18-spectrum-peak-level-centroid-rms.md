@@ -107,6 +107,8 @@ Ways to use RMS in vocal practice:
 - Compare RMS before and after practicing a phrase on the same pitch — a rising value indicates larger retained spectral magnitudes under matching settings, not proof of stronger or healthier vocal production.
 - Play back a recorded take and watch RMS to understand how energy flows through the entire song.
 
+For a controlled follow-up with downloadable FFT-bin inputs, see the [Floor sweep experiment](/blog/2026-11-27-spectrum-floor-rms-centroid-test/). It compares weak low- and high-frequency components, showing why centroid can move in either direction while retained-bin RMS falls.
+
 ## Peak Hold Lines: 1.7-Second Hold, Then Gradual Decay
 
 In the Vocal Spectrum graph, you will see thin lines resting briefly above the bars before slowly descending. These are **peak hold lines**.

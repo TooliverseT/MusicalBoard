@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <script>
+    (function () {
+      function normalizedHost() {
+        var h = (location.hostname || '').toLowerCase();
+        if (h.length >= 2 && h.charAt(0) === '[' && h.charAt(h.length - 1) === ']') {
+          h = h.slice(1, -1);
+        }
+        return h;
+      }
+      var allowed = ['www.musicalboard.com', 'musicalboard.com'];
+      window.__mbProductionSite = allowed.indexOf(normalizedHost()) !== -1;
+    })();
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="google-site-verification" content="upoLjXjQ2igKXqJvnMon0CITWtN_Fjtiw4op30hdABg" />
+  <meta name="naver-site-verification" content="d4fa849a857dbdd47ed953b9cd1fb94a22b8164d" />
+  <meta name="yandex-verification" content="31b35f617f4d02c2" />
+  <meta name="robots" content="index, follow">
+
+  <link rel="canonical" href="https://www.musicalboard.com/blog/2026-11-27-spectrum-floor-rms-centroid-test/">
+
+  <meta name="description" content="The same spectrum can show a 13 dB RMS drop when only Spectrum floor changes. Reproduce the calculation with synthetic FFT bins, compare weak low- and high-frequency components, and learn which settings to keep fixed when comparing recordings.">
+  <meta name="keywords" content="MusicalBoard blog, vocal intonation, singing pitch, ear training, browser vocal tools, practice tips for singers">
+  <meta name="author" content="MusicalBoard">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="MusicalBoard">
+  <meta property="og:url" content="https://www.musicalboard.com/blog/2026-11-27-spectrum-floor-rms-centroid-test/">
+  <meta property="og:title" content="How Much Does the Spectrum Floor Setting Change RMS and Centroid? | MusicalBoard Blog">
+  <meta property="og:description" content="The same spectrum can show a 13 dB RMS drop when only Spectrum floor changes. Reproduce the calculation with synthetic FFT bins, compare weak low- and high-frequency components, and learn which settings to keep fixed when comparing recordings.">
+  <meta property="og:image" content="https://www.musicalboard.com/blog/assets/vocal_spectrum/floor-sweep/floor-rms-centroid.png">
+  <meta property="og:image:height" content="607">
+  <meta property="og:image:width" content="607">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="How Much Does the Spectrum Floor Setting Change RMS and Centroid? | MusicalBoard Blog">
+  <meta name="twitter:description" content="The same spectrum can show a 13 dB RMS drop when only Spectrum floor changes. Reproduce the calculation with synthetic FFT bins, compare weak low- and high-frequency components, and learn which settings to keep fixed when comparing recordings.">
+  <meta name="twitter:image" content="https://www.musicalboard.com/blog/assets/vocal_spectrum/floor-sweep/floor-rms-centroid.png">
+
+  <title>How Much Does the Spectrum Floor Setting Change RMS and Centroid? | MusicalBoard Blog</title>
+
+  <script type="application/ld+json">
+  {"@context": "https://schema.org", "@type": "BlogPosting", "headline": "How Much Does the Spectrum Floor Setting Change RMS and Centroid?", "description": "The same spectrum can show a 13 dB RMS drop when only Spectrum floor changes. Reproduce the calculation with synthetic FFT bins, compare weak low- and high-frequency components, and learn which settings to keep fixed when comparing recordings.", "url": "https://www.musicalboard.com/blog/2026-11-27-spectrum-floor-rms-centroid-test/", "image": ["https://www.musicalboard.com/blog/assets/vocal_spectrum/floor-sweep/floor-rms-centroid.png"], "author": {"@type": "Organization", "name": "MusicalBoard", "url": "https://www.musicalboard.com"}, "publisher": {"@type": "Organization", "name": "MusicalBoard", "logo": {"@type": "ImageObject", "url": "https://www.musicalboard.com/logo.png"}}, "mainEntityOfPage": {"@type": "WebPage", "@id": "https://www.musicalboard.com/blog/2026-11-27-spectrum-floor-rms-centroid-test/"}, "datePublished": "2026-11-27", "dateModified": "2026-11-27"}
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Quicksand (nav / SEO / theme), Inter (content), JetBrains Mono (figures) — SIL OFL -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;600;700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <script>
+    (function() {
+      try {
+        if (window.localStorage && localStorage.getItem('mb-sidebar-collapsed') === '1') {
+          document.documentElement.classList.add('mb-sidebar-collapsed-bootstrap');
+        }
+      } catch (_) {
+        // Storage can be unavailable in privacy modes; the app falls back to the default layout.
+      }
+    })();
+  </script>
+
+  <link rel="stylesheet" href="/index-80fd7064dfe1e9a2.css" integrity="sha384-we7EToV2xtepDlctncHiTUQczI6SQIVRLvl1tUCrYZv+b6p33CEIgJl27CHwWWLl"/>
+  
+  
+<script type="module">
+import init, * as bindings from '/musical-mind-58653356a8218435.js';
+const wasm = await init({ module_or_path: '/musical-mind-58653356a8218435_bg.wasm' });
+
+
+window.wasmBindings = bindings;
+
+
+dispatchEvent(new CustomEvent("TrunkApplicationStarted", {detail: {wasm}}));
+
+</script>
+
+  
+  
+  
+  
+  
+  
+  
+  
+
+  <link rel="icon" href="/favicon-f5b0a6244ae522b3.ico" integrity="sha384-vk49OdTw2Y8zo0VMA6kTstQmT2np58P5DtAxu+vhE/ZpXGg425GXffy0ht6NE+i9"/>
+
+  <script>
+      (function() {
+          const redirect = sessionStorage.redirect;
+          delete sessionStorage.redirect;
+          if (redirect && redirect !== window.location.href) {
+              history.replaceState(null, null, redirect);
+          }
+      })();
+  </script>
+  <script>
+    function getTimeZoneOffset() {
+        const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+        const offset = new Date().getTimezoneOffset();
+        return { timeZone, offset };
+    }
+  </script>
+  <!-- Google Analytics: production host only (localhost / 127.0.0.1 / preview URLs excluded). -->
+  <script>
+    (function () {
+      if (!window.__mbProductionSite) return;
+      var gtagJs = document.createElement('script');
+      gtagJs.async = true;
+      gtagJs.src = 'https://www.googletagmanager.com/gtag/js?id=G-M4ZR1QN3WB';
+      document.head.appendChild(gtagJs);
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      window.gtag = gtag;
+      gtag('js', new Date());
+      gtag('config', 'G-M4ZR1QN3WB');
+    })();
+  </script>
+  <!-- AdSense: after WASM mount; production host only. -->
+  <script>
+    (function () {
+      function loadAdSense() {
+        if (!window.__mbProductionSite) return;
+        if (window.__mbAdSenseLoaded) return;
+        window.__mbAdSenseLoaded = true;
+        var s = document.createElement('script');
+        s.async = true;
+        s.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9424100257975478';
+        s.crossOrigin = 'anonymous';
+        document.head.appendChild(s);
+      }
+      window.addEventListener('TrunkApplicationStarted', loadAdSense);
+      if (window.wasmBindings) loadAdSense();
+    })();
+  </script>
+<link rel="modulepreload" href="/musical-mind-58653356a8218435.js" crossorigin="anonymous" integrity="sha384-Zwn/luiB5F3H+nhefLoZbndTcwdJ1vpXjLDIV6p3SZATws1zYoIdGeywL2sWBSnn"><link rel="preload" href="/musical-mind-58653356a8218435_bg.wasm" crossorigin="anonymous" integrity="sha384-VIffsjmA0imt7UaP0B1dqSEX0Ia+zqbVtqvdXB54BGLgopO06E2jH58YWeFAeOnZ" as="fetch" type="application/wasm"></head>
+
+<body><div class="app-layout"><div data-tour="nav-sidebar" class="sidebar"><div class="sidebar-header"><a href="/" class="logo"><img src="/logo.png" alt="MusicalBoard Logo" class="logo-image"><div class="logo-text">MusicalBoard</div></a></div><nav class="sidebar-nav"><div aria-label="Practice tools" class="sidebar-nav-group"><a title="MusicalBoard" href="/" class="nav-item"><span class="nav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="3" width="8" height="10" rx="2" fill="currentColor" opacity="0.95"></rect><rect x="4.5" y="4.5" width="5" height="7" fill="#f8fafc" stroke="#1f2937" stroke-width="0.7"></rect><rect x="13" y="3" width="8" height="5" rx="2" fill="currentColor" opacity="0.82"></rect><rect x="14.5" y="4.5" width="5" height="2" fill="#f8fafc" stroke="#1f2937" stroke-width="0.7"></rect><rect x="3" y="15" width="8" height="6" rx="2" fill="currentColor" opacity="0.82"></rect><rect x="4.5" y="16.5" width="5" height="3" fill="#f8fafc" stroke="#1f2937" stroke-width="0.7"></rect><rect x="13" y="10" width="8" height="11" rx="2" fill="currentColor" opacity="0.95"></rect><rect x="14.5" y="11.5" width="5" height="8" fill="#f8fafc" stroke="#1f2937" stroke-width="0.7"></rect></svg></span><span class="nav-text">MusicalBoard</span></a><a title="Singing recorder — mic, monitor, record, export" href="/singing-recorder/" class="nav-item"><span class="nav-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none"><line x1="4" y1="6" x2="20" y2="6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></line><circle cx="14" cy="6" r="2" fill="currentColor"></circle><line x1="4" y1="12" x2="20" y2="12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></line><circle cx="10" cy="12" r="2" fill="currentColor"></circle><line x1="4" y1="18" x2="20" y2="18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></line><circle cx="7" cy="18" r="2" fill="currentColor"></circle></svg></span><span class="nav-text">Singing recorder</span></a><a title="Vocal pitch monitor — real-time intonation graph" href="/vocal-pitch-monitor/" class="nav-item"><span class="nav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="2.5" stroke="currentColor" stroke-width="1.8"></rect><path d="M7 17V8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path><path d="M7 17H17" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path><path d="M8.5 14.5L11 12L13.2 13.4L16 9.6" stroke="#f8fafc" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"></path><circle cx="11" cy="12" r="1.1" fill="#f8fafc"></circle><circle cx="13.2" cy="13.4" r="1.1" fill="#f8fafc"></circle><circle cx="16" cy="9.6" r="1.1" fill="#f8fafc"></circle></svg></span><span class="nav-text">Pitch monitor</span></a><a title="Vocal range test — intonation map and session score" href="/vocal-range-test/" class="nav-item"><span class="nav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="2.5" y="3.5" width="3" height="17" rx="1.5" fill="currentColor" opacity="0.22"></rect><rect x="6.5" y="3.5" width="3" height="17" rx="1.5" fill="currentColor" opacity="0.38"></rect><rect x="10.5" y="3.5" width="3" height="17" rx="1.5" fill="currentColor" opacity="0.55"></rect><rect x="14.5" y="3.5" width="3" height="17" rx="1.5" fill="currentColor" opacity="0.74"></rect><rect x="18.5" y="3.5" width="3" height="17" rx="1.5" fill="currentColor" opacity="0.95"></rect></svg></span><span class="nav-text">Range test</span></a><a title="Vocal scales — optional pitch feedback" href="/vocal-scales/" class="nav-item"><span class="nav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z" fill="currentColor" opacity="0.94"></path><circle cx="10" cy="17" r="1.5" fill="#f8fafc"></circle></svg></span><span class="nav-text">Vocal scales</span></a><a title="Virtual piano — reference notes and chords" href="/virtual-piano/" class="nav-item"><span class="nav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><rect x="4" y="4" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"></rect><rect x="4" y="4" width="5.33" height="16" fill="#f8fafc" stroke="#1f2937" stroke-width="1"></rect><rect x="9.33" y="4" width="5.33" height="16" fill="#f8fafc" stroke="#1f2937" stroke-width="1"></rect><rect x="14.67" y="4" width="5.33" height="16" fill="#f8fafc" stroke="#1f2937" stroke-width="1"></rect><rect x="7" y="4" width="4" height="10" fill="#111827"></rect><rect x="12.5" y="4" width="4" height="10" fill="#111827"></rect></svg></span><span class="nav-text">Virtual piano</span></a><a title="Online metronome — tap tempo, meters, subdivisions" href="/online-metronome/" class="nav-item"><span class="nav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 20h16L18 17H6L4 20z" fill="currentColor" stroke="currentColor" stroke-width="1.1"></path><path d="M6 17L12 4L18 17" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linejoin="round" stroke-linecap="round"></path><path d="M9 13h6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path><path d="M12 13L16 5" stroke="#f8fafc" stroke-width="1.6" stroke-linecap="round"></path><circle cx="16" cy="5" r="1" stroke="currentColor" stroke-width="1.5" fill="none"></circle><circle cx="16" cy="5" r="0.8" fill="#f8fafc"></circle></svg></span><span class="nav-text">Online metronome</span></a><a title="Vocal Spectrum — vocal frequency analyzer" href="/audio-spectrum-analyzer/" class="nav-item"><span class="nav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="2" y="10" width="1.5" height="4" rx="0.75" fill="currentColor" opacity="0.35"></rect><rect x="4.5" y="8" width="1.5" height="8" rx="0.75" fill="currentColor" opacity="0.5"></rect><rect x="7" y="6" width="1.5" height="12" rx="0.75" fill="currentColor" opacity="0.65"></rect><rect x="9.5" y="4" width="1.5" height="16" rx="0.75" fill="currentColor" opacity="0.8"></rect><rect x="12" y="2" width="1.5" height="20" rx="0.75" fill="currentColor" opacity="0.98"></rect><rect x="14.5" y="4" width="1.5" height="16" rx="0.75" fill="currentColor" opacity="0.8"></rect><rect x="17" y="6" width="1.5" height="12" rx="0.75" fill="currentColor" opacity="0.65"></rect><rect x="19.5" y="8" width="1.5" height="8" rx="0.75" fill="currentColor" opacity="0.5"></rect><rect x="22" y="10" width="1.5" height="4" rx="0.75" fill="currentColor" opacity="0.35"></rect></svg></span><span class="nav-text">Vocal Spectrum</span></a><a title="Auto-Tune — pitch correction while preserving vocal timbre" href="/auto-tune/" class="nav-item"><span class="nav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><line x1="6" y1="3" x2="6" y2="21" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" opacity="0.55"></line><line x1="12" y1="3" x2="12" y2="21" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" opacity="0.55"></line><line x1="18" y1="3" x2="18" y2="21" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" opacity="0.55"></line><rect x="3" y="7" width="6" height="3" rx="1.4" fill="currentColor"></rect><rect x="9" y="13" width="6" height="3" rx="1.4" fill="currentColor"></rect><rect x="15" y="9" width="6" height="3" rx="1.4" fill="currentColor"></rect></svg></span><span class="nav-text">Auto-Tune</span></a><a title="Vocal Isolator — extract the vocal or the instrumental from a mix, or reduce room noise" href="/vocal-isolation/" class="nav-item"><span class="nav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="9" y="2" width="6" height="11" rx="3" stroke="currentColor" stroke-width="1.7"></rect><path d="M5 10a7 7 0 0 0 14 0" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"></path><line x1="12" y1="17" x2="12" y2="20" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"></line><line x1="9" y1="20" x2="15" y2="20" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"></line></svg></span><span class="nav-text">Vocal Isolator</span></a><a title="Mic Room Diagnostics — 3-step recording quality check" href="/mic-room-diagnostics/" class="nav-item"><span class="nav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="9" y="2" width="6" height="11" rx="3" stroke="currentColor" stroke-width="1.7"></rect><path d="M5 10a7 7 0 0 0 14 0" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"></path><line x1="12" y1="17" x2="12" y2="20" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"></line><line x1="9" y1="20" x2="15" y2="20" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"></line><circle cx="18.5" cy="18.5" r="4" fill="currentColor" opacity="0.85"></circle><path d="M16.5 18.5l1.5 1.5 2.5-2.5" stroke="#f8fafc" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path></svg></span><span class="nav-text">Mic Diagnostics</span></a><a title="Sight singing — match a played note and see your cents" href="/sight-singing/" class="nav-item"><span class="nav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z" fill="currentColor" opacity="0.94"></path><circle cx="10" cy="17" r="1.5" fill="#f8fafc"></circle><circle cx="18.5" cy="18.5" r="4" fill="currentColor" opacity="0.85"></circle><path d="M16.5 18.5l1.5 1.5 2.5-2.5" stroke="#f8fafc" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path></svg></span><span class="nav-text">Sight singing</span></a></div><hr class="sidebar-nav-divider"><div aria-label="Blog" class="sidebar-nav-group sidebar-nav-group--blog"><a title="Blog" href="/blog/" aria-current="page" class="nav-item active"><span class="nav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M7 3h10a2 2 0 0 1 2 2v16l-4-2-4 2-4-2-4 2V5a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round"></path><path d="M8 8h8M8 12h8M8 16h5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg></span><span class="nav-text">Blog</span></a></div></nav><div class="sidebar-footer-legal"><a href="/about/" class="sidebar-legal-link">About</a><a href="/privacy/" class="sidebar-legal-link">Privacy</a><a href="/terms/" class="sidebar-legal-link">Terms</a><a href="/contact/" class="sidebar-legal-link">Contact</a></div></div><button type="button" title="Collapse sidebar" aria-label="Collapse navigation sidebar" aria-expanded="true" class="sidebar-edge-toggle"><span aria-hidden="true" class="sidebar-edge-toggle-glyph">«</span></button><div id="app-main-content" class="main-content"><div class="top-header-container"><div class="top-header"><div class="header-left"><button type="button" data-tour="nav-menu" aria-label="Open navigation menu" aria-expanded="false" class="mobile-menu-btn"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="menu-icon-svg"><line x1="4" y1="6" x2="20" y2="6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" class="menu-bar menu-bar--top"></line><line x1="4" y1="12" x2="20" y2="12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" class="menu-bar menu-bar--mid"></line><line x1="4" y1="18" x2="20" y2="18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" class="menu-bar menu-bar--bot"></line></svg></button><p class="page-title">How Much Does the Spectrum Floor Setting Change RMS and Centroid? | MusicalBoard</p></div><div class="header-right"></div></div></div><main class="content-area no-min-width"><div class="detail-page mb-blog-page"><div class="mb-blog-inner mb-blog-article-wrap"><nav aria-label="Breadcrumb" class="mb-blog-breadcrumb"><a href="/blog/">Blog</a><span aria-hidden="true" class="mb-blog-bc-sep">/</span><span>How Much Does the Spectrum Floor Setting Change RMS and Centroid?</span></nav><header class="mb-blog-article-header"><h1 class="mb-blog-article-title">How Much Does the Spectrum Floor Setting Change RMS and Centroid?</h1><p class="mb-blog-article-date">27 November 2026</p><p class="mb-blog-article-excerpt">The same spectrum can show a 13 dB RMS drop when only Spectrum floor changes. Reproduce the calculation with synthetic FFT bins, compare weak low- and high-frequency components, and learn which settings to keep fixed when comparing recordings.</p><div class="mb-blog-article-tags"><a href="/audio-spectrum-analyzer/" class="mb-blog-article-tag">Vocal Spectrum</a></div></header><article class="musicalboard-prose mb-blog-article-body"><p><strong>Changing Spectrum floor can change RMS and CENTROID without changing the sound.</strong> This experiment shows a roughly 13 dB RMS drop from the setting alone and explains how to separate display settings from changes in your recording.</p>
+<p><a href="/audio-spectrum-analyzer/">Vocal Spectrum</a> displays frequency magnitudes and summarizes the current spectrum. Its RMS describes the magnitudes that pass the selected analysis conditions. It does not measure the loudness of an entire recording or the sound pressure in your room. CENTROID also depends on the components retained, so a higher reading after a setting change does not establish that your voice became brighter.</p>
+<p>We compare weak components above and below the main tones using <strong>synthetic FFT-bin inputs fed directly into the current calculation code</strong>. These are calculation experiments, not browser measurements or evaluations of a singer. Downloadable inputs, results, code, and separate listening WAVs let you check what changed and why.</p>
+<h2>A higher Spectrum floor percentage includes weaker components</h2>
+<p>The <code>Spectrum floor</code> slider runs from 0–100%. Higher percentages reveal weaker components: <strong>raising the percentage lowers the actual dB threshold.</strong> The current conversion is:</p>
+<p><code>floor (dB) = −30 − 0.45 × slider percentage</code></p>
+<p>The implementation converts the percentage to an internal floating-point value and back, introducing tiny rounding differences. The practical thresholds are:</p>
+<table><thead><tr><th>Spectrum floor</th><th style="text-align: right">Inclusion threshold</th></tr></thead><tbody>
+<tr><td>0%</td><td style="text-align: right">−30 dB</td></tr>
+<tr><td>25%</td><td style="text-align: right">−41.25 dB</td></tr>
+<tr><td>50%</td><td style="text-align: right">−52.5 dB</td></tr>
+<tr><td>75%</td><td style="text-align: right">−63.75 dB</td></tr>
+<tr><td>100%</td><td style="text-align: right">−75 dB</td></tr>
+</tbody></table>
+<p>Bins below the threshold are excluded; bins exactly at it are included. A −45 dB component therefore drops out at 25% and enters at 50%. Moving from 50% to 75% may leave the readings unchanged if no additional bins fall between those thresholds.</p>
+<p>This setting does not remove noise from the audio. A disappearing bar does not mean that component was erased from your recording. Spectrum floor is also independent of Pitch gate in <a href="/vocal-pitch-monitor/">Vocal Pitch Monitor</a>. Revealing weaker spectral components and changing the conditions for displaying a pitch trace are separate operations.</p>
+<h2>The experiment: fixed bins, changing floor</h2>
+<p>An ordinary FFT can spread one tone across neighboring frequency bins. To isolate the floor's effect, we constructed bin values directly. <strong>These inputs were designed for the calculation function; they were not obtained by analyzing a WAV.</strong></p>
+<p>The conditions were a 48 kHz sample rate, 1,024 frequency bins, Low at 80 Hz, and High at 16 kHz. That corresponds to a 2,048-point FFT with approximately 23.44 Hz spacing. The current label rule is <code>(bin index + 0.5) × bin spacing</code>. Those labels are not precise pitch estimates; the <a href="/blog/2026-11-04-spectrum-harmonic-bin-alignment-test/">known-harmonic spectrum experiment</a> explains the distinction.</p>
+<p>Both inputs contain strong bins near 996 Hz at −20 dB and 2,004 Hz at −26 dB. Their weaker components differ:</p>
+<ul>
+<li><strong>Weak-high input:</strong> twenty −45 dB bins between approximately 4.70 and 5.14 kHz.</li>
+<li><strong>Weak-low input:</strong> twenty −45 dB bins between approximately 105 and 551 Hz.</li>
+<li>Both inputs also contain twenty −65 dB bins around 7.04–7.49 kHz. All remaining bins are fixed at −90 dB.</li>
+</ul>
+<p>The inputs have identical counts at each magnitude; only the locations of the −45 dB bins differ. Each input stays unchanged while the slider moves through 0%, 25%, 50%, 75%, and 100%. We extracted <code>analyze_spectrum</code> and the floor conversion functions unchanged from the repository, ran them in Rust, and checked the results against separate NumPy formulas.</p>
+<h2>Weak high-frequency bins lower RMS and raise CENTROID</h2>
+<p>Here are three settings for the weak-high input, rounded for readability. The downloads include all five settings and additional decimal places.</p>
+<table><thead><tr><th>Spectrum floor</th><th style="text-align: right">Threshold</th><th style="text-align: right">Bins retained</th><th style="text-align: right">PEAK</th><th style="text-align: right">LEVEL</th><th style="text-align: right">CENTROID</th><th style="text-align: right">RMS</th></tr></thead><tbody>
+<tr><td>0%</td><td style="text-align: right">−30 dB</td><td style="text-align: right">2</td><td style="text-align: right">996 Hz</td><td style="text-align: right">−20.0 dB</td><td style="text-align: right">1,333 Hz</td><td style="text-align: right">−22.04 dB</td></tr>
+<tr><td>50%</td><td style="text-align: right">−52.5 dB</td><td style="text-align: right">22</td><td style="text-align: right">996 Hz</td><td style="text-align: right">−20.0 dB</td><td style="text-align: right">2,870 Hz</td><td style="text-align: right">−32.24 dB</td></tr>
+<tr><td>100%</td><td style="text-align: right">−75 dB</td><td style="text-align: right">42</td><td style="text-align: right">996 Hz</td><td style="text-align: right">−20.0 dB</td><td style="text-align: right">3,050 Hz</td><td style="text-align: right">−35.04 dB</td></tr>
+</tbody></table>
+<p>At 0%, only the two strong bins remain. At 50%, the twenty −45 dB bins enter and RMS falls by about 10.20 dB. At 100%, the −65 dB bins also enter, bringing the total drop to approximately 13.01 dB. The strongest bin survives every threshold, so PEAK and LEVEL stay fixed.</p>
+<p>Why does including more components lower RMS? The calculation converts dB to linear amplitude, sums squared amplitudes, <strong>divides by the number of retained bins</strong>, takes the square root, and converts back to dB:</p>
+<p><code>amplitude a = 10^(dB / 20)</code></p>
+<p><code>RMS (dB) = 20 × log10(√(Σa² / retained bin count))</code></p>
+<p>Adding small values also increases the denominator—from 2 to 22 to 42 here. With a fixed spectrum and frequency band, lowering the threshold only adds values no larger than those already retained. Once a valid RMS exists, admitting those weaker bins alone cannot raise it. Raising the threshold and removing weaker bins can increase the average.</p>
+<p>Neither “the voice got quieter” nor “removing noise made the voice louder” follows from this change. The input magnitudes never moved. The <a href="https://en.wikipedia.org/wiki/Root_mean_square">general RMS definition</a> helps explain why the population being averaged matters: RMS over waveform samples and RMS over retained FFT magnitudes are different calculations.</p>
+<h2>Weak low-frequency bins move CENTROID the other way</h2>
+<p>CENTROID averages the retained frequencies using linear amplitude as the weight:</p>
+<p><code>CENTROID (Hz) = Σ(frequency × amplitude) / Σamplitude</code></p>
+<p>Adding bins above the existing centroid can raise it; adding bins below it can lower it. The slider percentage alone does not predict the direction. For the weak-low input:</p>
+<table><thead><tr><th>Spectrum floor</th><th style="text-align: right">Bins retained</th><th style="text-align: right">CENTROID</th><th style="text-align: right">RMS</th></tr></thead><tbody>
+<tr><td>0%</td><td style="text-align: right">2</td><td style="text-align: right">1,333 Hz</td><td style="text-align: right">−22.04 dB</td></tr>
+<tr><td>50%</td><td style="text-align: right">22</td><td style="text-align: right">902 Hz</td><td style="text-align: right">−32.24 dB</td></tr>
+<tr><td>100%</td><td style="text-align: right">42</td><td style="text-align: right">1,164 Hz</td><td style="text-align: right">−35.04 dB</td></tr>
+</tbody></table>
+<p>RMS matches the weak-high case because the counts at each magnitude are identical. CENTROID falls by about 430 Hz at 50%, then rises by approximately 261 Hz at 100% as the shared, very weak 7 kHz components enter. <strong>Moving the slider in one direction can make CENTROID fall and then rise.</strong></p>
+<!-- Image: compare RMS and CENTROID at five floor settings for two fixed synthetic FFT inputs. This plot represents calculations, not a browser capture or a voice measurement. -->
+<p class="mb-blog-image">
+  <img src="/blog/assets/vocal_spectrum/floor-sweep/floor-rms-centroid.png" alt="Calculated floor sweep showing overlapping falling RMS curves and different centroid movements for weak components above and below the main tones">
+</p>
+<p align="center">
+  <em>The two RMS curves overlap on the left. On the right, the location of the −45 dB bins changes the centroid's direction; at 100%, shared −65 dB high-frequency bins enter. Dots show the five calculated settings, with lines connecting them.</em>
+</p>
+<p>The <a href="https://librosa.org/doc/0.11.0/generated/librosa.feature.spectral_centroid.html">librosa spectral centroid documentation</a> also describes a frequency mean weighted by spectral magnitude. When comparing programs, check whether weights use amplitude or power, how frequencies are assigned, and which bins are excluded. These tables use MusicalBoard's current amplitude-weighted definition.</p>
+<h2>Check Low–High and missing readings too</h2>
+<p>Matching the floor is insufficient if the frequency bands differ. Lowering High from 16 kHz to 4 kHz in the weak-high case excludes every added weak component. At 0%, 50%, and 100%, two bins remain, with CENTROID at 1,333 Hz and RMS at −22.04 dB.</p>
+<p>The unchanged readings mean that no additional eligible components entered the selected band. Cutting high frequencies from a recording with accompaniment can lower its centroid without changing the vocal performance. Excluding a kick drum or bass at the low end likewise changes what gets averaged.</p>
+<p>We also tested an input with every bin at −90 dB. All five settings returned no valid result; the interface displays dashes. That means no bins passed the current band and floor, not that the original audio was necessarily silent. A zero in a default result structure must be interpreted alongside the validity flag.</p>
+<p>A boundary input with one bin exactly at −30 dB was retained at 0%. In a real recording, small fluctuations can move a bin across that boundary. Check signal stability and settings before interpreting a threshold-adjacent jump as a performance change.</p>
+<h2>Download the inputs and repeat the calculation</h2>
+<p>The supplied dataset contains 25 results covering both frequency arrangements, the changed High limit, below-floor inputs, and exact-boundary inputs at five settings. The <a href="/blog/assets/vocal_spectrum/floor-sweep/spectrum-inputs.csv">input CSV</a> stores conditions and 1,024 semicolon-separated bin values per row. The <a href="/blog/assets/vocal_spectrum/floor-sweep/results.csv">results CSV</a> records retained counts and the four metrics. The <a href="/blog/assets/vocal_spectrum/floor-sweep/results.json">results JSON</a> includes signal conditions, source hashes, compiler version, and verification details.</p>
+<p>Save the <a href="/blog/assets/vocal_spectrum/floor-sweep/floor-reproduction.rs">standalone Rust runner</a> beside the input CSV, then run:</p>
+<pre><code class="language-bash">rustc --edition=2021 -O floor-reproduction.rs -o floor-sweep
+./floor-sweep spectrum-inputs.csv
+</code></pre>
+<p>To regenerate the assets in a checkout, run <code>python3 scripts/make_spectrum_floor_fixtures.py</code>. It requires NumPy, Matplotlib, and Rust. A <a href="/blog/assets/vocal_spectrum/floor-sweep/make_spectrum_floor_fixtures.py">generator copy</a> is available; place it in the checkout's <code>scripts</code> directory. The standalone Rust runner already contains the required functions and can run without the full application source.</p>
+<p>The generator extracts functions from the checkout at generation time. Later code changes can produce different results; use the JSON hashes to identify the calculations behind this article.</p>
+<p>Two listening WAVs combine a 1 kHz sine with a weaker 6 kHz or 200 Hz sine. Each is three seconds long, 48 kHz, 16-bit mono. Start playback at a low volume.</p>
+<p>
+<a href="/blog/assets/vocal_spectrum/floor-sweep/strong-mid-weak-high.wav" download="strong-mid-weak-high.wav">Download weak-high listening WAV</a> ·
+<a href="/blog/assets/vocal_spectrum/floor-sweep/strong-mid-weak-low.wav" download="strong-mid-weak-low.wav">Download weak-low listening WAV</a>
+</p>
+<p><strong>These WAVs illustrate listening differences; they did not produce the tables.</strong> The tables use directly assigned bin values, while each WAV contains two sine waves. Importing a WAV creates another spectrum affected by windowing, leakage, temporal smoothing, decoding, and sample rate. Use the CSV and Rust runner for the exact numerical comparison. Live microphone analysis also follows the browser's analysis path; <a href="https://developer.mozilla.org/en-US/docs/Web/API/AnalyserNode/getFloatFrequencyData">MDN's getFloatFrequencyData documentation</a> explains its decibel data.</p>
+<h2>Comparing recordings with MusicalBoard</h2>
+<p>In <a href="/audio-spectrum-analyzer/">Vocal Spectrum</a>, record Spectrum floor and Low–High before comparing takes. There is no universal correct floor: a higher percentage can help inspect weak components, while a lower percentage emphasizes stronger ones. Keep the chosen settings consistent during comparisons.</p>
+<ol>
+<li>Upload a file and choose a sustained section away from fades and consonants. Set a comparison band, such as 80 Hz–16 kHz.</li>
+<li>Explore 0%, 50%, and 100% over the same section to see which components enter. During playback, frames also change, so not every moving reading comes from the slider.</li>
+<li>For comparisons between recordings, fix one floor setting. Use the same pitch and vowel, similar microphone distance, and consistent capture conditions. Note RMS and CENTROID together.</li>
+<li>Listen to the original section again. Check for vowel changes, breath noise, accompaniment, or a changed microphone position before attributing the readings to technique.</li>
+</ol>
+<p>For example, two sustained “ah” takes viewed at 0% and 100% include different populations of weak bins. Compare them again under matching settings first. For a quiet ballad ending or a pop phrase with backing, replay the section in <a href="/singing-recorder/">Singing Recorder</a> before drawing conclusions about vocal volume or production.</p>
+<p>The <a href="/blog/2026-05-18-spectrum-peak-level-centroid-rms/">PEAK, LEVEL, CENTROID, and RMS guide</a> covers the basic readouts. This experiment adds a controlled example: settings alone produced a roughly 13 dB RMS drop, while centroid's direction depended on where the weak bins were. To judge whether a recording changed, first make sure the frequency band and inclusion threshold match.</p>
+</article><p class="mb-blog-back-wrap"><a href="/blog/" class="mb-blog-back-link">← All posts</a></p></div></div></main></div></div></body>
+
+</html>

@@ -182,7 +182,7 @@
   </url>
   <url>
     <loc>https://www.musicalboard.com/blog/2026-05-18-spectrum-peak-level-centroid-rms/</loc>
-    <lastmod>2026-10-28</lastmod>
+    <lastmod>2026-11-27</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -313,6 +313,11 @@
   <url>
     <loc>https://www.musicalboard.com/blog/2026-11-23-quiet-room-clap-test-decay/</loc>
     <lastmod>2026-11-23</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.musicalboard.com/blog/2026-11-27-spectrum-floor-rms-centroid-test/</loc>
+    <lastmod>2026-11-27</lastmod>
     <priority>0.8</priority>
   </url>
 </urlset>
